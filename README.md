@@ -8,7 +8,8 @@ Built during [neatHack 2026](https://neatlogs.com/hackathon) by team USV.
 
 | | |
 |---|---|
-| Website | **[usv240.github.io/niyam](https://usv240.github.io/niyam/)** (static; live agent features need the API) |
+| Website | **[usv240.github.io/niyam](https://usv240.github.io/niyam/)** (GitHub Pages) and **[44-197-246-188.sslip.io](https://44-197-246-188.sslip.io/)** (AWS) |
+| Live API and watcher | AWS EC2 t3.small in Hackathon_VPC, us-east-1: `https://44-197-246-188.sslip.io/api/v1/health` |
 | Demo video | *added on submission day* |
 | Rulebook maintained by the agent | [usv240/niyam-rulebook](https://github.com/usv240/niyam-rulebook) |
 | Showcase pull request opened by the agent | [usv240/niyam-rulebook#2](https://github.com/usv240/niyam-rulebook/pull/2) |

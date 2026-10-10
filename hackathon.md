@@ -7,7 +7,8 @@
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
 > 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
-> 5. **Deploy**: website is LIVE at https://usv240.github.io/niyam/ (GitHub Pages). Optional: API on the one allowed EC2 instance (`infra/README.md`) for live uploads, keys and status.
+> 5. **Server keys**: the AWS server is live without model keys (site, rules API, watcher work). To enable uploads and agent runs on it: `ssh -i $env:USERPROFILE\.ssh
+iyam-usv.pem ubuntu@44.197.246.188` then `sudo niyam-setup` and type your keys. Stop the instance after 16 October.
 > 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
 > 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
 
@@ -134,6 +135,13 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 
 - GitHub Pages: https://usv240.github.io/niyam/ (manual workflow `pages.yml`). Verified on the live site: 11 pages return 200, assets load under `/niyam/`, custom 404, and the full accessibility and layout QA (11 routes, light and dark, phone and desktop) passes against the live URL.
 - PR #2 reviewed (all 6 changes checked against the GR); PR #3 reviewed and fixed (`disabled` default, 2 new tests). Both await the maintainer's merge: the agent's own reviewer cannot approve its own work.
+
+### 2026-10-10 22:40 IST: live on AWS
+
+- Shared neatHack account, our IAM user only. One t3.small (`i-01bdb72f8624b6e7d`) in Hackathon_VPC public subnet, us-east-1, 20 GB gp3, IMDSv2 required; own security group (80 and 443 open, 22 only from the team leader's IP). Other teams' instances untouched.
+- Problems found and fixed: tagging at creation is denied by the organisers' policy (dropped tags on the security group); EC2 Instance Connect is not permitted for team users (switched to a key pair, so the first instance was terminated and replaced, keeping to one instance); the Caddy package host now answers 402 Payment Required (installed Caddy from Ubuntu's repository); waited for the apt lock on first boot.
+- Verified: https://44-197-246-188.sslip.io serves the site and API over a valid certificate; the GitHub Pages site calls the same API (status page shows live data); the watcher ran on its own and read the 10 latest GRs.
+- Model keys are not set on the server (I do not enter keys); read-only features work, uploads need the keys.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
