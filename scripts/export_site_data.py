@@ -106,11 +106,16 @@ def main() -> int:
             e["payload"] = json.loads(e.pop("payload_json") or "{}")
         showcase = detail
         sha = detail.get("commit_sha")
+        merged = bool(sha) and subprocess.run(["git", "merge-base", "--is-ancestor", sha, "HEAD"],
+                                              cwd=rulebook.main_path()).returncode == 0
+        showcase["merged"] = merged
         if sha:
-            proposed = snapshot(branch_checkout(sha))
-            prov = line_provenance(branch_checkout(sha), proposed)
+            # Once the showcase change is merged, the "proposed" view is simply main (nothing pending).
+            root = rulebook.main_path() if merged else branch_checkout(sha)
+            proposed = main_snap if merged else snapshot(root)
+            prov = line_provenance(root, proposed)
             # Pending changes from other agent jobs (separate pull requests), merged into one view.
-            for other in args.also:
+            for other in ([] if merged else args.also):
                 osha = (db.job(other) or {}).get("commit_sha")
                 if not osha:
                     continue
@@ -142,6 +147,7 @@ def main() -> int:
     meta = {
         "generated_at": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
         "showcase_job": job_id,
+        "pending_changes": not bool(showcase and showcase.get("merged")),
         "rulebook_main_sha": rulebook.git("rev-parse", "HEAD", cwd=rulebook.main_path()),
         "published": [{**{k: j[k] for k in ("id", "state", "pr_url", "commit_sha", "checkpoint_id", "checkpoint_url", "trace_id",
                                             "confidence", "decision", "cost_usd", "title_en")}, "doc_code": j["document"].get("code")}

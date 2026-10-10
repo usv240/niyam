@@ -147,6 +147,12 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 - Team leader added the model keys on the server. The API had to be restarted to load them (fixed in the setup script: it now always restarts the API).
 - End-to-end through the public API on AWS: uploaded the real 3 July 2024 amendment (bring your own document). Result: 6 changes, 45 tests, 15 of 15 independent checks agree, confidence 0.89, human review (uploads are never merged), Entire checkpoint 01M4KDAZ1165GT6MHM7V6DQ10E on the server, neatlogs trace 5108a0fb7fa3d2523c6242f7a36c274e, $0.24, job `job_20261010_b9fe7478`.
 
+### 2026-10-10 23:20 IST: PRs merged, PR #4, and a stale-base bug
+
+- Maintainer merged PR #2 and PR #3 (PR #3 rebased first; 72 tests on the combined rulebook).
+- Ran the real 2023 Sanjay Gandhi increase live in GitHub mode. This time Niyam raised a question (do widows with 3 or more children also get Rs 1,500?) and chose human review, opening PR #4, while two earlier dry runs of the same order chose to merge alone. The GR answers the question ("all beneficiaries"), so the escalation was overcautious but safe. Honest summary: 2 of 3 runs of this order would have acted alone.
+- Bug found while reviewing PR #4: `niyam process` reused the stored copy of the same PDF from the earlier dry run, including its old base commit, so PR #4 was built on PR #3 before its fix (with `disabled: true`). Rebuilt the branch on main (83 tests, CI green) and fixed the CLI: explicit commands never reuse a stored document's options.
+
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo

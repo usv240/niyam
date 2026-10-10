@@ -2,7 +2,7 @@
 
 import { CheckCircle2, ShieldCheck, XCircle } from "lucide-react";
 import { useMemo, useState } from "react";
-import { rulebookMain, rulebookProposed } from "@/lib/data";
+import { meta, rulebookMain, rulebookProposed } from "@/lib/data";
 import { LANGS, t, WHY_ASKED, type Lang } from "@/lib/i18n";
 import { evaluateScheme, today, type SchemeResult } from "@/lib/rules";
 import { Why } from "./explorer";
@@ -100,9 +100,11 @@ export function Checker() {
             ))}
           </div>
         </details>
+{meta.pending_changes && (
         <label className="flex items-center gap-2 text-xs text-muted">
           <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} /> Include rule changes waiting for human review (including the second scheme)
         </label>
+)}
         <button type="submit" className="min-h-12 w-full rounded-lg bg-accent px-5 text-base font-semibold text-accent-contrast shadow-card">{t("check", lang)}</button>
         {lang !== "en" && <p className="text-xs text-muted">{t("review_note", lang)}</p>}
       </form>

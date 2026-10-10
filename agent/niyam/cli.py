@@ -41,9 +41,11 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "process":
             meta = {"title": args.title, "published_at": args.date, "code": args.code, "source_url": args.url,
                     "base_ref": args.base, "onboard": args.onboard}
-            # An explicit instruction (onboard, upload) must never be lost to duplicate detection.
+            # An explicit command always uses its own options. Reusing a stored copy of the same PDF once
+            # carried over an old base commit and built a pull request on stale rules (PR #4, fixed).
+            # Duplicate detection stays on for the watcher, where it prevents processing an order twice.
             doc_id = orchestrator.add_document(Path(args.pdf), "byod" if args.byod else "cli", {k: v for k, v in meta.items() if v},
-                                               dedup=not (args.onboard or args.byod))
+                                               dedup=False)
             job_id = orchestrator.create_job(doc_id, is_byod=args.byod)
             job = orchestrator.run_job(job_id)
             print(json.dumps({k: job.get(k) for k in ("id", "state", "confidence", "autonomy_decision", "pr_url", "checkpoint_id", "trace_id", "cost_usd")}, indent=2))

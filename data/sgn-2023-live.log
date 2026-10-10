@@ -1,0 +1,29 @@
+[job_20261010_743d13b0] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_743d13b0] stage.done: Relevant: The resolution raises the monthly assistance from Rs 1000 to Rs 1500, extends widows with one or two children to the higher amount, removes the 25-year age condition for the beneficiary's son, and changes the life-certificate rules for the scheme.
+[job_20261010_743d13b0] state: State is now TRIAGED
+[job_20261010_743d13b0] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_743d13b0] stage.done: Found 3 change(s), 1 ambiguity(ies), skipped 3 procedural topic(s)
+[job_20261010_743d13b0] state: State is now EXTRACTED
+[job_20261010_743d13b0] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_743d13b0] encode.attempt: Coding agent attempt 1
+[job_20261010_743d13b0] encode.tests_passed: Tests pass: 60 passed, 0 failed
+[job_20261010_743d13b0] stage.done: Rulebook updated in 1 attempt(s); 60 tests pass
+[job_20261010_743d13b0] state: State is now ENCODED
+[job_20261010_743d13b0] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_743d13b0] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_743d13b0] state: State is now VERIFIED
+[job_20261010_743d13b0] stage.start: Confidence 0.96; decision: human review
+[job_20261010_743d13b0] publish.commit: Committed b24abf1 with Entire checkpoint 01M4KE4N65FT7MYWA8KF55V4X8
+[job_20261010_743d13b0] stage.done: Change request opened: https://github.com/usv240/niyam-rulebook/pull/4
+[job_20261010_743d13b0] state: State is now AWAITING_HUMAN
+{
+  "id": "job_20261010_743d13b0",
+  "state": "AWAITING_HUMAN",
+  "confidence": 0.965,
+  "autonomy_decision": "human_review",
+  "pr_url": "https://github.com/usv240/niyam-rulebook/pull/4",
+  "checkpoint_id": "01M4KE4N65FT7MYWA8KF55V4X8",
+  "trace_id": "734c41a20ef90b865e16cb5eb9a2a582",
+  "cost_usd": 0.212404
+}
+2026-10-10 13:35:39 - neatlogs - INFO - Neatlogs SDK shutdown complete

@@ -111,10 +111,12 @@ export function Explorer() {
               <button key={d} onClick={() => setOn(d)} className={`rounded-md border px-2 py-1 text-xs ${d === date ? "border-accent bg-accent-soft text-accent" : "border-border text-muted hover:text-text"}`}>{d}</button>
             ))}
           </div>
+{meta.pending_changes && (
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} className="h-4 w-4 accent-[var(--accent)]" />
             Include changes waiting for human review
           </label>
+)}
         </div>
       </div>
 

@@ -48,7 +48,7 @@ export const evals = (evalsJson as unknown as { versions: EvalVersion[] }).versi
 export const evalsExtra = evalsExtraJson as unknown as Record<string, EvalVersion>;
 
 export const meta = metaJson as unknown as {
-  generated_at: string; showcase_job: string; rulebook_main_sha: string; niyam_head: string;
+  generated_at: string; showcase_job: string; pending_changes: boolean; rulebook_main_sha: string; niyam_head: string;
   published: { id: string; doc_code: string; state: string; pr_url: string; commit_sha: string; checkpoint_id: string; checkpoint_url: string; trace_id: string; confidence: number; decision: string; cost_usd: number; title_en: string }[];
 };
 
