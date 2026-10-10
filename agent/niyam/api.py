@@ -424,3 +424,41 @@ def why(file: str, line: int):
     if out.get("commit_sha"):
         out["checkpoint_url"] = f"https://entire.io/gh/{settings.rulebook_repo}/commit/{out['commit_sha']}"
     return out
+
+
+class WebhookRequest(BaseModel):
+    url: str = Field(..., max_length=500, description="Public https URL that receives POST requests")
+    events: list[str] = Field(default_factory=lambda: ["rule.changed", "rule.change_proposed", "job.needs_human"])
+
+
+@app.post("/api/v1/webhooks", status_code=201)
+def create_webhook(req: WebhookRequest, request: Request, authorization: str | None = Header(None)):
+    from . import webhooks
+    key, _ident, _tier = client_ident(request, authorization)
+    if not key:
+        raise error(401, "key_required", "Webhooks need an API key.")
+    try:
+        hook = webhooks.create(key["id"], req.url, req.events)
+    except webhooks.WebhookError as e:
+        raise error(400, "bad_webhook", str(e))
+    return {**hook, "message": "Copy the secret now; use it to verify the X-Niyam-Signature header (HMAC-SHA256 of the raw body)."}
+
+
+@app.get("/api/v1/webhooks")
+def list_webhooks(request: Request, authorization: str | None = Header(None)):
+    key, _ident, _tier = client_ident(request, authorization)
+    if not key:
+        raise error(401, "key_required", "Webhooks need an API key.")
+    return {"webhooks": db.rows("SELECT id, url, events, created_at FROM webhooks WHERE key_id = ? AND disabled_at IS NULL", key["id"])}
+
+
+@app.delete("/api/v1/webhooks/{hook_id}")
+def delete_webhook(hook_id: str, request: Request, authorization: str | None = Header(None)):
+    key, _ident, _tier = client_ident(request, authorization)
+    if not key:
+        raise error(401, "key_required", "Webhooks need an API key.")
+    with db.tx() as c:
+        n = c.execute("UPDATE webhooks SET disabled_at = ? WHERE id = ? AND key_id = ?", (time.time(), hook_id, key["id"])).rowcount
+    if not n:
+        raise error(404, "unknown_webhook", "No webhook with that id for this key.")
+    return {"deleted": hook_id}

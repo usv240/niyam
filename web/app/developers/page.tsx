@@ -19,6 +19,8 @@ const ENDPOINTS: { m: string; p: string; auth: string; d: string }[] = [
   { m: "GET", p: "/api/v1/jobs/{id}/events", auth: "none", d: "Server-sent events: each step of a running job as it happens." },
   { m: "POST", p: "/api/v1/keys", auth: "none", d: "Create a free key (shown once, hashed on our side)." },
   { m: "GET", p: "/api/v1/usage", auth: "key", d: "Your calls, jobs and cost per day." },
+  { m: "POST", p: "/api/v1/webhooks", auth: "key", d: "Subscribe a public https URL to rule.changed, rule.change_proposed or job.needs_human. Returns a signing secret once." },
+  { m: "GET", p: "/api/v1/why?file=&line=", auth: "none", d: "Line-level provenance from Entire: the agent, model, session and checkpoint behind one rulebook line." },
   { m: "GET", p: "/api/v1/status", auth: "none", d: "Source health, running jobs, tracing status." },
   { m: "GET", p: "/api/v1/evals", auth: "none", d: "All evaluation results, per version and per case." },
 ];
@@ -68,6 +70,12 @@ const response = `{
 
 const mcp = `claude mcp add niyam --env NIYAM_API_BASE=${BASE} -- \\
   uvx --from "git+https://github.com/usv240/niyam#subdirectory=agent" niyam-mcp`;
+
+const verify = `import hashlib, hmac
+
+def is_from_niyam(raw_body: bytes, signature_header: str, secret: str) -> bool:
+    expected = "sha256=" + hmac.new(secret.encode(), raw_body, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, signature_header)`;
 
 const local = `git clone https://github.com/usv240/niyam && cd niyam/agent
 uv venv && uv pip install -e . && uvicorn niyam.api:app --port 8000`;
@@ -134,6 +142,10 @@ export default function Developers() {
             <Callout tone="info" title="Privacy by design">The API never needs names, Aadhaar numbers or phone numbers, and rejects values that look like them. Eligibility requests are not stored, only counted.</Callout>
           </div>
         </div>
+      </Section>
+
+      <Section id="webhooks" eyebrow="Webhooks" title="Get told when a rule changes" intro="Niyam POSTs a JSON event to your https URL when a change is proposed, merged, or needs a human. Each request carries X-Niyam-Event and X-Niyam-Signature (HMAC-SHA256 of the raw body with your secret). Internal and private addresses are refused.">
+        <Code code={verify} lang="Python: verify a webhook" />
       </Section>
 
       <Section id="mcp" eyebrow="For AI assistants" title="Add Niyam to Claude, Cursor or any MCP client" intro={<>Six tools: check_eligibility, explain_rules, rule_history, list_schemes, recent_changes and submit_document. Your assistant then answers with current rules and their sources, instead of guessing. <Info id="mcp" /></>} className="border-t border-border bg-surface/50">

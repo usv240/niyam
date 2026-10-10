@@ -346,6 +346,15 @@ class Run:
                    stage="publish", payload=out)
         self.save(final, confidence=conf, autonomy_decision=decision, commit_sha=sha, checkpoint_id=checkpoint,
                   pr_url=out.get("pr_url"), finished_at=time.time())
+        if not j.get("is_byod") and not j.get("eval_case"):
+            from . import webhooks
+            event = {"AUTO_MERGED": "rule.changed", "NEEDS_HUMAN": "job.needs_human"}.get(final, "rule.change_proposed")
+            n = webhooks.emit(event, {"job_id": self.id, "state": final, "confidence": conf, "decision": decision,
+                                      "pr_url": out.get("pr_url"), "checkpoint_id": checkpoint, "title": cs.title_en,
+                                      "changes": [{"scheme_id": c.scheme_id, "summary": c.summary, "effective_from": c.effective_from}
+                                                  for c in cs.changes]})
+            if n:
+                self.event("webhooks.sent", f"Notified {n} subscriber(s): {event}", stage="publish")
 
 
 def last_good_state(job_id: str) -> str:
