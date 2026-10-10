@@ -1,0 +1,22 @@
+id: synthetic-benefit-2100
+kind: synthetic
+description: >
+  SYNTHETIC test document (not a real GR), labelled as such inside the PDF.
+  A pure increase of the monthly benefit from Rs 1,500 to Rs 2,100 from
+  1 April 2025, with all other rules unchanged. This is the safe path: a
+  number changes, more money is paid, nobody loses eligibility, so Niyam may
+  merge on its own if the verifier agrees.
+meta:
+  title: "Synthetic: Ladki Bahin benefit raised to Rs 2,100"
+  published_at: "2025-03-15"
+base_ref: baseline-2024-06-28
+expect:
+  relevant: true
+  schemes: [mh.ladki_bahin]
+  changes:
+    - {target: monthly_benefit, change_type: [parameter_update, benefit_changed], new_value: 2100}
+  decision_in: [auto_merge, human_review]
+  outcomes:
+    - {name: paid 2100 after, scheme: mh.ladki_bahin, date: "2025-04-01", eligible: true, monthly_inr: 2100, person: {age: 35, gender: female, annual_family_income: 150000}}
+    - {name: paid 1500 the day before, scheme: mh.ladki_bahin, date: "2025-03-31", eligible: true, monthly_inr: 1500, person: {age: 35, gender: female, annual_family_income: 150000}}
+    - {name: income ceiling unchanged, scheme: mh.ladki_bahin, date: "2025-04-01", eligible: false, person: {age: 35, gender: female, annual_family_income: 250001}}

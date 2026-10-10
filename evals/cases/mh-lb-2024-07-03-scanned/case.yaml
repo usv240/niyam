@@ -1,0 +1,174 @@
+id: mh-lb-2024-07-03-scanned
+kind: real content, scanned
+description: The same real amendment rendered to images with no text layer, as if
+  scanned. Tests the transcription fallback (recovery.ocr_fallback) with real content.
+meta:
+  title: Ladki Bahin amendment, 3 July 2024
+  published_at: '2024-07-03'
+  code: '202407031335114330'
+  source_url: https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202407031335114330.pdf
+base_ref: baseline-2024-06-28
+expect:
+  relevant: true
+  schemes:
+  - mh.ladki_bahin
+  changes:
+  - target: age_max
+    change_type: parameter_update
+    new_value: 65
+    boundary: inclusive
+  - target: eligible_marital_statuses
+    change_type: parameter_update
+    new_value:
+    - married
+    - widowed
+    - divorced
+    - abandoned
+    - destitute
+    - unmarried
+  - target_contains: unmarried
+    change_type:
+    - condition_added
+    - condition_changed
+  - target: disqualifying_govt_jobs
+    change_type: parameter_update
+    new_value:
+    - regular
+    - pensioner
+  - target: other_scheme_limit
+    change_type:
+    - condition_changed
+    - parameter_update
+    boundary: exclusive
+  - target: farm_land_limit
+    change_type: condition_removed
+  min_ambiguities: 1
+  decision_in:
+  - human_review
+  - needs_human
+  outcomes:
+  - name: age 65 eligible after
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    person:
+      age: 65
+      gender: female
+      annual_family_income: 150000
+  - name: age 66 not eligible
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: false
+    person:
+      age: 66
+      gender: female
+      annual_family_income: 150000
+  - name: age 63 not eligible before
+    scheme: mh.ladki_bahin
+    date: '2024-07-01'
+    eligible: false
+    person:
+      age: 63
+      gender: female
+      annual_family_income: 150000
+  - name: unmarried eligible after
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    person:
+      age: 25
+      gender: female
+      marital_status: unmarried
+      annual_family_income: 150000
+  - name: second unmarried woman not eligible
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: false
+    person:
+      age: 25
+      gender: female
+      marital_status: unmarried
+      other_unmarried_beneficiary_in_family: true
+      annual_family_income: 150000
+  - name: married woman unaffected by unmarried rule
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    person:
+      age: 40
+      gender: female
+      marital_status: married
+      other_unmarried_beneficiary_in_family: true
+      annual_family_income: 150000
+  - name: contract worker family eligible after
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    person:
+      age: 40
+      gender: female
+      family_govt_job: contract
+      annual_family_income: 200000
+  - name: contract worker family not eligible before
+    scheme: mh.ladki_bahin
+    date: '2024-07-01'
+    eligible: false
+    person:
+      age: 40
+      gender: female
+      family_govt_job: contract
+      annual_family_income: 200000
+  - name: regular govt employee still not eligible
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: false
+    person:
+      age: 40
+      gender: female
+      family_govt_job: regular
+      annual_family_income: 200000
+  - name: other scheme 1500 not eligible after
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: false
+    person:
+      age: 40
+      gender: female
+      other_scheme_monthly_inr: 1500
+      annual_family_income: 100000
+  - name: other scheme 1499 gets Rs 1
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    monthly_inr: 1
+    person:
+      age: 40
+      gender: female
+      other_scheme_monthly_inr: 1499
+      annual_family_income: 100000
+  - name: 10 acres eligible after
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: true
+    person:
+      age: 40
+      gender: female
+      family_farm_land_acres: 10
+      annual_family_income: 200000
+  - name: 10 acres not eligible before
+    scheme: mh.ladki_bahin
+    date: '2024-07-01'
+    eligible: false
+    person:
+      age: 40
+      gender: female
+      family_farm_land_acres: 10
+      annual_family_income: 200000
+  - name: income ceiling unchanged
+    scheme: mh.ladki_bahin
+    date: '2024-07-10'
+    eligible: false
+    person:
+      age: 40
+      gender: female
+      annual_family_income: 250001

@@ -1,0 +1,13 @@
+id: neg-202610091237115604
+kind: real
+description: Real GR from an unrelated department (पर्यावरण विभाग). Niyam should mark
+  it not relevant at almost no cost.
+meta:
+  title: राज्य सरोवर संवर्धन योजनेंतर्गत मौजे मालगुंड, जि. रत्नागिरी येथील शुभ्रकमळ
+    तलाव संवर्धन प्रकल्पास निधी वितरीत करण्याबाबत..
+  published_at: '2026-10-09'
+  code: '202610091237115604'
+  source_url: https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202610091237115604.pdf
+  department: पर्यावरण विभाग
+expect:
+  relevant: false

@@ -1,0 +1,14 @@
+id: neg-202610091708267603
+kind: real
+description: Real GR from an unrelated department (कौशल्य विकास व उदयोजकता विभाग).
+  Niyam should mark it not relevant at almost no cost.
+meta:
+  title: स्टार्टअप, उद्योजकता आणि नाविन्यता धोरण-२025 च्या अनुषंगाने बौध्दिक मालमत्तेच्या
+    हक्काविषयी (Intellectual Property Rights) अर्थ सहाय्य करण्यासंदर्भातील मार्गदर्शक
+    तत्त्वे.
+  published_at: '2026-10-09'
+  code: '202610091708267603'
+  source_url: https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202610091708267603.pdf
+  department: कौशल्य विकास व उदयोजकता विभाग
+expect:
+  relevant: false

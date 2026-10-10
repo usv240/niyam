@@ -1,0 +1,29 @@
+
+=== mh-lb-2024-07-03-amendment (run 1/1) ===
+[job_20261010_0618a4fa] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_0618a4fa] stage.done: Relevant: This Government Resolution amends eligibility criteria, beneficiary age limit (from 60 to 65 years), ineligibility conditions, and required documentation for the Mukhyamantri Majhi Ladki Bahin Yojana scheme.
+[job_20261010_0618a4fa] state: State is now TRIAGED
+[job_20261010_0618a4fa] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_0618a4fa] stage.done: Found 6 change(s), 3 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_0618a4fa] state: State is now EXTRACTED
+[job_20261010_0618a4fa] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_0618a4fa] encode.attempt: Coding agent attempt 1
+[job_20261010_0618a4fa] encode.tests_passed: Tests pass: 45 passed, 0 failed
+[job_20261010_0618a4fa] stage.done: Rulebook updated in 1 attempt(s); 45 tests pass
+[job_20261010_0618a4fa] state: State is now ENCODED
+[job_20261010_0618a4fa] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_0618a4fa] stage.done: 14 of 15 test citizens agree with the new rules
+[job_20261010_0618a4fa] state: State is now RESOLVING
+[job_20261010_0618a4fa] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_0618a4fa] resolve.decision: Other scheme benefit Rs 1,499 per month, just below the limit: encoder_wrong. Both agents agree she is eligible. Rs 1,499 is below the Rs 1,500 limit in clause 5(4), which now disqualifies 'Rs 1,500 or more per month', and the condition person.other_scheme_monthly_inr < 1500 passes. The disagreement is only about the payment: the rulebook returns monthly_inr = 1, while the verifier expects 1500. Section D on page 5 says eligible women get 'दरमहा रु.१,५००/- आर्थिक लाभ' (Rs 1,500 per month) from 1 July 2024. The rulebook listing shows monthly_benefit = 1500, but the engine pays 1. This looks like the amount 'रु.1,500/-' being read as 1 because parsing stopped at the thousands comma. Either way, the output does not follow the document, so the rulebook side must be fixed. The verifier's test person is valid and its expectation is correct.
+[job_20261010_0618a4fa] resolve.glossary: Learned 1 interpretation(s) for future runs (glossary updated)
+[job_20261010_0618a4fa] state: State is now EXTRACTED
+[job_20261010_0618a4fa] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_0618a4fa] encode.attempt: Coding agent attempt 1 (applying a reviewer fix)
+[job_20261010_0618a4fa] encode.tests_passed: Tests pass: 48 passed, 0 failed
+[job_20261010_0618a4fa] stage.done: Rulebook updated in 1 attempt(s); 48 tests pass
+[job_20261010_0618a4fa] state: State is now ENCODED
+[job_20261010_0618a4fa] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_0618a4fa] stage.done: 14 of 15 test citizens agree with the new rules
+[job_20261010_0618a4fa] state: State is now RESOLVING
+[job_20261010_0618a4fa] stage.start: Coordinator is settling 1 disagreement(s)

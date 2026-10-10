@@ -29,13 +29,14 @@ TERMINAL = {"PUBLISHED", "AUTO_MERGED", "AWAITING_HUMAN", "NEEDS_HUMAN", "CLOSED
 
 
 # --------------------------------------------------------------------------- intake
-def add_document(pdf_path: Path, source: str, meta: dict[str, Any] | None = None) -> str:
-    """Store a document (deduplicated by content hash) and return its id."""
+def add_document(pdf_path: Path, source: str, meta: dict[str, Any] | None = None, dedup: bool = True) -> str:
+    """Store a document and return its id. With dedup, the same file returns the same document."""
     meta = dict(meta or {})
     doc = read_pdf(pdf_path)
     existing = db.row("SELECT id FROM documents WHERE sha256 = ?", doc.sha256)
-    if existing:
+    if existing and dedup:
         return existing["id"]
+    sha_key = doc.sha256 if not existing else f"{doc.sha256}#{db.new_id('copy')}"
     doc_id = db.new_id("doc")
     store = settings.corpus_dir / "documents"
     store.mkdir(parents=True, exist_ok=True)
@@ -47,7 +48,7 @@ def add_document(pdf_path: Path, source: str, meta: dict[str, Any] | None = None
         c.execute(
             "INSERT INTO documents (id, source, source_url, sha256, title, code, language, published_at, fetched_at, local_path, meta_json)"
             " VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            (doc_id, source, meta.get("source_url"), doc.sha256, meta.get("title"), code, meta.get("language", "mr"),
+            (doc_id, source, meta.get("source_url"), sha_key, meta.get("title"), code, meta.get("language", "mr"),
              meta.get("published_at"), dt.datetime.now(dt.timezone.utc).isoformat(), str(local),
              json.dumps(meta, ensure_ascii=False)),
         )

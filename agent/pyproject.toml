@@ -19,6 +19,8 @@ dependencies = [
 
 [project.scripts]
 niyam = "niyam.cli:main"
+niyam-mcp = "niyam.mcp_server:main"
+niyam-api = "niyam.serve:main"
 
 [build-system]
 requires = ["hatchling"]
