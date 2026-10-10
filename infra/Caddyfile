@@ -1,0 +1,5 @@
+# HTTPS with an automatic certificate. Replace the host with your DNS name
+# (for example a free subdomain pointing at the instance's public IP).
+niyam-api.example.org {
+	reverse_proxy 127.0.0.1:8000
+}

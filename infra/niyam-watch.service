@@ -1,0 +1,10 @@
+[Unit]
+Description=Niyam watcher: check official sources once and process new orders
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/niyam/agent
+EnvironmentFile=/etc/niyam/env
+Environment=PATH=/home/ubuntu/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/ubuntu/niyam/agent/.venv/bin/python -m niyam watch --once
