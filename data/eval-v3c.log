@@ -1,0 +1,11 @@
+
+=== mh-lb-2024-06-28-from-scratch (run 1/1) ===
+[job_20261010_ab544f2b] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_ab544f2b] triage.new_scheme: This order creates a scheme the rulebook does not have yet: mh.ladki_bahin
+[job_20261010_ab544f2b] stage.done: Relevant: Government Resolution creates a new Maharashtra welfare scheme for women aged 21-60 with income, residency and exclusion eligibility rules, and no covered schemes exist yet.
+[job_20261010_ab544f2b] state: State is now TRIAGED
+[job_20261010_ab544f2b] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_ab544f2b] stage.done: Found 20 change(s), 2 ambiguity(ies), skipped 4 procedural topic(s)
+[job_20261010_ab544f2b] state: State is now EXTRACTED
+[job_20261010_ab544f2b] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_ab544f2b] encode.attempt: Coding agent attempt 1

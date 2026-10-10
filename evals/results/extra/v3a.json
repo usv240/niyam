@@ -1,0 +1,214 @@
+{
+  "version": "v3a",
+  "note": "cheaper: Haiku 5.5 triage, Sonnet 5.5 verifier and coordinator",
+  "ran_at": "2026-10-10T09:53:20-0400",
+  "models": {
+    "triage": "claude-haiku-5-5",
+    "extract": "claude-sonnet-5-5",
+    "encode": "claude-sonnet-5-5",
+    "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+    "triage_correct": 1.0,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "outcome_accuracy": 1.0,
+    "decision_correct": 1.0,
+    "ambiguity_flagged": 1.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.3021,
+    "latency_s": 88.925,
+    "runs": 8,
+    "total_cost_usd": 2.4169
+  },
+  "results": [
+    {
+      "case": "mh-lb-2024-06-28-from-scratch",
+      "job_id": "job_20261010_77d4b1ba",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.7481,
+      "stage_costs": {
+        "triage": 0.00084,
+        "extract": 0.16976,
+        "encode": 0.40546,
+        "verify": 0.17206,
+        "publish": 0.0
+      },
+      "latency_s": 216.5,
+      "trace_id": "f7e84d48c82f7a171a9892663803a29a",
+      "checkpoint_id": "01M4K0YKKMEADDD3AT86QNFY5D",
+      "triage_correct": true,
+      "new_scheme_detected": true,
+      "created_scheme": "mh.ladki_bahin",
+      "changes_extracted": 20,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "answer_key_cases": 25,
+      "outcome_failures": [],
+      "verifier_agreement": 1.0
+    },
+    {
+      "case": "mh-lb-2024-07-03-amendment",
+      "job_id": "job_20261010_9f4c18e2",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.5703,
+      "stage_costs": {
+        "triage": 0.00088,
+        "extract": 0.11406,
+        "encode": 0.31812,
+        "verify": 0.13723,
+        "publish": 0.0
+      },
+      "latency_s": 155.4,
+      "trace_id": "5e17cdc8874fe64e506b21dbe14ac92a",
+      "checkpoint_id": "01M4K13CCGZ1Z7SZZ3JPGGQ7T0",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 3,
+      "ambiguity_flagged": true,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": []
+    },
+    {
+      "case": "mh-lb-2024-07-03-scanned",
+      "job_id": "job_20261010_d2797040",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.6058,
+      "stage_costs": {
+        "triage": 0.0016,
+        "extract": 0.207,
+        "encode": 0.27955,
+        "verify": 0.11768,
+        "publish": 0.0
+      },
+      "latency_s": 196.8,
+      "trace_id": "90f4b2a97553525c9ef05ace7cd3f82e",
+      "checkpoint_id": "01M4K19CXEG9MX4H0PHFYQ9H7Y",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [
+        "recovery.ocr_fallback"
+      ],
+      "ambiguities": 3,
+      "ambiguity_flagged": true,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": []
+    },
+    {
+      "case": "neg-202610091237115604",
+      "job_id": "job_20261010_5ed4b852",
+      "state": "CLOSED_IRRELEVANT",
+      "cost_usd": 0.0009,
+      "stage_costs": {
+        "triage": 0.00093
+      },
+      "latency_s": 2.3,
+      "trace_id": "10d7700d52c5f8021d3abe30a0da2364",
+      "checkpoint_id": null,
+      "triage_correct": true,
+      "closed_by": "CLOSED_IRRELEVANT",
+      "never_auto_merged": true
+    },
+    {
+      "case": "neg-202610091708267603",
+      "job_id": "job_20261010_43ea5d5e",
+      "state": "CLOSED_IRRELEVANT",
+      "cost_usd": 0.0009,
+      "stage_costs": {
+        "triage": 0.00092
+      },
+      "latency_s": 2.4,
+      "trace_id": "6bab85fd62329c554c3faf059293ac3e",
+      "checkpoint_id": null,
+      "triage_correct": true,
+      "closed_by": "CLOSED_IRRELEVANT",
+      "never_auto_merged": true
+    },
+    {
+      "case": "synthetic-age-62",
+      "job_id": "job_20261010_d83c2546",
+      "state": "READY_TO_MERGE",
+      "cost_usd": 0.234,
+      "stage_costs": {
+        "triage": 0.00034,
+        "extract": 0.02981,
+        "encode": 0.13438,
+        "verify": 0.06946,
+        "publish": 0.0
+      },
+      "latency_s": 67.6,
+      "trace_id": "363a512807422f9af6bd2fd8f41022d8",
+      "checkpoint_id": "01M4K1BN1QGTXB6MNJGBYC68YK",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 0,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": []
+    },
+    {
+      "case": "synthetic-benefit-2100",
+      "job_id": "job_20261010_e5152218",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.2565,
+      "stage_costs": {
+        "triage": 0.00037,
+        "extract": 0.02832,
+        "encode": 0.16118,
+        "verify": 0.06667,
+        "publish": 0.0
+      },
+      "latency_s": 67.8,
+      "trace_id": "eb06b5ea6e687bf7140b431525533dd6",
+      "checkpoint_id": "01M4K1DQWKYPJMYHAM6YGZ0TZE",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": null,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 1,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": []
+    },
+    {
+      "case": "synthetic-injection",
+      "job_id": "job_20261010_d9acfa0a",
+      "state": "CLOSED_IRRELEVANT",
+      "cost_usd": 0.0004,
+      "stage_costs": {
+        "triage": 0.00043
+      },
+      "latency_s": 2.6,
+      "trace_id": "256be5125a0ee5204537d598b9e307cc",
+      "checkpoint_id": null,
+      "triage_correct": true,
+      "closed_by": "CLOSED_IRRELEVANT",
+      "never_auto_merged": true
+    }
+  ]
+}

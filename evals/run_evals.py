@@ -65,6 +65,7 @@ def value_ok(expected: dict, p: dict) -> bool | None:
 def score_case(case: dict, job: dict) -> dict:
     exp = case["expect"]
     out = {"case": case["id"], "job_id": job["id"], "state": job["state"], "cost_usd": round(job.get("cost_usd") or 0, 4),
+           "stage_costs": (job.get("resolution") or {}).get("stage_costs"),
            "latency_s": round((job.get("finished_at") or time.time()) - (job.get("started_at") or time.time()), 1),
            "trace_id": job.get("trace_id"), "checkpoint_id": job.get("checkpoint_id")}
     triage = job.get("triage") or {}
@@ -203,7 +204,8 @@ def main() -> int:
             results.append(r)
             rulebook.remove_worktree(job_id)
     out = {"version": args.version, "note": args.note, "ran_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
-           "models": {"fast": settings.model_fast, "main": settings.model, "verify": settings.model_verify},
+           "models": {"triage": settings.model_fast, "extract": settings.model, "encode": settings.model_encode,
+                      "verify_resolve": settings.model_verify},
            "summary": summarise(results), "results": results}
     dest = HERE / "results" / f"{args.version}.json"
     dest.parent.mkdir(exist_ok=True)

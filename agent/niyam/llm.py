@@ -124,14 +124,25 @@ def parse(*, model: str, system: str, content: list[dict[str, Any]] | str, outpu
     messages: list[dict[str, Any]] = [{"role": "user", "content": content}]
     models = [model] + ([settings.model_fallback] if settings.model_fallback != model else [])
     last_error: Exception | None = None
+    lower = {"max": "high", "xhigh": "high", "high": "medium", "medium": "low"}
     for m in models:
+        tokens, eff = max_tokens, effort
         for attempt in range(2):  # first try, then one repair attempt
-            kwargs: dict[str, Any] = dict(model=m, max_tokens=max_tokens, system=system,
+            kwargs: dict[str, Any] = dict(model=m, max_tokens=tokens, system=system,
                                           messages=messages, output_format=output)
-            if effort and not m.startswith("claude-haiku-4"):
-                kwargs["output_config"] = {"effort": effort}
+            if eff and not m.startswith("claude-haiku-4"):
+                kwargs["output_config"] = {"effort": eff}
             try:
                 resp = client.messages.parse(**kwargs)
+            except ValidationError as e:
+                # The answer was cut off or malformed (found in an experiment with a smaller model: its
+                # thinking used up the token budget and the JSON ended mid-string). Retry with more room
+                # and less thinking. 21,000 stays under the SDK's non-streaming time limit.
+                last_error = e
+                tokens, eff = min(tokens * 2, 21000), lower.get(eff or "", eff)
+                _record_event("recovery.truncated_output", f"{stage}: {m} returned incomplete JSON; retrying with "
+                              f"{tokens} output tokens" + (f" and effort {eff}" if eff else ""))
+                continue
             except (anthropic.RateLimitError, anthropic.InternalServerError, anthropic.APIConnectionError) as e:
                 last_error = e
                 _record_event("recovery.model_fallback", f"{m} unavailable ({type(e).__name__}); trying the fallback model")

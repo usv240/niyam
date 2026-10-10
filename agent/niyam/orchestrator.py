@@ -145,7 +145,11 @@ class Run:
                 return
             step = {"NEW": self._triage, "TRIAGED": self._extract, "EXTRACTED": self._encode,
                     "ENCODED": self._verify, "VERIFIED": self._publish, "RESOLVING": self._resolve}[self.state]
+            before = self.usage.cost_usd
             step()
+            costs = self.state_data.setdefault("stage_costs", {})
+            costs[step.__name__.strip("_")] = round(costs.get(step.__name__.strip("_"), 0) + self.usage.cost_usd - before, 5)
+            db.update_job(self.id, resolution_json=self.state_data)
 
     # stages --------------------------------------------------------------
     def _triage(self) -> None:

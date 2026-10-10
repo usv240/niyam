@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { API_BASE, apiCall } from "@/lib/api";
+import { API_BASE, API_ENABLED, apiCall } from "@/lib/api";
 import { Badge, Callout } from "./ui";
 
 type Status = { sources: Record<string, { state: string; detail: string; checked_at: number }>; running_jobs: number; last_job: { id: string; state: string } | null; tracing: boolean };
@@ -10,10 +10,10 @@ export function StatusLive() {
   const [s, setS] = useState<Status | null>(null);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
-    if (!API_BASE) { setFailed(true); return; }
+    if (!API_ENABLED) { setFailed(true); return; }
     apiCall<Status>("/api/v1/status").then(setS).catch(() => setFailed(true));
   }, []);
-  if (failed) return <Callout tone="warning" title="Live status unavailable">The API is not reachable from this page{API_BASE ? " right now" : " (this copy of the site was built without an API address)"}. The information below is from the last build.</Callout>;
+  if (failed) return <Callout tone="warning" title="Live status unavailable">The API is not reachable from this page{API_ENABLED ? " right now" : " (this copy of the site was built without an API address)"}. The information below is from the last build.</Callout>;
   if (!s) return <p className="text-sm text-muted">Checking the live agent...</p>;
   return (
     <div className="space-y-3">

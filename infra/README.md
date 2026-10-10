@@ -1,26 +1,39 @@
-# Deploying Niyam
+# Deploying Niyam on the neatHack AWS allowance
 
-Within the neatHack AWS rules: us-east-1 only, the supplied Hackathon_VPC only (never create a VPC), one EC2 instance (t3.small), at most 50 GB of storage, $25 total.
+Everything (website, API, watcher) runs on **one t3.small** with HTTPS, within the event rules: us-east-1 only, the supplied **Hackathon_VPC** only (never create a VPC), one EC2 instance, at most 50 GB of storage, $25 total. Expected cost: about $0.02 per hour, about $4 to keep it running until judging ends on 16 October.
 
-## API and watcher (AWS EC2)
+## Steps (about 15 minutes, all in the browser)
 
-1. Launch one t3.small, Ubuntu 24.04, 20 GB gp3, in Hackathon_VPC, us-east-1. Security group: SSH (22) from your IP only, HTTP (80) and HTTPS (443) from anywhere.
-2. SSH in and run `bash infra/ec2-setup.sh` (clone the repo first, or paste the script).
-3. Fill `/etc/niyam/env` (mode 600). Never commit it.
-4. `gh auth login` so the agent can open pull requests in the rulebook.
-5. Enable the services: `sudo systemctl enable --now niyam-api niyam-watch.timer`.
-6. HTTPS: install Caddy and use `infra/Caddyfile` with your DNS name. Without a domain, the website can still be used fully; only live features (BYOD, keys, live status) need the API.
-7. Cost: about $0.02 per hour. Stop the instance after judging (16 October).
+1. Sign in to the AWS console with your neatHack login. Check the region at the top right says **N. Virginia (us-east-1)**.
+2. **EC2, Launch instance**:
+   - Name: `niyam`
+   - Image: **Ubuntu Server 24.04 LTS**
+   - Instance type: **t3.small**
+   - Key pair: "Proceed without a key pair" (you will connect from the browser)
+   - Network settings, Edit: VPC **Hackathon_VPC**, a public subnet, **Auto-assign public IP: Enable**. Create a security group allowing **SSH (22) from My IP**, **HTTP (80) from Anywhere**, **HTTPS (443) from Anywhere**.
+   - Storage: **20 GB gp3**
+   - Advanced details, **User data**: paste the whole of `infra/bootstrap.sh`.
+   - Launch.
+3. Wait about 8 minutes (it installs everything). Then select the instance, **Connect, EC2 Instance Connect, Connect**.
+4. In that browser terminal, run `sudo tail -1 /var/log/niyam-bootstrap.log`. When it says `bootstrap finished`, run **`sudo niyam-setup`**. Type your Anthropic key and neatlogs key when asked (the input is hidden; nothing is stored anywhere except `/etc/niyam/env` on the instance, readable only by its owner).
+5. It prints your address, `https://<ip-with-dashes>.sslip.io`. Open it. That is your live site and API.
+6. After judging (16 October): **Instance state, Stop** (or Terminate) so the allowance is not used up.
 
-## Website (Vercel, free)
+If the public IP changes (after a stop and start), run `sudo niyam-setup` again.
 
-1. Import `usv240/niyam` on vercel.com, set the root directory to `web`.
-2. Environment variable `NEXT_PUBLIC_API_BASE` = your API URL (for example `https://niyam-api.example.org`). Optional: without it the site works from build-time data.
-3. Build command `next build`, output directory `out`.
+## Optional: let the server open pull requests
 
-## Refresh the website's data
+`sudo -iu ubuntu gh auth login` (follow the device-code prompts), then change `NIYAM_PUBLISH_MODE=local` to `github` in `/etc/niyam/env` and `sudo systemctl restart niyam-api`. Without this, the server's agent runs commit to local branches only, which is the safe default for a public demo.
+
+## Useful commands on the instance
 
 ```bash
-python scripts/export_site_data.py --job <showcase job id>
-cd web && npx next build
+systemctl status niyam-api caddy          # are they running?
+journalctl -u niyam-api -n 50             # API logs
+systemctl list-timers niyam-watch.timer   # when the watcher runs next
+sudo -iu ubuntu bash -c "cd ~/niyam && git pull && cd web && NEXT_PUBLIC_API_BASE=same-origin npx next build" && sudo systemctl restart niyam-api
 ```
+
+## Alternative: website only, no server
+
+GitHub Pages (`.github/workflows/pages.yml`, run it manually) or Vercel (root directory `web`). The site works fully from build-time data; live upload, keys and status need the API.

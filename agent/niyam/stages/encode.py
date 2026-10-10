@@ -101,7 +101,7 @@ def claude_executable() -> str:
 
 
 def run_claude(wt: Path, prompt: str, session_id: str | None, timeout: int = 1500) -> dict[str, Any]:
-    cmd = [claude_executable(), "-p", "--output-format", "json", "--model", settings.model,
+    cmd = [claude_executable(), "-p", "--output-format", "json", "--model", settings.model_encode,
            "--permission-mode", "acceptEdits", "--allowedTools", ALLOWED_TOOLS,
            "--strict-mcp-config", "--max-turns", "60"]
     if session_id:

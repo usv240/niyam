@@ -3,7 +3,7 @@
 import { FileUp, Link2, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { API_BASE, apiCall, apiHealth, type ApiError } from "@/lib/api";
+import { API_BASE, API_ENABLED, apiCall, apiHealth, type ApiError } from "@/lib/api";
 import { Info } from "./info";
 import { Pipeline } from "./pipeline";
 import { Badge, Callout } from "./ui";
@@ -56,7 +56,7 @@ export function Byod() {
     <div className="space-y-8">
       {online === false && (
         <Callout tone="warning" title="The live agent is not reachable from this page right now">
-          The website works without a server, but running a new document needs the Niyam API. {API_BASE ? "It may be restarting." : "This copy of the site was built without an API address."} You can still{" "}
+          The website works without a server, but running a new document needs the Niyam API. {API_ENABLED ? "It may be restarting." : "This copy of the site was built without an API address."} You can still{" "}
           <Link href="/demo/" className="font-medium text-accent underline underline-offset-2">replay a real run step by step</Link>, or run Niyam yourself from the{" "}
           <a href="https://github.com/usv240/niyam#run-it-yourself" className="font-medium text-accent underline underline-offset-2">source code</a>.
         </Callout>

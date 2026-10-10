@@ -42,6 +42,7 @@ class Settings:
     model: str = field(default_factory=lambda: os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5-5"))
     model_fast: str = field(default_factory=lambda: os.getenv("ANTHROPIC_MODEL_FAST", "claude-haiku-5-5"))
     model_verify: str = field(default_factory=lambda: os.getenv("ANTHROPIC_MODEL_VERIFY", "claude-opus-5-5"))
+    model_encode: str = field(default_factory=lambda: os.getenv("ANTHROPIC_MODEL_ENCODE", os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5-5")))
     model_fallback: str = field(default_factory=lambda: os.getenv("ANTHROPIC_MODEL_FALLBACK", "claude-sonnet-5-5"))
     rulebook_path: Path = field(default_factory=lambda: _path("NIYAM_RULEBOOK_PATH", "../niyam-rulebook"))
     rulebook_repo: str = field(default_factory=lambda: os.getenv("NIYAM_RULEBOOK_REPO", "usv240/niyam-rulebook"))

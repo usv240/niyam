@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Developers", description: "Niyam API: eligibility with sources, rules on any date, agent jobs with live events, API keys and an MCP server." };
 
-const BASE = SITE.apiBase || "https://YOUR-NIYAM-API";
+const BASE = SITE.apiBase && SITE.apiBase !== "same-origin" ? SITE.apiBase : process.env.NEXT_PUBLIC_SITE_URL || "https://YOUR-NIYAM-API";
 
 const ENDPOINTS: { m: string; p: string; auth: string; d: string }[] = [
   { m: "POST", p: "/api/v1/eligibility", auth: "none or key", d: "Eligibility for every covered scheme, with the amount, each reason, and the source clause behind each reason." },
