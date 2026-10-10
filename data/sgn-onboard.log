@@ -1,0 +1,35 @@
+[job_20261010_4ca1c594] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_4ca1c594] triage.onboard: Onboarding mh.sanjay_gandhi_niradhar on an operator's request
+[job_20261010_4ca1c594] stage.done: Relevant: Operator asked to onboard mh.sanjay_gandhi_niradhar from this order. The GR revises amounts and eligibility for Sanjay Gandhi Niradhar, Shravanbal and Indira Gandhi pension schemes, none of which is the covered Ladki Bahin scheme, and it does not create a new scheme.
+[job_20261010_4ca1c594] state: State is now TRIAGED
+[job_20261010_4ca1c594] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_4ca1c594] verify.citation_rejected: 2 quote(s) were not found on the cited page; asking for a correction
+[job_20261010_4ca1c594] stage.done: Found 10 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_4ca1c594] state: State is now EXTRACTED
+[job_20261010_4ca1c594] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_4ca1c594] encode.attempt: Coding agent attempt 1
+[job_20261010_4ca1c594] encode.tests_passed: Tests pass: 49 passed, 0 failed
+[job_20261010_4ca1c594] stage.done: Rulebook updated in 1 attempt(s); 49 tests pass
+[job_20261010_4ca1c594] state: State is now ENCODED
+[job_20261010_4ca1c594] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_4ca1c594] stage.done: 12 of 13 test citizens agree with the new rules
+[job_20261010_4ca1c594] state: State is now RESOLVING
+[job_20261010_4ca1c594] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_4ca1c594] resolve.decision: Annual income Rs 21,001, just above the limit: verifier_wrong. The rulebook income condition follows the document. Appendix-1 row 3 (page 11) sets the limit at 'रुपये २१,०००/- पर्यंत' (up to Rs 21,000), and page 8 clause 6 sets Rs 21,000 for all non-disabled beneficiaries. The rule `annual_family_income <= 21000 or (disabled and annual_family_income <= 50000)` is therefore correct. Rs 21,001 is above the limit, so a non-disabled person fails it. The mismatch comes from the test person, which is incomplete. It leaves out `disabled`, so the rule cannot tell whether the Rs 50,000 disabled limit applies. It also leaves out `years_in_maharashtra`, which the 15-year residency rule needs. Because of the missing fields the engine returned an eligible result with no unmet conditions. The verifier's expected outcome (not eligible) is what the document says, but the test is not a valid check of the rulebook. It should be rebuilt with `disabled: false` and `years_in_maharashtra >= 15`. The rulebook does not need to change.
+[job_20261010_4ca1c594] resolve.glossary: Learned 1 interpretation(s) for future runs (glossary updated)
+[job_20261010_4ca1c594] state: State is now VERIFIED
+[job_20261010_4ca1c594] stage.start: Confidence 0.81; decision: human review
+[job_20261010_4ca1c594] publish.commit: Committed 900c0cb with Entire checkpoint 01M4K309R73SB7WZRVFZZ29Q4M
+[job_20261010_4ca1c594] stage.done: Change request opened: https://github.com/usv240/niyam-rulebook/pull/3
+[job_20261010_4ca1c594] state: State is now AWAITING_HUMAN
+{
+  "id": "job_20261010_4ca1c594",
+  "state": "AWAITING_HUMAN",
+  "confidence": 0.809,
+  "autonomy_decision": "human_review",
+  "pr_url": "https://github.com/usv240/niyam-rulebook/pull/3",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "trace_id": "3b8585a7e7d785209ba47634d4f8ae13",
+  "cost_usd": 1.54085
+}
+2026-10-10 10:21:04 - neatlogs - INFO - Neatlogs SDK shutdown complete

@@ -163,6 +163,57 @@
    }
   ]
  },
+ "real-autonomy": {
+  "version": "real-autonomy",
+  "note": "real order, second scheme: amounts only rise, so Niyam may act alone",
+  "ran_at": "2026-10-10T10:25:46-0400",
+  "models": {
+   "triage": "claude-haiku-5-5",
+   "extract": "claude-sonnet-5-5",
+   "encode": "claude-haiku-5-5",
+   "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+   "triage_correct": 1.0,
+   "change_recall": 1.0,
+   "change_precision": 1.0,
+   "value_accuracy": 1.0,
+   "decision_correct": 1.0,
+   "verifier_agreement": 1.0,
+   "cost_usd": 0.2006,
+   "latency_s": 53.8,
+   "runs": 1,
+   "total_cost_usd": 0.2006
+  },
+  "results": [
+   {
+    "case": "mh-sgn-2023-07-06-increase",
+    "job_id": "job_20261010_cac4ea44",
+    "state": "READY_TO_MERGE",
+    "cost_usd": 0.2006,
+    "stage_costs": {
+     "triage": 0.00077,
+     "extract": 0.0658,
+     "encode": 0.02016,
+     "verify": 0.11383,
+     "publish": 0.0
+    },
+    "latency_s": 53.8,
+    "trace_id": "84acb179f8ce856658682bf1d046482c",
+    "checkpoint_id": "01M4K397W91AVXX6YFPK0X4CPR",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": null,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 0,
+    "verifier_agreement": 1.0,
+    "decision_correct": true
+   }
+  ]
+ },
  "repeat": {
   "version": "repeat",
   "note": "v2 pipeline, 3 more runs per positive case, to check consistency",

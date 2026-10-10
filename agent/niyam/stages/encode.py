@@ -42,7 +42,7 @@ Do this:
    - condition change: set `valid_until` on the old condition to the day before {effective}, and add a new condition with the same id and `valid_from: {effective}`.
    - condition removed: only set `valid_until` to the day before {effective}.
    - every new value or condition gets `source` / `metadata.reference` with doc `{doc_key}`, page, clause, quote (copied from the change set) and quote_en.
-   - if a change needs a new person field, add it to `schema/person.yaml` with a safe default that keeps existing results unchanged.
+   - if a change needs a new person field, add it to `schema/person.yaml` with a default that keeps existing results unchanged and never grants extra eligibility or money (a fact that unlocks a higher limit or amount, such as being disabled, defaults to false).
 3. Add test citizens to `tests/` for every change, dated on or after {effective}: just below, at, and just above each limit, plus one case dated before {effective} proving the old rule still applies. Each case cites `GR {doc_code} p.<page> clause <clause>` in `source`.
 4. Add an entry at the top of CHANGELOG.md (English, Hindi, Marathi) linking to the document.
 5. Run `python -m niyam_rulebook test` and fix problems until it prints `0 failed` with no PROBLEM lines.
@@ -130,7 +130,8 @@ def run(wt: Path, cs: ChangeSet, pdf_path: Path, doc_meta: dict[str, Any], event
         prompt += ("\nThis document creates a new scheme. Read docs/FORMAT.md first and create every file it describes: "
                    "the scheme YAML (id exactly as in the change set), one parameter file per number or list, the test file, "
                    "and the source entry (already registered for you). Use only person fields from schema/person.yaml; "
-                   "if the document needs a fact that is missing, add a field with a default that keeps people eligible.")
+                   "if the document needs a fact that is missing, add a field whose default never grants extra eligibility or money "
+                   "(for example disabled: false), so missing information can never make someone look more eligible than they are.")
     if fix_instruction and session_id:
         prompt = ("A reviewer found a problem with your rulebook changes:\n" + fix_instruction +
                   "\n\nFix it following CLAUDE.md, add or adjust the test citizens that prove the fix, "

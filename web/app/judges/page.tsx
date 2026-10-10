@@ -35,6 +35,7 @@ export default function Judges() {
   const repeat = evalsExtra.repeat;
   const scratch = evalsExtra["from-scratch"]?.results?.[0];
   const auto = evalsExtra.autonomy?.results ?? [];
+  const realAuto = evalsExtra["real-autonomy"]?.results?.[0];
   return (
     <>
       <PageHeader eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
@@ -79,6 +80,11 @@ export default function Judges() {
               Acts alone only when a number or date changes and every check agrees. Never removes people from a scheme without a human. <Info id="autonomy" />{" "}
               {auto.length > 0 && <>On a labelled synthetic order that only adds people (age limit 60 to 62), {auto.filter((r) => r.decision === "auto_merge").length} of {auto.length} runs decided to act alone (dry run, never merged into the public rulebook). On the real amendment, which removes some people, every run asked a human.</>}
             </Ev>
+            {realAuto && (
+              <Ev title="A second real scheme, and a real order it may merge alone">
+                On an operator&apos;s request, Niyam onboarded Sanjay Gandhi Niradhar Anudan Yojana from the real 56-page 2019 consolidated GR (<ExtLink href="https://github.com/usv240/niyam-rulebook/pull/3">PR #3</ExtLink>, 49 tests). On top of it, the real 6 July 2023 order raising assistance to Rs 1,500 was judged safe to merge alone: only amounts rise, {String(realAuto.verifier_agreement === 1 ? "every" : "most")} independent check agrees, confidence 0.98, {usd(realAuto.cost_usd)} (dry run, because PR #3 still awaits human review). Reviewing PR #3 also caught a real encoding mistake (a default that widened eligibility), now fixed in the agent&apos;s instructions.
+              </Ev>
+            )}
             {scratch && (
               <Ev title="A whole scheme from its founding order">
                 Starting from an empty rulebook with only the real 28 June 2024 Marathi GR, Niyam recognised a new scheme, extracted {String(scratch.changes_extracted)} rules, wrote the rulebook and tests, and passed {Math.round((scratch.outcome_accuracy as number) * (scratch.answer_key_cases as number))} of {String(scratch.answer_key_cases)} of our hand-written baseline test citizens, which it never saw. {usd(scratch.cost_usd)}, {Math.round(scratch.latency_s)} s. Checkpoint <code className="font-mono">{String(scratch.checkpoint_id)}</code>.
@@ -141,7 +147,7 @@ export default function Judges() {
           <h2 className="mb-3 text-2xl font-semibold">Honest limitations</h2>
           <Callout tone="warning">
             <ul className="list-disc space-y-1 pl-5">
-              <li>One scheme so far (Ladki Bahin), built from its real orders. More schemes need their founding orders encoded as a baseline.</li>
+              <li>Two schemes so far (Ladki Bahin, and Sanjay Gandhi Niradhar pending human review), built from their real orders. The second is a simplified encoding: it does not yet model which destitute categories qualify.</li>
               <li>The evaluation set is small: one real amendment, its scanned copy, two real unrelated orders and two labelled synthetic tests.</li>
               <li>Only eligibility and amounts are modelled, not required documents or procedure.</li>
               <li>Hindi and Marathi interface text was drafted with AI help and needs review by a native speaker.</li>

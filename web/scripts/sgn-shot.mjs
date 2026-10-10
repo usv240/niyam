@@ -1,0 +1,10 @@
+import { chromium } from "playwright-core";
+const b = await chromium.launch({ channel: "chrome" });
+const p = await (await b.newContext({ viewport: { width: 1280, height: 1000 }, colorScheme: "dark" })).newPage();
+await p.goto("http://localhost:8811/explore/", { waitUntil: "networkidle" });
+await p.getByRole("tab", { name: /Sanjay Gandhi/ }).click();
+await p.getByRole("button", { name: "2023-07-05" }).click().catch(() => {});
+await p.waitForTimeout(400);
+await p.locator("h3").first().scrollIntoViewIfNeeded();
+await p.screenshot({ path: process.argv[2] });
+await b.close();

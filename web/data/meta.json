@@ -1,8 +1,22 @@
 {
- "generated_at": "2026-10-10T10:11:36",
+ "generated_at": "2026-10-10T10:31:51",
  "showcase_job": "job_20261010_bd059543",
- "rulebook_main_sha": "d47207d3ef40fe1bdedc988286a3c959e06e807d",
+ "rulebook_main_sha": "783621eeb6aad912d1e061be2e643183f246a4c4",
  "published": [
+  {
+   "id": "job_20261010_4ca1c594",
+   "state": "AWAITING_HUMAN",
+   "pr_url": "https://github.com/usv240/niyam-rulebook/pull/3",
+   "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+   "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+   "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/900c0cb7e19f17d84805f674102ee24dde6d7958",
+   "trace_id": "3b8585a7e7d785209ba47634d4f8ae13",
+   "confidence": 0.809,
+   "decision": "human_review",
+   "cost_usd": 1.5409,
+   "title_en": "Special Assistance Schemes (Sanjay Gandhi Niradhar Anudan, Shravanbal Seva State, and Indira Gandhi National Old Age, Widow and Disability Pension Schemes): revised assistance and consolidated eligibility conditions",
+   "doc_code": "201908211212469922"
+  },
   {
    "id": "job_20261010_bd059543",
    "state": "AWAITING_HUMAN",
@@ -32,5 +46,5 @@
    "doc_code": "202407031335114330"
   }
  ],
- "niyam_head": "47527e0134e79cf9674669ea3a005820c7ce5136"
+ "niyam_head": "9b6670955b42bba2603fd3d4696ea6c6e280d834"
 }

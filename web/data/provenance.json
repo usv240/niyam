@@ -43,5 +43,95 @@
   "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
   "agent": "Claude Code",
   "model": "claude-sonnet-5-5"
+ },
+ "param:mh.sanjay_gandhi_niradhar:annual_family_income_max:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "param:mh.sanjay_gandhi_niradhar:annual_family_income_max_disabled:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "param:mh.sanjay_gandhi_niradhar:monthly_benefit:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "param:mh.sanjay_gandhi_niradhar:monthly_benefit_widow_one_child:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "param:mh.sanjay_gandhi_niradhar:monthly_benefit_widow_two_or_more_children:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "cond:mh.sanjay_gandhi_niradhar:residency_maharashtra:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "cond:mh.sanjay_gandhi_niradhar:age_min:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "cond:mh.sanjay_gandhi_niradhar:age_max:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "cond:mh.sanjay_gandhi_niradhar:income:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
+ },
+ "cond:mh.sanjay_gandhi_niradhar:no_other_regular_scheme_benefit:2019-09-01": {
+  "commit_sha": "900c0cb7e19f17d84805f674102ee24dde6d7958",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T14:20:51Z",
+  "checkpoint_id": "01M4K309R73SB7WZRVFZZ29Q4M",
+  "session_id": "9aacdd13-b9b0-4b5c-9f1e-59ebff87477e",
+  "agent": "Claude Code",
+  "model": "claude-haiku-5-5"
  }
 }

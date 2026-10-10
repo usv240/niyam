@@ -32,6 +32,7 @@ Rules:
 7. If wording can reasonably be read two ways in a way that changes who is eligible, add an ambiguity with both readings instead of guessing silently. Still report the change with your best reading.
 8. Put changes to required documents, committees, application deadlines, staff incentives or procedure in skipped, not in changes. The rulebook only models eligibility and benefit amounts.
 9. Use the effective date stated in the document; if none, use the document date.
+10. If the document covers several schemes, report changes only for the schemes listed under "Schemes to consider". Ignore the others.
 """
 
 

@@ -58,7 +58,8 @@ export function Why({ snap, src, label = "Why?", provKey }: { snap: Snapshot; sr
 export function Explorer() {
   const [withProposed, setWithProposed] = useState(true);
   const snap = withProposed ? rulebookProposed : rulebookMain;
-  const scheme = Object.values(snap.schemes)[0];
+  const [schemeId, setSchemeId] = useState("mh.ladki_bahin");
+  const scheme = snap.schemes[schemeId] ?? Object.values(snap.schemes)[0];
   const dates = useMemo(() => changeDates(scheme), [scheme]);
   const [on, setOn] = useState<string>(dates[dates.length - 1] || scheme.launched);
   const date = on < scheme.launched ? scheme.launched : on;
@@ -85,6 +86,16 @@ export function Explorer() {
     <div className="space-y-8">
       <div className="grid gap-4 rounded-2xl border border-border bg-surface p-5 md:grid-cols-[1fr_auto] md:items-end">
         <div>
+          {Object.keys(snap.schemes).length > 1 && (
+            <div role="tablist" aria-label="Scheme" className="mb-4 inline-flex flex-wrap gap-1 rounded-lg border border-border bg-bg p-1">
+              {Object.values(snap.schemes).map((s) => (
+                <button key={s.id} role="tab" aria-selected={s.id === scheme.id} onClick={() => { setSchemeId(s.id); const d = changeDates(s); setOn(d[d.length - 1] || s.launched); }}
+                  className={`min-h-10 rounded-md px-3 text-sm font-medium ${s.id === scheme.id ? "bg-accent text-accent-contrast" : "text-muted hover:text-text"}`}>
+                  {s.name.replace(" Yojana", "")}
+                </button>
+              ))}
+            </div>
+          )}
           <p className="text-sm text-muted">{scheme.department}</p>
           <h2 className="text-2xl font-semibold">{scheme.name}</h2>
           <p className="deva text-muted">{scheme.name_mr}</p>
@@ -102,14 +113,14 @@ export function Explorer() {
           </div>
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} className="h-4 w-4 accent-[var(--accent)]" />
-            Include the change waiting for human review
+            Include changes waiting for human review
           </label>
         </div>
       </div>
 
       <section aria-label="Rules on the chosen date">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <h3 className="text-lg font-semibold">On {date}, a woman can receive Rs {Number(params.monthly_benefit ?? 0).toLocaleString("en-IN")} a month if all of these are true</h3>
+          <h3 className="text-lg font-semibold">On {date}, a person can receive Rs {Number(params.monthly_benefit ?? 0).toLocaleString("en-IN")} a month if all of these are true</h3>
           <button onClick={() => setShowCode((s) => !s)} className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-bg px-3 text-sm font-medium" aria-pressed={showCode}>
             <Code2 className="h-4 w-4" aria-hidden /> {showCode ? "Hide" : "View as"} code
           </button>

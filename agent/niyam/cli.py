@@ -25,6 +25,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--url")
     p.add_argument("--base", default="main")
     p.add_argument("--byod", action="store_true")
+    p.add_argument("--onboard", metavar="SCHEME_ID", help="operator decision: add this scheme to the rulebook from this founding or consolidated order")
     r = sub.add_parser("run")
     r.add_argument("job_id")
     s = sub.add_parser("show")
@@ -39,8 +40,10 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "process":
             meta = {"title": args.title, "published_at": args.date, "code": args.code, "source_url": args.url,
-                    "base_ref": args.base}
-            doc_id = orchestrator.add_document(Path(args.pdf), "byod" if args.byod else "cli", {k: v for k, v in meta.items() if v})
+                    "base_ref": args.base, "onboard": args.onboard}
+            # An explicit instruction (onboard, upload) must never be lost to duplicate detection.
+            doc_id = orchestrator.add_document(Path(args.pdf), "byod" if args.byod else "cli", {k: v for k, v in meta.items() if v},
+                                               dedup=not (args.onboard or args.byod))
             job_id = orchestrator.create_job(doc_id, is_byod=args.byod)
             job = orchestrator.run_job(job_id)
             print(json.dumps({k: job.get(k) for k in ("id", "state", "confidence", "autonomy_decision", "pr_url", "checkpoint_id", "trace_id", "cost_usd")}, indent=2))

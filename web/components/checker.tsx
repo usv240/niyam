@@ -15,7 +15,7 @@ const ENUMS: Record<string, string[]> = {
   marital_status: ["married", "widowed", "divorced", "abandoned", "destitute", "unmarried"],
   family_govt_job: ["none", "regular", "contract", "outsourced", "volunteer", "pensioner"],
 };
-const BOOLS = ["family_income_tax_payer", "family_four_wheeler", "family_mp_mla", "other_unmarried_beneficiary_in_family"];
+const BOOLS = ["disabled", "family_income_tax_payer", "family_four_wheeler", "family_mp_mla", "other_unmarried_beneficiary_in_family"];
 
 function Field({ id, lang, children }: { id: string; lang: Lang; children: React.ReactNode }) {
   return (
@@ -36,6 +36,7 @@ export function Checker() {
     age: "34", gender: "female", state: true, marital_status: "married", annual_family_income: "180000",
     other_scheme_monthly_inr: "0", family_govt_job: "none", family_farm_land_acres: "0", has_bank_account: true,
     family_income_tax_payer: false, family_four_wheeler: false, family_mp_mla: false, other_unmarried_beneficiary_in_family: false,
+    years_in_maharashtra: "15", children_count: "0", disabled: false,
     date: today(),
   });
   const [submitted, setSubmitted] = useState(false);
@@ -48,6 +49,7 @@ export function Checker() {
       annual_family_income: Number(form.annual_family_income || 0), other_scheme_monthly_inr: Number(form.other_scheme_monthly_inr || 0),
       family_govt_job: form.family_govt_job, family_farm_land_acres: Number(form.family_farm_land_acres || 0),
       has_bank_account: Boolean(form.has_bank_account),
+      years_in_maharashtra: Number(form.years_in_maharashtra || 0), children_count: Number(form.children_count || 0),
     };
     for (const b of BOOLS) person[b] = Boolean(form[b]);
     return Object.values(snap.schemes).map((s) => evaluateScheme(snap, s, person, String(form.date)));
@@ -88,6 +90,8 @@ export function Checker() {
             </Field>
             <Field id="other_scheme_monthly_inr" lang={lang}><input id="other_scheme_monthly_inr" className={input} type="number" min={0} value={String(form.other_scheme_monthly_inr)} onChange={(e) => set("other_scheme_monthly_inr", e.target.value)} /></Field>
             <Field id="family_farm_land_acres" lang={lang}><input id="family_farm_land_acres" className={input} type="number" min={0} step={0.5} value={String(form.family_farm_land_acres)} onChange={(e) => set("family_farm_land_acres", e.target.value)} /></Field>
+            <Field id="years_in_maharashtra" lang={lang}><input id="years_in_maharashtra" className={input} type="number" min={0} value={String(form.years_in_maharashtra)} onChange={(e) => set("years_in_maharashtra", e.target.value)} /></Field>
+            <Field id="children_count" lang={lang}><input id="children_count" className={input} type="number" min={0} value={String(form.children_count)} onChange={(e) => set("children_count", e.target.value)} /></Field>
             <Field id="date" lang={lang}><input id="date" className={input} type="date" value={String(form.date)} onChange={(e) => set("date", e.target.value)} /></Field>
           </div>
           <div className="mt-4 space-y-1">
@@ -97,7 +101,7 @@ export function Checker() {
           </div>
         </details>
         <label className="flex items-center gap-2 text-xs text-muted">
-          <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} /> Include the rule change waiting for human review
+          <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} /> Include rule changes waiting for human review (including the second scheme)
         </label>
         <button type="submit" className="min-h-12 w-full rounded-lg bg-accent px-5 text-base font-semibold text-accent-contrast shadow-card">{t("check", lang)}</button>
         {lang !== "en" && <p className="text-xs text-muted">{t("review_note", lang)}</p>}

@@ -1,0 +1,35 @@
+
+=== mh-sgn-2023-07-06-increase (run 1/1) ===
+[job_20261010_cac4ea44] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_cac4ea44] stage.done: Relevant: The GR raises monthly assistance from Rs 1000 to Rs 1500, extends widow eligibility for 1 or 2 children, and removes the 25-year age condition for the beneficiary's son, changing amounts and eligibility under the Sanjay Gandhi Niradhar scheme.
+[job_20261010_cac4ea44] state: State is now TRIAGED
+[job_20261010_cac4ea44] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_cac4ea44] stage.done: Found 3 change(s), 0 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_cac4ea44] state: State is now EXTRACTED
+[job_20261010_cac4ea44] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_cac4ea44] encode.attempt: Coding agent attempt 1
+[job_20261010_cac4ea44] encode.tests_passed: Tests pass: 57 passed, 0 failed
+[job_20261010_cac4ea44] stage.done: Rulebook updated in 1 attempt(s); 57 tests pass
+[job_20261010_cac4ea44] state: State is now ENCODED
+[job_20261010_cac4ea44] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_cac4ea44] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_cac4ea44] state: State is now VERIFIED
+[job_20261010_cac4ea44] stage.start: Confidence 0.98; decision: auto merge
+[job_20261010_cac4ea44] publish.commit: Committed 78bb203 with Entire checkpoint 01M4K397W91AVXX6YFPK0X4CPR
+[job_20261010_cac4ea44] stage.done: Change request opened
+[job_20261010_cac4ea44] state: State is now READY_TO_MERGE
+{"case": "mh-sgn-2023-07-06-increase", "job_id": "job_20261010_cac4ea44", "state": "READY_TO_MERGE", "cost_usd": 0.2006, "stage_costs": {"triage": 0.00077, "extract": 0.0658, "encode": 0.02016, "verify": 0.11383, "publish": 0.0}, "latency_s": 53.8, "trace_id": "84acb179f8ce856658682bf1d046482c", "checkpoint_id": "01M4K397W91AVXX6YFPK0X4CPR", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 0, "verifier_agreement": 1.0, "decision_correct": true}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "decision_correct": 1.0,
+  "verifier_agreement": 1.0,
+  "cost_usd": 0.2006,
+  "latency_s": 53.8,
+  "runs": 1,
+  "total_cost_usd": 0.2006
+}
+2026-10-10 10:25:46 - neatlogs - INFO - Neatlogs SDK shutdown complete

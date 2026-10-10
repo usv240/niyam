@@ -159,7 +159,13 @@ class Run:
             t = triage.run(doc, self.pdf, self.doc.get("title") or "", root=self._base())
             known = set(rulebook.scheme_ids(self._base()))
             t.scheme_ids = [x for x in t.scheme_ids if x in known]
-            if (t.relevant and t.document_kind == "new_scheme" and t.new_scheme_id and t.new_scheme_id not in known
+            onboard = self.meta.get("onboard")
+            if onboard and onboard not in known:
+                # Coverage is a human decision: an operator asked to add this scheme from this order.
+                t.relevant, t.document_kind, t.new_scheme_id, t.scheme_ids = True, "new_scheme", onboard, [onboard]
+                t.reason = f"Operator asked to onboard {onboard} from this order. " + t.reason
+                self.event("triage.onboard", f"Onboarding {onboard} on an operator's request", stage="triage")
+            elif (t.relevant and t.document_kind == "new_scheme" and t.new_scheme_id and t.new_scheme_id not in known
                     and re.fullmatch(r"mh\.[a-z0-9_]{3,40}", t.new_scheme_id)):
                 t.scheme_ids.append(t.new_scheme_id)
                 self.event("triage.new_scheme", f"This order creates a scheme the rulebook does not have yet: {t.new_scheme_id}", stage="triage")

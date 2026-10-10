@@ -1,0 +1,11 @@
+[job_20261010_d2c6f4dc] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d2c6f4dc] stage.done: Not relevant: The GR raises amounts for Sanjay Gandhi Niradhar Anudan Yojana and Shravanbal pensions, which are not covered schemes, and does not touch the covered Mukhyamantri Majhi Ladki Bahin Yojana or create a new scheme.
+[job_20261010_d2c6f4dc] state: State is now CLOSED_IRRELEVANT
+{
+  "id": "job_20261010_d2c6f4dc",
+  "state": "CLOSED_IRRELEVANT",
+  "confidence": null,
+  "pr_url": null,
+  "cost_usd": 0.001078
+}
+2026-10-10 10:14:11 - neatlogs - INFO - Neatlogs SDK shutdown complete

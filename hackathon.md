@@ -118,6 +118,14 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 - v3c: Sonnet 5.5 extraction and verifier, Haiku 5.5 coding agent and triage. 100% on all 8 cases.
 - v3 (v3c on the same 6 cases as v1 and v2): $0.13 per document (v2 $0.29, v1 $0.88), 40 s per document, 100% on every metric. Coding agent cost per amendment fell from $0.32 to $0.05. Now the default.
 
+### 2026-10-10 18:00 IST: second real scheme, and a real act-alone decision
+
+- The 2019 Sanjay Gandhi GR was first closed as not relevant: correct by design (the scheme was not covered, and the order does not create a scheme). Coverage should be a human decision, so added `niyam process --onboard <scheme_id>`. Found and fixed a bug on the way: duplicate detection silently dropped the operator's flag.
+- Onboarded Sanjay Gandhi Niradhar Anudan Yojana from the real 56-page consolidated GR: 10 rules, 49 tests, 12 of 13 verifier cases agree (the disagreement, Rs 21,001, was settled from the order's "up to Rs 21,000"). PR #3, $1.54, checkpoint 01M4K309R73SB7WZRVFZZ29Q4M.
+- Reviewing PR #3 by hand: a new `disabled` field defaulted to `true`, giving everyone the higher income limit. Root cause: my encoder instruction said "a default that keeps people eligible". Fixed the instruction and the rulebook's AGENTS.md; commented on PR #3.
+- The real 6 July 2023 increase order, on top of PR #3 in dry mode: 3 amount increases, 16 of 16 agree, confidence 0.98, decision `auto_merge` (state READY_TO_MERGE), $0.20. Reproduced through the eval harness (`extra/real-autonomy.json`). The order also drops a "son under 25" condition that our encoding never modelled; Niyam correctly skipped it.
+- Website: scheme picker in the explorer, new checker questions; the browser engine gained Python conditional expressions (`a if c else b`), and matched the Python engine on 400 of 400 random people for the second scheme.
+
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo

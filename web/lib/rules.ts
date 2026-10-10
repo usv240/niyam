@@ -64,7 +64,17 @@ class Parser {
   private next() { return this.toks[this.i++]; }
   private expect(v: string) { const k = this.next(); if (k.v !== v) throw new Error(`Expected ${v}`); }
 
-  parse(): unknown { const v = this.or(); if (this.toks[this.i].t !== "eof") throw new Error("Unexpected text in rule"); return v; }
+  parse(): unknown { const v = this.ternary(); if (this.toks[this.i].t !== "eof") throw new Error("Unexpected text in rule"); return v; }
+  // Python conditional expression: <a> if <cond> else <b> (lowest precedence, right associative).
+  private ternary(): unknown {
+    const yes = this.or();
+    if (!this.peek("if")) return yes;
+    this.next();
+    const cond = this.or();
+    this.expect("else");
+    const no = this.ternary();
+    return cond ? yes : no;
+  }
   private or(): unknown { let l = this.and(); while (this.peek("or")) { this.next(); const r = this.and(); l = Boolean(l) || Boolean(r); } return l; }
   private and(): unknown { let l = this.not(); while (this.peek("and")) { this.next(); const r = this.not(); l = Boolean(l) && Boolean(r); } return l; }
   private not(): unknown { if (this.peek("not") && !(this.toks[this.i + 1]?.v === "in")) { this.next(); return !this.not(); } return this.cmp(); }
@@ -101,10 +111,10 @@ class Parser {
     const k = this.next();
     if (k.t === "num") return Number(k.v);
     if (k.t === "str") return k.v;
-    if (k.t === "op" && k.v === "(") { const v = this.or(); this.expect(")"); return v; }
+    if (k.t === "op" && k.v === "(") { const v = this.ternary(); this.expect(")"); return v; }
     if (k.t === "op" && k.v === "[") {
       const items: unknown[] = [];
-      if (!this.peek("]")) { do { items.push(this.or()); } while (this.peek(",") && this.next()); }
+      if (!this.peek("]")) { do { items.push(this.ternary()); } while (this.peek(",") && this.next()); }
       this.expect("]");
       return items;
     }
@@ -115,7 +125,7 @@ class Parser {
       if (k.v in FUNCS || k.v === "len") {
         this.expect("(");
         const args: unknown[] = [];
-        if (!this.peek(")")) { do { args.push(this.or()); } while (this.peek(",") && this.next()); }
+        if (!this.peek(")")) { do { args.push(this.ternary()); } while (this.peek(",") && this.next()); }
         this.expect(")");
         if (k.v === "len") return (args[0] as unknown[]).length;
         return FUNCS[k.v](...(args as number[]));

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10T14:11:28.531097+00:00",
+ "generated_at": "2026-10-10T14:31:36.911154+00:00",
  "sources": {
   "gr-202406281814018230": {
    "kind": "government_resolution",
@@ -12,6 +12,33 @@
    "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202406281814018230.pdf",
    "local": "sources/mh/202406281814018230.pdf",
    "language": "mr"
+  },
+  "gr-201908211212469922": {
+   "kind": "government_resolution",
+   "code": "201908211212469922",
+   "date": "2019-08-20",
+   "department": "Government of Maharashtra",
+   "title_mr": "विशेष सहाय्य योजना: संजय गांधी निराधार अनुदान योजना, श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजना, इंदिरा गांधी राष्ट्रीय वृध्दापकाळ, विधवा व अपंग निवृत्तीवेतन योजना",
+   "title_en": "Special Assistance Schemes (Sanjay Gandhi Niradhar Anudan, Shravanbal Seva State, and Indira Gandhi National Old Age, Widow and Disability Pension Schemes): revised assistance and consolidated eligibility conditions",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/201908211212469922.pdf",
+   "local": "sources/mh/201908211212469922.pdf",
+   "language": "mr",
+   "amends": [
+    "विसयो-2010/प्र.क्र.175/विसयो-2 दि. 26 ऑक्टोबर 2010",
+    "विसयो-2011/प्र.क्र.127/विसयो-2 दि. 31 ऑक्टोबर 2011",
+    "विसयो-2012/प्र.क्र.102/विसयो-2 दि. 02 एप्रिल 2012",
+    "विसयो-2011/प्र.क्र.226/विसयो-2 दि. 12 जून 2013",
+    "विसयो-2013/प्र.क्र.464/विसयो-1 दि. 27 जून 2013",
+    "विसयो-2013/प्र.क्र.206/विसयो-2 दि. 21 जानेवारी 2014",
+    "समिती-2014/प्र.क्र.162/विसयो-2 दि. 27 नोव्हेंबर 2014",
+    "विसयो-2015/प्र.क्र.105/विसयो-2 दि. 05 मे 2015",
+    "विसयो-2014/प्र.क्र.26/विसयो-2 दि. 22 जून 2015",
+    "विसयो-2015/प्र.क्र.94/विसयो-2 दि. 04 ऑगस्ट 2015",
+    "विसयो-2015/प्र.क्र.285/विसयो-2 दि. 13 ऑक्टोबर 2015",
+    "विसयो-2015/प्र.क्र.275/विसयो-2 दि. 05 जानेवारी 2016",
+    "विसयो-2017/प्र.क्र.203/विसयो दि. 03 नोव्हेंबर 2018",
+    "विसयो-2016/प्र.क्र.232/विसयो दि. 11 जून 2019"
+   ]
   },
   "gr-202407031335114330": {
    "kind": "government_resolution",
@@ -135,6 +162,21 @@
    ],
    "default": "none",
    "label": "Ration card colour"
+  },
+  "years_in_maharashtra": {
+   "type": "int",
+   "default": 15,
+   "label": "Completed years lived in Maharashtra"
+  },
+  "children_count": {
+   "type": "int",
+   "default": 0,
+   "label": "Number of children"
+  },
+  "disabled": {
+   "type": "bool",
+   "default": true,
+   "label": "Disabled (divyang) beneficiary"
   }
  },
  "schemes": {
@@ -570,6 +612,188 @@
         "clause": "5(4)",
         "quote": "रु.1,500/- पेक्षा जास्त लाभ घेतला असेल",
         "quote_en": "Has received a benefit of more than Rs 1,500"
+       }
+      }
+     ]
+    }
+   }
+  },
+  "mh.sanjay_gandhi_niradhar": {
+   "id": "mh.sanjay_gandhi_niradhar",
+   "name": "Sanjay Gandhi Niradhar Anudan Yojana",
+   "name_mr": "संजय गांधी निराधार अनुदान योजना",
+   "department": "Government of Maharashtra",
+   "summary": "Monthly financial assistance for destitute and vulnerable residents of Maharashtra who meet the income, age and residence conditions; widows with children get a higher amount.",
+   "launched": "2019-09-01",
+   "benefit": {
+    "monthly_inr": "params.monthly_benefit_widow_two_or_more_children if (person.marital_status == 'widowed' and person.children_count >= 2) else (params.monthly_benefit_widow_one_child if (person.marital_status == 'widowed' and person.children_count == 1) else params.monthly_benefit)",
+    "source": {
+     "doc": "gr-201908211212469922",
+     "page": 3,
+     "clause": "State-sponsored scheme (1)",
+     "quote": "रुपये४००/- इतकी वाढ करुन अर्थसहाय्याची रक्कम दरमहा रुपये १०००/- अशी करण्यात येत आहे.",
+     "quote_en": "increased by Rs 400/- so that the assistance amount becomes Rs 1000/- per month."
+    }
+   },
+   "conditions": [
+    {
+     "id": "residency_maharashtra",
+     "text": "Has lived in Maharashtra for at least 15 years",
+     "when": "person.state == 'MH' and person.years_in_maharashtra >= 15",
+     "kind": "eligibility",
+     "source": {
+      "doc": "gr-201908211212469922",
+      "page": 11,
+      "clause": "Appendix-1 row 1",
+      "quote": "किमान १५ वर्षापासून महाराष्ट्र राज्याचा रहिवासी असणे आवश्यक आहे.",
+      "quote_en": "Must have been a resident of the State of Maharashtra for at least 15 years."
+     },
+     "valid_from": "2019-09-01",
+     "valid_until": null
+    },
+    {
+     "id": "age_min",
+     "text": "Aged 18 or more (completed years)",
+     "when": "person.age >= 18",
+     "kind": "eligibility",
+     "source": {
+      "doc": "gr-201908211212469922",
+      "page": 11,
+      "clause": "Appendix-1 row 2",
+      "quote": "किमान १८ ते ६५ वर्षापेक्षा कमी असावे.",
+      "quote_en": "At least 18 and less than 65 years."
+     },
+     "valid_from": "2019-09-01",
+     "valid_until": null
+    },
+    {
+     "id": "age_max",
+     "text": "Younger than 65 years (at 65 the beneficiary moves to Shravanbal or the Indira Gandhi old age scheme)",
+     "when": "person.age < 65",
+     "kind": "eligibility",
+     "source": {
+      "doc": "gr-201908211212469922",
+      "page": 11,
+      "clause": "Appendix-1 row 2",
+      "quote": "किमान १८ ते ६५ वर्षापेक्षा कमी असावे.",
+      "quote_en": "At least 18 and less than 65 years."
+     },
+     "valid_from": "2019-09-01",
+     "valid_until": null
+    },
+    {
+     "id": "income",
+     "text": "Annual family income is not more than Rs {annual_family_income_max} (Rs {annual_family_income_max_disabled} for disabled beneficiaries)",
+     "when": "person.annual_family_income <= params.annual_family_income_max or (person.disabled and person.annual_family_income <= params.annual_family_income_max_disabled)",
+     "kind": "eligibility",
+     "source": {
+      "doc": "gr-201908211212469922",
+      "page": 11,
+      "clause": "Appendix-1 row 3",
+      "quote": "तर इतर सर्व लाभार्थ्यांकरीता रुपये २१,०००/- पर्यंत",
+      "quote_en": "and for all other beneficiaries up to Rs 21,000/-"
+     },
+     "valid_from": "2019-09-01",
+     "valid_until": null
+    },
+    {
+     "id": "no_other_regular_scheme_benefit",
+     "text": "Does not receive a regular monthly benefit from another government scheme",
+     "when": "person.other_scheme_monthly_inr == 0",
+     "kind": "disqualification",
+     "source": {
+      "doc": "gr-201908211212469922",
+      "page": 14,
+      "clause": "Appendix-1 row 15",
+      "quote": "शासनाच्या अन्य कोणत्याही योजनेखाली नियमित मासिक आर्थिक लाभ घेत असलेली व्यक्ती संजय गांधी निराधार अनुदान योजनेखाली लाभ घेण्यास पात्र राहणार नाही.",
+      "quote_en": "A person receiving a regular monthly financial benefit under any other government scheme will not be eligible under the Sanjay Gandhi Niradhar Anudan Yojana."
+     },
+     "valid_from": "2019-09-01",
+     "valid_until": null
+    }
+   ],
+   "parameters": {
+    "annual_family_income_max": {
+     "description": "Maximum annual family income in rupees for beneficiaries other than disabled persons",
+     "unit": "currency-INR",
+     "values": [
+      {
+       "start": "2019-09-01",
+       "value": 21000,
+       "reference": {
+        "doc": "gr-201908211212469922",
+        "page": 11,
+        "clause": "Appendix-1 row 3",
+        "quote": "तर इतर सर्व लाभार्थ्यांकरीता रुपये २१,०००/- पर्यंत",
+        "quote_en": "and for all other beneficiaries up to Rs 21,000/-"
+       }
+      }
+     ]
+    },
+    "annual_family_income_max_disabled": {
+     "description": "Maximum annual family income in rupees for disabled (divyang) beneficiaries",
+     "unit": "currency-INR",
+     "values": [
+      {
+       "start": "2019-09-01",
+       "value": 50000,
+       "reference": {
+        "doc": "gr-201908211212469922",
+        "page": 11,
+        "clause": "Appendix-1 row 3",
+        "quote": "दिव्यांग लाभार्थ्यांसाठी प्रतिवर्षी रुपये ५०,०००/-",
+        "quote_en": "for disabled beneficiaries Rs 50,000/- per year"
+       }
+      }
+     ]
+    },
+    "monthly_benefit": {
+     "description": "Monthly assistance paid to an eligible beneficiary (including a widow with no child)",
+     "unit": "currency-INR",
+     "values": [
+      {
+       "start": "2019-09-01",
+       "value": 1000,
+       "reference": {
+        "doc": "gr-201908211212469922",
+        "page": 3,
+        "clause": "State-sponsored scheme (1)",
+        "quote": "रुपये४००/- इतकी वाढ करुन अर्थसहाय्याची रक्कम दरमहा रुपये १०००/- अशी करण्यात येत आहे.",
+        "quote_en": "increased by Rs 400/- so that the assistance amount becomes Rs 1000/- per month."
+       }
+      }
+     ]
+    },
+    "monthly_benefit_widow_one_child": {
+     "description": "Monthly assistance paid to a widow beneficiary with 1 child",
+     "unit": "currency-INR",
+     "values": [
+      {
+       "start": "2019-09-01",
+       "value": 1100,
+       "reference": {
+        "doc": "gr-201908211212469922",
+        "page": 11,
+        "clause": "Appendix-1 row 4(1)",
+        "quote": "१ अपत्य असलेल्या विधवा लाभार्थ्यांना अर्थसहाय्याची रक्कम दरमहा रुपये ११००/-",
+        "quote_en": "Widow beneficiaries with 1 child will receive assistance of Rs 1100/- per month"
+       }
+      }
+     ]
+    },
+    "monthly_benefit_widow_two_or_more_children": {
+     "description": "Monthly assistance paid to a widow beneficiary with 2 or more children",
+     "unit": "currency-INR",
+     "values": [
+      {
+       "start": "2019-09-01",
+       "value": 1200,
+       "reference": {
+        "doc": "gr-201908211212469922",
+        "page": 11,
+        "clause": "Appendix-1 row 4(1)",
+        "quote": "२ अपत्य (२ व त्यापेक्षा अधिक अपत्य) असलेल्या विधवा लाभार्थ्यांना मिळणाऱ्या दरमहा रुपये १२००/-",
+        "quote_en": "Widow beneficiaries with 2 children (2 or more children) will receive Rs 1200/- per month"
        }
       }
      ]

@@ -1,0 +1,22 @@
+id: mh-sgn-2023-07-06-increase
+kind: real
+description: >
+  Real order (GR 202307061137387522, 6 July 2023) raising Sanjay Gandhi
+  Niradhar Anudan Yojana assistance to Rs 1,500 a month, applied on top of the
+  agent's own onboarding of the scheme from the 2019 consolidated GR (tag
+  sgn-onboarded, PR #3). Only amounts rise and nobody loses eligibility, so the
+  trust policy allows acting alone. Labels from pages 1 and 2 of the GR.
+meta:
+  title: Sanjay Gandhi Niradhar and Shravanbal, increase in monthly assistance, 6 July 2023
+  published_at: "2023-07-05"
+  code: "202307061137387522"
+  source_url: https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202307061137387522.pdf
+base_ref: sgn-onboarded
+expect:
+  relevant: true
+  schemes: [mh.sanjay_gandhi_niradhar]
+  changes:
+    - {target: monthly_benefit, change_type: [parameter_update, benefit_changed], new_value: 1500}
+    - {target: monthly_benefit_widow_one_child, change_type: [parameter_update, benefit_changed], new_value: 1500}
+    - {target: monthly_benefit_widow_two_or_more_children, change_type: [parameter_update, benefit_changed], new_value: 1500}
+  decision_in: [auto_merge]

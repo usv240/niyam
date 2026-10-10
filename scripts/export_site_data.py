@@ -89,6 +89,7 @@ def line_provenance(root: Path, snap: dict) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--job", help="showcase job id (default: latest published non-eval job)")
+    ap.add_argument("--also", nargs="*", default=[], help="more agent jobs whose proposed schemes the site should include")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
 
@@ -107,8 +108,20 @@ def main() -> int:
         sha = detail.get("commit_sha")
         if sha:
             proposed = snapshot(branch_checkout(sha))
-            (OUT / "rulebook-proposed.json").write_text(json.dumps(proposed, ensure_ascii=False, indent=1), encoding="utf-8")
             prov = line_provenance(branch_checkout(sha), proposed)
+            # Pending changes from other agent jobs (separate pull requests), merged into one view.
+            for other in args.also:
+                osha = (db.job(other) or {}).get("commit_sha")
+                if not osha:
+                    continue
+                osnap = snapshot(branch_checkout(osha))
+                for sid, sch in osnap["schemes"].items():
+                    if sid not in proposed["schemes"]:
+                        proposed["schemes"][sid] = sch
+                proposed["sources"] = {**osnap["sources"], **proposed["sources"]}
+                proposed["person_schema"] = {**osnap["person_schema"], **proposed["person_schema"]}
+                prov.update({k: v for k, v in line_provenance(branch_checkout(osha), osnap).items() if k not in prov})
+            (OUT / "rulebook-proposed.json").write_text(json.dumps(proposed, ensure_ascii=False, indent=1), encoding="utf-8")
             (OUT / "provenance.json").write_text(json.dumps(prov, ensure_ascii=False, indent=1), encoding="utf-8")
             print(f"entire why: provenance for {len(prov)} rule lines")
             diff = rulebook.git("diff", "--stat", f"{sha}~1", sha, cwd=rulebook.main_path(), check=False)
