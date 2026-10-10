@@ -2,7 +2,15 @@
 
 Everything (website, API, watcher) runs on **one t3.small** with HTTPS, within the event rules: us-east-1 only, the supplied **Hackathon_VPC** only (never create a VPC), one EC2 instance, at most 50 GB of storage, $25 total. Expected cost: about $0.02 per hour, about $4 to keep it running until judging ends on 16 October.
 
-## Steps (about 15 minutes, all in the browser)
+## Fastest: one paste in AWS CloudShell
+
+1. Sign in to the AWS console with your neatHack login, region **N. Virginia (us-east-1)**.
+2. Open **CloudShell** (the terminal icon in the top bar) and paste:
+   `curl -fsSL https://raw.githubusercontent.com/usv240/niyam/main/infra/cloudshell-launch.sh | bash`
+   It checks that Hackathon_VPC exists and that no other instance is running, then launches one t3.small with everything installed.
+3. After about 8 minutes: EC2, select `niyam`, Connect, EC2 Instance Connect, Connect, then `sudo niyam-setup` (type your keys; input is hidden).
+
+## Steps by hand (about 15 minutes, all in the browser)
 
 1. Sign in to the AWS console with your neatHack login. Check the region at the top right says **N. Virginia (us-east-1)**.
 2. **EC2, Launch instance**:
