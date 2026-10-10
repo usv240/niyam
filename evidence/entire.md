@@ -30,7 +30,7 @@ Baseline lines (encoded by hand before the agent) correctly report human authors
 
 ## 3. Checkpoints on our own build (while building)
 
-Both repositories have Entire enabled for Claude Code. The main build session was attached with `entire session attach`, creating checkpoint `01M4JE7D42JJ4EZKKE3JE7DR7Y` on commit `53a9902` in `usv240/niyam`.
+Both repositories have Entire enabled for Claude Code. We first attached our main build session with `entire session attach`. That transcript contained API keys pasted into the chat early on; Entire redacted most of them but not one generic 32-character key, so we deleted that checkpoint ref from GitHub within minutes and no longer attach that session. Build checkpoints in this repository now come from Claude Code sessions run inside the repository, which contain only the task at hand.
 
 ## 4. Entire Graph (while building)
 

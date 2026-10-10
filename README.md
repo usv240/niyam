@@ -62,7 +62,7 @@ The improvement came from the neatlogs traces: in v1 the coordinator ruled three
 | The agent completes a substantial task end to end | PR [#2](https://github.com/usv240/niyam-rulebook/pull/2): a Marathi GR in, 6 changes encoded with 46 passing tests, 16 of 16 independent checks agree |
 | The agent improved | `evals/results/v1.json` and `v2.json`, with neatlogs trace ids for every run |
 | We used neatlogs | One trace per job, a span per stage and per recovery; trace ids in every eval result and PR |
-| We used Entire | Checkpoints on every agent commit in the rulebook (for example `01M4JDH944E4HPRCA4WKDJTFN7`) and on our own build commits here (for example `01M4JE7D42JJ4EZKKE3JE7DR7Y`) |
+| We used Entire | Checkpoints on every agent commit in the rulebook (for example `01M4JDH944E4HPRCA4WKDJTFN7`) and on build commits in this repository |
 | We used cfo.ai | Business plan in [business/](business) |
 | The agent recovers from failures | Scan with no text layer recovered by transcription (`recovery.ocr_fallback`); a crashed job resumed from its last good state; loop guard escalation |
 | Code written during the event | Both repositories created after 12:30 IST on 10 October 2026 |

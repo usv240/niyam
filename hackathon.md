@@ -94,6 +94,13 @@ v2 results (`evals/results/v2.json`), same 6 cases: outcome accuracy 100% (from 
 - Tests and CI: 14 agent tests (citation checker, trust policy, watcher, API privacy); rulebook CI runs on every agent PR (PR #2 passes); web CI runs content lint and build. Browser rules engine matches the Python engine on 400 of 400 random cases.
 - Website QA: 11 routes, light and dark, phone and desktop: zero serious or critical axe violations, no horizontal overflow.
 
+### 2026-10-10 16:00 IST: a secret leaked through a checkpoint, and was removed
+
+- Attaching our main build session to `usv240/niyam` with `entire session attach` pushed its transcript as a checkpoint ref. The transcript contained API keys pasted into the chat before hacking began. Entire redacted the Anthropic, neatlogs and other prefixed keys, but not a generic 32-character key for an unrelated service (LegiScan).
+- Found by scanning every checkpoint ref for fragments of each pasted secret. Deleted the ref from GitHub and locally; all 23 rulebook checkpoint refs scanned clean (the encoder's sessions never see the chat).
+- Action for the team leader: rotate that key (GitHub may keep unreachable objects for a while).
+- Lesson: treat agent transcripts as sensitive; scan checkpoint refs before pushing; keep the encoder's sessions separate from human chat.
+
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo
