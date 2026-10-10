@@ -35,7 +35,21 @@ DOCS = "https://github.com/usv240/niyam#api"
 DISCLAIMER = "Information only. Final eligibility is decided by the government department."
 ID_LIKE = re.compile(r"^(\d{4}\s?\d{4}\s?\d{4}|[6-9]\d{9}|\+91\d{10})$")  # Aadhaar or phone numbers
 
-app = FastAPI(title="Niyam API", version="1.0", description="Welfare eligibility rules that stay in sync with the law.")
+from contextlib import asynccontextmanager
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    # Jobs run in background threads; if the server restarted mid-job, pick them up again.
+    # Every state is saved, so each job resumes from its last completed step.
+    for j in db.rows("SELECT id FROM jobs WHERE state NOT IN (%s) AND eval_case IS NULL" % ",".join("?" * len(orchestrator.TERMINAL)),
+                     *orchestrator.TERMINAL):
+        db.add_event(j["id"], "orchestrator.resume_on_start", "Server restarted; resuming this job from its last saved step")
+        threading.Thread(target=orchestrator.run_job, args=(j["id"],), daemon=True).start()
+    yield
+
+
+app = FastAPI(title="Niyam API", version="1.0", description="Welfare eligibility rules that stay in sync with the law.", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"], expose_headers=["*"])
 
 

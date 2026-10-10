@@ -1,0 +1,44 @@
+name: deploy website to GitHub Pages
+
+# Manual only: publishing the site is a deliberate decision.
+# One-time setup: repository Settings, Pages, Source: GitHub Actions.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npx next build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /niyam
+          NEXT_PUBLIC_SITE_URL: https://usv240.github.io/niyam
+          NEXT_PUBLIC_API_BASE: ${{ vars.NIYAM_API_BASE }}
+      - run: touch out/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
