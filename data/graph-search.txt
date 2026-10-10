@@ -1,0 +1,62 @@
+1. agent/niyam/confidence.py:18-52 [contains ranks 1,2 - contiguous, nothing elided] score=28.8320 symbol=decide kind=function focus=30→31 signals=path,body,symbol-name,graph:callers,complete-symbol,contiguous-span
+def score(cs: ChangeSet, verdict: dict[str, Any] | None, tests_ok: bool, rejected_quotes: int) -> float:
+    if not cs.changes:
+        return 0.0
+    extraction = sum(c.confidence for c in cs.changes) / len(cs.changes)
+    extraction *= max(0.0, 1 - 0.15 * rejected_quotes)
+    agreement = (verdict or {}).get("agreement_rate", 0.0)
+    safety = min(TYPE_SAFETY.get(c.change_type, 0.4) for c in cs.changes)
+    return round(0.35 * extraction + 0.35 * agreement + 0.15 * (1.0 if tests_ok else 0.0) + 0.15 * safety, 3)
+
+
+def decide(cs: ChangeSet, confidence: float, verdict: dict[str, Any] | None, unresolved: int,
+           is_byod: bool) -> tuple[str, list[str]]:
+    """Returns (decision, reasons). Decisions: auto_merge, human_review, needs_human."""
+    reasons: list[str] = []
+    if is_byod:
+        reasons.append("Uploaded documents run on a sandbox branch and are never merged automatically.")
+    if any(c.affects in ("narrows", "mixed") for c in cs.changes):
+        reasons.append("At least one change removes people from a scheme. Niyam never does that without a human.")
+    structural = sorted({c.change_type for c in cs.changes} & STRUCTURAL)
+    if structural:
+        reasons.append(f"Structural change ({', '.join(structural)}), not only a number or a date.")
+    if cs.ambiguities:
+        reasons.append(f"{len(cs.ambiguities)} ambiguous clause(s) flagged during extraction.")
+    if unresolved:
+        reasons.append(f"{unresolved} disagreement(s) between the encoder and the verifier are unresolved.")
+    if verdict and verdict.get("cases_disagree"):
+        reasons.append("The verifier still disagrees on some test citizens.")
+    if confidence < 0.9:
+        reasons.append(f"Confidence {confidence:.2f} is below the 0.90 needed to merge alone.")
+
+    if unresolved or confidence < 0.7 or (cs.ambiguities and confidence < 0.8):
+        return "needs_human", reasons
+    if reasons:
+        return "human_review", reasons
+    return "auto_merge", ["Only numbers or dates changed, every boundary test agrees, and confidence is at least 0.90."]
+
+2. agent/tests/test_core.py:56-60 score=17.9787 symbol=test_simple_widening_parameter_change_can_merge_alone kind=function focus=56 signals=path,body,symbol-name
+def test_simple_widening_parameter_change_can_merge_alone():
+    cs = _cs()
+    conf = score(cs, AGREE, True, 0)
+    assert conf >= 0.9
+    assert decide(cs, conf, AGREE, 0, False)[0] == "auto_merge"
+
+COVERING TEST (what hit 1 is supposed to do; not a fix site):
+3. agent/tests/test_core.py:64-65 symbol=test_change_that_removes_people_always_goes_to_a_human kind=function focus=65 signals=related:covering-test
+    cs = _cs(affects="narrows")
+    assert decide(cs, score(cs, AGREE, True, 0), AGREE, 0, False)[0] != "auto_merge"
+
+  ALSO COVERING decide (5 tests cover it; all must still pass): test_simple_widening_parameter_change_can_merge_alone, test_uploaded_documents_are_never_merged, test_unresolved_disagreement_needs_a_human, test_structural_change_needs_review in agent/tests/test_core.py
+VERIFY: python -m py_compile agent/niyam/confidence.py
+  targets agent/niyam/confidence.py (from build check only - no runnable test command derivable; this parses the file, it runs no tests) tier=build-check
+  run it ONCE after editing; if it fails, fix the code and re-run THIS command.
+  do not build an alternative test harness, hand-assemble a classpath, or re-verify by
+  reverting and reapplying the edit.
+SAME-CONCEPT LITERAL "auto_merge" — 35 in 12 files repo-wide, 1 unparsed:
+  agent/niyam/stages/publish.py:70 run CONSUMER
+  data/eval-v1.log:102 EDIT
+  data/eval-v1.log:108 EDIT
+  data/eval-v2.log:43 EDIT
+  data/eval-v2.log:49 EDIT
+  data/eval-v2b.log:49 EDIT
