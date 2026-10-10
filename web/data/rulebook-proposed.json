@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10T14:31:36.911154+00:00",
+ "generated_at": "2026-10-10T17:45:30.107635+00:00",
  "sources": {
   "gr-202406281814018230": {
    "kind": "government_resolution",
@@ -12,6 +12,21 @@
    "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202406281814018230.pdf",
    "local": "sources/mh/202406281814018230.pdf",
    "language": "mr"
+  },
+  "gr-202407031335114330": {
+   "kind": "government_resolution",
+   "code": "202407031335114330",
+   "date": "2024-07-03",
+   "department": "Government of Maharashtra",
+   "title_mr": "\"मुख्यमंत्री-माझी लाडकी बहीण\" या योजनेतील सुधारणाबाबत.",
+   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202407031335114330.pdf",
+   "local": "sources/mh/202407031335114330.pdf",
+   "language": "mr",
+   "amends": [
+    "202406281814018230",
+    "2024-06-28"
+   ]
   },
   "gr-201908211212469922": {
    "kind": "government_resolution",
@@ -40,19 +55,19 @@
     "विसयो-2016/प्र.क्र.232/विसयो दि. 11 जून 2019"
    ]
   },
-  "gr-202407031335114330": {
+  "gr-202307061137387522": {
    "kind": "government_resolution",
-   "code": "202407031335114330",
-   "date": "2024-07-03",
+   "code": "202307061137387522",
+   "date": "2023-07-05",
    "department": "Government of Maharashtra",
-   "title_mr": "\"मुख्यमंत्री-माझी लाडकी बहीण\" या योजनेतील सुधारणाबाबत.",
-   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana",
-   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202407031335114330.pdf",
-   "local": "sources/mh/202407031335114330.pdf",
+   "title_mr": "संजय गांधी निराधार अनुदान योजना व श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजनेंतर्गत सर्व लाभार्थ्यांच्या अर्थसहाय्यात वाढ करण्याबाबत.",
+   "title_en": "Increase in financial assistance for all beneficiaries under the Sanjay Gandhi Niradhar Anudan Yojana and Shravanbal Seva State Pension Scheme",
+   "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202307061137387522.pdf",
+   "local": "sources/mh/202307061137387522.pdf",
    "language": "mr",
    "amends": [
-    "202406281814018230",
-    "2024-06-28"
+    "20.08.2019",
+    "03.05.2021"
    ]
   }
  },
@@ -175,7 +190,7 @@
   },
   "disabled": {
    "type": "bool",
-   "default": true,
+   "default": false,
    "label": "Disabled (divyang) beneficiary"
   }
  },
@@ -761,6 +776,17 @@
         "quote": "रुपये४००/- इतकी वाढ करुन अर्थसहाय्याची रक्कम दरमहा रुपये १०००/- अशी करण्यात येत आहे.",
         "quote_en": "increased by Rs 400/- so that the assistance amount becomes Rs 1000/- per month."
        }
+      },
+      {
+       "start": "2023-07-05",
+       "value": 1500,
+       "reference": {
+        "doc": "gr-202307061137387522",
+        "page": 1,
+        "clause": "1",
+        "quote": "रुपये ५००/- इतकी वाढ करुन अर्थसहाय्याची रक्कम दरमहा रुपये १५००/- करण्यास याद्वारे शासन मान्यता देत आहे.",
+        "quote_en": "By increasing it by Rs 500/-, the government hereby approves making the monthly assistance amount Rs 1500/-."
+       }
       }
      ]
     },
@@ -778,6 +804,17 @@
         "quote": "१ अपत्य असलेल्या विधवा लाभार्थ्यांना अर्थसहाय्याची रक्कम दरमहा रुपये ११००/-",
         "quote_en": "Widow beneficiaries with 1 child will receive assistance of Rs 1100/- per month"
        }
+      },
+      {
+       "start": "2023-07-05",
+       "value": 1500,
+       "reference": {
+        "doc": "gr-202307061137387522",
+        "page": 1,
+        "clause": "1",
+        "quote": "त्यानुसार १ अपत्य किंवा २ अपत्य असलेल्या विधवा लाभार्थ्यांना देखील अर्थसहाय्याची रक्कम दरमहा रु.१५००/- इतकी राहील.",
+        "quote_en": "Accordingly, widow beneficiaries with 1 child or 2 children will also receive the assistance amount of Rs 1500/- per month."
+       }
       }
      ]
     },
@@ -794,6 +831,17 @@
         "clause": "Appendix-1 row 4(1)",
         "quote": "२ अपत्य (२ व त्यापेक्षा अधिक अपत्य) असलेल्या विधवा लाभार्थ्यांना मिळणाऱ्या दरमहा रुपये १२००/-",
         "quote_en": "Widow beneficiaries with 2 children (2 or more children) will receive Rs 1200/- per month"
+       }
+      },
+      {
+       "start": "2023-07-05",
+       "value": 1500,
+       "reference": {
+        "doc": "gr-202307061137387522",
+        "page": 1,
+        "clause": "1",
+        "quote": "त्यानुसार १ अपत्य किंवा २ अपत्य असलेल्या विधवा लाभार्थ्यांना देखील अर्थसहाय्याची रक्कम दरमहा रु.१५००/- इतकी राहील.",
+        "quote_en": "Accordingly, widow beneficiaries with 1 child or 2 children will also receive the assistance amount of Rs 1500/- per month."
        }
       }
      ]

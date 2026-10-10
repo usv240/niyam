@@ -191,7 +191,7 @@ export default function Home() {
             <div>
               <p className="text-sm text-muted">Confidence <Info id="confidence" /></p>
               <p className="text-3xl font-semibold">{showcase.confidence?.toFixed(2)}</p>
-              <p className="text-sm text-muted">Sent to a human: one change removes people from the scheme <Info id="autonomy" /></p>
+              <p className="text-sm text-muted">Sent to a human because one change removes people from the scheme; reviewed and merged <Info id="autonomy" /></p>
             </div>
             <p className="text-sm text-muted">Cost of this run: {usd(showcase.cost_usd)}</p>
             <div className="mt-auto flex flex-col gap-2">

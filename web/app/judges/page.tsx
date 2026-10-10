@@ -82,7 +82,7 @@ export default function Judges() {
             </Ev>
             {realAuto && (
               <Ev title="A second real scheme, and a real order it may merge alone">
-                On an operator&apos;s request, Niyam onboarded Sanjay Gandhi Niradhar Anudan Yojana from the real 56-page 2019 consolidated GR (<ExtLink href="https://github.com/usv240/niyam-rulebook/pull/3">PR #3</ExtLink>, 49 tests). On top of it, the real 6 July 2023 order raising assistance to Rs 1,500 was judged safe to merge alone: only amounts rise, {String(realAuto.verifier_agreement === 1 ? "every" : "most")} independent check agrees, confidence 0.98, {usd(realAuto.cost_usd)} (dry run, because PR #3 still awaits human review). Reviewing PR #3 also caught a real encoding mistake (a default that widened eligibility), now fixed in the agent&apos;s instructions.
+                On an operator&apos;s request, Niyam onboarded Sanjay Gandhi Niradhar Anudan Yojana from the real 56-page 2019 consolidated GR (<ExtLink href="https://github.com/usv240/niyam-rulebook/pull/3">PR #3</ExtLink>, 49 tests). On top of it, the real 6 July 2023 order raising assistance to Rs 1,500 was judged safe to merge alone: only amounts rise, {String(realAuto.verifier_agreement === 1 ? "every" : "most")} independent check agrees, confidence 0.98, {usd(realAuto.cost_usd)} in a dry run. Run live, the same order raised a question about widows with three or more children and went to a human instead (<ExtLink href="https://github.com/usv240/niyam-rulebook/pull/4">PR #4</ExtLink>, since merged): 2 of 3 runs would have acted alone, and the third chose the safe path. Reviewing PR #3 also caught a real encoding mistake (a default that widened eligibility), fixed before merge.
               </Ev>
             )}
             {scratch && (
@@ -147,7 +147,7 @@ export default function Judges() {
           <h2 className="mb-3 text-2xl font-semibold">Honest limitations</h2>
           <Callout tone="warning">
             <ul className="list-disc space-y-1 pl-5">
-              <li>Two schemes so far (Ladki Bahin, and Sanjay Gandhi Niradhar pending human review), built from their real orders. The second is a simplified encoding: it does not yet model which destitute categories qualify.</li>
+              <li>Two schemes so far (Ladki Bahin and Sanjay Gandhi Niradhar), built from their real orders and merged after review. The second is a simplified encoding: it does not yet model which destitute categories qualify.</li>
               <li>The evaluation set is small: one real amendment, its scanned copy, two real unrelated orders and two labelled synthetic tests.</li>
               <li>Only eligibility and amounts are modelled, not required documents or procedure.</li>
               <li>Hindi and Marathi interface text was drafted with AI help and needs review by a native speaker.</li>

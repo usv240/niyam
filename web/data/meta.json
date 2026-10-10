@@ -1,8 +1,23 @@
 {
- "generated_at": "2026-10-10T10:31:51",
+ "generated_at": "2026-10-10T13:45:39",
  "showcase_job": "job_20261010_bd059543",
- "rulebook_main_sha": "783621eeb6aad912d1e061be2e643183f246a4c4",
+ "pending_changes": false,
+ "rulebook_main_sha": "ddb79ac191588b780225349362bd05423405fe6c",
  "published": [
+  {
+   "id": "job_20261010_743d13b0",
+   "state": "AWAITING_HUMAN",
+   "pr_url": "https://github.com/usv240/niyam-rulebook/pull/4",
+   "commit_sha": "aca7238eeb972f022feab4fc4c2144b7203e057a",
+   "checkpoint_id": "01M4KE4N65FT7MYWA8KF55V4X8",
+   "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/aca7238eeb972f022feab4fc4c2144b7203e057a",
+   "trace_id": "734c41a20ef90b865e16cb5eb9a2a582",
+   "confidence": 0.965,
+   "decision": "human_review",
+   "cost_usd": 0.2124,
+   "title_en": "Increase in financial assistance for all beneficiaries under the Sanjay Gandhi Niradhar Anudan Yojana and Shravanbal Seva State Pension Scheme",
+   "doc_code": "202307061137387522"
+  },
   {
    "id": "job_20261010_4ca1c594",
    "state": "AWAITING_HUMAN",
@@ -46,5 +61,5 @@
    "doc_code": "202407031335114330"
   }
  ],
- "niyam_head": "9b6670955b42bba2603fd3d4696ea6c6e280d834"
+ "niyam_head": "113a1c253224d2262cc6e177d5814a731922af74"
 }

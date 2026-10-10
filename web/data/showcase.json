@@ -1167,6 +1167,7 @@
    }
   }
  ],
+ "merged": true,
  "diff_stat": "CHANGELOG.md                                       |   7 ++\n parameters/mh/ladki_bahin/age_max.yaml             |   9 ++\n .../mh/ladki_bahin/disqualifying_govt_jobs.yaml    |   9 ++\n .../mh/ladki_bahin/eligible_marital_statuses.yaml  |   9 ++\n schemes/mh/ladki_bahin.yaml                        |  25 ++++\n sources/index.yaml                                 |  20 +++-\n sources/mh/202407031335114330.pdf                  | Bin 0 -> 292059 bytes\n tests/mh/ladki_bahin.yaml                          | 133 +++++++++++++++++++++\n 8 files changed, 209 insertions(+), 3 deletions(-)",
  "diff_files": {
   "parameters/mh/ladki_bahin/age_max.yaml": "diff --git a/parameters/mh/ladki_bahin/age_max.yaml b/parameters/mh/ladki_bahin/age_max.yaml\nindex 1014fd5..0f39ad1 100644\n--- a/parameters/mh/ladki_bahin/age_max.yaml\n+++ b/parameters/mh/ladki_bahin/age_max.yaml\n@@ -11,3 +11,12 @@ values:\n         clause: \"4(3)\"\n         quote: \"कमाल वयाची 60 वर्ष पूर्ण होईपर्यंत\"\n         quote_en: \"Until the maximum age of 60 years is completed\"\n+  2024-07-03:\n+    value: 65\n+    metadata:\n+      reference:\n+        doc: gr-202407031335114330\n+        page: 2\n+        clause: \"4(3)\"\n+        quote: \"किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.\"\n+        quote_en: \"Sr. No. (3) Minimum age 21 years completed and maximum age until 65 years are completed.\"",

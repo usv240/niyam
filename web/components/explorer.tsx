@@ -166,7 +166,7 @@ export function Explorer() {
 
       <section aria-label="History">
         <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold"><History className="h-5 w-5 text-accent" aria-hidden /> History of changes</h3>
-        {timeline.length === 0 ? <p className="text-sm text-muted">No changes since launch in this view. Tick &quot;Include the change waiting for human review&quot; to see the agent&apos;s proposed change.</p> : (
+        {timeline.length === 0 ? <p className="text-sm text-muted">No changes since this scheme launched.</p> : (
           <ol className="relative space-y-3 border-l-2 border-border pl-6">
             {timeline.map((t, k) => (
               <li key={k} className="relative">
