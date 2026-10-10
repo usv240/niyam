@@ -54,7 +54,12 @@ const FUNCS: Record<string, (...a: number[]) => number> = {
 
 class Parser {
   private i = 0;
-  constructor(private toks: Tok[], private env: Env) {}
+  private toks: Tok[];
+  private env: Env;
+  constructor(toks: Tok[], env: Env) {
+    this.toks = toks;
+    this.env = env;
+  }
   private peek(v?: string) { const k = this.toks[this.i]; return v === undefined ? k : k.v === v && (k.t === "op" || k.t === "name") ; }
   private next() { return this.toks[this.i++]; }
   private expect(v: string) { const k = this.next(); if (k.v !== v) throw new Error(`Expected ${v}`); }
