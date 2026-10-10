@@ -87,7 +87,9 @@ EOF
 chmod o+x /home/ubuntu /home/ubuntu/niyam /home/ubuntu/niyam/web
 cp /home/ubuntu/niyam/infra/niyam-api.service /home/ubuntu/niyam/infra/niyam-watch.service /home/ubuntu/niyam/infra/niyam-watch.timer /etc/systemd/system/
 systemctl daemon-reload
-systemctl enable --now niyam-api niyam-watch.timer
+systemctl enable niyam-api niyam-watch.timer
+systemctl restart niyam-api   # reload keys when setup is run again
+systemctl start niyam-watch.timer
 systemctl restart caddy
 echo
 echo "Done. Open https://$HOST (the certificate can take a minute on first visit)."

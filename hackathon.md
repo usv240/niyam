@@ -7,8 +7,7 @@
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
 > 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
-> 5. **Server keys**: the AWS server is live without model keys (site, rules API, watcher work). To enable uploads and agent runs on it: `ssh -i $env:USERPROFILE\.ssh
-iyam-usv.pem ubuntu@44.197.246.188` then `sudo niyam-setup` and type your keys. Stop the instance after 16 October.
+> 5. **AWS server**: fully live with keys at https://44-197-246-188.sslip.io. Stop the instance after 16 October.
 > 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
 > 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
 
@@ -142,6 +141,11 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 - Problems found and fixed: tagging at creation is denied by the organisers' policy (dropped tags on the security group); EC2 Instance Connect is not permitted for team users (switched to a key pair, so the first instance was terminated and replaced, keeping to one instance); the Caddy package host now answers 402 Payment Required (installed Caddy from Ubuntu's repository); waited for the apt lock on first boot.
 - Verified: https://44-197-246-188.sslip.io serves the site and API over a valid certificate; the GitHub Pages site calls the same API (status page shows live data); the watcher ran on its own and read the 10 latest GRs.
 - Model keys are not set on the server (I do not enter keys); read-only features work, uploads need the keys.
+
+### 2026-10-10 22:55 IST: full live run on AWS
+
+- Team leader added the model keys on the server. The API had to be restarted to load them (fixed in the setup script: it now always restarts the API).
+- End-to-end through the public API on AWS: uploaded the real 3 July 2024 amendment (bring your own document). Result: 6 changes, 45 tests, 15 of 15 independent checks agree, confidence 0.89, human review (uploads are never merged), Entire checkpoint 01M4KDAZ1165GT6MHM7V6DQ10E on the server, neatlogs trace 5108a0fb7fa3d2523c6242f7a36c274e, $0.24, job `job_20261010_b9fe7478`.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
