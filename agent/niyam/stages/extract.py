@@ -24,7 +24,7 @@ Read the attached government document and list every change it makes to the elig
 
 Rules:
 1. Compare the document with the CURRENT RULES given. Report only what the document actually changes. If a value is restated unchanged, it is not a change.
-2. Quote the exact words from the document in its original language (quote_original), 5 to 40 words, copied character for character from the printed text. Never paraphrase or translate inside quote_original. Give the 1-based PDF page number where the quote is printed.
+2. Quote the exact words from the document in its original language (quote_original), 5 to 40 words, as they appear on the printed page. Never paraphrase or translate inside quote_original. Give the 1-based PDF page number where the quote is printed. The PDF's embedded text layer is often corrupted by font encoding (for example "महहला" for "महिला", "पूणण" for "पूर्ण", "ककवा" for "किंवा"); write the quote in correct Unicode Marathi exactly as a reader sees it on the page, not the corrupted form.
 3. For each change, use an existing parameter name or condition id from the current rules as the target when one fits. old_value must be the current rulebook value. Values are JSON literals: numbers without commas (250000), strings in double quotes, lists like ["regular", "pensioner"].
 4. Prefer parameter_update when only a number or list changes. Use condition_changed when the comparison itself changes (for example "more than" becomes "or more"). Use condition_removed when a condition is deleted.
 5. boundary: inclusive if a value equal to the limit is allowed under the new wording, exclusive if not. Read the wording carefully, see the glossary.

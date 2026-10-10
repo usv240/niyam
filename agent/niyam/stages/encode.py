@@ -89,14 +89,25 @@ def register_source(wt: Path, pdf_path: Path, cs: ChangeSet, doc_meta: dict[str,
     return key, str(code)
 
 
+def claude_executable() -> str:
+    """Resolve the Claude Code binary. On Windows npm installs a .cmd shim; call the
+    native executable behind it so long prompts are not mangled by cmd.exe."""
+    found = shutil.which(settings.claude_bin) or settings.claude_bin
+    if found.lower().endswith((".cmd", ".ps1")):
+        native = Path(found).parent / "node_modules" / "@anthropic-ai" / "claude-code" / "bin" / "claude.exe"
+        if native.exists():
+            return str(native)
+    return found
+
+
 def run_claude(wt: Path, prompt: str, session_id: str | None, timeout: int = 1500) -> dict[str, Any]:
-    cmd = [settings.claude_bin, "-p", prompt, "--output-format", "json", "--model", settings.model,
+    cmd = [claude_executable(), "-p", "--output-format", "json", "--model", settings.model,
            "--permission-mode", "acceptEdits", "--allowedTools", ALLOWED_TOOLS,
            "--strict-mcp-config", "--max-turns", "60"]
     if session_id:
         cmd += ["--resume", session_id]
-    proc = subprocess.run(cmd, cwd=wt, capture_output=True, text=True, encoding="utf-8", errors="replace",
-                          timeout=timeout, env=_env(), stdin=subprocess.DEVNULL)
+    proc = subprocess.run(cmd, cwd=wt, input=prompt, capture_output=True, text=True, encoding="utf-8",
+                          errors="replace", timeout=timeout, env=_env())
     try:
         data = json.loads(proc.stdout.strip().splitlines()[-1]) if proc.stdout.strip() else {}
     except (json.JSONDecodeError, IndexError):

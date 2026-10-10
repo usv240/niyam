@@ -88,6 +88,13 @@ def set_attr(s: Any, key: str, value: Any) -> None:
 
 
 def current_trace_id() -> str | None:
+    if _tracing:
+        try:
+            carrier: dict[str, str] = {}
+            if neatlogs.inject_trace_context(carrier) and carrier.get("traceparent"):
+                return carrier["traceparent"].split("-")[1]
+        except Exception:
+            pass
     try:
         from opentelemetry import trace as ot
 

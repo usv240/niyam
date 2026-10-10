@@ -307,5 +307,19 @@ class Run:
                   pr_url=out.get("pr_url"), finished_at=time.time())
 
 
-def run_job(job_id: str) -> dict[str, Any]:
+def last_good_state(job_id: str) -> str:
+    """The most recent non-terminal state a job reached, from its event log."""
+    for e in reversed(db.rows("SELECT payload_json FROM job_events WHERE job_id = ? AND type = 'state' ORDER BY id", job_id)):
+        state = json.loads(e["payload_json"] or "{}").get("state")
+        if state and state not in TERMINAL:
+            return state
+    return "NEW"
+
+
+def run_job(job_id: str, retry_failed: bool = True) -> dict[str, Any]:
+    j = db.job(job_id)
+    if j and j["state"] == "FAILED" and retry_failed:
+        state = last_good_state(job_id)
+        db.add_event(job_id, "orchestrator.retry", f"Retrying a failed job from its last good state, {state}")
+        db.update_job(job_id, state=state, error=None, error_class=None)
     return Run(job_id).execute()

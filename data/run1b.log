@@ -1,0 +1,9 @@
+[job_20261010_8b7a02ea] orchestrator.resume: Resuming from state FAILED
+{
+  "id": "job_20261010_8b7a02ea",
+  "state": "FAILED",
+  "confidence": null,
+  "pr_url": null,
+  "cost_usd": 0.121351
+}
+2026-10-10 03:29:44 - neatlogs - INFO - Neatlogs SDK shutdown complete

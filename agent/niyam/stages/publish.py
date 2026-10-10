@@ -63,6 +63,9 @@ def pr_body(job: dict[str, Any], cs: ChangeSet, verdict: dict[str, Any] | None, 
 
 
 def run(wt: Path, branch: str, title: str, body: str, decision: str) -> dict[str, Any]:
+    if settings.publish_mode == "dry":  # evaluations: commit on the job branch only, never merge
+        (wt / ".niyam" / "pr_body.md").write_text(body, encoding="utf-8")
+        return {"pr_url": None, "merged": False, "mode": "dry"}
     if settings.publish_mode != "github":
         if decision == "auto_merge":
             root = rulebook.main_path()
