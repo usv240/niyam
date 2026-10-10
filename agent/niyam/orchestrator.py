@@ -166,7 +166,8 @@ class Run:
             doc = read_pdf(self.pdf)
             doc_date = t.document_date or self.meta.get("published_at")
             cs, _pages, rejected = extract.run(doc, self.pdf, t.scheme_ids, doc_date,
-                                               lambda kind, msg: self.event(kind, msg, stage="extract"))
+                                               lambda kind, msg: self.event(kind, msg, stage="extract"),
+                                               rules_root=self._base())
             if not cs.document_code:
                 cs.document_code = self.doc.get("code")
             llm.set_attr(s, "niyam.changes", len(cs.changes))
@@ -183,8 +184,15 @@ class Run:
     def _changeset(self) -> ChangeSet:
         return ChangeSet(**db.job(self.id)["changeset"])
 
+    def _base(self) -> Path:
+        """Clean checkout of the rules before this document (pinned at the first stage that needs it)."""
+        ref = self.state_data.get("base_sha") or self.meta.get("base_ref", "main")
+        path = rulebook.base_checkout(ref)
+        self.state_data["base_sha"] = rulebook.git("rev-parse", "HEAD", cwd=path)
+        return path
+
     def _worktree(self) -> tuple[Path, str]:
-        base = self.meta.get("base_ref", "main")
+        base = self.state_data.get("base_sha") or self.meta.get("base_ref", "main")
         return rulebook.create_worktree(self.id, base=base)
 
     def _encode(self, fix_instruction: str | None = None) -> None:
@@ -225,7 +233,8 @@ class Run:
                 from .models import VerifierPlan
                 vplan = VerifierPlan(**plan)
             else:
-                vplan = verify.plan(self.pdf, sorted({c.scheme_id for c in cs.changes}), t.get("document_date") or cs.document_date)
+                vplan = verify.plan(self.pdf, sorted({c.scheme_id for c in cs.changes}), t.get("document_date") or cs.document_date,
+                                    rules_root=self._base())
                 self.state_data["verifier_plan"] = json.loads(vplan.model_dump_json())
             verdict = verify.check(wt, vplan)
             llm.set_attr(s, "niyam.cases_agree", verdict["cases_agree"])
@@ -261,6 +270,16 @@ class Run:
                 self.event("resolve.glossary", f"Learned {len(new)} interpretation(s) for future runs (glossary updated)", stage="resolve")
         fixes = [i for i in batch.items if i.decision == "encoder_wrong" and i.fix_instruction]
         ambiguous = [i for i in batch.items if i.decision == "ambiguous"]
+        # Loop guard (found from traces): if a case was already sent back as a fix and
+        # still disagrees, another round will not settle it. Escalate instead of paying again.
+        tried = set(self.state_data.get("fixes_tried", []))
+        repeats = [i for i in fixes if i.case_name in tried]
+        if repeats:
+            self.event("resolve.loop_guard", f"{len(repeats)} disagreement(s) survived an earlier fix ({', '.join(i.case_name for i in repeats)}); escalating to a human instead of another round",
+                       stage="resolve")
+            fixes = [i for i in fixes if i.case_name not in tried]
+            ambiguous = ambiguous + repeats
+        self.state_data["fixes_tried"] = sorted(tried | {i.case_name for i in fixes})
         self.state_data["unresolved"] = len(ambiguous)
         if fixes:
             instruction = "\n".join(f"- ({i.case_name}) {i.fix_instruction}" for i in fixes)

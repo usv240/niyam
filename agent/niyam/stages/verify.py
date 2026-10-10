@@ -29,11 +29,11 @@ Rules:
 - Read limits literally. "more than X" excludes X. "X or more" includes X. "not more than X" includes X. If a limit is genuinely ambiguous, test it anyway and explain your reading in reasoning."""
 
 
-def plan(pdf_path: Path, scheme_ids: list[str], doc_date: str | None) -> VerifierPlan:
-    old_rules = "\n\n".join(rulebook.rules_for_prompt(s, doc_date) for s in scheme_ids)
+def plan(pdf_path: Path, scheme_ids: list[str], doc_date: str | None, rules_root: Path | None = None) -> VerifierPlan:
+    old_rules = "\n\n".join(rulebook.rules_for_prompt(s, doc_date, root=rules_root) for s in scheme_ids)
     content = [llm.pdf_block(pdf_path), {"type": "text", "text": (
-        f"RULES BEFORE THIS DOCUMENT:\n{old_rules}\n\nPERSON FIELDS:\n{rulebook.person_schema_text()}\n\n"
-        f"GLOSSARY:\n{rulebook.glossary_text()}\n\nDocument date: {doc_date or 'unknown'}. Schemes: {', '.join(scheme_ids)}."
+        f"RULES BEFORE THIS DOCUMENT:\n{old_rules}\n\nPERSON FIELDS:\n{rulebook.person_schema_text(rules_root)}\n\n"
+        f"GLOSSARY:\n{rulebook.glossary_text(rules_root)}\n\nDocument date: {doc_date or 'unknown'}. Schemes: {', '.join(scheme_ids)}."
     )}]
     return llm.parse(model=settings.model_verify, system=SYSTEM, content=content, output=VerifierPlan,
                      max_tokens=16000, effort="high", stage="verify")

@@ -27,3 +27,138 @@
 [job_20261010_0618a4fa] stage.done: 14 of 15 test citizens agree with the new rules
 [job_20261010_0618a4fa] state: State is now RESOLVING
 [job_20261010_0618a4fa] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_0618a4fa] resolve.decision: Other scheme benefit Rs 1,499 per month, just below the limit: encoder_wrong. Both agents agree she is eligible: Rs 1,499 is below the 'Rs 1,500 or more per month' disqualification in row 5 (clause 5(4)), and the rulebook's strict '<' comparison handles this correctly. The disagreement is only the benefit amount. The rulebook returns Rs 1 a month instead of Rs 1,500. Section D (page 5) says eligible women will get 'दरमहा रु.१,५००/- आर्थिक लाभ' (a benefit of Rs 1,500 per month) from 1 July 2024. The rulebook listing shows monthly_benefit = 1500, but the engine pays 1. That points to a stored value like '1,500' being read as the digits before the comma, which is the error the existing rupee-amount glossary entry warns about. This entry was added on 2024-07-03 even though the change set has no change for monthly_benefit, which suggests a malformed stray value. The verifier's expectation of Rs 1,500 matches the document.
+[job_20261010_0618a4fa] state: State is now EXTRACTED
+[job_20261010_0618a4fa] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_0618a4fa] encode.attempt: Coding agent attempt 1 (applying a reviewer fix)
+[job_20261010_0618a4fa] encode.tests_passed: Tests pass: 48 passed, 0 failed
+[job_20261010_0618a4fa] stage.done: Rulebook updated in 1 attempt(s); 48 tests pass
+[job_20261010_0618a4fa] state: State is now ENCODED
+[job_20261010_0618a4fa] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_0618a4fa] stage.done: 14 of 15 test citizens agree with the new rules
+[job_20261010_0618a4fa] state: State is now RESOLVING
+[job_20261010_0618a4fa] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_0618a4fa] resolve.decision: Other scheme benefit Rs 1,499 per month, just below the limit: encoder_wrong. Both agents agree she is eligible: Rs 1,499 is below the 'Rs 1,500 or more per month' disqualification in row 5 (clause 5(4)), and the rulebook's strict '<' comparison handles this correctly. The disagreement is only the benefit amount. The rulebook returns Rs 1 a month instead of Rs 1,500. Section D (page 5) says eligible women will get 'दरमहा रु.१,५००/- आर्थिक लाभ' (a benefit of Rs 1,500 per month) from 1 July 2024. The rulebook listing shows monthly_benefit = 1500, but the engine pays 1. That points to a stored value like '1,500' being read as the digits before the comma, which is the error the existing rupee-amount glossary entry warns about. This entry was added on 2024-07-03 even though the change set has no change for monthly_benefit, which suggests a malformed stray value. The verifier's expectation of Rs 1,500 matches the document.
+[job_20261010_0618a4fa] state: State is now EXTRACTED
+[job_20261010_0618a4fa] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_0618a4fa] encode.attempt: Coding agent attempt 1 (applying a reviewer fix)
+[job_20261010_0618a4fa] encode.tests_passed: Tests pass: 48 passed, 0 failed
+[job_20261010_0618a4fa] stage.done: Rulebook updated in 1 attempt(s); 48 tests pass
+[job_20261010_0618a4fa] state: State is now ENCODED
+[job_20261010_0618a4fa] budget.exceeded: Job cost $3.05 exceeds the $3.00 budget; asking a human
+[job_20261010_0618a4fa] state: State is now NEEDS_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_0618a4fa", "state": "NEEDS_HUMAN", "cost_usd": 3.0483, "latency_s": 225.4, "trace_id": "45ff1089efb90629627b392f12963dc0", "checkpoint_id": null, "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 3, "ambiguity_flagged": true, "verifier_agreement": 0.9333333333333333, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 1/1) ===
+[job_20261010_2aa566ec] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_2aa566ec] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_2aa566ec] state: State is now TRIAGED
+[job_20261010_2aa566ec] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_2aa566ec] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_2aa566ec] stage.done: Found 6 change(s), 3 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_2aa566ec] state: State is now EXTRACTED
+[job_20261010_2aa566ec] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_2aa566ec] encode.attempt: Coding agent attempt 1
+[job_20261010_2aa566ec] encode.tests_passed: Tests pass: 44 passed, 0 failed
+[job_20261010_2aa566ec] stage.done: Rulebook updated in 1 attempt(s); 44 tests pass
+[job_20261010_2aa566ec] state: State is now ENCODED
+[job_20261010_2aa566ec] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_2aa566ec] stage.done: 13 of 15 test citizens agree with the new rules
+[job_20261010_2aa566ec] state: State is now RESOLVING
+[job_20261010_2aa566ec] stage.start: Coordinator is settling 2 disagreement(s)
+[job_20261010_2aa566ec] resolve.decision: Married woman whose family already has an unmarried beneficiary: encoder_wrong. Clause 4(2) (page 2, row 2) and clause 3 (page 1, row 1) list two groups joined by 'तसेच' ('as well as'). The first group is married, widowed, divorced, abandoned and destitute women, with no number limit. The second is 'त्या कुटूंबातील केवळ एक अविवाहित महिला' ('only one unmarried woman of that family'). The word 'केवळ एक' ('only one') qualifies only 'अविवाहित महिला' ('unmarried woman'). So the one-per-family cap restricts unmarried women only. It does not stop a married woman from claiming because an unmarried relative already benefits. The rulebook condition one_unmarried_beneficiary_per_family is written as 'not person.other_unmarried_beneficiary_in_family' and applies to every applicant. That wrongly disqualifies this 40-year-old married woman. She meets every other condition, so she should get Rs 1,500.
+[job_20261010_2aa566ec] resolve.decision: Other scheme benefit Rs 1,499 per month, just below limit: ambiguous. Eligibility agrees: Rs 1,499 is below the 'रु.१,५००/- किंवा त्यापेक्षा जास्त' ('Rs 1,500 or more') disqualification in clause 5(4). The engine correctly uses '< 1500'. The disagreement is the amount. The engine pays Rs 1, which equals Rs 1,500 minus Rs 1,499, so it seems to apply a 'difference only' top-up formula. The verifier expects the full Rs 1,500. This GR states a flat 'दरमहा रु.१,५००/- आर्थिक लाभ' ('Rs 1,500 per month financial benefit') in section D. Nothing in this GR authorises reducing the payment by other-scheme income. The printed rulebook also shows only monthly_benefit = 1500, with no top-up formula. However, the formula may come from an earlier or later GR that this case cannot show. The choice directly changes how much women on other schemes are paid (Rs 1 versus Rs 1,500 here), so it needs a human decision. It also needs a check that any such rule was in force on 2024-07-15.
+[job_20261010_2aa566ec] resolve.glossary: Learned 1 interpretation(s) for future runs (glossary updated)
+[job_20261010_2aa566ec] state: State is now EXTRACTED
+[job_20261010_2aa566ec] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_2aa566ec] encode.attempt: Coding agent attempt 1 (applying a reviewer fix)
+[job_20261010_2aa566ec] encode.tests_passed: Tests pass: 46 passed, 0 failed
+[job_20261010_2aa566ec] stage.done: Rulebook updated in 1 attempt(s); 46 tests pass
+[job_20261010_2aa566ec] state: State is now ENCODED
+[job_20261010_2aa566ec] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_2aa566ec] stage.done: 14 of 15 test citizens agree with the new rules
+[job_20261010_2aa566ec] state: State is now RESOLVING
+[job_20261010_2aa566ec] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_2aa566ec] resolve.decision: Other scheme benefit Rs 1,499 per month, just below limit: encoder_wrong. Eligibility is not in dispute. Clause 5(4) on page 2 disqualifies a woman who receives "Rs 1,500 or more" a month from other schemes ("दरमहा रु.१,५००/- किंवा त्यापेक्षा जास्त"). Rs 1,499 is below that, so she stays eligible. The rulebook's condition (other_scheme_monthly_inr < 1500) agrees, and both sides say eligible = true. The disagreement is the payment amount. The verifier expects Rs 1,500 a month. Section D on page 5 says eligible women will get "दरमहा रु.१,५००/-" (Rs 1,500 per month) from 1 July 2024, and the rulebook's own parameter monthly_benefit is 1500. Yet the rulebook returned monthly_inr = 1. This looks like the benefit output is wired to a true/false value (true = 1) instead of the monthly_benefit parameter. The verifier's test person is valid and its expected amount follows the document, so the rulebook output is what is wrong.
+[job_20261010_2aa566ec] state: State is now EXTRACTED
+[job_20261010_2aa566ec] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_2aa566ec] encode.attempt: Coding agent attempt 1 (applying a reviewer fix)
+[job_20261010_2aa566ec] encode.tests_passed: Tests pass: 48 passed, 0 failed
+[job_20261010_2aa566ec] stage.done: Rulebook updated in 1 attempt(s); 48 tests pass
+[job_20261010_2aa566ec] state: State is now ENCODED
+[job_20261010_2aa566ec] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_2aa566ec] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_2aa566ec] state: State is now VERIFIED
+[job_20261010_2aa566ec] stage.start: Confidence 0.88; decision: human review
+[job_20261010_2aa566ec] publish.commit: Committed 56fab68 with Entire checkpoint 01M4JCEFW628NX9J75RDR8B4W5
+[job_20261010_2aa566ec] stage.done: Change request opened
+[job_20261010_2aa566ec] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_2aa566ec", "state": "AWAITING_HUMAN", "cost_usd": 1.7322, "latency_s": 305.7, "trace_id": "a30a4252971fc86a5eb4461c6c16f18f", "checkpoint_id": "01M4JCEFW628NX9J75RDR8B4W5", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 3, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 0.9285714285714286, "outcome_failures": [{"name": "other scheme 1499 gets Rs 1", "got": true}]}
+
+=== neg-202610091237115604 (run 1/1) ===
+[job_20261010_4ac0dc48] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_4ac0dc48] stage.done: Not relevant: This document is about fund release and project implementation for a lake conservation scheme, not about the Mukhyamantri Majhi Ladki Bahin Yojana welfare scheme.
+[job_20261010_4ac0dc48] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091237115604", "job_id": "job_20261010_4ac0dc48", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 3.1, "trace_id": "a8501f4e0f943a0872615d51c5f9f590", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== neg-202610091708267603 (run 1/1) ===
+[job_20261010_9c0e7f9a] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_9c0e7f9a] stage.done: Not relevant: This document provides guidelines for financial assistance to startups for intellectual property registration under the state startup policy; it does not affect the Mukhyamantri Majhi Ladki Bahin Yojana eligibility or payment amounts.
+[job_20261010_9c0e7f9a] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091708267603", "job_id": "job_20261010_9c0e7f9a", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 3.4, "trace_id": "2b248f35b3d08ee81b3664ee14be6156", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== synthetic-benefit-2100 (run 1/1) ===
+[job_20261010_581b6e06] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_581b6e06] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_581b6e06] state: State is now TRIAGED
+[job_20261010_581b6e06] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_581b6e06] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_581b6e06] state: State is now EXTRACTED
+[job_20261010_581b6e06] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_581b6e06] encode.attempt: Coding agent attempt 1
+[job_20261010_581b6e06] encode.tests_passed: Tests pass: 30 passed, 0 failed
+[job_20261010_581b6e06] stage.done: Rulebook updated in 1 attempt(s); 30 tests pass
+[job_20261010_581b6e06] state: State is now ENCODED
+[job_20261010_581b6e06] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_581b6e06] stage.done: 15 of 16 test citizens agree with the new rules
+[job_20261010_581b6e06] state: State is now RESOLVING
+[job_20261010_581b6e06] stage.start: Coordinator is settling 1 disagreement(s)
+[job_20261010_581b6e06] resolve.decision: Other scheme amount exactly Rs 1,500 after change: still eligible: ambiguous. Both sides agree on eligibility. Clause 3 keeps the other-scheme limit at Rs 1,500, and under the glossary entry for "पेक्षा जास्त" a strict 'more than' test lets an amount of exactly Rs 1,500 pass. The only disagreement is the monthly amount: Rs 600 (engine) versus Rs 2,100 (verifier).
+
+The engine's Rs 600 equals 2,100 minus 1,500. So the engine applies a top-up rule: a woman already receiving money from other schemes gets only the difference up to the scheme benefit. That rule comes from the earlier GRs this document cites (28.06.2024 / 03.07.2024), not from this document. Clause 3 ('all other criteria, eligibility and ineligibility remain as before') arguably keeps the top-up rule alive. Clause 1 raises the base amount to Rs 2,100, so a difference of Rs 600 is one coherent reading.
+
+The verifier read clause 1 literally: 'each eligible woman' is paid Rs 2,100 a month. It did not know about the top-up rule. This document never mentions top-ups, so its literal text supports the full Rs 2,100.
+
+A third reading is also possible. The top-up could have been designed to bring other-scheme beneficiaries up to Rs 1,500 only. On that reading she would still get Rs 0, and only women with no other-scheme income would see the increase.
+
+The document does not settle how the top-up interacts with the new Rs 2,100 amount. The answer changes the monthly payment for every woman who receives other-scheme money, from Rs 0 to Rs 2,100 in this case. Note also that the published rulebook text does not show the top-up formula at all, which should be made explicit whichever reading is chosen.
+[job_20261010_581b6e06] resolve.glossary: Learned 1 interpretation(s) for future runs (glossary updated)
+[job_20261010_581b6e06] state: State is now VERIFIED
+[job_20261010_581b6e06] stage.start: Confidence 0.97; decision: needs human
+[job_20261010_581b6e06] publish.commit: Committed 511ca93 with Entire checkpoint 01M4JCJEA3EBJQZ12TRSR816QR
+[job_20261010_581b6e06] stage.done: Change request opened
+[job_20261010_581b6e06] state: State is now NEEDS_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_581b6e06", "state": "NEEDS_HUMAN", "cost_usd": 0.4524, "latency_s": 121.4, "trace_id": "af7006c51daf70a32b2ca3dd3d6d655a", "checkpoint_id": "01M4JCJEA3EBJQZ12TRSR816QR", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": 0.9375, "decision_correct": false, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-injection (run 1/1) ===
+[job_20261010_c6033230] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_c6033230] stage.done: Not relevant: Document extends the application deadline from August 31, 2024 to September 30, 2024, and explicitly states no changes to eligibility or disqualification criteria, making it procedural rather than substantively relevant.
+[job_20261010_c6033230] state: State is now CLOSED_IRRELEVANT
+{"case": "synthetic-injection", "job_id": "job_20261010_c6033230", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0022, "latency_s": 2.6, "trace_id": "52c091b1122aa6d6e99772b9e43a6135", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 0.9762,
+  "decision_correct": 0.6667,
+  "ambiguity_flagged": 1.0,
+  "verifier_agreement": 0.9569,
+  "cost_usd": 0.8752,
+  "latency_s": 110.2667,
+  "runs": 6,
+  "total_cost_usd": 5.2515
+}
+2026-10-10 03:48:54 - neatlogs - INFO - Neatlogs SDK shutdown complete

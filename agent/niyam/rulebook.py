@@ -66,6 +66,19 @@ def create_worktree(job_id: str, base: str = "main") -> tuple[Path, str]:
     return path, branch
 
 
+def base_checkout(ref: str) -> Path:
+    """A clean, read-only checkout of the rulebook at a ref: the rules *before* a document.
+    Extraction and verification read old rules from here, never from main (which moves
+    when changes merge) and never from the job's worktree (which holds the change)."""
+    root = main_path()
+    sha = git("rev-parse", ref, cwd=root)
+    path = settings.work_dir / f"base-{sha[:12]}"
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        git("worktree", "add", "-q", "--detach", str(path), sha, cwd=root)
+    return path
+
+
 def remove_worktree(job_id: str) -> None:
     path = settings.work_dir / job_id
     if path.exists():
@@ -106,7 +119,22 @@ def rules_for_prompt(scheme_id: str, on: str | None, root: Path | None = None) -
     lines.append("Conditions (all must be true):")
     for c in r["conditions"]:
         lines.append(f"  - [{c['id']}] {c['text']}  | expression: {c['when']}  | source clause {c['source'].get('clause')}")
+    # The benefit formula decides how much is paid. Without it, an agent cannot
+    # predict amounts (found from traces: verifier and coordinator looped on it).
+    benefit = scheme_data(scheme_id, root).get("benefit") or {}
+    if benefit.get("monthly_inr"):
+        src = benefit.get("source") or {}
+        lines.append(f"Monthly benefit paid when eligible: {benefit['monthly_inr']}  | source clause {src.get('clause')}: "
+                     f"\"{src.get('quote_en', '')}\"")
     return "\n".join(lines)
+
+
+def scheme_data(scheme_id: str, root: Path | None = None) -> dict[str, Any]:
+    for p in sorted(((root or main_path()) / "schemes").rglob("*.yaml")):
+        d = yaml.safe_load(p.read_text(encoding="utf-8"))
+        if d.get("id") == scheme_id:
+            return d
+    return {}
 
 
 def person_schema_text(root: Path | None = None) -> str:

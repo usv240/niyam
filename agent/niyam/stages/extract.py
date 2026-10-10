@@ -66,7 +66,7 @@ def transcribe(pdf_path: Path, page_count: int) -> list[str]:
 
 
 def run(doc: PdfText, pdf_path: Path, scheme_ids: list[str], doc_date: str | None,
-        event: Callable[[str, str], None]) -> tuple[ChangeSet, list[str], list[dict[str, Any]]]:
+        event: Callable[[str, str], None], rules_root: Path | None = None) -> tuple[ChangeSet, list[str], list[dict[str, Any]]]:
     """Returns the change set, the page texts used for verification, and rejected quotes."""
     pages = doc.pages
     low = doc.low_text_pages()
@@ -75,11 +75,11 @@ def run(doc: PdfText, pdf_path: Path, scheme_ids: list[str], doc_date: str | Non
         event("recovery.ocr_fallback", f"Text layer unusable ({reason}); transcribing the PDF with Claude")
         pages = transcribe(pdf_path, doc.page_count)
 
-    rules = "\n\n".join(rulebook.rules_for_prompt(s, doc_date) for s in scheme_ids)
+    rules = "\n\n".join(rulebook.rules_for_prompt(s, doc_date, root=rules_root) for s in scheme_ids)
     context = (
         f"CURRENT RULES (before this document):\n{rules}\n\n"
-        f"PERSON FIELDS the rulebook can use:\n{rulebook.person_schema_text()}\n\n"
-        f"GLOSSARY of interpretations:\n{rulebook.glossary_text()}\n\n"
+        f"PERSON FIELDS the rulebook can use:\n{rulebook.person_schema_text(rules_root)}\n\n"
+        f"GLOSSARY of interpretations:\n{rulebook.glossary_text(rules_root)}\n\n"
         f"Schemes to consider: {', '.join(scheme_ids)}. Document date: {doc_date or 'unknown'}."
     )
     content: list[dict[str, Any]] = [llm.pdf_block(pdf_path), {"type": "text", "text": context}]
