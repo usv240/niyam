@@ -1,5 +1,14 @@
 # Niyam
 
+> **Needs you (team leader), in this order**
+> 1. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
+> 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
+> 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
+> 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
+> 5. **Deploy**: website on Vercel (root `web`), API on the one allowed EC2 instance (`infra/README.md`). The site works without the API; only live features need it.
+> 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
+> 7. **Monday**: record the demo video from `docs/SUBMISSION.md`, then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
+
 ## Project
 
 - **Name:** Niyam (Hindi and Marathi for "rule")
