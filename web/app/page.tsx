@@ -174,7 +174,7 @@ export default function Home() {
       </Section>
 
       {/* Results */}
-      <Section id="results" eyebrow="Measured, not claimed" title="We test the whole agent on documents with known answers" intro={<>Version 1 worked, but its traces showed a costly loop. Version 2 fixed what the traces revealed. <Info id="eval" /></>}>
+      <Section id="results" eyebrow="Measured, not claimed" title="We test the whole agent on documents with known answers" intro={<>Version 1 worked, but its traces showed a costly loop. Version 2 fixed what the traces revealed. It also encoded the whole scheme from its founding order and passed all 25 of our hand-written test citizens. <Info id="eval" /></>}>
         <Card><Results /></Card>
         <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/judges/#evidence" variant="secondary">See every run and trace</ButtonLink></div>
       </Section>

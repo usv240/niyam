@@ -32,6 +32,8 @@ export default function Judges() {
   const v2 = evals.find((e) => e.version === "v2");
   const chaos = evalsExtra.chaos?.results?.[0];
   const repeat = evalsExtra.repeat;
+  const scratch = evalsExtra["from-scratch"]?.results?.[0];
+  const auto = evalsExtra.autonomy?.results ?? [];
   return (
     <>
       <PageHeader eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
@@ -73,8 +75,14 @@ export default function Judges() {
               Version 1: the verifier disagreed on one case, the coordinator sent a fix, and the traces showed the same case looping. Version 2 adds the missing context and a loop guard. Full story in the build log.
             </Ev>
             <Ev title="Calibrated autonomy">
-              Acts alone only when a number or date changes and every check agrees. Never removes people from a scheme without a human. <Info id="autonomy" />
+              Acts alone only when a number or date changes and every check agrees. Never removes people from a scheme without a human. <Info id="autonomy" />{" "}
+              {auto.length > 0 && <>On a labelled synthetic order that only adds people (age limit 60 to 62), {auto.filter((r) => r.decision === "auto_merge").length} of {auto.length} runs decided to act alone (dry run, never merged into the public rulebook). On the real amendment, which removes some people, every run asked a human.</>}
             </Ev>
+            {scratch && (
+              <Ev title="A whole scheme from its founding order">
+                Starting from an empty rulebook with only the real 28 June 2024 Marathi GR, Niyam recognised a new scheme, extracted {String(scratch.changes_extracted)} rules, wrote the rulebook and tests, and passed {Math.round((scratch.outcome_accuracy as number) * (scratch.answer_key_cases as number))} of {String(scratch.answer_key_cases)} of our hand-written baseline test citizens, which it never saw. {usd(scratch.cost_usd)}, {Math.round(scratch.latency_s)} s. Checkpoint <code className="font-mono">{String(scratch.checkpoint_id)}</code>.
+              </Ev>
+            )}
           </div>
           <div tabIndex={0} role="region" aria-label="Scrollable table" className="mt-4 overflow-x-auto rounded-2xl border border-border">
             <table className="w-full min-w-[36rem] text-left text-sm">

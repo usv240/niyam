@@ -1,0 +1,72 @@
+{
+  "version": "autonomy",
+  "note": "synthetic pure widening: the case where Niyam may act alone",
+  "ran_at": "2026-10-10T04:47:43-0400",
+  "models": {
+    "fast": "claude-haiku-4-5-20251001",
+    "main": "claude-sonnet-5-5",
+    "verify": "claude-opus-5-5"
+  },
+  "summary": {
+    "triage_correct": 1.0,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "outcome_accuracy": 1.0,
+    "decision_correct": 1.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.3412,
+    "latency_s": 62.35,
+    "runs": 2,
+    "total_cost_usd": 0.6824
+  },
+  "results": [
+    {
+      "case": "synthetic-age-62",
+      "job_id": "job_20261010_5256da42",
+      "state": "READY_TO_MERGE",
+      "cost_usd": 0.364,
+      "latency_s": 90.4,
+      "trace_id": "7e201c6eeef38ea326bf3851ad2ab371",
+      "checkpoint_id": "01M4JFX5FJNZZRQ5T2PYR6N781",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 0,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": [],
+      "decision": "auto_merge",
+      "confidence": 0.99
+    },
+    {
+      "case": "synthetic-age-62",
+      "job_id": "job_20261010_9aa8bf2a",
+      "state": "READY_TO_MERGE",
+      "cost_usd": 0.3184,
+      "latency_s": 34.3,
+      "trace_id": "cd9195e87f27257c403957d5268b6784",
+      "checkpoint_id": "01M4JFY793NCC7BYSTGG485A4Y",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 0,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": [],
+      "decision": "auto_merge",
+      "confidence": 0.99
+    }
+  ]
+}

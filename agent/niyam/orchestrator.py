@@ -26,7 +26,7 @@ from .models import ChangeSet, Triage
 from .pdftext import find_gr_code, read_pdf
 from .stages import encode, extract, publish, resolve, triage, verify
 
-TERMINAL = {"PUBLISHED", "AUTO_MERGED", "AWAITING_HUMAN", "NEEDS_HUMAN", "CLOSED_IRRELEVANT", "FAILED", "NO_CHANGES"}
+TERMINAL = {"PUBLISHED", "AUTO_MERGED", "READY_TO_MERGE", "AWAITING_HUMAN", "NEEDS_HUMAN", "CLOSED_IRRELEVANT", "FAILED", "NO_CHANGES"}
 
 
 # --------------------------------------------------------------------------- intake
@@ -325,7 +325,9 @@ class Run:
             llm.set_attr(s, "niyam.pr_url", out.get("pr_url") or "")
         self.state_data["publish"] = out
         self.state_data["reasons"] = reasons
-        final = "AUTO_MERGED" if out.get("merged") else ("NEEDS_HUMAN" if decision == "needs_human" else "AWAITING_HUMAN")
+        # READY_TO_MERGE: the policy allowed acting alone, but this run was not allowed to merge (dry or local mode).
+        final = ("AUTO_MERGED" if out.get("merged") else "READY_TO_MERGE" if decision == "auto_merge"
+                 else "NEEDS_HUMAN" if decision == "needs_human" else "AWAITING_HUMAN")
         self.event("stage.done", f"Change request {'merged' if out.get('merged') else 'opened'}" + (f": {out['pr_url']}" if out.get("pr_url") else ""),
                    stage="publish", payload=out)
         self.save(final, confidence=conf, autonomy_decision=decision, commit_sha=sha, checkpoint_id=checkpoint,

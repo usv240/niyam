@@ -76,3 +76,134 @@
 [job_20261010_c8299b6a] stage.done: Rulebook updated in 1 attempt(s); 25 tests pass
 [job_20261010_c8299b6a] state: State is now ENCODED
 [job_20261010_c8299b6a] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_c8299b6a] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_c8299b6a] state: State is now VERIFIED
+[job_20261010_c8299b6a] stage.start: Confidence 0.88; decision: human review
+[job_20261010_c8299b6a] publish.commit: Committed ef7ba69 with Entire checkpoint 01M4JFGD3ZYHEW6N2CKT4CY8K7
+[job_20261010_c8299b6a] stage.done: Change request opened
+[job_20261010_c8299b6a] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_c8299b6a", "state": "AWAITING_HUMAN", "cost_usd": 0.7419, "latency_s": 75.4, "trace_id": "fc7f8e9b69e8d057536b04a3e0c1ec5a", "checkpoint_id": "01M4JFGD3ZYHEW6N2CKT4CY8K7", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 2/3) ===
+[job_20261010_cde3790b] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_cde3790b] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_cde3790b] state: State is now TRIAGED
+[job_20261010_cde3790b] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_cde3790b] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_cde3790b] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_cde3790b] state: State is now EXTRACTED
+[job_20261010_cde3790b] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_cde3790b] encode.attempt: Coding agent attempt 1
+[job_20261010_cde3790b] encode.tests_passed: Tests pass: 45 passed, 0 failed
+[job_20261010_cde3790b] stage.done: Rulebook updated in 1 attempt(s); 45 tests pass
+[job_20261010_cde3790b] state: State is now ENCODED
+[job_20261010_cde3790b] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_cde3790b] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_cde3790b] state: State is now VERIFIED
+[job_20261010_cde3790b] stage.start: Confidence 0.88; decision: human review
+[job_20261010_cde3790b] publish.commit: Committed 326fcae with Entire checkpoint 01M4JFJGMQA2DYPVMHBH2BK22G
+[job_20261010_cde3790b] stage.done: Change request opened
+[job_20261010_cde3790b] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_cde3790b", "state": "AWAITING_HUMAN", "cost_usd": 0.7502, "latency_s": 68.2, "trace_id": "63a4e45917fcbb593a4ff4e4afc8ab8d", "checkpoint_id": "01M4JFJGMQA2DYPVMHBH2BK22G", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 3/3) ===
+[job_20261010_5711173d] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_5711173d] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_5711173d] state: State is now TRIAGED
+[job_20261010_5711173d] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_5711173d] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_5711173d] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_5711173d] state: State is now EXTRACTED
+[job_20261010_5711173d] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_5711173d] encode.attempt: Coding agent attempt 1
+[job_20261010_5711173d] encode.tests_passed: Tests pass: 44 passed, 0 failed
+[job_20261010_5711173d] stage.done: Rulebook updated in 1 attempt(s); 44 tests pass
+[job_20261010_5711173d] state: State is now ENCODED
+[job_20261010_5711173d] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_5711173d] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_5711173d] state: State is now VERIFIED
+[job_20261010_5711173d] stage.start: Confidence 0.88; decision: human review
+[job_20261010_5711173d] publish.commit: Committed c82fcd9 with Entire checkpoint 01M4JFMGZ28QC3YVF4HAF11SQV
+[job_20261010_5711173d] stage.done: Change request opened
+[job_20261010_5711173d] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_5711173d", "state": "AWAITING_HUMAN", "cost_usd": 0.701, "latency_s": 65.4, "trace_id": "761a2cafb3fcd4387ee5359dcfdffe66", "checkpoint_id": "01M4JFMGZ28QC3YVF4HAF11SQV", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-benefit-2100 (run 1/3) ===
+[job_20261010_1385586f] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_1385586f] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_1385586f] state: State is now TRIAGED
+[job_20261010_1385586f] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_1385586f] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_1385586f] state: State is now EXTRACTED
+[job_20261010_1385586f] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_1385586f] encode.attempt: Coding agent attempt 1
+[job_20261010_1385586f] encode.tests_passed: Tests pass: 31 passed, 0 failed
+[job_20261010_1385586f] stage.done: Rulebook updated in 1 attempt(s); 31 tests pass
+[job_20261010_1385586f] state: State is now ENCODED
+[job_20261010_1385586f] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_1385586f] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_1385586f] state: State is now VERIFIED
+[job_20261010_1385586f] stage.start: Confidence 0.99; decision: human review
+[job_20261010_1385586f] publish.commit: Committed 08286e2 with Entire checkpoint 01M4JFNX1AXSSEMZQMV0NTYX89
+[job_20261010_1385586f] stage.done: Change request opened
+[job_20261010_1385586f] state: State is now AWAITING_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_1385586f", "state": "AWAITING_HUMAN", "cost_usd": 0.4213, "latency_s": 44.6, "trace_id": "ecca48f64ccc4e80850edaf7e30e7dab", "checkpoint_id": "01M4JFNX1AXSSEMZQMV0NTYX89", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-benefit-2100 (run 2/3) ===
+[job_20261010_f9cf5507] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_f9cf5507] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_f9cf5507] state: State is now TRIAGED
+[job_20261010_f9cf5507] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_f9cf5507] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_f9cf5507] state: State is now EXTRACTED
+[job_20261010_f9cf5507] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_f9cf5507] encode.attempt: Coding agent attempt 1
+[job_20261010_f9cf5507] encode.tests_passed: Tests pass: 31 passed, 0 failed
+[job_20261010_f9cf5507] stage.done: Rulebook updated in 1 attempt(s); 31 tests pass
+[job_20261010_f9cf5507] state: State is now ENCODED
+[job_20261010_f9cf5507] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_f9cf5507] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_f9cf5507] state: State is now VERIFIED
+[job_20261010_f9cf5507] stage.start: Confidence 0.99; decision: human review
+[job_20261010_f9cf5507] publish.commit: Committed 5883440 with Entire checkpoint 01M4JFQASK0RQEV2EFQ84X5Y27
+[job_20261010_f9cf5507] stage.done: Change request opened
+[job_20261010_f9cf5507] state: State is now AWAITING_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_f9cf5507", "state": "AWAITING_HUMAN", "cost_usd": 0.429, "latency_s": 46.4, "trace_id": "914f66ec63266c2fa1572dd11bf50864", "checkpoint_id": "01M4JFQASK0RQEV2EFQ84X5Y27", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-benefit-2100 (run 3/3) ===
+[job_20261010_1e7b6f02] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_1e7b6f02] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_1e7b6f02] state: State is now TRIAGED
+[job_20261010_1e7b6f02] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_1e7b6f02] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_1e7b6f02] state: State is now EXTRACTED
+[job_20261010_1e7b6f02] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_1e7b6f02] encode.attempt: Coding agent attempt 1
+[job_20261010_1e7b6f02] encode.tests_passed: Tests pass: 31 passed, 0 failed
+[job_20261010_1e7b6f02] stage.done: Rulebook updated in 1 attempt(s); 31 tests pass
+[job_20261010_1e7b6f02] state: State is now ENCODED
+[job_20261010_1e7b6f02] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_1e7b6f02] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_1e7b6f02] state: State is now VERIFIED
+[job_20261010_1e7b6f02] stage.start: Confidence 0.99; decision: human review
+[job_20261010_1e7b6f02] publish.commit: Committed 4c7478c with Entire checkpoint 01M4JFRDK1SX6ADTYRY41TNA0C
+[job_20261010_1e7b6f02] stage.done: Change request opened
+[job_20261010_1e7b6f02] state: State is now AWAITING_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_1e7b6f02", "state": "AWAITING_HUMAN", "cost_usd": 0.379, "latency_s": 35.3, "trace_id": "d3680beb05d9f2220b9fdf1fe1850e4f", "checkpoint_id": "01M4JFRDK1SX6ADTYRY41TNA0C", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 1.0,
+  "decision_correct": 1.0,
+  "ambiguity_flagged": 1.0,
+  "verifier_agreement": 1.0,
+  "cost_usd": 0.61,
+  "latency_s": 59.3778,
+  "runs": 9,
+  "total_cost_usd": 5.49
+}
+2026-10-10 04:44:32 - neatlogs - INFO - Neatlogs SDK shutdown complete

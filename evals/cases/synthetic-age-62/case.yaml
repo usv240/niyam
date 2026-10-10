@@ -1,0 +1,23 @@
+id: synthetic-age-62
+kind: synthetic
+description: >
+  SYNTHETIC test document (not a real GR), labelled as such inside the PDF.
+  A single, explicitly worded parameter change that only adds people (age
+  limit 60 to 62, saying in so many words that 62 is eligible and 63 is not),
+  with everything else unchanged. This is the case where the trust policy
+  allows Niyam to act alone. Runs in dry mode, so it never touches the public
+  rulebook.
+meta:
+  title: "Synthetic: Ladki Bahin age limit raised to 62"
+  published_at: "2024-07-01"
+base_ref: baseline-2024-06-28
+expect:
+  relevant: true
+  schemes: [mh.ladki_bahin]
+  changes:
+    - {target: age_max, change_type: parameter_update, new_value: 62, boundary: inclusive}
+  decision_in: [auto_merge]
+  outcomes:
+    - {name: age 62 eligible after, scheme: mh.ladki_bahin, date: "2024-07-01", eligible: true, person: {age: 62, gender: female, annual_family_income: 150000}}
+    - {name: age 63 not eligible, scheme: mh.ladki_bahin, date: "2024-07-01", eligible: false, person: {age: 63, gender: female, annual_family_income: 150000}}
+    - {name: age 61 not eligible the day before, scheme: mh.ladki_bahin, date: "2024-06-30", eligible: false, person: {age: 61, gender: female, annual_family_income: 150000}}

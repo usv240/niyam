@@ -46,6 +46,13 @@ Six evaluation cases: the real 3 July 2024 Ladki Bahin amendment, the same order
 | Cost per document | $0.88 | **$0.29** |
 | Time per document | 110 s | **54 s** |
 
+Further runs (in `evals/results/extra/`):
+
+- **A whole scheme from its founding order.** From an empty rulebook and only the real 28 June 2024 GR, Niyam recognised a new scheme, extracted 19 rules, wrote the rulebook and 34 tests, and passed **25 of 25** of our hand-written baseline test citizens, which it never saw ($0.81, 201 s, checkpoint `01M4JFNT0M069MG48K0FT9V50P`).
+- **Consistency.** 9 more v2 runs on the three relevant cases: 100% on every metric, $0.61 per relevant order.
+- **Recovery under injected failures.** A broken model output and an unusable text layer injected on purpose: both recovered, 100% outcomes.
+- **Acting alone.** A labelled synthetic order that only adds people: 2 of 2 runs decided to merge alone (dry run, never merged into the public rulebook). Every run on the real amendment, which removes some people, asked a human.
+
 The improvement came from the neatlogs traces: in v1 the coordinator ruled three different ways on one test case and the job spent $3.05 before the budget stopped it. The root cause was that the benefit formula ("pay the difference") was missing from the context given to the verifier and coordinator. v2 adds it, plus a loop guard. One v2 run was discarded because of a bug in our own file guard; the full, honest story is in [hackathon.md](hackathon.md). Raw results: [evals/results](evals/results).
 
 ## Evidence

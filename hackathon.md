@@ -84,6 +84,16 @@ First v2 run: INVALID, my bug. The encoder's file guard compared against `main`,
 
 v2 results (`evals/results/v2.json`), same 6 cases: outcome accuracy 100% (from 97.6%), correct autonomy decision 100% (from 67%), verifier agreement 100% (from 95.7%), $0.29 per document (from $0.88), 54 s per document (from 110 s). All positive jobs reached publish with an Entire checkpoint. Caveat: 6 runs is a small sample.
 
+### 2026-10-10 15:30 IST: more evidence
+
+- Recovery with failures injected on purpose (`NIYAM_CHAOS=invalid_json,ocr`) on the real amendment: `recovery.json_repair` and `recovery.ocr_fallback` both fired, 100% outcomes, $0.80. `evals/results/extra/chaos.json`.
+- Consistency: 9 more v2 runs on the 3 relevant cases, 100% on every metric, $0.61 per relevant order. `extra/repeat.json`.
+- New capability, encode a whole scheme: triage proposes an id for a scheme the rulebook lacks; the encoder follows the rulebook's `docs/FORMAT.md`. Test: empty rulebook (tag `empty-rulebook`) plus the founding 28 June 2024 GR. Result: 19 rules extracted, 34 tests written, 16 of 16 verifier cases agree, and 25 of 25 of our hand-written baseline test citizens pass (the agent never saw them). $0.81, 201 s. `extra/from-scratch.json`.
+- Acting alone: a labelled synthetic order that only adds people (age 60 to 62, worded unambiguously). 2 of 2 runs decided `auto_merge` at confidence 0.99 (dry run). Added a `READY_TO_MERGE` state so dry runs are not reported as "awaiting human". `extra/autonomy.json`.
+- Entire: `entire why` gives line-level provenance (agent, model, session, checkpoint) for every rule line the agent wrote; shown in every Why popover and at `GET /api/v1/why`. Graph installed for coding agents in both repositories.
+- Tests and CI: 14 agent tests (citation checker, trust policy, watcher, API privacy); rulebook CI runs on every agent PR (PR #2 passes); web CI runs content lint and build. Browser rules engine matches the Python engine on 400 of 400 random cases.
+- Website QA: 11 routes, light and dark, phone and desktop: zero serious or critical axe violations, no horizontal overflow.
+
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo

@@ -1,0 +1,40 @@
+{
+  "version": "from-scratch",
+  "note": "whole scheme encoded from its founding order, scored with our hand-written baseline tests",
+  "ran_at": "2026-10-10T04:43:07-0400",
+  "models": {
+    "fast": "claude-haiku-4-5-20251001",
+    "main": "claude-sonnet-5-5",
+    "verify": "claude-opus-5-5"
+  },
+  "summary": {
+    "triage_correct": 1.0,
+    "outcome_accuracy": 1.0,
+    "decision_correct": 1.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.809,
+    "latency_s": 201.0,
+    "runs": 1,
+    "total_cost_usd": 0.809
+  },
+  "results": [
+    {
+      "case": "mh-lb-2024-06-28-from-scratch",
+      "job_id": "job_20261010_d7619dd2",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.809,
+      "latency_s": 201.0,
+      "trace_id": "0efac30ac15b164641c59b48ee1f2884",
+      "checkpoint_id": "01M4JFNT0M069MG48K0FT9V50P",
+      "triage_correct": true,
+      "new_scheme_detected": true,
+      "created_scheme": "mh.ladki_bahin",
+      "changes_extracted": 19,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "answer_key_cases": 25,
+      "outcome_failures": [],
+      "verifier_agreement": 1.0
+    }
+  ]
+}

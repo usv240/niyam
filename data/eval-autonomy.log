@@ -1,0 +1,58 @@
+
+=== synthetic-age-62 (run 1/2) ===
+[job_20261010_5256da42] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_5256da42] stage.done: Relevant: The document amends the maximum age eligibility limit for the Mukhyamantri Majhi Ladki Bahin Yojana from 60 years to 62 years, directly changing who is eligible for the scheme.
+[job_20261010_5256da42] state: State is now TRIAGED
+[job_20261010_5256da42] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_5256da42] stage.done: Found 1 change(s), 0 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_5256da42] state: State is now EXTRACTED
+[job_20261010_5256da42] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_5256da42] encode.attempt: Coding agent attempt 1
+[job_20261010_5256da42] encode.tests_passed: Tests pass: 30 passed, 0 failed
+[job_20261010_5256da42] stage.done: Rulebook updated in 1 attempt(s); 30 tests pass
+[job_20261010_5256da42] state: State is now ENCODED
+[job_20261010_5256da42] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_5256da42] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_5256da42] state: State is now VERIFIED
+[job_20261010_5256da42] stage.start: Confidence 0.99; decision: auto merge
+[job_20261010_5256da42] publish.commit: Committed d0bd8fe with Entire checkpoint 01M4JFX5FJNZZRQ5T2PYR6N781
+[job_20261010_5256da42] stage.done: Change request opened
+[job_20261010_5256da42] state: State is now AWAITING_HUMAN
+{"case": "synthetic-age-62", "job_id": "job_20261010_5256da42", "state": "AWAITING_HUMAN", "cost_usd": 0.364, "latency_s": 90.4, "trace_id": "7e201c6eeef38ea326bf3851ad2ab371", "checkpoint_id": "01M4JFX5FJNZZRQ5T2PYR6N781", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 0, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-age-62 (run 2/2) ===
+[job_20261010_9aa8bf2a] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_9aa8bf2a] stage.done: Relevant: The document amends the maximum age eligibility limit for the Mukhyamantri Majhi Ladki Bahin Yojana from 60 years to 62 years, directly changing who is eligible for the scheme.
+[job_20261010_9aa8bf2a] state: State is now TRIAGED
+[job_20261010_9aa8bf2a] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_9aa8bf2a] stage.done: Found 1 change(s), 0 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_9aa8bf2a] state: State is now EXTRACTED
+[job_20261010_9aa8bf2a] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_9aa8bf2a] encode.attempt: Coding agent attempt 1
+[job_20261010_9aa8bf2a] encode.tests_passed: Tests pass: 31 passed, 0 failed
+[job_20261010_9aa8bf2a] stage.done: Rulebook updated in 1 attempt(s); 31 tests pass
+[job_20261010_9aa8bf2a] state: State is now ENCODED
+[job_20261010_9aa8bf2a] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_9aa8bf2a] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_9aa8bf2a] state: State is now VERIFIED
+[job_20261010_9aa8bf2a] stage.start: Confidence 0.99; decision: auto merge
+[job_20261010_9aa8bf2a] publish.commit: Committed f5bec7e with Entire checkpoint 01M4JFY793NCC7BYSTGG485A4Y
+[job_20261010_9aa8bf2a] stage.done: Change request opened
+[job_20261010_9aa8bf2a] state: State is now AWAITING_HUMAN
+{"case": "synthetic-age-62", "job_id": "job_20261010_9aa8bf2a", "state": "AWAITING_HUMAN", "cost_usd": 0.3184, "latency_s": 34.3, "trace_id": "cd9195e87f27257c403957d5268b6784", "checkpoint_id": "01M4JFY793NCC7BYSTGG485A4Y", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 0, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 1.0,
+  "decision_correct": 1.0,
+  "verifier_agreement": 1.0,
+  "cost_usd": 0.3412,
+  "latency_s": 62.35,
+  "runs": 2,
+  "total_cost_usd": 0.6824
+}
+2026-10-10 04:47:43 - neatlogs - INFO - Neatlogs SDK shutdown complete
