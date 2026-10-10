@@ -9,7 +9,7 @@
 > 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
 > 5. **Deploy**: website on Vercel (root `web`), API on the one allowed EC2 instance (`infra/README.md`). The site works without the API; only live features need it.
 > 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
-> 7. **Monday**: record the demo video from `docs/SUBMISSION.md`, then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
+> 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
 
 ## Project
 
@@ -125,6 +125,10 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 - Reviewing PR #3 by hand: a new `disabled` field defaulted to `true`, giving everyone the higher income limit. Root cause: my encoder instruction said "a default that keeps people eligible". Fixed the instruction and the rulebook's AGENTS.md; commented on PR #3.
 - The real 6 July 2023 increase order, on top of PR #3 in dry mode: 3 amount increases, 16 of 16 agree, confidence 0.98, decision `auto_merge` (state READY_TO_MERGE), $0.20. Reproduced through the eval harness (`extra/real-autonomy.json`). The order also drops a "son under 25" condition that our encoding never modelled; Niyam correctly skipped it.
 - Website: scheme picker in the explorer, new checker questions; the browser engine gained Python conditional expressions (`a if c else b`), and matched the Python engine on 400 of 400 random people for the second scheme.
+
+### 2026-10-10 19:00 IST: draft demo video
+
+- `video/make_video.py` builds the demo from the real site: Windows text-to-speech narration (placeholder voice), Playwright recordings timed to each scene's narration (including the public PR #2 on GitHub), captions burned in with ffmpeg. 10 scenes, 2:42. Checked frame by frame.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 

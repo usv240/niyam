@@ -1,0 +1,22 @@
+[
+  {"id": "01-hook", "url": "/#problem", "viewport": "desktop", "theme": "dark", "actions": [["scroll", "#problem h2"], ["wait", 99]],
+   "say": "When welfare code drifts away from the law, the people who depend on it pay. In Telangana, an eligibility algorithm cancelled more than one point eight million food cards, and nobody could check why."},
+  {"id": "02-what", "url": "/", "viewport": "desktop", "theme": "light", "actions": [["wait", 99]],
+   "say": "Niyam is an AI agent that reads every new government order and updates the welfare eligibility rules, written as code, by itself. Every rule links back to the exact clause it came from."},
+  {"id": "03-run", "url": "/demo/", "viewport": "desktop", "theme": "light", "actions": [["speed", "4"], ["click", "button:has-text('Replay the run')"], ["scroll", "ol[aria-label='Run events']"], ["wait", 7], ["tab", "Document"], ["wait", 5], ["tab", "Code change"], ["wait", 5], ["tab", "Verification"], ["wait", 99]],
+   "say": "This is a real run on the July 2024 amendment to the Ladki Bahin scheme, a Marathi PDF. Niyam decides the order matters, quotes every changed clause, and checks each quote against the document. Claude Code updates the rulebook and writes test citizens at every limit. Then a separate verifier, blind to the code change, writes its own test citizens from the law. Sixteen of sixteen agree."},
+  {"id": "04-why", "url": "/explore/", "viewport": "desktop", "theme": "light", "actions": [["scroll", "li:has-text('Receives less than')"], ["wait", 1.5], ["why", "Receives less than"], ["wait", 99]],
+   "say": "Click any rule and ask why. Here is the clause in Marathi and in English, and, from Entire, exactly which agent, model and session wrote this line. Accountability you can audit."},
+  {"id": "05-pr", "url": "https://github.com/usv240/niyam-rulebook/pull/2", "viewport": "desktop", "theme": "light", "actions": [["wait", 3], ["scrollby", 500], ["wait", 4], ["scrollby", 600], ["wait", 99]],
+   "say": "Every change becomes a pull request with the quotes, the verification and the reasoning. This one removes some people from the scheme, so Niyam does not merge it. It waits for a human."},
+  {"id": "06-results", "url": "/#results", "viewport": "desktop", "theme": "dark", "actions": [["scroll", "#results h2"], ["wait", 4], ["scrollby", 420], ["wait", 99]],
+   "say": "We measured everything. Version one worked, but its neatlogs traces showed a three dollar loop: the verifier never saw the benefit formula. Version two fixed it. Version three used cheaper models wherever the numbers showed no loss. Cost per document fell from eighty eight cents to thirteen, with every check at one hundred percent."},
+  {"id": "07-recovery", "url": "/judges/#agent", "viewport": "desktop", "theme": "light", "actions": [["scroll", "#agent h2"], ["wait", 2], ["scrollby", 260], ["wait", 99]],
+   "say": "Real documents are messy. Scanned pages, broken model output, and a hidden prompt injection were all handled. From an empty rulebook and only the founding order, Niyam rebuilt the whole scheme and passed all twenty five of our hand written tests."},
+  {"id": "08-second", "url": "/explore/", "viewport": "desktop", "theme": "dark", "actions": [["tabrole", "Sanjay Gandhi"], ["wait", 2], ["scroll", "h3"], ["wait", 99]],
+   "say": "A second real scheme, Sanjay Gandhi Niradhar, was onboarded from a fifty six page order. Its 2023 increase only raises payments, so the trust policy lets Niyam act alone. Anything that removes people always goes to a human."},
+  {"id": "09-check", "url": "/check/", "viewport": "phone", "theme": "light", "actions": [["click", "button[role='radio']:has-text('मराठी')"], ["wait", 2], ["submit", ""], ["wait", 99]],
+   "say": "Anyone can check their eligibility in Marathi, Hindi or English, with the source of every reason, right in the browser. Developers and AI assistants get the same answers through an API and an MCP server."},
+  {"id": "10-close", "url": "/", "viewport": "desktop", "theme": "dark", "actions": [["wait", 99]],
+   "say": "Niyam. When the law changes, the code changes with it."}
+]
