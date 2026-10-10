@@ -1,5 +1,5 @@
 {
- "id": "job_20261010_8b7a02ea",
+ "id": "job_20261010_bd059543",
  "state": "AWAITING_HUMAN",
  "document": {
   "title": "Ladki Bahin amendment, 3 July 2024",
@@ -30,7 +30,7 @@
    "scheme_id": "mh.ladki_bahin",
    "change_type": "parameter_update",
    "target": "age_max",
-   "summary": "Maximum age for beneficiaries is raised from 60 to 65 completed years.",
+   "summary": "Maximum age is raised from 60 to 65 completed years.",
    "old_value": "60",
    "new_value": "65",
    "boundary": "inclusive",
@@ -39,8 +39,8 @@
    "citation": {
     "page": 2,
     "clause": "4(3)",
-    "quote_original": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
-    "quote_english": "From completion of the minimum age of 21 years until completion of the maximum age of 65 years."
+    "quote_original": "अ.क्र. (३) किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.",
+    "quote_english": "Sr. No. (3) Minimum age 21 years completed and maximum age until 65 years are completed."
    },
    "confidence": 0.9
   },
@@ -49,7 +49,7 @@
    "scheme_id": "mh.ladki_bahin",
    "change_type": "parameter_update",
    "target": "eligible_marital_statuses",
-   "summary": "One unmarried woman per family becomes eligible, in addition to married, widowed, divorced, abandoned and destitute women.",
+   "summary": "Unmarried women become eligible, but only one unmarried woman per family.",
    "old_value": "[\"married\", \"widowed\", \"divorced\", \"abandoned\", \"destitute\"]",
    "new_value": "[\"married\", \"widowed\", \"divorced\", \"abandoned\", \"destitute\", \"unmarried\"]",
    "boundary": "not_applicable",
@@ -58,8 +58,8 @@
    "citation": {
     "page": 2,
     "clause": "4(2)",
-    "quote_original": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-    "quote_english": "as well as only one unmarried woman from that family."
+    "quote_original": "अ.क्र. (२) राज्यातील विवाहित, विधवा, घटस्फोटित, परित्यक्त्या आणि निराधार महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+    "quote_english": "Sr. No. (2) Married, widowed, divorced, abandoned and destitute women of the state, as well as only one unmarried woman from that family."
    },
    "confidence": 0.9
   },
@@ -67,27 +67,27 @@
    "change_id": "c3",
    "scheme_id": "mh.ladki_bahin",
    "change_type": "condition_added",
-   "target": "one_unmarried_per_family",
-   "summary": "Only one unmarried woman per family can receive the benefit, so an unmarried woman is ineligible if another unmarried woman in the family already receives it.",
+   "target": "unmarried_one_per_family",
+   "summary": "Only one unmarried woman per family can receive the benefit.",
    "old_value": null,
-   "new_value": "\"not person.other_unmarried_beneficiary_in_family\"",
+   "new_value": "\"not (person.marital_status == 'unmarried' and person.other_unmarried_beneficiary_in_family)\"",
    "boundary": "not_applicable",
    "effective_from": "2024-07-03",
-   "affects": "neutral",
+   "affects": "narrows",
    "citation": {
     "page": 2,
     "clause": "4(2)",
-    "quote_original": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-    "quote_english": "as well as only one unmarried woman from that family."
+    "quote_original": "महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+    "quote_english": "women as well as only one unmarried woman from that family."
    },
-   "confidence": 0.75
+   "confidence": 0.8
   },
   {
    "change_id": "c4",
    "scheme_id": "mh.ladki_bahin",
    "change_type": "parameter_update",
    "target": "disqualifying_govt_jobs",
-   "summary": "Contract, outsourced and volunteer workers in the family (with income up to Rs 2.5 lakh) no longer disqualify the applicant; only regular employees and pensioners do.",
+   "summary": "Contract staff (along with outsourced and volunteer workers) in a family are no longer disqualifying if income is up to Rs 2.50 lakh. Only regular/permanent employees and pensioners still disqualify.",
    "old_value": "[\"regular\", \"contract\", \"pensioner\"]",
    "new_value": "[\"regular\", \"pensioner\"]",
    "boundary": "not_applicable",
@@ -96,8 +96,8 @@
    "citation": {
     "page": 2,
     "clause": "5(3)",
-    "quote_original": "रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-    "quote_english": "Employees working through outside agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
+    "quote_original": "तथापि, रु.२.५० लाखापर्यंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कार्यरत असलेले कर्मचारी, स्वयंसेवी कामगार आणि कंत्राटी कर्मचारी पात्र ठरतील.",
+    "quote_english": "However, outsourced employees, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
    },
    "confidence": 0.8
   },
@@ -106,7 +106,7 @@
    "scheme_id": "mh.ladki_bahin",
    "change_type": "condition_changed",
    "target": "other_scheme_limit",
-   "summary": "A woman receiving Rs 1,500 or more per month from other government schemes is now disqualified; previously only more than Rs 1,500 disqualified her.",
+   "summary": "Receiving Rs 1,500 or more per month from other government schemes now disqualifies; previously only more than Rs 1,500 did.",
    "old_value": "\"person.other_scheme_monthly_inr <= params.other_scheme_max_inr\"",
    "new_value": "\"person.other_scheme_monthly_inr < params.other_scheme_max_inr\"",
    "boundary": "exclusive",
@@ -115,8 +115,8 @@
    "citation": {
     "page": 2,
     "clause": "5(4)",
-    "quote_original": "दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-    "quote_english": "is receiving a benefit of Rs 1,500/- per month or more than that."
+    "quote_original": "दरमहा रु.१,५००/- किंवा त्यापेक्षा जास्त रक्कमेचा लाभ घेत असेल.",
+    "quote_english": "is receiving a benefit of Rs 1,500 per month or more than that."
    },
    "confidence": 0.85
   },
@@ -126,7 +126,7 @@
    "change_type": "condition_removed",
    "target": "farm_land_limit",
    "summary": "The disqualification for families jointly owning more than five acres of farm land is removed.",
-   "old_value": "\"person.family_farm_land_acres <= params.farm_land_max_acres\"",
+   "old_value": "5",
    "new_value": null,
    "boundary": "not_applicable",
    "effective_from": "2024-07-03",
@@ -134,31 +134,31 @@
    "citation": {
     "page": 2,
     "clause": "5(7)",
-    "quote_original": "येहिल अपात्रतेची अट वगळण्यात येत आहे.",
-    "quote_english": "The disqualification condition here is being deleted."
+    "quote_original": "अ.क्र. (७) येथिल अपात्रतेची अट वगळण्यात येत आहे.",
+    "quote_english": "Sr. No. (7) The disqualification condition here is being deleted."
    },
    "confidence": 0.95
   }
  ],
  "ambiguities": [
   {
-   "question": "For contract, outsourced and volunteer workers, is the Rs 2.5 lakh income limit the employee's own income or the whole family's income?",
+   "question": "For contract, outsourced and volunteer workers, does the Rs 2.50 lakh income cap refer to the employee's own income or to the total family income?",
    "readings": [
-    "It is the family's annual income, which the existing income ceiling already enforces, so these workers are simply no longer disqualified.",
-    "It is the individual worker's own income, so a family could have total income above Rs 2.5 lakh and still qualify on this point."
+    "The cap applies to the family's total annual income, which is already enforced by the income condition, so these staff no longer disqualify at all.",
+    "The cap applies to the employee's own income, so a family could still be eligible under a separate test even if total family income is higher."
    ],
    "citation": {
     "page": 2,
     "clause": "5(3)",
-    "quote_original": "रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-    "quote_english": "Employees working through outside agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
+    "quote_original": "तथापि, रु.२.५० लाखापर्यंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कार्यरत असलेले कर्मचारी, स्वयंसेवी कामगार आणि कंत्राटी कर्मचारी पात्र ठरतील.",
+    "quote_english": "However, outsourced employees, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
    }
   },
   {
-   "question": "Are yellow and orange ration card holders exempt only from submitting an income certificate, or also from the Rs 2.5 lakh family income ceiling?",
+   "question": "Does the exemption for yellow and orange ration card holders waive only the income certificate, or also the Rs 2.50 lakh income ceiling itself?",
    "readings": [
-    "Only the document is waived, and the income ceiling still applies, with the ration card taken as proof of income.",
-    "The ceiling itself is waived for these ration card holders, so they qualify whatever their income."
+    "Only the income certificate document is waived; the Rs 2.50 lakh ceiling still applies (no eligibility change, treated as a document change).",
+    "The income test is waived for yellow and orange ration card holders, so they are eligible regardless of income."
    ],
    "citation": {
     "page": 3,
@@ -170,57 +170,60 @@
  ],
  "skipped": [
   {
-   "topic": "Residence proof documents (alternatives to the domicile certificate, and the husband's documents for women born outside Maharashtra)",
+   "topic": "Alternative residence proof documents (15-year-old ration card, voter ID, school leaving certificate, birth certificate; husband's documents for women born outside the state)",
    "reason": "Required documents are not modelled in the rulebook."
   },
   {
    "topic": "Income certificate exemption for yellow and orange ration card holders",
-   "reason": "This is a documentary requirement. The income ceiling is unchanged, but see the ambiguity above."
+   "reason": "Best reading is a documents change, not a change to the income ceiling; see ambiguity."
   },
   {
-   "topic": "District-level committee reconstituted under the Guardian Minister, and a new taluka-level committee",
-   "reason": "Committees are not modelled in the rulebook."
+   "topic": "District-level committee reconstitution and new taluka-level committee",
+   "reason": "Committees are procedural and not modelled."
   },
   {
-   "topic": "Application deadline extended to 31 August 2024, with Rs 1,500 per month payable from 1 July 2024 to those who apply by then",
-   "reason": "Application deadlines are not modelled, and the monthly benefit amount of Rs 1,500 is unchanged."
+   "topic": "Application deadline of 31 August 2024 and benefit payable from 1 July 2024",
+   "reason": "Application deadlines are procedural; the Rs 1,500 monthly benefit amount is unchanged."
   },
   {
-   "topic": "Incentive of Rs 50 per eligible beneficiary for Anganwadi workers who submit online applications",
-   "reason": "Staff incentives are not modelled in the rulebook."
+   "topic": "Incentive of Rs 50 per eligible beneficiary to Anganwadi workers for online applications",
+   "reason": "Staff incentive, not modelled."
   }
  ],
  "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana",
  "verdict": {
-  "cases_valid": 15,
-  "cases_agree": 14,
-  "cases_disagree": 1,
-  "agreement_rate": 0.9333333333333333,
-  "verdict": "disagree"
+  "cases_valid": 16,
+  "cases_agree": 16,
+  "cases_disagree": 0,
+  "agreement_rate": 1.0,
+  "verdict": "agree"
  },
  "verifier_cases": [
   {
-   "name": "Age 64, just below the new maximum of 65",
-   "date": "2024-07-10",
+   "name": "Age 64, just below new upper age limit of 65",
+   "date": "2024-07-15",
    "person": {
     "age": 64,
     "gender": "female",
     "state": "MH",
     "marital_status": "married",
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "Row 3 raises the maximum age from 60 to 65. A woman aged 64 is inside the new range. She was not eligible under the old limit of 60, so this case checks the change.",
+   "reasoning": "Row 3 raises the maximum age from 60 to 65. A 64-year-old was ineligible under the old rule and is now inside the 21-65 range. She receives the full Rs 1,500.",
    "citation": {
     "page": 2,
     "clause": "row 3, 4(3)",
-    "quote_original": "अ.क्र. (3) हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
-    "quote_english": "Item (3): minimum age of 21 years completed and up to the completion of a maximum age of 65 years."
+    "quote_original": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
+    "quote_english": "Minimum age of 21 years completed and until the maximum age of 65 years is completed."
    },
    "actual": {
     "eligible": true,
@@ -230,27 +233,30 @@
    "status": "agree"
   },
   {
-   "name": "Age exactly 65, at the new maximum",
-   "date": "2024-07-10",
+   "name": "Age exactly 65, at new upper age limit",
+   "date": "2024-07-15",
    "person": {
     "age": 65,
     "gender": "female",
     "state": "MH",
     "marital_status": "married",
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "The phrase 'until 65 years are completed' is ambiguous at the boundary. Row 1 states the age group as '21 to 65', and the glossary treats the upper age as inclusive (that glossary entry still needs human confirmation). On that reading, age 65 in completed years is eligible.",
+   "reasoning": "Row 1 states the age group as '21 to 65'. Following the glossary reading of 'until 65 years are completed', a woman aged 65 in completed years is inside the range. A strict reading could instead end eligibility on the 65th birthday, and this reading is flagged as needing confirmation.",
    "citation": {
     "page": 1,
     "clause": "row 1, 3",
-    "quote_original": "3. योजनेचे लाभािी:- महाराष्ट्र राज्यातील 21 ते 65 या वषण वयोगटातील हववाहहत, हवधवा, घटस्फोहटत, पहरत्यक्तत्या आहण हनराधार महहला",
-    "quote_english": "3. Beneficiaries of the scheme: married, widowed, divorced, abandoned and destitute women of Maharashtra state in the age group of 21 to 65 years."
+    "quote_original": "21 ते 65 या वषण वयोगटातील हववाहहत, हवधवा, घटस्फोहटत, पहरत्यक्तत्या आहण हनराधार महहला",
+    "quote_english": "Married, widowed, divorced, abandoned and destitute women in the age group of 21 to 65 years"
    },
    "actual": {
     "eligible": true,
@@ -260,27 +266,30 @@
    "status": "agree"
   },
   {
-   "name": "Age 66, just above the new maximum",
-   "date": "2024-07-10",
+   "name": "Age 66, just above new upper age limit",
+   "date": "2024-07-15",
    "person": {
     "age": 66,
     "gender": "female",
     "state": "MH",
     "marital_status": "married",
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "Under row 3, a woman aged 66 is outside the 21 to 65 range.",
+   "reasoning": "A woman aged 66 has completed 65 years, so she is outside the new 21-65 range set by row 3.",
    "citation": {
     "page": 2,
     "clause": "row 3, 4(3)",
-    "quote_original": "अ.क्र. (3) हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
-    "quote_english": "Item (3): minimum age of 21 years completed and up to the completion of a maximum age of 65 years."
+    "quote_original": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
+    "quote_english": "Minimum age of 21 years completed and until the maximum age of 65 years is completed."
    },
    "actual": {
     "eligible": false,
@@ -292,8 +301,8 @@
    "status": "agree"
   },
   {
-   "name": "Unmarried woman, the only unmarried beneficiary in her family",
-   "date": "2024-07-10",
+   "name": "Unmarried woman, no other unmarried beneficiary in family",
+   "date": "2024-07-15",
    "person": {
     "age": 25,
     "gender": "female",
@@ -301,19 +310,22 @@
     "marital_status": "unmarried",
     "other_unmarried_beneficiary_in_family": false,
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "Row 2 now adds 'only one unmarried woman in that family' to the eligible categories. No other unmarried woman in her family receives the benefit, so she qualifies.",
+   "reasoning": "Row 2 adds 'only one unmarried woman in that family' to the eligible women. She is the only unmarried woman in her family claiming the benefit, so she is eligible.",
    "citation": {
     "page": 2,
     "clause": "row 2, 4(2)",
-    "quote_original": "राज्यातील हववाहहत, हवधवा, घटस्फोहटत, पहरत्यक्तत्या आहण हनराधार महहला तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-    "quote_english": "Married, widowed, divorced, abandoned and destitute women in the state, as well as only one unmarried woman in that family."
+    "quote_original": "महहला तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
+    "quote_english": "women, as well as only one unmarried woman in that family."
    },
    "actual": {
     "eligible": true,
@@ -323,8 +335,8 @@
    "status": "agree"
   },
   {
-   "name": "Unmarried woman when another unmarried woman in the family already benefits",
-   "date": "2024-07-10",
+   "name": "Unmarried woman when another unmarried woman in family already benefits",
+   "date": "2024-07-15",
    "person": {
     "age": 25,
     "gender": "female",
@@ -332,32 +344,35 @@
     "marital_status": "unmarried",
     "other_unmarried_beneficiary_in_family": true,
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "Row 2 allows only one unmarried woman per family. Another unmarried woman in her family already receives the benefit, so this applicant is excluded.",
+   "reasoning": "Only one unmarried woman per family may benefit under row 2. Another unmarried woman in her family already receives the benefit, so this applicant is not eligible.",
    "citation": {
     "page": 2,
     "clause": "row 2, 4(2)",
-    "quote_original": "राज्यातील हववाहहत, हवधवा, घटस्फोहटत, पहरत्यक्तत्या आहण हनराधार महहला तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-    "quote_english": "Married, widowed, divorced, abandoned and destitute women in the state, as well as only one unmarried woman in that family."
+    "quote_original": "महहला तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
+    "quote_english": "women, as well as only one unmarried woman in that family."
    },
    "actual": {
     "eligible": false,
     "monthly_inr": 0,
     "unmet": [
-     "one_unmarried_per_family"
+     "unmarried_one_per_family"
     ]
    },
    "status": "agree"
   },
   {
    "name": "Family member is a government contract employee, income within Rs 2.5 lakh",
-   "date": "2024-07-10",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
@@ -365,19 +380,21 @@
     "marital_status": "married",
     "annual_family_income": 200000,
     "has_bank_account": true,
-    "family_govt_job": "contract"
+    "family_govt_job": "contract",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "Row 4 removes contract employees from the disqualifying list. It states that contract employees with income up to Rs 2.50 lakh shall be eligible. Family income here is 200000.",
+   "reasoning": "Row 4 removes contract employees from the disqualification. Contract employees with income up to Rs 2.50 lakh are now expressly eligible. Family income here is Rs 200,000.",
    "citation": {
     "page": 2,
     "clause": "row 4, 5(3)",
     "quote_original": "तिाहप, रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-    "quote_english": "However, employees working through external agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh shall be eligible."
+    "quote_english": "However, employees working through outsourcing agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
    },
    "actual": {
     "eligible": true,
@@ -387,28 +404,30 @@
    "status": "agree"
   },
   {
-   "name": "Family member is an outsourced worker, income exactly Rs 2.5 lakh",
-   "date": "2024-07-10",
+   "name": "Family member is an outsourced government worker",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
     "state": "MH",
     "marital_status": "married",
-    "annual_family_income": 250000,
+    "annual_family_income": 200000,
     "has_bank_account": true,
-    "family_govt_job": "outsourced"
+    "family_govt_job": "outsourced",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "'Up to Rs 2.50 lakh' includes 2.50 lakh. Outsourced workers within that income are eligible under row 4, and the income ceiling of 250000 is inclusive.",
+   "reasoning": "Outsourced employees with income up to Rs 2.50 lakh are eligible under amended clause 5(3).",
    "citation": {
     "page": 2,
     "clause": "row 4, 5(3)",
     "quote_original": "तिाहप, रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-    "quote_english": "However, employees working through external agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh shall be eligible."
+    "quote_english": "However, employees working through outsourcing agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
    },
    "actual": {
     "eligible": true,
@@ -419,27 +438,29 @@
   },
   {
    "name": "Family member is a regular government employee",
-   "date": "2024-07-10",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
     "state": "MH",
     "marital_status": "married",
-    "annual_family_income": 120000,
+    "annual_family_income": 200000,
     "has_bank_account": true,
-    "family_govt_job": "regular"
+    "family_govt_job": "regular",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "Under row 4, regular or permanent government employees in the family still disqualify the applicant.",
+   "reasoning": "Amended clause 5(3) still disqualifies a family whose member is a regular or permanent government employee.",
    "citation": {
     "page": 2,
     "clause": "row 4, 5(3)",
     "quote_original": "ज्यांच्या कु टुंबातील सदस्य हनयहमत/कायम कमणचारी म्हणून सरकारी हवभाग/उपक्रम/मंडळ/भारत सरकार ककवा राज्य सरकारच्या स्िाहनक संस्िेमध्ये कायणरत आहेत",
-    "quote_english": "Whose family members are working as regular/permanent employees in a government department/undertaking/board/Government of India or a local body of the state government"
+    "quote_english": "Whose family members are working as regular/permanent employees in a government department/undertaking/board/Government of India or local body of the state government"
    },
    "actual": {
     "eligible": false,
@@ -451,8 +472,43 @@
    "status": "agree"
   },
   {
-   "name": "Other scheme benefit Rs 1,499 per month, just below the limit",
-   "date": "2024-07-10",
+   "name": "Family member is a government pensioner",
+   "date": "2024-07-15",
+   "person": {
+    "age": 35,
+    "gender": "female",
+    "state": "MH",
+    "marital_status": "married",
+    "annual_family_income": 200000,
+    "has_bank_account": true,
+    "family_govt_job": "pensioner",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
+   },
+   "scheme_id": "mh.ladki_bahin",
+   "expected": {
+    "eligible": false,
+    "monthly_inr": null
+   },
+   "reasoning": "Amended clause 5(3) still disqualifies a family whose member draws a pension after retirement.",
+   "citation": {
+    "page": 2,
+    "clause": "row 4, 5(3)",
+    "quote_original": "राज्य सरकारच्या स्िाहनक संस्िेमध्ये कायणरत आहेत ककवा सेवाहनवृत्तीनंतर हनवृत्तीवेतन घेत आहेत.",
+    "quote_english": "are working in a local body of the state government or are drawing pension after retirement."
+   },
+   "actual": {
+    "eligible": false,
+    "monthly_inr": 0,
+    "unmet": [
+     "no_government_job"
+    ]
+   },
+   "status": "agree"
+  },
+  {
+   "name": "Other scheme Rs 1,499 per month, just below new limit",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
@@ -460,30 +516,32 @@
     "marital_status": "married",
     "annual_family_income": 120000,
     "has_bank_account": true,
-    "other_scheme_monthly_inr": 1499
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 1499,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
-    "monthly_inr": 1500.0
+    "monthly_inr": 1.0
    },
-   "reasoning": "Row 5 disqualifies a woman receiving Rs 1,500 or more per month from other schemes. 1499 is below that, so she remains eligible.",
+   "reasoning": "Row 5 disqualifies women receiving Rs 1,500 or more per month from other schemes, and Rs 1,499 is below that. The unchanged top-up rule (old clause 2) pays the difference: 1500 - 1499 = Rs 1.",
    "citation": {
     "page": 2,
     "clause": "row 5, 5(4)",
     "quote_original": "आर्थिक योजनेव्दारे दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-    "quote_english": "If she is receiving a benefit of Rs 1,500 or more per month through a financial scheme"
+    "quote_english": "is receiving a benefit of Rs 1,500 or more per month through a financial scheme."
    },
    "actual": {
     "eligible": true,
     "monthly_inr": 1,
     "unmet": []
    },
-   "status": "disagree"
+   "status": "agree"
   },
   {
-   "name": "Other scheme benefit exactly Rs 1,500 per month",
-   "date": "2024-07-10",
+   "name": "Other scheme exactly Rs 1,500 per month, at new limit",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
@@ -491,19 +549,21 @@
     "marital_status": "married",
     "annual_family_income": 120000,
     "has_bank_account": true,
-    "other_scheme_monthly_inr": 1500
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 1500,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "Row 5 changes the test from 'more than 1500' to '1500 or more'. That wording is inclusive, so exactly 1500 now disqualifies. Under the old rule she would have been eligible.",
+   "reasoning": "The new wording 'Rs 1,500 or more' is inclusive, so receiving exactly Rs 1,500 now disqualifies. Under the old 'more than Rs 1,500' wording she would not have been disqualified.",
    "citation": {
     "page": 2,
     "clause": "row 5, 5(4)",
     "quote_original": "आर्थिक योजनेव्दारे दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-    "quote_english": "If she is receiving a benefit of Rs 1,500 or more per month through a financial scheme"
+    "quote_english": "is receiving a benefit of Rs 1,500 or more per month through a financial scheme."
    },
    "actual": {
     "eligible": false,
@@ -515,8 +575,8 @@
    "status": "agree"
   },
   {
-   "name": "Other scheme benefit Rs 1,501 per month, just above the limit",
-   "date": "2024-07-10",
+   "name": "Other scheme Rs 1,501 per month, just above limit",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
@@ -524,19 +584,21 @@
     "marital_status": "married",
     "annual_family_income": 120000,
     "has_bank_account": true,
-    "other_scheme_monthly_inr": 1501
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 1501,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "Under row 5, 1501 is more than 1500, so she is disqualified.",
+   "reasoning": "Rs 1,501 is more than Rs 1,500, so she is disqualified under amended clause 5(4).",
    "citation": {
     "page": 2,
     "clause": "row 5, 5(4)",
     "quote_original": "आर्थिक योजनेव्दारे दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-    "quote_english": "If she is receiving a benefit of Rs 1,500 or more per month through a financial scheme"
+    "quote_english": "is receiving a benefit of Rs 1,500 or more per month through a financial scheme."
    },
    "actual": {
     "eligible": false,
@@ -548,8 +610,8 @@
    "status": "agree"
   },
   {
-   "name": "Family owns 10 acres of farm land; land condition removed",
-   "date": "2024-07-10",
+   "name": "Family owns 10 acres of farm land, condition removed",
+   "date": "2024-07-15",
    "person": {
     "age": 35,
     "gender": "female",
@@ -557,6 +619,8 @@
     "marital_status": "married",
     "annual_family_income": 120000,
     "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
     "family_farm_land_acres": 10
    },
    "scheme_id": "mh.ladki_bahin",
@@ -564,12 +628,12 @@
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "Row 6 deletes the disqualification for more than 5 acres of farm land. Owning 10 acres therefore no longer disqualifies her.",
+   "reasoning": "Row 6 deletes the farm-land disqualification (more than 5 acres). Owning 10 acres no longer affects eligibility.",
    "citation": {
     "page": 2,
     "clause": "row 6, 5(7)",
     "quote_original": "अ.क्र. (७) येहिल अपात्रतेची अट वगळण्यात येत आहे.",
-    "quote_english": "The disqualification condition at item (7) is hereby deleted."
+    "quote_english": "The disqualification condition at serial no. (7) is being deleted."
    },
    "actual": {
     "eligible": true,
@@ -579,55 +643,59 @@
    "status": "agree"
   },
   {
-   "name": "Typical eligible married woman with a yellow ration card",
-   "date": "2024-07-10",
+   "name": "Typical case: yellow ration card holder within income limit",
+   "date": "2024-08-01",
    "person": {
-    "age": 35,
-    "gender": "female",
-    "state": "MH",
-    "marital_status": "married",
-    "annual_family_income": 120000,
-    "has_bank_account": true,
-    "ration_card": "yellow",
-    "family_govt_job": "none",
-    "other_scheme_monthly_inr": 0
-   },
-   "scheme_id": "mh.ladki_bahin",
-   "expected": {
-    "eligible": true,
-    "monthly_inr": 1500.0
-   },
-   "reasoning": "She meets every condition. Section D sets the benefit at Rs 1,500 per month from 1 July 2024.",
-   "citation": {
-    "page": 5,
-    "clause": "D",
-    "quote_original": "हद.०१ जुलै, २०२४ पासून दरमहा रु.१,५००/- आर्थिक लाभ देण्यात येणार आहे.",
-    "quote_english": "A financial benefit of Rs 1,500 per month will be given from 1 July 2024."
-   },
-   "actual": {
-    "eligible": true,
-    "monthly_inr": 1500,
-    "unmet": []
-   },
-   "status": "agree"
-  },
-  {
-   "name": "Typical eligible widow aged 50",
-   "date": "2024-07-15",
-   "person": {
-    "age": 50,
+    "age": 40,
     "gender": "female",
     "state": "MH",
     "marital_status": "widowed",
-    "annual_family_income": 90000,
-    "has_bank_account": true
+    "annual_family_income": 150000,
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0,
+    "ration_card": "yellow"
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": true,
     "monthly_inr": 1500.0
    },
-   "reasoning": "Widows remain an eligible category and she meets all other conditions, so she receives Rs 1,500 per month.",
+   "reasoning": "Yellow and orange ration card holders are exempted only from producing the income certificate. The income ceiling itself is still mandatory, and this widow's family income of Rs 150,000 is within it. She meets all other conditions and receives Rs 1,500 per month.",
+   "citation": {
+    "page": 3,
+    "clause": "row 8, 6(4)",
+    "quote_original": "वार्थषक उत्पन्न रु.2.50 लाखापयंत असणे अहनवायण आहे. तिाहप, हपवळे व के शरी रेशन काडण धारकांना उत्पन्नाच्या दाखला प्रमाणपत्रातून सूट देण्यात येत आहे.",
+    "quote_english": "Annual income up to Rs 2.50 lakh is mandatory. However, yellow and orange ration card holders are exempted from the income certificate."
+   },
+   "actual": {
+    "eligible": true,
+    "monthly_inr": 1500,
+    "unmet": []
+   },
+   "status": "agree"
+  },
+  {
+   "name": "Typical married woman, full benefit",
+   "date": "2024-08-01",
+   "person": {
+    "age": 30,
+    "gender": "female",
+    "state": "MH",
+    "marital_status": "married",
+    "annual_family_income": 100000,
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
+   },
+   "scheme_id": "mh.ladki_bahin",
+   "expected": {
+    "eligible": true,
+    "monthly_inr": 1500.0
+   },
+   "reasoning": "She meets every condition and receives no other scheme benefit. Section D confirms Rs 1,500 per month.",
    "citation": {
     "page": 5,
     "clause": "D",
@@ -642,7 +710,7 @@
    "status": "agree"
   },
   {
-   "name": "Before the document: age 62 is still over the old maximum of 60",
+   "name": "Before document: age 62 under old 60 limit",
    "date": "2024-07-02",
    "person": {
     "age": 62,
@@ -650,19 +718,22 @@
     "state": "MH",
     "marital_status": "married",
     "annual_family_income": 120000,
-    "has_bank_account": true
+    "has_bank_account": true,
+    "family_govt_job": "none",
+    "other_scheme_monthly_inr": 0,
+    "family_farm_land_acres": 0
    },
    "scheme_id": "mh.ladki_bahin",
    "expected": {
     "eligible": false,
     "monthly_inr": null
    },
-   "reasoning": "On 2024-07-02 the GR of 28.06.2024 still applies, with a maximum age of 60. This GR applies only from its own date of 2024-07-03, so the 62-year-old is ineligible.",
+   "reasoning": "On 2024-07-02, before this GR dated 2024-07-03, the old maximum age of 60 applied. A 62-year-old is therefore ineligible on that date.",
    "citation": {
     "page": 2,
-    "clause": "row 3, old 4(3)",
-    "quote_original": "अ.क्र. (3) हकमान वयाची 21 वषे पूणण व कमाल वयाची 60 वषण पूणण होईपयंत.",
-    "quote_english": "Item (3): minimum age of 21 years completed and up to the completion of a maximum age of 60 years."
+    "clause": "row 3, 4(3) (old text)",
+    "quote_original": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 60 वषण पूणण होईपयंत.",
+    "quote_english": "Minimum age of 21 years completed and until the maximum age of 60 years is completed."
    },
    "actual": {
     "eligible": false,
@@ -674,22 +745,12 @@
    "status": "agree"
   }
  ],
- "resolutions": [
-  {
-   "decision": "verifier_wrong",
-   "explanation": "Both agents agree she is eligible. Rs 1,499 is below the new 'Rs 1,500 per month or more' disqualification in clause 5(4), and the rulebook uses the strict comparison other_scheme_monthly_inr < 1500. The only disagreement is the amount: the verifier expects Rs 1,500 and the rulebook returns Rs 1. That is exactly Rs 1,500 minus Rs 1,499, so the rulebook is paying a top-up (the difference) rather than the full amount. This GR of 03.07.2024 is an amending order. It changes only the rows listed in its table (A1 to A8) plus sections B to E. It does not touch the form of the benefit in the original GR of 28.06.2024. That GR provides that a woman who already gets less than Rs 1,500 a month from another government scheme is paid the difference. Section D of this GR mentions 'Rs 1,500 per month from 1 July 2024', but only to set the start date and application deadline. It does not repeal the difference-payment rule. The verifier worked from the amending document alone and assumed the full Rs 1,500. The encoder correctly left the amount rule unchanged, and its skipped note says 'the monthly benefit amount of Rs 1,500 is unchanged'. Note for maintainers: the rulebook printout shows only monthly_benefit = 1500 and not the top-up formula. That hidden formula caused this confusion, so it should be shown explicitly (e.g. amount = monthly_benefit - other_scheme_monthly_inr, citing the 28.06.2024 GR). The 28.06.2024 GR is not attached here, so the exact wording of its difference-payment clause should be checked against that GR.",
-   "fix_instruction": null,
-   "human_question": null,
-   "glossary_entry": "## \"शासन निर्णयामध्ये खालीलप्रमाणे सुधारणा\" (the GR is amended as follows)\nAn amending GR changes only the clauses it lists. Every other provision of the original GR stays in force, including how the benefit amount is calculated (for example, paying only the difference when another scheme already pays less than Rs 1,500). When the amending GR merely repeats an amount, as in 'दरमहा रु.१,५००/-' in its deadline clause, that does not cancel a top-up rule in the original GR.\nSource: GR 202407031335114330, opening of 'शासन निर्णय' and section ड; benefit form from GR 202406281814018230 (needs human confirmation of the exact clause).",
-   "case_name": "Other scheme benefit Rs 1,499 per month, just below the limit"
-  }
- ],
+ "resolutions": [],
  "reasons": [
   "At least one change removes people from a scheme. Niyam never does that without a human.",
   "Structural change (condition_added, condition_changed, condition_removed), not only a number or a date.",
   "2 ambiguous clause(s) flagged during extraction.",
-  "The verifier still disagrees on some test citizens.",
-  "Confidence 0.85 is below the 0.90 needed to merge alone."
+  "Confidence 0.88 is below the 0.90 needed to merge alone."
  ],
  "encode": {
   "attempts": 1,
@@ -704,26 +765,26 @@
    "tests/mh/ladki_bahin.yaml"
   ],
   "tests": {
-   "passed": 45,
+   "passed": 46,
    "failed": 0
   },
   "rounds": 1
  },
- "confidence": 0.852,
+ "confidence": 0.878,
  "decision": "human_review",
- "pr_url": "https://github.com/usv240/niyam-rulebook/pull/1",
- "commit_sha": "7c0d9e1cb6106a6710792400a3ff5f3d45814737",
- "checkpoint_id": "01M4JBMV7QNF5X84R8Z2YTA71Q",
- "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/7c0d9e1cb6106a6710792400a3ff5f3d45814737",
- "trace_id": "f797424885dda9b248a5a8ecbc1b8726",
- "cost_usd": 0.8551,
- "started_at": 1791617257.9184482,
- "finished_at": 1791617628.123146,
+ "pr_url": "https://github.com/usv240/niyam-rulebook/pull/2",
+ "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+ "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+ "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+ "trace_id": "145b0f0f3bfc50c70c940a90a406f5bc",
+ "cost_usd": 0.6923,
+ "started_at": 1791619476.773167,
+ "finished_at": 1791619549.5952516,
  "error": null,
  "events": [
   {
-   "id": 1,
-   "ts": 1791617257.9184482,
+   "id": 295,
+   "ts": 1791619476.7830937,
    "type": "job.created",
    "stage": null,
    "message": "Job created",
@@ -732,16 +793,16 @@
    }
   },
   {
-   "id": 2,
-   "ts": 1791617257.9249635,
+   "id": 296,
+   "ts": 1791619476.7861347,
    "type": "stage.start",
    "stage": "triage",
    "message": "Reading the opening pages to see if this document matters",
    "payload": {}
   },
   {
-   "id": 3,
-   "ts": 1791617263.6507356,
+   "id": 297,
+   "ts": 1791619477.0841548,
    "type": "stage.done",
    "stage": "triage",
    "message": "Relevant: This Government Resolution amends eligibility criteria, beneficiary age limit (from 60 to 65 years), ineligibility conditions, and required documentation for the Mukhyamantri Majhi Ladki Bahin Yojana scheme.",
@@ -759,8 +820,8 @@
    }
   },
   {
-   "id": 4,
-   "ts": 1791617263.6517456,
+   "id": 298,
+   "ts": 1791619477.0851862,
    "type": "state",
    "stage": null,
    "message": "State is now TRIAGED",
@@ -769,16 +830,16 @@
    }
   },
   {
-   "id": 5,
-   "ts": 1791617263.6527424,
+   "id": 299,
+   "ts": 1791619477.0855048,
    "type": "stage.start",
    "stage": "extract",
    "message": "Finding and quoting the clauses that change eligibility",
    "payload": {}
   },
   {
-   "id": 6,
-   "ts": 1791617302.9819405,
+   "id": 300,
+   "ts": 1791619478.007145,
    "type": "stage.done",
    "stage": "extract",
    "message": "Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)",
@@ -797,7 +858,7 @@
       "scheme_id": "mh.ladki_bahin",
       "change_type": "parameter_update",
       "target": "age_max",
-      "summary": "Maximum age for beneficiaries is raised from 60 to 65 completed years.",
+      "summary": "Maximum age is raised from 60 to 65 completed years.",
       "old_value": "60",
       "new_value": "65",
       "boundary": "inclusive",
@@ -806,8 +867,8 @@
       "citation": {
        "page": 2,
        "clause": "4(3)",
-       "quote_original": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
-       "quote_english": "From completion of the minimum age of 21 years until completion of the maximum age of 65 years."
+       "quote_original": "अ.क्र. (३) किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.",
+       "quote_english": "Sr. No. (3) Minimum age 21 years completed and maximum age until 65 years are completed."
       },
       "confidence": 0.9
      },
@@ -816,7 +877,7 @@
       "scheme_id": "mh.ladki_bahin",
       "change_type": "parameter_update",
       "target": "eligible_marital_statuses",
-      "summary": "One unmarried woman per family becomes eligible, in addition to married, widowed, divorced, abandoned and destitute women.",
+      "summary": "Unmarried women become eligible, but only one unmarried woman per family.",
       "old_value": "[\"married\", \"widowed\", \"divorced\", \"abandoned\", \"destitute\"]",
       "new_value": "[\"married\", \"widowed\", \"divorced\", \"abandoned\", \"destitute\", \"unmarried\"]",
       "boundary": "not_applicable",
@@ -825,8 +886,8 @@
       "citation": {
        "page": 2,
        "clause": "4(2)",
-       "quote_original": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-       "quote_english": "as well as only one unmarried woman from that family."
+       "quote_original": "अ.क्र. (२) राज्यातील विवाहित, विधवा, घटस्फोटित, परित्यक्त्या आणि निराधार महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+       "quote_english": "Sr. No. (2) Married, widowed, divorced, abandoned and destitute women of the state, as well as only one unmarried woman from that family."
       },
       "confidence": 0.9
      },
@@ -834,27 +895,27 @@
       "change_id": "c3",
       "scheme_id": "mh.ladki_bahin",
       "change_type": "condition_added",
-      "target": "one_unmarried_per_family",
-      "summary": "Only one unmarried woman per family can receive the benefit, so an unmarried woman is ineligible if another unmarried woman in the family already receives it.",
+      "target": "unmarried_one_per_family",
+      "summary": "Only one unmarried woman per family can receive the benefit.",
       "old_value": null,
-      "new_value": "\"not person.other_unmarried_beneficiary_in_family\"",
+      "new_value": "\"not (person.marital_status == 'unmarried' and person.other_unmarried_beneficiary_in_family)\"",
       "boundary": "not_applicable",
       "effective_from": "2024-07-03",
-      "affects": "neutral",
+      "affects": "narrows",
       "citation": {
        "page": 2,
        "clause": "4(2)",
-       "quote_original": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-       "quote_english": "as well as only one unmarried woman from that family."
+       "quote_original": "महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+       "quote_english": "women as well as only one unmarried woman from that family."
       },
-      "confidence": 0.75
+      "confidence": 0.8
      },
      {
       "change_id": "c4",
       "scheme_id": "mh.ladki_bahin",
       "change_type": "parameter_update",
       "target": "disqualifying_govt_jobs",
-      "summary": "Contract, outsourced and volunteer workers in the family (with income up to Rs 2.5 lakh) no longer disqualify the applicant; only regular employees and pensioners do.",
+      "summary": "Contract staff (along with outsourced and volunteer workers) in a family are no longer disqualifying if income is up to Rs 2.50 lakh. Only regular/permanent employees and pensioners still disqualify.",
       "old_value": "[\"regular\", \"contract\", \"pensioner\"]",
       "new_value": "[\"regular\", \"pensioner\"]",
       "boundary": "not_applicable",
@@ -863,8 +924,8 @@
       "citation": {
        "page": 2,
        "clause": "5(3)",
-       "quote_original": "रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-       "quote_english": "Employees working through outside agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
+       "quote_original": "तथापि, रु.२.५० लाखापर्यंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कार्यरत असलेले कर्मचारी, स्वयंसेवी कामगार आणि कंत्राटी कर्मचारी पात्र ठरतील.",
+       "quote_english": "However, outsourced employees, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
       },
       "confidence": 0.8
      },
@@ -873,7 +934,7 @@
       "scheme_id": "mh.ladki_bahin",
       "change_type": "condition_changed",
       "target": "other_scheme_limit",
-      "summary": "A woman receiving Rs 1,500 or more per month from other government schemes is now disqualified; previously only more than Rs 1,500 disqualified her.",
+      "summary": "Receiving Rs 1,500 or more per month from other government schemes now disqualifies; previously only more than Rs 1,500 did.",
       "old_value": "\"person.other_scheme_monthly_inr <= params.other_scheme_max_inr\"",
       "new_value": "\"person.other_scheme_monthly_inr < params.other_scheme_max_inr\"",
       "boundary": "exclusive",
@@ -882,8 +943,8 @@
       "citation": {
        "page": 2,
        "clause": "5(4)",
-       "quote_original": "दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-       "quote_english": "is receiving a benefit of Rs 1,500/- per month or more than that."
+       "quote_original": "दरमहा रु.१,५००/- किंवा त्यापेक्षा जास्त रक्कमेचा लाभ घेत असेल.",
+       "quote_english": "is receiving a benefit of Rs 1,500 per month or more than that."
       },
       "confidence": 0.85
      },
@@ -893,7 +954,7 @@
       "change_type": "condition_removed",
       "target": "farm_land_limit",
       "summary": "The disqualification for families jointly owning more than five acres of farm land is removed.",
-      "old_value": "\"person.family_farm_land_acres <= params.farm_land_max_acres\"",
+      "old_value": "5",
       "new_value": null,
       "boundary": "not_applicable",
       "effective_from": "2024-07-03",
@@ -901,31 +962,31 @@
       "citation": {
        "page": 2,
        "clause": "5(7)",
-       "quote_original": "येहिल अपात्रतेची अट वगळण्यात येत आहे.",
-       "quote_english": "The disqualification condition here is being deleted."
+       "quote_original": "अ.क्र. (७) येथिल अपात्रतेची अट वगळण्यात येत आहे.",
+       "quote_english": "Sr. No. (7) The disqualification condition here is being deleted."
       },
       "confidence": 0.95
      }
     ],
     "ambiguities": [
      {
-      "question": "For contract, outsourced and volunteer workers, is the Rs 2.5 lakh income limit the employee's own income or the whole family's income?",
+      "question": "For contract, outsourced and volunteer workers, does the Rs 2.50 lakh income cap refer to the employee's own income or to the total family income?",
       "readings": [
-       "It is the family's annual income, which the existing income ceiling already enforces, so these workers are simply no longer disqualified.",
-       "It is the individual worker's own income, so a family could have total income above Rs 2.5 lakh and still qualify on this point."
+       "The cap applies to the family's total annual income, which is already enforced by the income condition, so these staff no longer disqualify at all.",
+       "The cap applies to the employee's own income, so a family could still be eligible under a separate test even if total family income is higher."
       ],
       "citation": {
        "page": 2,
        "clause": "5(3)",
-       "quote_original": "रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-       "quote_english": "Employees working through outside agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
+       "quote_original": "तथापि, रु.२.५० लाखापर्यंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कार्यरत असलेले कर्मचारी, स्वयंसेवी कामगार आणि कंत्राटी कर्मचारी पात्र ठरतील.",
+       "quote_english": "However, outsourced employees, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
       }
      },
      {
-      "question": "Are yellow and orange ration card holders exempt only from submitting an income certificate, or also from the Rs 2.5 lakh family income ceiling?",
+      "question": "Does the exemption for yellow and orange ration card holders waive only the income certificate, or also the Rs 2.50 lakh income ceiling itself?",
       "readings": [
-       "Only the document is waived, and the income ceiling still applies, with the ration card taken as proof of income.",
-       "The ceiling itself is waived for these ration card holders, so they qualify whatever their income."
+       "Only the income certificate document is waived; the Rs 2.50 lakh ceiling still applies (no eligibility change, treated as a document change).",
+       "The income test is waived for yellow and orange ration card holders, so they are eligible regardless of income."
       ],
       "citation": {
        "page": 3,
@@ -937,31 +998,31 @@
     ],
     "skipped": [
      {
-      "topic": "Residence proof documents (alternatives to the domicile certificate, and the husband's documents for women born outside Maharashtra)",
+      "topic": "Alternative residence proof documents (15-year-old ration card, voter ID, school leaving certificate, birth certificate; husband's documents for women born outside the state)",
       "reason": "Required documents are not modelled in the rulebook."
      },
      {
       "topic": "Income certificate exemption for yellow and orange ration card holders",
-      "reason": "This is a documentary requirement. The income ceiling is unchanged, but see the ambiguity above."
+      "reason": "Best reading is a documents change, not a change to the income ceiling; see ambiguity."
      },
      {
-      "topic": "District-level committee reconstituted under the Guardian Minister, and a new taluka-level committee",
-      "reason": "Committees are not modelled in the rulebook."
+      "topic": "District-level committee reconstitution and new taluka-level committee",
+      "reason": "Committees are procedural and not modelled."
      },
      {
-      "topic": "Application deadline extended to 31 August 2024, with Rs 1,500 per month payable from 1 July 2024 to those who apply by then",
-      "reason": "Application deadlines are not modelled, and the monthly benefit amount of Rs 1,500 is unchanged."
+      "topic": "Application deadline of 31 August 2024 and benefit payable from 1 July 2024",
+      "reason": "Application deadlines are procedural; the Rs 1,500 monthly benefit amount is unchanged."
      },
      {
-      "topic": "Incentive of Rs 50 per eligible beneficiary for Anganwadi workers who submit online applications",
-      "reason": "Staff incentives are not modelled in the rulebook."
+      "topic": "Incentive of Rs 50 per eligible beneficiary to Anganwadi workers for online applications",
+      "reason": "Staff incentive, not modelled."
      }
     ]
    }
   },
   {
-   "id": 7,
-   "ts": 1791617302.9840827,
+   "id": 301,
+   "ts": 1791619478.0092263,
    "type": "state",
    "stage": null,
    "message": "State is now EXTRACTED",
@@ -970,93 +1031,35 @@
    }
   },
   {
-   "id": 8,
-   "ts": 1791617303.256174,
+   "id": 302,
+   "ts": 1791619478.2286484,
    "type": "stage.start",
    "stage": "encode",
    "message": "Coding agent is updating the rulebook and writing tests",
    "payload": {}
   },
   {
-   "id": 9,
-   "ts": 1791617303.2702093,
+   "id": 303,
+   "ts": 1791619478.2357442,
    "type": "encode.attempt",
    "stage": "encode",
    "message": "Coding agent attempt 1",
    "payload": {}
   },
   {
-   "id": 10,
-   "ts": 1791617304.0750654,
-   "type": "job.failed",
-   "stage": null,
-   "message": "FileNotFoundError: [WinError 2] The system cannot find the file specified",
-   "payload": {}
-  },
-  {
-   "id": 11,
-   "ts": 1791617304.0750654,
-   "type": "state",
-   "stage": null,
-   "message": "State is now FAILED",
-   "payload": {
-    "state": "FAILED"
-   }
-  },
-  {
-   "id": 12,
-   "ts": 1791617383.7368658,
-   "type": "orchestrator.resume",
-   "stage": null,
-   "message": "Resuming from state FAILED",
-   "payload": {}
-  },
-  {
-   "id": 13,
-   "ts": 1791617413.505028,
-   "type": "orchestrator.retry",
-   "stage": null,
-   "message": "Retrying a failed job from its last good state, EXTRACTED",
-   "payload": {}
-  },
-  {
-   "id": 14,
-   "ts": 1791617413.5085838,
-   "type": "orchestrator.resume",
-   "stage": null,
-   "message": "Resuming from state EXTRACTED",
-   "payload": {}
-  },
-  {
-   "id": 15,
-   "ts": 1791617413.509414,
-   "type": "stage.start",
-   "stage": "encode",
-   "message": "Coding agent is updating the rulebook and writing tests",
-   "payload": {}
-  },
-  {
-   "id": 16,
-   "ts": 1791617413.5231917,
-   "type": "encode.attempt",
-   "stage": "encode",
-   "message": "Coding agent attempt 1",
-   "payload": {}
-  },
-  {
-   "id": 17,
-   "ts": 1791617477.151679,
+   "id": 304,
+   "ts": 1791619539.2213843,
    "type": "encode.tests_passed",
    "stage": "encode",
-   "message": "Tests pass: 45 passed, 0 failed",
+   "message": "Tests pass: 46 passed, 0 failed",
    "payload": {}
   },
   {
-   "id": 18,
-   "ts": 1791617477.1546736,
+   "id": 305,
+   "ts": 1791619539.222994,
    "type": "stage.done",
    "stage": "encode",
-   "message": "Rulebook updated in 1 attempt(s); 45 tests pass",
+   "message": "Rulebook updated in 1 attempt(s); 46 tests pass",
    "payload": {
     "files": [
      "CHANGELOG.md",
@@ -1071,8 +1074,8 @@
    }
   },
   {
-   "id": 19,
-   "ts": 1791617477.1556742,
+   "id": 306,
+   "ts": 1791619539.2239983,
    "type": "state",
    "stage": null,
    "message": "State is now ENCODED",
@@ -1081,106 +1084,33 @@
    }
   },
   {
-   "id": 20,
-   "ts": 1791617477.1566746,
+   "id": 307,
+   "ts": 1791619539.2239983,
    "type": "stage.start",
    "stage": "verify",
    "message": "Independent verifier is writing its own test citizens from the law",
    "payload": {}
   },
   {
-   "id": 21,
-   "ts": 1791617533.0901513,
+   "id": 308,
+   "ts": 1791619539.7138689,
    "type": "stage.done",
    "stage": "verify",
-   "message": "14 of 15 test citizens agree with the new rules",
+   "message": "16 of 16 test citizens agree with the new rules",
    "payload": {
-    "cases_total": 15,
-    "cases_valid": 15,
-    "cases_agree": 14,
-    "cases_disagree": 1,
+    "cases_total": 16,
+    "cases_valid": 16,
+    "cases_agree": 16,
+    "cases_disagree": 0,
     "cases_invalid": 0,
-    "agreement_rate": 0.9333333333333333,
-    "verdict": "disagree",
-    "disagreements": [
-     {
-      "name": "Other scheme benefit Rs 1,499 per month, just below the limit",
-      "date": "2024-07-10",
-      "person": {
-       "age": 35,
-       "gender": "female",
-       "state": "MH",
-       "marital_status": "married",
-       "annual_family_income": 120000,
-       "has_bank_account": true,
-       "other_scheme_monthly_inr": 1499
-      },
-      "scheme_id": "mh.ladki_bahin",
-      "expected": {
-       "eligible": true,
-       "monthly_inr": 1500.0
-      },
-      "reasoning": "Row 5 disqualifies a woman receiving Rs 1,500 or more per month from other schemes. 1499 is below that, so she remains eligible.",
-      "citation": {
-       "page": 2,
-       "clause": "row 5, 5(4)",
-       "quote_original": "आर्थिक योजनेव्दारे दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-       "quote_english": "If she is receiving a benefit of Rs 1,500 or more per month through a financial scheme"
-      },
-      "actual": {
-       "eligible": true,
-       "monthly_inr": 1,
-       "unmet": []
-      },
-      "status": "disagree"
-     }
-    ]
+    "agreement_rate": 1.0,
+    "verdict": "agree",
+    "disagreements": []
    }
   },
   {
-   "id": 22,
-   "ts": 1791617533.0933156,
-   "type": "state",
-   "stage": null,
-   "message": "State is now RESOLVING",
-   "payload": {
-    "state": "RESOLVING"
-   }
-  },
-  {
-   "id": 23,
-   "ts": 1791617533.0943236,
-   "type": "stage.start",
-   "stage": "resolve",
-   "message": "Coordinator is settling 1 disagreement(s)",
-   "payload": {}
-  },
-  {
-   "id": 24,
-   "ts": 1791617559.3746233,
-   "type": "resolve.decision",
-   "stage": "resolve",
-   "message": "Other scheme benefit Rs 1,499 per month, just below the limit: verifier_wrong. Both agents agree she is eligible. Rs 1,499 is below the new 'Rs 1,500 per month or more' disqualification in clause 5(4), and the rulebook uses the strict comparison other_scheme_monthly_inr < 1500. The only disagreement is the amount: the verifier expects Rs 1,500 and the rulebook returns Rs 1. That is exactly Rs 1,500 minus Rs 1,499, so the rulebook is paying a top-up (the difference) rather than the full amount. This GR of 03.07.2024 is an amending order. It changes only the rows listed in its table (A1 to A8) plus sections B to E. It does not touch the form of the benefit in the original GR of 28.06.2024. That GR provides that a woman who already gets less than Rs 1,500 a month from another government scheme is paid the difference. Section D of this GR mentions 'Rs 1,500 per month from 1 July 2024', but only to set the start date and application deadline. It does not repeal the difference-payment rule. The verifier worked from the amending document alone and assumed the full Rs 1,500. The encoder correctly left the amount rule unchanged, and its skipped note says 'the monthly benefit amount of Rs 1,500 is unchanged'. Note for maintainers: the rulebook printout shows only monthly_benefit = 1500 and not the top-up formula. That hidden formula caused this confusion, so it should be shown explicitly (e.g. amount = monthly_benefit - other_scheme_monthly_inr, citing the 28.06.2024 GR). The 28.06.2024 GR is not attached here, so the exact wording of its difference-payment clause should be checked against that GR.",
-   "payload": {
-    "decision": "verifier_wrong",
-    "explanation": "Both agents agree she is eligible. Rs 1,499 is below the new 'Rs 1,500 per month or more' disqualification in clause 5(4), and the rulebook uses the strict comparison other_scheme_monthly_inr < 1500. The only disagreement is the amount: the verifier expects Rs 1,500 and the rulebook returns Rs 1. That is exactly Rs 1,500 minus Rs 1,499, so the rulebook is paying a top-up (the difference) rather than the full amount. This GR of 03.07.2024 is an amending order. It changes only the rows listed in its table (A1 to A8) plus sections B to E. It does not touch the form of the benefit in the original GR of 28.06.2024. That GR provides that a woman who already gets less than Rs 1,500 a month from another government scheme is paid the difference. Section D of this GR mentions 'Rs 1,500 per month from 1 July 2024', but only to set the start date and application deadline. It does not repeal the difference-payment rule. The verifier worked from the amending document alone and assumed the full Rs 1,500. The encoder correctly left the amount rule unchanged, and its skipped note says 'the monthly benefit amount of Rs 1,500 is unchanged'. Note for maintainers: the rulebook printout shows only monthly_benefit = 1500 and not the top-up formula. That hidden formula caused this confusion, so it should be shown explicitly (e.g. amount = monthly_benefit - other_scheme_monthly_inr, citing the 28.06.2024 GR). The 28.06.2024 GR is not attached here, so the exact wording of its difference-payment clause should be checked against that GR.",
-    "fix_instruction": null,
-    "human_question": null,
-    "glossary_entry": "## \"शासन निर्णयामध्ये खालीलप्रमाणे सुधारणा\" (the GR is amended as follows)\nAn amending GR changes only the clauses it lists. Every other provision of the original GR stays in force, including how the benefit amount is calculated (for example, paying only the difference when another scheme already pays less than Rs 1,500). When the amending GR merely repeats an amount, as in 'दरमहा रु.१,५००/-' in its deadline clause, that does not cancel a top-up rule in the original GR.\nSource: GR 202407031335114330, opening of 'शासन निर्णय' and section ड; benefit form from GR 202406281814018230 (needs human confirmation of the exact clause).",
-    "case_name": "Other scheme benefit Rs 1,499 per month, just below the limit"
-   }
-  },
-  {
-   "id": 25,
-   "ts": 1791617559.3762348,
-   "type": "resolve.glossary",
-   "stage": "resolve",
-   "message": "Learned 1 interpretation(s) for future runs (glossary updated)",
-   "payload": {}
-  },
-  {
-   "id": 26,
-   "ts": 1791617559.3778121,
+   "id": 309,
+   "ts": 1791619539.71624,
    "type": "state",
    "stage": null,
    "message": "State is now VERIFIED",
@@ -1189,112 +1119,46 @@
    }
   },
   {
-   "id": 27,
-   "ts": 1791617559.3790061,
+   "id": 310,
+   "ts": 1791619539.7172475,
    "type": "stage.start",
    "stage": "publish",
-   "message": "Confidence 0.85; decision: human review",
+   "message": "Confidence 0.88; decision: human review",
    "payload": {
     "reasons": [
      "At least one change removes people from a scheme. Niyam never does that without a human.",
      "Structural change (condition_added, condition_changed, condition_removed), not only a number or a date.",
      "2 ambiguous clause(s) flagged during extraction.",
-     "The verifier still disagrees on some test citizens.",
-     "Confidence 0.85 is below the 0.90 needed to merge alone."
+     "Confidence 0.88 is below the 0.90 needed to merge alone."
     ]
    }
   },
   {
-   "id": 28,
-   "ts": 1791617560.7965279,
+   "id": 311,
+   "ts": 1791619541.437069,
    "type": "publish.commit",
    "stage": "publish",
-   "message": "Committed 7c0d9e1 with Entire checkpoint 01M4JBMV7QNF5X84R8Z2YTA71Q",
+   "message": "Committed 2d67c14 with Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7",
    "payload": {
-    "sha": "7c0d9e1cb6106a6710792400a3ff5f3d45814737",
-    "checkpoint": "01M4JBMV7QNF5X84R8Z2YTA71Q"
+    "sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+    "checkpoint": "01M4JDH944E4HPRCA4WKDJTFN7"
    }
   },
   {
-   "id": 29,
-   "ts": 1791617560.797179,
+   "id": 312,
+   "ts": 1791619549.5851686,
    "type": "stage.done",
    "stage": "publish",
-   "message": "Change request opened",
+   "message": "Change request opened: https://github.com/usv240/niyam-rulebook/pull/2",
    "payload": {
-    "pr_url": null,
-    "merged": false,
-    "mode": "local"
-   }
-  },
-  {
-   "id": 30,
-   "ts": 1791617560.7984378,
-   "type": "state",
-   "stage": null,
-   "message": "State is now AWAITING_HUMAN",
-   "payload": {
-    "state": "AWAITING_HUMAN"
-   }
-  },
-  {
-   "id": 31,
-   "ts": 1791617618.721927,
-   "type": "orchestrator.republish",
-   "stage": null,
-   "message": "Publishing the verified change to GitHub as a pull request",
-   "payload": {}
-  },
-  {
-   "id": 32,
-   "ts": 1791617622.69897,
-   "type": "orchestrator.resume",
-   "stage": null,
-   "message": "Resuming from state VERIFIED",
-   "payload": {}
-  },
-  {
-   "id": 33,
-   "ts": 1791617622.7009716,
-   "type": "stage.start",
-   "stage": "publish",
-   "message": "Confidence 0.85; decision: human review",
-   "payload": {
-    "reasons": [
-     "At least one change removes people from a scheme. Niyam never does that without a human.",
-     "Structural change (condition_added, condition_changed, condition_removed), not only a number or a date.",
-     "2 ambiguous clause(s) flagged during extraction.",
-     "The verifier still disagrees on some test citizens.",
-     "Confidence 0.85 is below the 0.90 needed to merge alone."
-    ]
-   }
-  },
-  {
-   "id": 34,
-   "ts": 1791617622.8141034,
-   "type": "publish.commit",
-   "stage": "publish",
-   "message": "Committed 7c0d9e1 with Entire checkpoint 01M4JBMV7QNF5X84R8Z2YTA71Q",
-   "payload": {
-    "sha": "7c0d9e1cb6106a6710792400a3ff5f3d45814737",
-    "checkpoint": "01M4JBMV7QNF5X84R8Z2YTA71Q"
-   }
-  },
-  {
-   "id": 35,
-   "ts": 1791617628.1221433,
-   "type": "stage.done",
-   "stage": "publish",
-   "message": "Change request opened: https://github.com/usv240/niyam-rulebook/pull/1",
-   "payload": {
-    "pr_url": "https://github.com/usv240/niyam-rulebook/pull/1",
+    "pr_url": "https://github.com/usv240/niyam-rulebook/pull/2",
     "merged": false,
     "mode": "github"
    }
   },
   {
-   "id": 36,
-   "ts": 1791617628.1245363,
+   "id": 313,
+   "ts": 1791619549.5952516,
    "type": "state",
    "stage": null,
    "message": "State is now AWAITING_HUMAN",
@@ -1303,9 +1167,9 @@
    }
   }
  ],
- "diff_stat": "CHANGELOG.md                                       |   7 ++\n glossary/maharashtra.md                            |   4 +\n parameters/mh/ladki_bahin/age_max.yaml             |   9 ++\n .../mh/ladki_bahin/disqualifying_govt_jobs.yaml    |   9 ++\n .../mh/ladki_bahin/eligible_marital_statuses.yaml  |   9 ++\n schemes/mh/ladki_bahin.yaml                        |  26 +++++\n sources/index.yaml                                 |  20 +++-\n sources/mh/202407031335114330.pdf                  | Bin 0 -> 292059 bytes\n tests/mh/ladki_bahin.yaml                          | 127 +++++++++++++++++++++\n 9 files changed, 208 insertions(+), 3 deletions(-)",
+ "diff_stat": "CHANGELOG.md                                       |   7 ++\n parameters/mh/ladki_bahin/age_max.yaml             |   9 ++\n .../mh/ladki_bahin/disqualifying_govt_jobs.yaml    |   9 ++\n .../mh/ladki_bahin/eligible_marital_statuses.yaml  |   9 ++\n schemes/mh/ladki_bahin.yaml                        |  25 ++++\n sources/index.yaml                                 |  20 +++-\n sources/mh/202407031335114330.pdf                  | Bin 0 -> 292059 bytes\n tests/mh/ladki_bahin.yaml                          | 133 +++++++++++++++++++++\n 8 files changed, 209 insertions(+), 3 deletions(-)",
  "diff_files": {
-  "parameters/mh/ladki_bahin/age_max.yaml": "diff --git a/parameters/mh/ladki_bahin/age_max.yaml b/parameters/mh/ladki_bahin/age_max.yaml\nindex 1014fd5..8123206 100644\n--- a/parameters/mh/ladki_bahin/age_max.yaml\n+++ b/parameters/mh/ladki_bahin/age_max.yaml\n@@ -11,3 +11,12 @@ values:\n         clause: \"4(3)\"\n         quote: \"कमाल वयाची 60 वर्ष पूर्ण होईपर्यंत\"\n         quote_en: \"Until the maximum age of 60 years is completed\"\n+  2024-07-03:\n+    value: 65\n+    metadata:\n+      reference:\n+        doc: gr-202407031335114330\n+        page: 2\n+        clause: \"4(3)\"\n+        quote: \"हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.\"\n+        quote_en: \"From completion of the minimum age of 21 years until completion of the maximum age of 65 years.\"",
-  "schemes/mh/ladki_bahin.yaml": "diff --git a/schemes/mh/ladki_bahin.yaml b/schemes/mh/ladki_bahin.yaml\nindex 42fa956..052fabd 100644\n--- a/schemes/mh/ladki_bahin.yaml\n+++ b/schemes/mh/ladki_bahin.yaml\n@@ -113,6 +113,7 @@ conditions:\n     text: \"Does not receive more than Rs {other_scheme_max_inr} a month from other government schemes\"\n     when: \"person.other_scheme_monthly_inr <= params.other_scheme_max_inr\"\n     valid_from: 2024-06-28\n+    valid_until: 2024-07-02\n     source:\n       doc: gr-202406281814018230\n       page: 2\n@@ -120,6 +121,18 @@ conditions:\n       quote: \"आर्थिक योजनेव्दारे रु.1,500/- पेक्षा जास्त लाभ घेतला असेल\"\n       quote_en: \"Has received a benefit of more than Rs 1,500 through a financial scheme\"\n \n+  - id: other_scheme_limit\n+    kind: disqualification\n+    text: \"Receives less than Rs {other_scheme_max_inr} a month from other government schemes\"\n+    when: \"person.other_scheme_monthly_inr < params.other_scheme_max_inr\"\n+    valid_from: 2024-07-03\n+    source:\n+      doc: gr-202407031335114330\n+      page: 2\n+      clause: \"5(4)\"\n+      quote: \"दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.\"\n+      quote_en: \"is receiving a benefit of Rs 1,500/- per month or more than that.\"\n+\n   - id: no_mp_mla\n     kind: disqualification\n     text: No family member is a current or former MP or MLA\n@@ -149,6 +162,7 @@ conditions:\n     text: \"The family does not jointly own more than {farm_land_max_acres} acres of farm land\"\n     when: \"person.family_farm_land_acres <= params.farm_land_max_acres\"\n     valid_from: 2024-06-28\n+    valid_until: 2024-07-02\n     source:\n       doc: gr-202406281814018230\n       page: 2\n@@ -156,6 +170,18 @@ conditions:\n       quote: \"ज्यांच्या कुटुंबातील सदस्यांची संयुक्तपणे पाच एकरपेक्षा जास्त शेतजमीन आहे\"\n       quote_en: \"Whose family members jointly own more than five acres of farm land\"\n \n+  - id: one_unmarried_per_family\n+    kind: disqualification\n+    text: Only one unmarried woman per family receives the benefit\n+    when: \"person.marital_status != 'unmarried' or not person.other_unmarried_beneficiary_in_family\"\n+    valid_from: 2024-07-03\n+    source:\n+      doc: gr-202407031335114330\n+      page: 2\n+      clause: \"4(2)\"\n+      quote: \"तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.\"\n+      quote_en: \"as well as only one unmarried woman from that family.\"\n+\n   - id: no_four_wheeler\n     kind: disqualification\n     text: No four-wheeler (other than a tractor) is registered to a family member"
+  "parameters/mh/ladki_bahin/age_max.yaml": "diff --git a/parameters/mh/ladki_bahin/age_max.yaml b/parameters/mh/ladki_bahin/age_max.yaml\nindex 1014fd5..0f39ad1 100644\n--- a/parameters/mh/ladki_bahin/age_max.yaml\n+++ b/parameters/mh/ladki_bahin/age_max.yaml\n@@ -11,3 +11,12 @@ values:\n         clause: \"4(3)\"\n         quote: \"कमाल वयाची 60 वर्ष पूर्ण होईपर्यंत\"\n         quote_en: \"Until the maximum age of 60 years is completed\"\n+  2024-07-03:\n+    value: 65\n+    metadata:\n+      reference:\n+        doc: gr-202407031335114330\n+        page: 2\n+        clause: \"4(3)\"\n+        quote: \"किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.\"\n+        quote_en: \"Sr. No. (3) Minimum age 21 years completed and maximum age until 65 years are completed.\"",
+  "schemes/mh/ladki_bahin.yaml": "diff --git a/schemes/mh/ladki_bahin.yaml b/schemes/mh/ladki_bahin.yaml\nindex 3ecbe01..bcb306f 100644\n--- a/schemes/mh/ladki_bahin.yaml\n+++ b/schemes/mh/ladki_bahin.yaml\n@@ -113,6 +113,7 @@ conditions:\n     text: \"Does not receive more than Rs {other_scheme_max_inr} a month from other government schemes\"\n     when: \"person.other_scheme_monthly_inr <= params.other_scheme_max_inr\"\n     valid_from: 2024-06-28\n+    valid_until: 2024-07-02\n     source:\n       doc: gr-202406281814018230\n       page: 2\n@@ -120,6 +121,29 @@ conditions:\n       quote: \"आर्थिक योजनेव्दारे रु.1,500/- पेक्षा जास्त लाभ घेतला असेल\"\n       quote_en: \"Has received a benefit of more than Rs 1,500 through a financial scheme\"\n \n+  - id: other_scheme_limit\n+    kind: disqualification\n+    text: \"Receives less than Rs {other_scheme_max_inr} a month from other government schemes\"\n+    when: \"person.other_scheme_monthly_inr < params.other_scheme_max_inr\"\n+    valid_from: 2024-07-03\n+    source:\n+      doc: gr-202407031335114330\n+      page: 2\n+      clause: \"5(4)\"\n+      quote: \"दरमहा रु.१,५००/- किंवा त्यापेक्षा जास्त रक्कमेचा लाभ घेत असेल.\"\n+      quote_en: \"is receiving a benefit of Rs 1,500 per month or more than that.\"\n+\n+  - id: unmarried_one_per_family\n+    text: Only one unmarried woman per family receives the benefit\n+    when: \"not (person.marital_status == 'unmarried' and person.other_unmarried_beneficiary_in_family)\"\n+    valid_from: 2024-07-03\n+    source:\n+      doc: gr-202407031335114330\n+      page: 2\n+      clause: \"4(2)\"\n+      quote: \"महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.\"\n+      quote_en: \"women as well as only one unmarried woman from that family.\"\n+\n   - id: no_mp_mla\n     kind: disqualification\n     text: No family member is a current or former MP or MLA\n@@ -149,6 +173,7 @@ conditions:\n     text: \"The family does not jointly own more than {farm_land_max_acres} acres of farm land\"\n     when: \"person.family_farm_land_acres <= params.farm_land_max_acres\"\n     valid_from: 2024-06-28\n+    valid_until: 2024-07-02\n     source:\n       doc: gr-202406281814018230\n       page: 2"
  }
 }

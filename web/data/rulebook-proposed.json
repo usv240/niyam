@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10T07:53:31.091574+00:00",
+ "generated_at": "2026-10-10T08:06:58.203963+00:00",
  "sources": {
   "gr-202406281814018230": {
    "kind": "government_resolution",
@@ -153,8 +153,8 @@
      "doc": "gr-202406281814018230",
      "page": 2,
      "clause": "2",
-     "quote": "दरमहा रु.1,500/- इतकी रक्कम दिली जाईल",
-     "quote_en": "An amount of Rs 1,500 per month will be given"
+     "quote": "दरमहा रु.1,500/- इतकी रक्कम दिली जाईल. तसेच केंद्र/राज्य शासनाच्या अन्य आर्थिक लाभाच्या योजनेव्दारे रु.1,500/- पेक्षा कमी लाभ घेत असेल तर फरकाची रक्कम या योजनेव्दारे पात्र महिलेस देण्यात येईल",
+     "quote_en": "An amount of Rs 1,500 per month will be given. If she receives less than Rs 1,500 through another financial scheme of the central or state government, the difference will be paid to the eligible woman through this scheme"
     }
    },
    "conditions": [
@@ -302,8 +302,23 @@
       "doc": "gr-202407031335114330",
       "page": 2,
       "clause": "5(4)",
-      "quote": "दरमहा रु.1,500/- ककवा त्यापेक्षा जास्त रक्तकमेचा लाभ घेत असेल.",
-      "quote_en": "is receiving a benefit of Rs 1,500/- per month or more than that."
+      "quote": "दरमहा रु.१,५००/- किंवा त्यापेक्षा जास्त रक्कमेचा लाभ घेत असेल.",
+      "quote_en": "is receiving a benefit of Rs 1,500 per month or more than that."
+     },
+     "valid_from": "2024-07-03",
+     "valid_until": null
+    },
+    {
+     "id": "unmarried_one_per_family",
+     "text": "Only one unmarried woman per family receives the benefit",
+     "when": "not (person.marital_status == 'unmarried' and person.other_unmarried_beneficiary_in_family)",
+     "kind": "eligibility",
+     "source": {
+      "doc": "gr-202407031335114330",
+      "page": 2,
+      "clause": "4(2)",
+      "quote": "महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+      "quote_en": "women as well as only one unmarried woman from that family."
      },
      "valid_from": "2024-07-03",
      "valid_until": null
@@ -354,21 +369,6 @@
      "valid_until": "2024-07-02"
     },
     {
-     "id": "one_unmarried_per_family",
-     "text": "Only one unmarried woman per family receives the benefit",
-     "when": "person.marital_status != 'unmarried' or not person.other_unmarried_beneficiary_in_family",
-     "kind": "disqualification",
-     "source": {
-      "doc": "gr-202407031335114330",
-      "page": 2,
-      "clause": "4(2)",
-      "quote": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-      "quote_en": "as well as only one unmarried woman from that family."
-     },
-     "valid_from": "2024-07-03",
-     "valid_until": null
-    },
-    {
      "id": "no_four_wheeler",
      "text": "No four-wheeler (other than a tractor) is registered to a family member",
      "when": "not person.family_four_wheeler",
@@ -407,8 +407,8 @@
         "doc": "gr-202407031335114330",
         "page": 2,
         "clause": "4(3)",
-        "quote": "हकमान वयाची 21 वषे पूणण व कमाल वयाची 65 वषण पूणण होईपयंत.",
-        "quote_en": "From completion of the minimum age of 21 years until completion of the maximum age of 65 years."
+        "quote": "किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.",
+        "quote_en": "Sr. No. (3) Minimum age 21 years completed and maximum age until 65 years are completed."
        }
       }
      ]
@@ -459,8 +459,8 @@
         "doc": "gr-202407031335114330",
         "page": 2,
         "clause": "5(3)",
-        "quote": "रु.2.50 लाखापयंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कायणरत असलेले कमणचारी, स्वयंसेवी कामगार आहण कं त्राटी कमणचारी पात्र ठरतील.",
-        "quote_en": "Employees working through outside agencies, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
+        "quote": "तथापि, रु.२.५० लाखापर्यंत उत्पन्न असलेले बाह्य यंत्रणाद्वारे कार्यरत असलेले कर्मचारी, स्वयंसेवी कामगार आणि कंत्राटी कर्मचारी पात्र ठरतील.",
+        "quote_en": "However, outsourced employees, volunteer workers and contract employees with income up to Rs 2.50 lakh will be eligible."
        }
       }
      ]
@@ -500,8 +500,8 @@
         "doc": "gr-202407031335114330",
         "page": 2,
         "clause": "4(2)",
-        "quote": "तसेच त्या कु टूंबातील के वळ एक अहववाहहत महहला.",
-        "quote_en": "as well as only one unmarried woman from that family."
+        "quote": "अ.क्र. (२) राज्यातील विवाहित, विधवा, घटस्फोटित, परित्यक्त्या आणि निराधार महिला तसेच त्या कुटूंबातील केवळ एक अविवाहित महिला.",
+        "quote_en": "Sr. No. (2) Married, widowed, divorced, abandoned and destitute women of the state, as well as only one unmarried woman from that family."
        }
       }
      ]

@@ -78,7 +78,7 @@ export function DemoPlayer({ job }: { job: Showcase }) {
       <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
         <section aria-label="Event timeline" className="rounded-2xl border border-border bg-surface p-4">
           <h3 className="mb-3 flex items-center gap-2 font-semibold">Timeline <Info id="trace" /></h3>
-          <ol className="max-h-[34rem] space-y-2 overflow-y-auto pr-1">
+          <ol tabIndex={0} aria-label="Run events" className="max-h-[34rem] space-y-2 overflow-y-auto pr-1">
             {shown.length === 0 && <li className="text-sm text-muted">Nothing yet.</li>}
             {shown.map((e) => (
               <li key={e.id} className="rounded-xl border border-border bg-bg p-3 text-sm">
@@ -135,7 +135,7 @@ export function DemoPlayer({ job }: { job: Showcase }) {
                 {Object.entries(job.diff_files || {}).map(([f, d]) => d && (
                   <div key={f}>
                     <p className="mb-1 font-mono text-xs text-muted">{f}</p>
-                    <pre className="max-h-80 overflow-auto rounded-xl border border-border bg-bg p-3 font-mono text-[12px] leading-5">
+                    <pre tabIndex={0} aria-label="Code change" className="max-h-80 overflow-auto rounded-xl border border-border bg-bg p-3 font-mono text-[12px] leading-5">
                       {d.split("\n").filter((l) => !l.startsWith("diff --git") && !l.startsWith("index ")).map((l, k) => (
                         <span key={k} className={`block ${l.startsWith("+") && !l.startsWith("+++") ? "bg-success-soft text-success" : l.startsWith("-") && !l.startsWith("---") ? "bg-danger-soft text-danger" : "text-muted"}`}>{l || " "}</span>
                       ))}

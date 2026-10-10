@@ -107,5 +107,5 @@ export function Kbd({ children }: { children: React.ReactNode }) {
 }
 
 export function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return <a href={href} target="_blank" rel="noreferrer" className="font-medium text-accent underline-offset-2 hover:underline">{children}</a>;
+  return <a href={href} target="_blank" rel="noreferrer" className="font-medium text-accent underline decoration-accent/50 underline-offset-2 hover:decoration-accent">{children}</a>;
 }

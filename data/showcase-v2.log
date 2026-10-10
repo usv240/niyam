@@ -6,3 +6,24 @@
 [job_20261010_bd059543] state: State is now EXTRACTED
 [job_20261010_bd059543] stage.start: Coding agent is updating the rulebook and writing tests
 [job_20261010_bd059543] encode.attempt: Coding agent attempt 1
+[job_20261010_bd059543] encode.tests_passed: Tests pass: 46 passed, 0 failed
+[job_20261010_bd059543] stage.done: Rulebook updated in 1 attempt(s); 46 tests pass
+[job_20261010_bd059543] state: State is now ENCODED
+[job_20261010_bd059543] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_bd059543] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_bd059543] state: State is now VERIFIED
+[job_20261010_bd059543] stage.start: Confidence 0.88; decision: human review
+[job_20261010_bd059543] publish.commit: Committed 2d67c14 with Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7
+[job_20261010_bd059543] stage.done: Change request opened: https://github.com/usv240/niyam-rulebook/pull/2
+[job_20261010_bd059543] state: State is now AWAITING_HUMAN
+{
+  "id": "job_20261010_bd059543",
+  "state": "AWAITING_HUMAN",
+  "confidence": 0.878,
+  "autonomy_decision": "human_review",
+  "pr_url": "https://github.com/usv240/niyam-rulebook/pull/2",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "trace_id": "145b0f0f3bfc50c70c940a90a406f5bc",
+  "cost_usd": 0.692289
+}
+2026-10-10 04:05:49 - neatlogs - INFO - Neatlogs SDK shutdown complete

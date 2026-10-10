@@ -240,7 +240,7 @@ export default function Home() {
 
       {/* Developers teaser */}
       <Section id="developers" eyebrow="For developers" title="Eligibility with sources, in one call" intro={<>Free API keys, a live event stream for agent runs, and an MCP server for AI assistants. <Info id="api-key" /></>}>
-        <pre className="overflow-x-auto rounded-2xl border border-border bg-surface p-5 font-mono text-[13px] leading-6">
+        <pre tabIndex={0} aria-label="Code example" className="overflow-x-auto rounded-2xl border border-border bg-surface p-5 font-mono text-[13px] leading-6">
 {`curl -X POST $NIYAM_API/api/v1/eligibility \\
   -H "Authorization: Bearer $NIYAM_KEY" \\
   -d '{"age": 34, "gender": "female", "annual_family_income": 240000}'`}
@@ -264,7 +264,7 @@ export default function Home() {
             </details>
           ))}
         </div>
-        <p className="mt-6 text-sm text-muted">More in <Link href="/learn/" className="text-accent hover:underline">Learn</Link>, written for people with no technical background. Evidence for judges is on <Link href="/judges/" className="text-accent hover:underline">one page</Link>.</p>
+        <p className="mt-6 text-sm text-muted">More in <Link href="/learn/" className="text-accent underline underline-offset-2">Learn</Link>, written for people with no technical background. Evidence for judges is on <Link href="/judges/" className="text-accent underline underline-offset-2">one page</Link>.</p>
       </Section>
 
       {/* References */}

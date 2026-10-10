@@ -1,8 +1,22 @@
 {
- "generated_at": "2026-10-10T03:53:31",
- "showcase_job": "job_20261010_8b7a02ea",
+ "generated_at": "2026-10-10T04:06:58",
+ "showcase_job": "job_20261010_bd059543",
  "rulebook_main_sha": "9b5ce1dc5406d627a311051f45ff8f88ae776ae9",
  "published": [
+  {
+   "id": "job_20261010_bd059543",
+   "state": "AWAITING_HUMAN",
+   "pr_url": "https://github.com/usv240/niyam-rulebook/pull/2",
+   "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+   "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+   "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+   "trace_id": "145b0f0f3bfc50c70c940a90a406f5bc",
+   "confidence": 0.878,
+   "decision": "human_review",
+   "cost_usd": 0.6923,
+   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana",
+   "doc_code": "202407031335114330"
+  },
   {
    "id": "job_20261010_8b7a02ea",
    "state": "AWAITING_HUMAN",
@@ -14,8 +28,9 @@
    "confidence": 0.852,
    "decision": "human_review",
    "cost_usd": 0.8551,
-   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana"
+   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana",
+   "doc_code": "202407031335114330"
   }
  ],
- "niyam_head": "d5592eb4ce70d6e0fe97370466252a760511829f"
+ "niyam_head": "f59fb2e4fb5c6d3b6f4b1aae27d8294331e2e96f"
 }

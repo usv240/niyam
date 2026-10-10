@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "content-lint": "node scripts/content-lint.mjs",
+    "data": "cd .. && agent/.venv/Scripts/python.exe scripts/export_site_data.py"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.2.0",

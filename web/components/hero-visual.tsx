@@ -13,7 +13,7 @@ export function HeroVisual() {
     const t = setInterval(() => setStep((s) => (s + 1) % 4), 1800);
     return () => clearInterval(t);
   }, []);
-  const lit = (n: number) => (step >= n ? "opacity-100 translate-y-0" : "opacity-40 translate-y-1");
+  const lit = (n: number) => (step === n ? "ring-2 ring-accent/60 -translate-y-0.5" : "ring-0 translate-y-0");
   return (
     <div className="relative rounded-3xl border border-border bg-surface p-4 shadow-pop sm:p-6" aria-label="How a government order becomes a verified rule">
       <div className={`rounded-2xl border border-border bg-bg p-4 transition duration-500 ${lit(0)}`}>
@@ -31,7 +31,7 @@ export function HeroVisual() {
         </p>
         <p className="text-muted">  2024-06-28: value: 60</p>
         <p className="rounded bg-success-soft px-1 text-success">+ 2024-07-03: value: 65</p>
-        <p className="text-success/80">+   reference: GR 202407031335114330, p.2</p>
+        <p className="text-success">+   reference: GR 202407031335114330, p.2</p>
       </div>
       <div className={`mt-3 flex items-center justify-between gap-3 rounded-2xl border border-success/30 bg-success-soft p-4 transition duration-500 ${lit(2)}`}>
         <p className="flex items-center gap-2 text-sm font-semibold text-success">

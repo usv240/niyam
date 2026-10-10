@@ -6,7 +6,7 @@ export const SITE = {
   repo: "https://github.com/usv240/niyam",
   rulebookRepo: "https://github.com/usv240/niyam-rulebook",
   rulebookSlug: "usv240/niyam-rulebook",
-  firstPr: "https://github.com/usv240/niyam-rulebook/pull/1",
+  firstPr: "https://github.com/usv240/niyam-rulebook/pull/2",
   video: "",
   businessPlan: "https://github.com/usv240/niyam/tree/main/business",
   buildLog: "https://github.com/usv240/niyam/blob/main/hackathon.md",

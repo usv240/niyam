@@ -123,7 +123,7 @@ export function Explorer() {
           ))}
         </ul>
         {showCode && (
-          <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-surface p-4">
+          <div tabIndex={0} role="region" aria-label="Scrollable table" className="mt-4 overflow-x-auto rounded-2xl border border-border bg-surface p-4">
             <p className="mb-2 text-sm font-semibold">Parameters on {date}</p>
             <table className="w-full text-sm">
               <tbody>

@@ -15,7 +15,7 @@ export function Info({ id, className = "" }: { id: string; className?: string })
         <button
           type="button"
           aria-label={`More about ${e.title}`}
-          className={`info-btn relative inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-info/40 bg-info-soft align-middle font-serif text-[12px] font-semibold italic leading-none text-info transition hover:scale-105 hover:border-info ${className}`}
+          className={`info-btn relative inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-info/40 bg-info-soft align-middle font-serif text-[12px] font-semibold italic leading-none text-info transition hover:scale-105 hover:border-info ${className}`}
         >
           i
         </button>

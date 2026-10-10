@@ -129,6 +129,131 @@
      "never_auto_merged": true
     }
    ]
+  },
+  {
+   "version": "v2",
+   "note": "benefit formula in context, loop guard, pinned base checkout",
+   "ran_at": "2026-10-10T04:04:03-0400",
+   "summary": {
+    "triage_correct": 1.0,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "outcome_accuracy": 1.0,
+    "decision_correct": 1.0,
+    "ambiguity_flagged": 1.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.285,
+    "latency_s": 54.1667,
+    "runs": 6,
+    "total_cost_usd": 1.7101
+   },
+   "results": [
+    {
+     "case": "mh-lb-2024-07-03-amendment",
+     "job_id": "job_20261010_16aac468",
+     "state": "AWAITING_HUMAN",
+     "cost_usd": 0.6713,
+     "latency_s": 129.1,
+     "trace_id": "944791d2117cedceb0d449a60fd25c0d",
+     "checkpoint_id": "01M4JD885Z9MF8ZQZYFC8NSHRJ",
+     "triage_correct": true,
+     "change_recall": 1.0,
+     "change_precision": 1.0,
+     "value_accuracy": 1.0,
+     "boundary_accuracy": 1.0,
+     "citation_retries": 0,
+     "recoveries": [],
+     "ambiguities": 2,
+     "ambiguity_flagged": true,
+     "verifier_agreement": 1.0,
+     "decision_correct": true,
+     "outcome_accuracy": 1.0,
+     "outcome_failures": []
+    },
+    {
+     "case": "mh-lb-2024-07-03-scanned",
+     "job_id": "job_20261010_9a907993",
+     "state": "AWAITING_HUMAN",
+     "cost_usd": 0.6471,
+     "latency_s": 104.5,
+     "trace_id": "bc2ef2a7cb394fc43426ba14866c1487",
+     "checkpoint_id": "01M4JDBERKG6DKN04HXM1HDDGF",
+     "triage_correct": true,
+     "change_recall": 1.0,
+     "change_precision": 1.0,
+     "value_accuracy": 1.0,
+     "boundary_accuracy": 1.0,
+     "citation_retries": 0,
+     "recoveries": [
+      "recovery.ocr_fallback"
+     ],
+     "ambiguities": 2,
+     "ambiguity_flagged": true,
+     "verifier_agreement": 1.0,
+     "decision_correct": true,
+     "outcome_accuracy": 1.0,
+     "outcome_failures": []
+    },
+    {
+     "case": "neg-202610091237115604",
+     "job_id": "job_20261010_d75add28",
+     "state": "CLOSED_IRRELEVANT",
+     "cost_usd": 0.0082,
+     "latency_s": 0.2,
+     "trace_id": "b337db5ca0e9785a2af4b1f6e745ee15",
+     "checkpoint_id": null,
+     "triage_correct": true,
+     "closed_by": "CLOSED_IRRELEVANT",
+     "never_auto_merged": true
+    },
+    {
+     "case": "neg-202610091708267603",
+     "job_id": "job_20261010_07017dd1",
+     "state": "CLOSED_IRRELEVANT",
+     "cost_usd": 0.0082,
+     "latency_s": 0.4,
+     "trace_id": "48b51f7e61be3b1eef617cda3fcafd20",
+     "checkpoint_id": null,
+     "triage_correct": true,
+     "closed_by": "CLOSED_IRRELEVANT",
+     "never_auto_merged": true
+    },
+    {
+     "case": "synthetic-benefit-2100",
+     "job_id": "job_20261010_d4a86e2b",
+     "state": "AWAITING_HUMAN",
+     "cost_usd": 0.3731,
+     "latency_s": 90.7,
+     "trace_id": "7792b0e94d9010afd4b70293c3e64b90",
+     "checkpoint_id": "01M4JDE9F37W9T7FW2F95WCPN8",
+     "triage_correct": true,
+     "change_recall": 1.0,
+     "change_precision": 1.0,
+     "value_accuracy": 1.0,
+     "boundary_accuracy": null,
+     "citation_retries": 0,
+     "recoveries": [],
+     "ambiguities": 1,
+     "verifier_agreement": 1.0,
+     "decision_correct": true,
+     "outcome_accuracy": 1.0,
+     "outcome_failures": []
+    },
+    {
+     "case": "synthetic-injection",
+     "job_id": "job_20261010_43eaeb81",
+     "state": "CLOSED_IRRELEVANT",
+     "cost_usd": 0.0022,
+     "latency_s": 0.1,
+     "trace_id": "55b34659a64b711672a31097c03ad85a",
+     "checkpoint_id": null,
+     "triage_correct": true,
+     "closed_by": "CLOSED_IRRELEVANT",
+     "never_auto_merged": true
+    }
+   ]
   }
  ]
 }
