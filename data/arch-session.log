@@ -1,0 +1,29 @@
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(grep -rnoE "fetch\\\(['\\"\\`][^\)]*" src/client/) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(tar --exclude='.venv' --exclude='.git' --exclude='__pycache__' --exclude='*.pyc' --exclude='.pytest_cache' --exclude='seed/__pycache__' -czf /tmp/quorum_bundle.tgz .) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(tar --exclude='.venv' --exclude='.git' --exclude='__pycache__' --exclude='*.pyc' --exclude='.pytest_cache' --exclude='seed/__pycache__' --exclude='watch/__pycache__' --exclude='*/__pycache__' -czf /tmp/qb.tgz .) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(sed -e 's/\\x1b\\[[0-9;]*m//g' "C:\\Users\\ujwal\\AppData\\Local\\Temp\\claude\\c--Hackathons-Clickhouse\\ad1fa7d0-01e7-4855-b811-847e9a36e519\\tasks\\b2gfjc23g.output" 2>&1 | tail -35) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(grep -oiE "<td[^>]*>[^<]{5,60}</td>" /tmp/voa.html) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(sed -e 's/\\x1b\\[[0-9;]*m//g' "C:\\Users\\ujwal\\AppData\\Local\\Temp\\claude\\c--Hackathons-Clickhouse\\ad1fa7d0-01e7-4855-b811-847e9a36e519\\tasks\\b08rqsrw3.output") has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(grep -viE "^\\S+:[0-9]+:\\s*\(/\\*| \\*\)") has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (C:\Users\ujwal\.claude\settings.json): Bash(grep -cE '^\\s*end\\s*$' README.md) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+I wrote `docs/ARCHITECTURE.md`. It has no emojis, em dashes or en dashes (I grepped for the dashes). I didn't run git or any tests, and I didn't read `db.py`, `serve.py` or the rulebook repo's `docs/FORMAT.md`. The guide cites `FORMAT.md` only through the encoder prompt, and its "add a state" step about changing the `db.py` schema is a guess.
+
+The guide covers the nine sections you listed, in this order:
+- an overview diagram in a text code block, plus a table mapping each file to its role
+- the state machine, with every working and terminal state
+- each stage (watch, triage, extract, encode, verify, resolve, publish), with inputs, outputs, model and failure handling, and the shared model layer
+- a table of every neatlogs span
+- how Entire checkpoints are produced
+- the trust policy (confidence formula and decision rules)
+- the public API
+- the MCP server
+- how to add a scheme and a state, with a short note on adding a model-calling stage
+
+While reading the code I found things a new contributor would trip over, and the guide states them plainly:
+- **Encoder separation:** the encoder prompt is built from the validated change set, not the raw PDF text. But `register_source` copies the PDF into the worktree and the Read tool is allowed. The "never sees document text" line in the `encode.py` docstring is therefore a prompt-level design, not a hard barrier.
+- **Stale verdict:** the verdict is not recomputed after a resolve round. Any disagreement the verifier ever had keeps the job at `human_review` or stricter, even if the coordinator ruled the verifier wrong.
+- **No stage 3 file:** the module docstrings number the stages 0 to 7, but there is no stage 3 file.
+- **Entire checkpoints:** the agent code never writes a checkpoint itself. It relies on Entire's git hook adding an `Entire-Checkpoint:` trailer, then reads that trailer back from the commit.
+- **No neatlogs spans for the encoder:** the encoder runs as a separate Claude Code process, so its model calls are not inside the Niyam trace. Only its attempts, test count and cost are attached to the `stage.encode` span.
+- **Glossary file must exist:** `_resolve` reads `glossary/maharashtra.md` without checking it exists.
+- **In-process job threads:** jobs started through the API run in daemon threads inside the API process, so a restart interrupts them.
