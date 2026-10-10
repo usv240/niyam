@@ -2,30 +2,32 @@
 # Niyam on one EC2 instance: website + API + watcher, HTTPS via Caddy and sslip.io.
 #
 # Paste this whole file into "User data" when launching the instance
-# (Ubuntu 24.04, t3.small, us-east-1, Hackathon_VPC, 20 GB gp3,
+# (Ubuntu 24.04, t3.small, us-east-1, Hackathon_VPC, 20 GB gp3, a key pair,
 #  security group: 22 from your IP, 80 and 443 from anywhere).
-# It contains no secrets. After boot, connect with EC2 Instance Connect and run:
+# It contains no secrets. After boot, SSH in (or use EC2 Instance Connect if your account allows it) and run:
 #     sudo niyam-setup
 # which asks for your keys (hidden input) and starts everything.
 set -euxo pipefail
 exec > /var/log/niyam-bootstrap.log 2>&1
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -y
-apt-get install -y git python3.12 python3.12-venv curl gnupg debian-keyring debian-archive-keyring apt-transport-https gh
+# First boot: Ubuntu's own updater may hold the package lock for a few minutes. Wait instead of failing.
+APT="apt-get -o DPkg::Lock::Timeout=900 -y"
+$APT update
+$APT install git python3.12 python3.12-venv curl gnupg debian-keyring debian-archive-keyring apt-transport-https
+$APT install gh || echo "gh not available; pull requests from the server stay optional"
 
 # 2 GB swap so the website build fits in a t3.small's memory
 if [ ! -f /swapfile ]; then fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo '/swapfile none swap sw 0 0' >> /etc/fstab; fi
 
 # Node 22 (website build, Claude Code)
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-apt-get install -y nodejs
+$APT install nodejs
 npm install -g @anthropic-ai/claude-code
 
-# Caddy (HTTPS with automatic certificates)
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' > /etc/apt/sources.list.d/caddy-stable.list
-apt-get update -y && apt-get install -y caddy
+# Caddy (HTTPS with automatic certificates), from Ubuntu's own repository.
+# (Its upstream package host started returning "402 Payment Required" on 2026-10-10.)
+$APT install caddy
 
 # Code, as the ubuntu user
 sudo -iu ubuntu bash <<'EOS'

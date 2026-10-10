@@ -18,3 +18,5 @@ niyam-rulebook/
 
 # demo video build output (large files; upload the final mp4 instead)
 video/out/
+nul
+data/aws-*.txt
