@@ -2,13 +2,13 @@ import { evals, pct, usd } from "@/lib/data";
 import { Info } from "./info";
 
 const ROWS: { key: string; label: string; kind: "pct" | "usd"; better: "up" | "down"; info?: string }[] = [
+  { key: "decision_correct", label: "Correct choice to act alone or ask a human", kind: "pct", better: "up", info: "autonomy" },
+  { key: "cost_usd", label: "Average cost per document", kind: "usd", better: "down" },
+  { key: "outcome_accuracy", label: "Test citizens get the right answer", kind: "pct", better: "up" },
+  { key: "verifier_agreement", label: "Independent verifier agrees", kind: "pct", better: "up", info: "verifier-agreement" },
   { key: "change_recall", label: "Changes found", kind: "pct", better: "up" },
   { key: "value_accuracy", label: "New values exactly right", kind: "pct", better: "up" },
   { key: "boundary_accuracy", label: "Limits read correctly (more than vs or more)", kind: "pct", better: "up", info: "boundary" },
-  { key: "outcome_accuracy", label: "Test citizens get the right answer", kind: "pct", better: "up" },
-  { key: "decision_correct", label: "Correct choice to act alone or ask a human", kind: "pct", better: "up", info: "autonomy" },
-  { key: "verifier_agreement", label: "Independent verifier agrees", kind: "pct", better: "up", info: "verifier-agreement" },
-  { key: "cost_usd", label: "Average cost per document", kind: "usd", better: "down" },
 ];
 
 // Before/after bars from evals/results/*.json. Numbers are measured, never typed in.
