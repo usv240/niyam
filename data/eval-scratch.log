@@ -1,0 +1,7 @@
+
+=== mh-lb-2024-06-28-from-scratch (run 1/1) ===
+[job_20261010_d7619dd2] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d7619dd2] triage.new_scheme: This order creates a scheme the rulebook does not have yet: mh.ladki_bahin
+[job_20261010_d7619dd2] stage.done: Relevant: This Government Resolution establishes a new welfare scheme providing monthly cash transfers of Rs 1,500 to eligible women aged 21-60 in Maharashtra, with detailed eligibility criteria and implementation procedures.
+[job_20261010_d7619dd2] state: State is now TRIAGED
+[job_20261010_d7619dd2] stage.start: Finding and quoting the clauses that change eligibility

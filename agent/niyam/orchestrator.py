@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import re
 import shutil
 import time
 import traceback
@@ -147,9 +148,13 @@ class Run:
         with llm.span("stage.triage", kind="AGENT") as s:
             self.event("stage.start", "Reading the opening pages to see if this document matters", stage="triage")
             doc = read_pdf(self.pdf)
-            t = triage.run(doc, self.pdf, self.doc.get("title") or "")
-            known = set(rulebook.scheme_ids())
+            t = triage.run(doc, self.pdf, self.doc.get("title") or "", root=self._base())
+            known = set(rulebook.scheme_ids(self._base()))
             t.scheme_ids = [x for x in t.scheme_ids if x in known]
+            if (t.relevant and t.document_kind == "new_scheme" and t.new_scheme_id and t.new_scheme_id not in known
+                    and re.fullmatch(r"mh\.[a-z0-9_]{3,40}", t.new_scheme_id)):
+                t.scheme_ids.append(t.new_scheme_id)
+                self.event("triage.new_scheme", f"This order creates a scheme the rulebook does not have yet: {t.new_scheme_id}", stage="triage")
             llm.set_attr(s, "niyam.relevant", t.relevant)
             llm.set_attr(s, "niyam.schemes", ",".join(t.scheme_ids))
         self.event("stage.done", f"{'Relevant' if t.relevant else 'Not relevant'}: {t.reason}", stage="triage",

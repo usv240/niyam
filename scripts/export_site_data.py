@@ -119,6 +119,10 @@ def main() -> int:
         (OUT / "showcase.json").write_text(json.dumps(showcase, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
 
     (OUT / "evals.json").write_text(json.dumps(api.evals(), ensure_ascii=False, indent=1), encoding="utf-8")
+    extra = {}
+    for f in sorted((ROOT / "evals" / "results" / "extra").glob("*.json")):
+        extra[f.stem] = json.loads(f.read_text(encoding="utf-8"))
+    (OUT / "evals-extra.json").write_text(json.dumps(extra, ensure_ascii=False, indent=1), encoding="utf-8")
 
     published = [api._job_public(db.job(r["id"])) for r in db.rows(
         "SELECT id FROM jobs WHERE pr_url IS NOT NULL AND eval_case IS NULL ORDER BY finished_at DESC")]

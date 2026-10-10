@@ -1,0 +1,78 @@
+
+=== mh-lb-2024-07-03-amendment (run 1/3) ===
+[job_20261010_046fd169] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_046fd169] stage.done: Relevant: This amendment modifies eligibility criteria including age limit (60 to 65 years), inclusion of unmarried women in families, income threshold for contractual employees (up to Rs 2.50 lakh), agricultural land holding criteria, and required documentation for the scheme.
+[job_20261010_046fd169] state: State is now TRIAGED
+[job_20261010_046fd169] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_046fd169] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_046fd169] state: State is now EXTRACTED
+[job_20261010_046fd169] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_046fd169] encode.attempt: Coding agent attempt 1
+[job_20261010_046fd169] encode.tests_passed: Tests pass: 45 passed, 0 failed
+[job_20261010_046fd169] stage.done: Rulebook updated in 1 attempt(s); 45 tests pass
+[job_20261010_046fd169] state: State is now ENCODED
+[job_20261010_046fd169] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_046fd169] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_046fd169] state: State is now VERIFIED
+[job_20261010_046fd169] stage.start: Confidence 0.88; decision: human review
+[job_20261010_046fd169] publish.commit: Committed c5495b7 with Entire checkpoint 01M4JF9ZR5X0BSRKQ498YBV42P
+[job_20261010_046fd169] stage.done: Change request opened
+[job_20261010_046fd169] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_046fd169", "state": "AWAITING_HUMAN", "cost_usd": 0.687, "latency_s": 65.8, "trace_id": "3f594873f7464c6c719b923413495b64", "checkpoint_id": "01M4JF9ZR5X0BSRKQ498YBV42P", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-amendment (run 2/3) ===
+[job_20261010_6950a8ad] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_6950a8ad] stage.done: Relevant: This amendment modifies eligibility criteria including age limit (60 to 65 years), inclusion of unmarried women in families, income threshold for contractual employees (up to Rs 2.50 lakh), agricultural land holding criteria, and required documentation for the scheme.
+[job_20261010_6950a8ad] state: State is now TRIAGED
+[job_20261010_6950a8ad] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_6950a8ad] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_6950a8ad] state: State is now EXTRACTED
+[job_20261010_6950a8ad] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_6950a8ad] encode.attempt: Coding agent attempt 1
+[job_20261010_6950a8ad] encode.tests_passed: Tests pass: 44 passed, 0 failed
+[job_20261010_6950a8ad] stage.done: Rulebook updated in 1 attempt(s); 44 tests pass
+[job_20261010_6950a8ad] state: State is now ENCODED
+[job_20261010_6950a8ad] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_6950a8ad] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_6950a8ad] state: State is now VERIFIED
+[job_20261010_6950a8ad] stage.start: Confidence 0.88; decision: human review
+[job_20261010_6950a8ad] publish.commit: Committed cb46cda with Entire checkpoint 01M4JFBZX2H1ZFCVVKZHXN9HQ2
+[job_20261010_6950a8ad] stage.done: Change request opened
+[job_20261010_6950a8ad] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_6950a8ad", "state": "AWAITING_HUMAN", "cost_usd": 0.689, "latency_s": 64.9, "trace_id": "bc2981f1004f24e84b4547bbb0473ee1", "checkpoint_id": "01M4JFBZX2H1ZFCVVKZHXN9HQ2", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-amendment (run 3/3) ===
+[job_20261010_d081edc0] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d081edc0] stage.done: Relevant: This amendment modifies eligibility criteria including age limit (60 to 65 years), inclusion of unmarried women in families, income threshold for contractual employees (up to Rs 2.50 lakh), agricultural land holding criteria, and required documentation for the scheme.
+[job_20261010_d081edc0] state: State is now TRIAGED
+[job_20261010_d081edc0] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_d081edc0] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_d081edc0] state: State is now EXTRACTED
+[job_20261010_d081edc0] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_d081edc0] encode.attempt: Coding agent attempt 1
+[job_20261010_d081edc0] encode.tests_passed: Tests pass: 47 passed, 0 failed
+[job_20261010_d081edc0] stage.done: Rulebook updated in 1 attempt(s); 47 tests pass
+[job_20261010_d081edc0] state: State is now ENCODED
+[job_20261010_d081edc0] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_d081edc0] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_d081edc0] state: State is now VERIFIED
+[job_20261010_d081edc0] stage.start: Confidence 0.88; decision: human review
+[job_20261010_d081edc0] publish.commit: Committed ba83830 with Entire checkpoint 01M4JFE2Z6ZSR8GBXWNNDZ3WR5
+[job_20261010_d081edc0] stage.done: Change request opened
+[job_20261010_d081edc0] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_d081edc0", "state": "AWAITING_HUMAN", "cost_usd": 0.6916, "latency_s": 68.4, "trace_id": "a6e45e3a6b8e7eb916ee86ffbb58c92b", "checkpoint_id": "01M4JFE2Z6ZSR8GBXWNNDZ3WR5", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 1/3) ===
+[job_20261010_c8299b6a] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_c8299b6a] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_c8299b6a] state: State is now TRIAGED
+[job_20261010_c8299b6a] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_c8299b6a] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_c8299b6a] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_c8299b6a] state: State is now EXTRACTED
+[job_20261010_c8299b6a] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_c8299b6a] encode.attempt: Coding agent attempt 1
+[job_20261010_c8299b6a] encode.tests_passed: Tests pass: 25 passed, 0 failed
+[job_20261010_c8299b6a] stage.done: Rulebook updated in 1 attempt(s); 25 tests pass
+[job_20261010_c8299b6a] state: State is now ENCODED
+[job_20261010_c8299b6a] stage.start: Independent verifier is writing its own test citizens from the law

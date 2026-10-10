@@ -112,6 +112,11 @@ def rules_json(scheme_id: str, on: str | None, root: Path | None = None) -> dict
 
 
 def rules_for_prompt(scheme_id: str, on: str | None, root: Path | None = None) -> str:
+    if not scheme_data(scheme_id, root):
+        return (f"Scheme {scheme_id} does not exist in the rulebook yet. This document creates it: report one scheme_created "
+                "change, then every eligibility or disqualification condition as condition_added (with new_value set to a "
+                "rule expression over person fields), every number or list as parameter_update with old_value null, and the "
+                "monthly benefit as benefit_changed.")
     r = rules_json(scheme_id, on, root)
     lines = [f"Scheme {r['id']} ({r['name']}) as of {r['as_of']}", "Parameters:"]
     for name, p in r["parameters"].items():

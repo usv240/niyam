@@ -1,0 +1,52 @@
+{
+  "version": "chaos",
+  "note": "failures injected on purpose: invalid model output, unusable text layer",
+  "ran_at": "2026-10-10T04:35:14-0400",
+  "models": {
+    "fast": "claude-haiku-4-5-20251001",
+    "main": "claude-sonnet-5-5",
+    "verify": "claude-opus-5-5"
+  },
+  "summary": {
+    "triage_correct": 1.0,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "outcome_accuracy": 1.0,
+    "decision_correct": 1.0,
+    "ambiguity_flagged": 1.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.8,
+    "latency_s": 103.1,
+    "runs": 1,
+    "total_cost_usd": 0.8
+  },
+  "results": [
+    {
+      "case": "mh-lb-2024-07-03-amendment",
+      "job_id": "job_20261010_bb97d44d",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.8,
+      "latency_s": 103.1,
+      "trace_id": "0b6546bde9a7141151e6a7a67d1131e8",
+      "checkpoint_id": "01M4JF7CE9XWNJM5J77C6AVCY1",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": 1.0,
+      "citation_retries": 0,
+      "recoveries": [
+        "recovery.json_repair",
+        "recovery.ocr_fallback"
+      ],
+      "ambiguities": 2,
+      "ambiguity_flagged": true,
+      "verifier_agreement": 1.0,
+      "decision_correct": true,
+      "outcome_accuracy": 1.0,
+      "outcome_failures": []
+    }
+  ]
+}

@@ -77,6 +77,8 @@ def score_case(case: dict, job: dict) -> dict:
         out["never_auto_merged"] = job.get("autonomy_decision") != "auto_merge"
         return out
     out["triage_correct"] = bool(triage.get("relevant")) and set(exp.get("schemes", [])) <= set(triage.get("scheme_ids", []))
+    if exp.get("answer_key"):
+        return {**out, **score_from_scratch(exp, job)}
     predicted = (job.get("changeset") or {}).get("changes", [])
     matched, values, bounds = 0, [], []
     for e in exp.get("changes", []):
@@ -121,6 +123,38 @@ def score_case(case: dict, job: dict) -> dict:
         out["outcome_failures"] = fails
     elif checks:
         out["outcome_accuracy"] = 0.0
+    return out
+
+
+def score_from_scratch(exp: dict, job: dict) -> dict:
+    """A whole scheme encoded from its founding order, scored with our hand-written test citizens."""
+    out: dict = {"new_scheme_detected": bool((job.get("triage") or {}).get("new_scheme_id"))}
+    changes = (job.get("changeset") or {}).get("changes", [])
+    created = sorted({c["scheme_id"] for c in changes})
+    out["created_scheme"] = created[0] if created else None
+    out["changes_extracted"] = len(changes)
+    if exp.get("decision_in"):
+        out["decision_correct"] = job.get("autonomy_decision") in exp["decision_in"]
+    wt = settings.work_dir / job["id"]
+    key = exp["answer_key"]
+    suite = yaml.safe_load(rulebook.git("show", f"{key['ref']}:{key['file']}", cwd=rulebook.main_path()))
+    if not created or not wt.exists():
+        out["outcome_accuracy"] = 0.0
+        return out
+    cases = [{"person": c["person"], "date": str(c["date"]), "scheme": created[0]} for c in suite["cases"]]
+    res = rulebook.simulate_batch(wt, cases)
+    ok, fails = 0, []
+    for c, r in zip(suite["cases"], res):
+        got = r["result"].get(created[0], {}) if r.get("ok") else {}
+        good = r.get("ok") and all(got.get(k) == v for k, v in c["expect"].items())
+        ok += bool(good)
+        if not good:
+            fails.append({"name": c["name"], "expected": c["expect"], "got": {k: got.get(k) for k in c["expect"]} if got else r.get("error")})
+    out["outcome_accuracy"] = ok / len(cases)
+    out["answer_key_cases"] = len(cases)
+    out["outcome_failures"] = fails
+    verdict = job.get("verdict") or {}
+    out["verifier_agreement"] = verdict.get("agreement_rate")
     return out
 
 

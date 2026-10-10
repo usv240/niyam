@@ -17,11 +17,13 @@ SYSTEM = """You screen Indian government documents (Government Resolutions, circ
 Decide whether the document changes who is eligible for, or how much is paid by, one of the covered schemes listed below.
 - relevant = true only if it changes eligibility conditions, limits, amounts, start dates, or creates or closes a covered scheme.
 - Documents only about committees, deadlines for applying, staff incentives, budgets, fund releases or required paperwork are not relevant, but still name the scheme if it is a covered one.
-- Use only scheme ids from the list. Do not guess."""
+- Use only scheme ids from the list. Do not guess.
+- If the document creates a NEW welfare scheme for individuals in Maharashtra, with eligibility conditions, that is not in the list: it is relevant. Set document_kind to new_scheme, leave scheme_ids empty, and propose new_scheme_id as mh.<snake_case_english_short_name> (for example mh.ladki_bahin for "Mukhyamantri Majhi Ladki Bahin Yojana").
+- If there are no covered schemes yet, judge every document by the rule above."""
 
 
-def run(doc: PdfText, pdf_path: Path, title_hint: str = "") -> Triage:
-    overview = rulebook.schemes_overview()
+def run(doc: PdfText, pdf_path: Path, title_hint: str = "", root: Path | None = None) -> Triage:
+    overview = rulebook.schemes_overview(root) or "(none yet: the rulebook is empty)"
     head = doc.joined(max_pages=3)
     content: list[dict] = []
     if sum(len(p) for p in doc.pages[:3]) < 300:

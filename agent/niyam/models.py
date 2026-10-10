@@ -22,6 +22,7 @@ class Triage(BaseModel):
     document_date: Optional[str] = Field(description="Date of the document as YYYY-MM-DD if stated")
     reason: str = Field(description="One sentence explaining the decision")
     confidence: float = Field(description="0 to 1")
+    new_scheme_id: Optional[str] = Field(description="Only if the document creates a new welfare scheme with eligibility rules for individuals that is not in the covered list: a proposed id mh.<snake_case_english_short_name>. Otherwise null")
 
 
 class Citation(BaseModel):

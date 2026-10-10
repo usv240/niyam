@@ -11,6 +11,7 @@ const deva = Noto_Sans_Devanagari({ subsets: ["devanagari"], weight: ["400", "50
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: { default: "Niyam: welfare rules that stay in sync with the law", template: "%s | Niyam" },
   description: SITE.description,
   openGraph: { title: "Niyam", description: SITE.description, type: "website" },

@@ -126,6 +126,11 @@ def run(wt: Path, cs: ChangeSet, pdf_path: Path, doc_meta: dict[str, Any], event
     schemes = sorted({c.scheme_id for c in cs.changes})
     prompt = TASK.format(doc_key=key, doc_code=code, doc_date=cs.document_date, effective=effective,
                          schemes=", ".join(schemes), extra="")
+    if any(c.change_type == "scheme_created" for c in cs.changes):
+        prompt += ("\nThis document creates a new scheme. Read docs/FORMAT.md first and create every file it describes: "
+                   "the scheme YAML (id exactly as in the change set), one parameter file per number or list, the test file, "
+                   "and the source entry (already registered for you). Use only person fields from schema/person.yaml; "
+                   "if the document needs a fact that is missing, add a field with a default that keeps people eligible.")
     if fix_instruction and session_id:
         prompt = ("A reviewer found a problem with your rulebook changes:\n" + fix_instruction +
                   "\n\nFix it following CLAUDE.md, add or adjust the test citizens that prove the fix, "

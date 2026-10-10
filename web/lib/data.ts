@@ -1,4 +1,5 @@
 import evalsJson from "@/data/evals.json";
+import evalsExtraJson from "@/data/evals-extra.json";
 import metaJson from "@/data/meta.json";
 import mainJson from "@/data/rulebook-main.json";
 import proposedJson from "@/data/rulebook-proposed.json";
@@ -43,6 +44,8 @@ export const provenance = provenanceJson as unknown as Record<string, LineProven
 export type EvalResult = Record<string, unknown> & { case: string; job_id: string; state: string; cost_usd: number; latency_s: number; trace_id?: string };
 export type EvalVersion = { version: string; note?: string; ran_at?: string; summary: Record<string, number>; results: EvalResult[] };
 export const evals = (evalsJson as unknown as { versions: EvalVersion[] }).versions;
+// Extra runs: failures injected on purpose ("chaos"), and repeated runs to check consistency.
+export const evalsExtra = evalsExtraJson as unknown as Record<string, EvalVersion>;
 
 export const meta = metaJson as unknown as {
   generated_at: string; showcase_job: string; rulebook_main_sha: string; niyam_head: string;

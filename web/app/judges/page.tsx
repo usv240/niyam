@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Info } from "@/components/info";
 import { Results } from "@/components/results";
 import { Badge, ButtonLink, Callout, Card, Container, ExtLink, PageHeader, Section } from "@/components/ui";
-import { evals, meta, pct, showcase, usd } from "@/lib/data";
+import { evals, evalsExtra, meta, pct, showcase, usd } from "@/lib/data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = { title: "For judges", description: "Every neatHack judging criterion mapped to evidence you can open in one click." };
@@ -30,6 +30,8 @@ const FOCUS = [
 export default function Judges() {
   const v1 = evals.find((e) => e.version === "v1");
   const v2 = evals.find((e) => e.version === "v2");
+  const chaos = evalsExtra.chaos?.results?.[0];
+  const repeat = evalsExtra.repeat;
   return (
     <>
       <PageHeader eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
@@ -63,8 +65,9 @@ export default function Judges() {
               Job <code className="font-mono">{showcase.id}</code>: {showcase.changes.length} changes, {showcase.verdict?.cases_agree} of {showcase.verdict?.cases_valid} independent checks agree, confidence {showcase.confidence?.toFixed(2)}, {usd(showcase.cost_usd)}.{" "}
               {showcase.pr_url && <ExtLink href={showcase.pr_url}>Pull request</ExtLink>}. Trace id <code className="font-mono break-all">{showcase.trace_id}</code>.
             </Ev>
-            <Ev title="Recovery from a failure">
-              A scanned copy with no text layer: Niyam detected it and transcribed the PDF (<code className="font-mono">recovery.ocr_fallback</code>), then scored 100%. A crashed run resumed from its last good state without repeating work.
+            <Ev title="Recovery from failures, injected on purpose">
+              {chaos ? <>On the real amendment with a broken model output and an unusable text layer injected on purpose, Niyam repaired the output (<code className="font-mono">recovery.json_repair</code>), transcribed the PDF (<code className="font-mono">recovery.ocr_fallback</code>) and still scored {pct(chaos.outcome_accuracy as number)} on outcomes, for {usd(chaos.cost_usd)}. Trace id <code className="font-mono break-all">{chaos.trace_id}</code>.</> : "Scanned copy recovered by transcription."}{" "}
+              A crashed run also resumed from its last good state without repeating work.
             </Ev>
             <Ev title="Verifier rejection, then a fix">
               Version 1: the verifier disagreed on one case, the coordinator sent a fix, and the traces showed the same case looping. Version 2 adds the missing context and a loop guard. Full story in the build log.
@@ -98,7 +101,7 @@ export default function Judges() {
 
         <section id="evidence" className="scroll-mt-24">
           <h2 className="mb-1 text-2xl font-semibold">Before and after, measured <Info id="eval" /></h2>
-          <p className="mb-4 text-muted">Same 6 cases for both versions. Small sample, real numbers.</p>
+          <p className="mb-4 text-muted">Same 6 cases for both versions. Small sample, real numbers.{repeat && <> Consistency check: {repeat.summary.runs} more v2 runs on the three positive cases gave outcome accuracy {pct(repeat.summary.outcome_accuracy)}, correct decisions {pct(repeat.summary.decision_correct)}, verifier agreement {pct(repeat.summary.verifier_agreement)}, at {usd(repeat.summary.cost_usd)} per document.</>}</p>
           <Card><Results /></Card>
           <div tabIndex={0} role="region" aria-label="Scrollable table" className="mt-4 overflow-x-auto rounded-2xl border border-border">
             <table className="w-full min-w-[44rem] text-left text-sm">

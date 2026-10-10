@@ -1,0 +1,40 @@
+
+=== mh-lb-2024-07-03-amendment (run 1/1) ===
+[job_20261010_bb97d44d] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_bb97d44d] recovery.json_repair: triage: injected test failure (chaos flag); asking the model to repair it
+[job_20261010_bb97d44d] stage.done: Relevant: This amendment modifies eligibility criteria including age limit (60 to 65 years), inclusion of unmarried women in families, income threshold for contractual employees (up to Rs 2.50 lakh), agricultural land holding criteria, and required documentation for the scheme.
+[job_20261010_bb97d44d] state: State is now TRIAGED
+[job_20261010_bb97d44d] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_bb97d44d] recovery.ocr_fallback: Text layer unusable (injected test failure (chaos flag)); transcribing the PDF with Claude
+[job_20261010_bb97d44d] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_bb97d44d] state: State is now EXTRACTED
+[job_20261010_bb97d44d] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_bb97d44d] encode.attempt: Coding agent attempt 1
+[job_20261010_bb97d44d] encode.tests_passed: Tests pass: 45 passed, 0 failed
+[job_20261010_bb97d44d] stage.done: Rulebook updated in 1 attempt(s); 45 tests pass
+[job_20261010_bb97d44d] state: State is now ENCODED
+[job_20261010_bb97d44d] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_bb97d44d] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_bb97d44d] state: State is now VERIFIED
+[job_20261010_bb97d44d] stage.start: Confidence 0.88; decision: human review
+[job_20261010_bb97d44d] publish.commit: Committed 93d8808 with Entire checkpoint 01M4JF7CE9XWNJM5J77C6AVCY1
+[job_20261010_bb97d44d] stage.done: Change request opened
+[job_20261010_bb97d44d] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_bb97d44d", "state": "AWAITING_HUMAN", "cost_usd": 0.8, "latency_s": 103.1, "trace_id": "0b6546bde9a7141151e6a7a67d1131e8", "checkpoint_id": "01M4JF7CE9XWNJM5J77C6AVCY1", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.json_repair", "recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 1.0,
+  "decision_correct": 1.0,
+  "ambiguity_flagged": 1.0,
+  "verifier_agreement": 1.0,
+  "cost_usd": 0.8,
+  "latency_s": 103.1,
+  "runs": 1,
+  "total_cost_usd": 0.8
+}
+2026-10-10 04:35:14 - neatlogs - INFO - Neatlogs SDK shutdown complete

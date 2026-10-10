@@ -1,0 +1,18 @@
+id: mh-lb-2024-06-28-from-scratch
+kind: real
+description: >
+  Encode a whole scheme from its founding order. Niyam starts from an empty
+  rulebook (tag empty-rulebook) and the real 28 June 2024 GR that created
+  Ladki Bahin. It is scored against the 25 hand-written test citizens of our
+  own baseline encoding, which the agent never sees.
+meta:
+  title: Ladki Bahin founding order, 28 June 2024
+  published_at: "2024-06-28"
+  code: "202406281814018230"
+  source_url: https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202406281814018230.pdf
+base_ref: empty-rulebook
+expect:
+  relevant: true
+  new_scheme: true
+  answer_key: {ref: baseline-2024-06-28, file: tests/mh/ladki_bahin.yaml}
+  decision_in: [human_review, needs_human]
