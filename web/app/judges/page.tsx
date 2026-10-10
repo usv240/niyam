@@ -39,7 +39,7 @@ export default function Judges() {
   return (
     <>
       <PageHeader eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
-        <div className="grid gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <Card className="p-4"><p className="text-xs text-muted">What</p><p className="text-sm">An agent that reads new government orders and updates the rule code itself, with tests.</p></Card>
           <Card className="p-4"><p className="text-xs text-muted">Why</p><p className="text-sm">When eligibility code drifts from the law, people are wrongly excluded or paid.</p></Card>
           <Card className="p-4"><p className="text-xs text-muted">How</p><p className="text-sm">Seven stages, a blind verifier, a trust policy, and a checkpoint for every rule.</p></Card>

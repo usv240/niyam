@@ -1,11 +1,12 @@
-import { ArrowRight, BookOpenCheck, Bot, Building2, Code2, ExternalLink, FileWarning, Landmark, Scale, Users } from "lucide-react";
+import { ArrowRight, BookOpenCheck, CheckCircle2, XCircle, Bot, Building2, Code2, ExternalLink, FileWarning, Landmark, Scale, Users } from "lucide-react";
 import Link from "next/link";
 import { HeroVisual } from "@/components/hero-visual";
 import { Info } from "@/components/info";
 import { Pipeline } from "@/components/pipeline";
 import { Results } from "@/components/results";
-import { Badge, ButtonLink, Card, Container, ExtLink, Section } from "@/components/ui";
-import { pct, showcase, usd } from "@/lib/data";
+import { MobileCta } from "@/components/mobile-cta";
+import { Badge, ButtonLink, Card, Container, ExtLink, Section, Stat } from "@/components/ui";
+import { evals, pct, showcase, usd } from "@/lib/data";
 import { SITE } from "@/lib/site";
 
 const PROBLEMS = [
@@ -61,6 +62,7 @@ const FAQ = [
 
 export default function Home() {
   const v = showcase.verdict;
+  const v3 = evals.find((e) => e.version === "v3") ?? evals[evals.length - 1];
   const age = showcase.changes.find((c) => c.target === "age_max") ?? showcase.changes[0];
   return (
     <>
@@ -96,6 +98,16 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* Proof in numbers */}
+      <section aria-label="Results in numbers" className="border-b border-border bg-surface">
+        <Container className="grid grid-cols-2 gap-x-6 gap-y-8 py-10 lg:grid-cols-4">
+          <Stat value={usd(v3?.summary.cost_usd)} label="model cost per government order, down from $0.88" source="Measured on 6 cases" href="/judges/#evidence" />
+          <Stat value={pct(v3?.summary.outcome_accuracy)} label="of test citizens get the right answer, every version since v2" source="Evaluation results" href="/judges/#evidence" />
+          <Stat value="25 of 25" label="hand-written tests passed after encoding a whole scheme from its founding order" source="From-scratch run" href="/judges/#agent" />
+          <Stat value="2" label="real Maharashtra schemes, built from their real Marathi orders" source="Explore the rules" href="/explore/" />
+        </Container>
+      </section>
+
       {/* Problem */}
       <Section
         id="problem"
@@ -120,6 +132,24 @@ export default function Home() {
 
       {/* What it is */}
       <Section id="what" eyebrow="What Niyam is" title="An agent that keeps the rules correct, and proves it." className="border-t border-border bg-surface/50">
+        <div className="mb-8 grid gap-5 md:grid-cols-2">
+          <div className="rounded-2xl border border-danger/25 bg-danger-soft/40 p-6">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-danger"><XCircle className="h-4 w-4" aria-hidden /> Today, without Niyam</p>
+            <ol className="mt-4 space-y-3 text-sm">
+              {["A department publishes a GR as a Marathi PDF.", "Someone has to notice it, read it and find what changed.", "Each app and helpline updates its own rules by hand, weeks later, or never.", "Nobody can see which clause an answer came from, so mistakes are hard to challenge."].map((x, i) => (
+                <li key={x} className="flex gap-3"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-bg text-xs font-semibold text-danger">{i + 1}</span><span className="text-text">{x}</span></li>
+              ))}
+            </ol>
+          </div>
+          <div className="rounded-2xl border border-success/30 bg-success-soft/50 p-6">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-success"><CheckCircle2 className="h-4 w-4" aria-hidden /> With Niyam</p>
+            <ol className="mt-4 space-y-3 text-sm">
+              {["Niyam spots the new GR on the official list within 15 minutes.", "It quotes each changed clause and checks every quote against the PDF.", "It updates one open rulebook with tests; a second agent verifies it against the law.", "Every answer shows its clause, and every line shows who wrote it and why."].map((x, i) => (
+                <li key={x} className="flex gap-3"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-bg text-xs font-semibold text-success">{i + 1}</span><span className="text-text">{x}</span></li>
+              ))}
+            </ol>
+          </div>
+        </div>
         <div className="grid gap-5 md:grid-cols-3">
           <Card><h3 className="font-semibold">What it does</h3><p className="mt-2 text-sm text-muted">Watches official sources for new government orders, finds the clauses that change who is eligible, and updates the rule code with tests, without a person watching.</p></Card>
           <Card><h3 className="font-semibold">Who it helps</h3><p className="mt-2 text-sm text-muted">Anyone who answers &quot;am I eligible?&quot;: helplines, field workers, NGOs, apps and chatbots. They all get correct, current rules from one open place.</p></Card>
@@ -281,6 +311,8 @@ export default function Home() {
         </ol>
         <p className="mt-6 text-xs text-muted">Built in 56 hours at neatHack 2026. Source code: <ExtLink href={SITE.repo}>usv240/niyam</ExtLink>. Rulebook: <ExtLink href={SITE.rulebookRepo}>usv240/niyam-rulebook</ExtLink>.</p>
       </Section>
+      <MobileCta />
+      <div className="h-16 lg:hidden" aria-hidden />
     </>
   );
 }

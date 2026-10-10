@@ -15,7 +15,7 @@ export default function DemoPage() {
         title="Watch Niyam process a real government order"
         intro={<>This is the recorded run of the real <ExtLink href={showcase.document.source_url || "#"}>3 July 2024 amendment</ExtLink> to the Ladki Bahin scheme. Every event below happened. Press Play to replay it step by step, or open the tabs to see the document, the code change, the verification and the decision.</>}
       >
-        <div className="grid gap-4 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           <Card className="p-4"><p className="text-xs text-muted">Changes found</p><p className="text-2xl font-semibold">{showcase.changes.length}</p></Card>
           <Card className="p-4"><p className="text-xs text-muted">Verifier agrees <Info id="verifier-agreement" /></p><p className="text-2xl font-semibold">{showcase.verdict?.cases_agree} of {showcase.verdict?.cases_valid}</p></Card>
           <Card className="p-4"><p className="text-xs text-muted">Cost</p><p className="text-2xl font-semibold">{usd(showcase.cost_usd)}</p></Card>
