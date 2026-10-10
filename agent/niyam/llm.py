@@ -69,6 +69,10 @@ class StageOutputError(RuntimeError):
     pass
 
 
+class ProviderLimitError(RuntimeError):
+    """The model provider refuses all requests until a spend limit is raised."""
+
+
 @contextlib.contextmanager
 def span(name: str, kind: str = "AGENT") -> Iterator[Any]:
     """A neatlogs span, or a no-op when tracing is off."""
@@ -132,6 +136,13 @@ def parse(*, model: str, system: str, content: list[dict[str, Any]] | str, outpu
                 last_error = e
                 _record_event("recovery.model_fallback", f"{m} unavailable ({type(e).__name__}); trying the fallback model")
                 break
+            except anthropic.BadRequestError as e:
+                if "usage limit" in str(e).lower():
+                    # The account's spend cap is reached: no model will answer, so fail clearly and stop.
+                    _record_event("budget.provider_limit", "The Anthropic account's usage limit is reached. "
+                                  "The job is saved and can be resumed once the limit is raised.")
+                    raise ProviderLimitError(str(e)) from e
+                raise
             except anthropic.APIStatusError as e:
                 if e.status_code == 529:
                     last_error = e

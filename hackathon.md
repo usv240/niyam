@@ -1,6 +1,8 @@
 # Niyam
 
 > **Needs you (team leader), in this order**
+> 0. **Anthropic usage limit reached** (16:15 IST): the API key's spend cap stopped all model calls ("regain access on 2026-11-01"). Total model spend so far: $19.02 across 34 agent jobs, including the Claude Code encoder. Raise the limit in the Anthropic console (Settings, Limits); then resume the paused second-scheme job with `cd agent && python -m niyam run job_20261010_d2c6f4dc`. The website and eligibility API do not need the model and keep working.
+> 0b. **Rotate the LegiScan key** pasted in chat earlier (it leaked through a checkpoint for a few minutes; see the 16:00 entry).
 > 1. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
@@ -100,6 +102,12 @@ v2 results (`evals/results/v2.json`), same 6 cases: outcome accuracy 100% (from 
 - Found by scanning every checkpoint ref for fragments of each pasted secret. Deleted the ref from GitHub and locally; all 23 rulebook checkpoint refs scanned clean (the encoder's sessions never see the chat).
 - Action for the team leader: rotate that key (GitHub may keep unreachable objects for a while).
 - Lesson: treat agent transcripts as sensitive; scan checkpoint refs before pushing; keep the encoder's sessions separate from human chat.
+
+### 2026-10-10 16:15 IST: second scheme started, paused by the API spend limit
+
+- Found the official Sanjay Gandhi Niradhar Anudan Yojana orders on the Pune district site: the 20 August 2019 consolidated GR (56 pages, five special assistance schemes, code 201908211212469922) and the 6 July 2023 GR raising the monthly assistance (code 202307061137387522). Both resolve on gr.maharashtra.gov.in.
+- Started onboarding the scheme from the 2019 GR (job `job_20261010_d2c6f4dc`). The first model call failed: the Anthropic account's usage limit was reached. Added clear handling: a `budget.provider_limit` event and a paused, resumable job instead of a raw error.
+- Next, once the limit is raised: resume that job (it opens PR #3 for human review, since it creates a scheme), then run the 2023 increase on top of it in dry mode to see whether a real order earns the act-alone decision.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 

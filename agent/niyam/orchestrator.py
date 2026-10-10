@@ -121,6 +121,10 @@ class Run:
                 self._loop()
                 llm.set_attr(root, "niyam.final_state", self.state)
                 llm.set_attr(root, "niyam.cost_usd", round(self.usage.cost_usd, 4))
+        except llm.ProviderLimitError as e:
+            # Not the agent's fault and not worth retrying now: keep the saved state so `niyam run` resumes later.
+            self.event("job.paused", "Paused: the model provider's usage limit is reached. Resume once it is raised.")
+            self.save("FAILED", error_class="ProviderLimitError", error=str(e)[:500], finished_at=time.time())
         except Exception as e:
             err = f"{type(e).__name__}: {e}"
             self.state_data["traceback"] = traceback.format_exc()[-4000:]

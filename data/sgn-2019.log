@@ -1,0 +1,14 @@
+[job_20261010_d2c6f4dc] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d2c6f4dc] job.failed: BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified API usage limits. You will regain access on 2026-11-01 at 00:00 UTC.'}, 'request_id': 'req_011CftHhPW8XvSzH5BQxmMVv'}
+[job_20261010_d2c6f4dc] state: State is now FAILED
+{
+  "id": "job_20261010_d2c6f4dc",
+  "state": "FAILED",
+  "confidence": null,
+  "autonomy_decision": null,
+  "pr_url": null,
+  "checkpoint_id": null,
+  "trace_id": "9dd69537b295ec33019acfc393068e0e",
+  "cost_usd": 0.0
+}
+2026-10-10 05:04:41 - neatlogs - INFO - Neatlogs SDK shutdown complete
