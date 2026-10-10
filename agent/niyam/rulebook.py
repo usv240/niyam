@@ -176,7 +176,9 @@ def simulate_batch(root: Path, cases: list[dict[str, Any]]) -> list[dict[str, An
         os.unlink(tmp)
 
 
-def changed_files(root: Path, base: str = "main") -> list[str]:
+def changed_files(root: Path, base: str = "HEAD") -> list[str]:
+    # Compare with the worktree's own starting commit. Comparing with main was a bug:
+    # when main moved on, untouched files looked "changed" and the guard reverted them.
     out = git("diff", "--name-only", base, cwd=root)
     untracked = git("ls-files", "--others", "--exclude-standard", cwd=root)
     return sorted(set(filter(None, out.splitlines() + untracked.splitlines())))

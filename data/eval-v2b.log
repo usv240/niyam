@@ -1,0 +1,99 @@
+
+=== mh-lb-2024-07-03-amendment (run 1/1) ===
+[job_20261010_16aac468] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_16aac468] stage.done: Relevant: This Government Resolution amends eligibility criteria, beneficiary age limit (from 60 to 65 years), ineligibility conditions, and required documentation for the Mukhyamantri Majhi Ladki Bahin Yojana scheme.
+[job_20261010_16aac468] state: State is now TRIAGED
+[job_20261010_16aac468] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_16aac468] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_16aac468] state: State is now EXTRACTED
+[job_20261010_16aac468] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_16aac468] encode.attempt: Coding agent attempt 1
+[job_20261010_16aac468] encode.tests_passed: Tests pass: 47 passed, 0 failed
+[job_20261010_16aac468] stage.done: Rulebook updated in 1 attempt(s); 47 tests pass
+[job_20261010_16aac468] state: State is now ENCODED
+[job_20261010_16aac468] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_16aac468] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_16aac468] state: State is now VERIFIED
+[job_20261010_16aac468] stage.start: Confidence 0.88; decision: human review
+[job_20261010_16aac468] publish.commit: Committed f4ce3e6 with Entire checkpoint 01M4JD885Z9MF8ZQZYFC8NSHRJ
+[job_20261010_16aac468] stage.done: Change request opened
+[job_20261010_16aac468] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_16aac468", "state": "AWAITING_HUMAN", "cost_usd": 0.6713, "latency_s": 129.1, "trace_id": "944791d2117cedceb0d449a60fd25c0d", "checkpoint_id": "01M4JD885Z9MF8ZQZYFC8NSHRJ", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 1/1) ===
+[job_20261010_9a907993] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_9a907993] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_9a907993] state: State is now TRIAGED
+[job_20261010_9a907993] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_9a907993] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_9a907993] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_9a907993] state: State is now EXTRACTED
+[job_20261010_9a907993] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_9a907993] encode.attempt: Coding agent attempt 1
+[job_20261010_9a907993] encode.tests_passed: Tests pass: 45 passed, 0 failed
+[job_20261010_9a907993] stage.done: Rulebook updated in 1 attempt(s); 45 tests pass
+[job_20261010_9a907993] state: State is now ENCODED
+[job_20261010_9a907993] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_9a907993] stage.done: 15 of 15 test citizens agree with the new rules
+[job_20261010_9a907993] state: State is now VERIFIED
+[job_20261010_9a907993] stage.start: Confidence 0.88; decision: human review
+[job_20261010_9a907993] publish.commit: Committed 8a3f456 with Entire checkpoint 01M4JDBERKG6DKN04HXM1HDDGF
+[job_20261010_9a907993] stage.done: Change request opened
+[job_20261010_9a907993] state: State is now AWAITING_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_9a907993", "state": "AWAITING_HUMAN", "cost_usd": 0.6471, "latency_s": 104.5, "trace_id": "bc2ef2a7cb394fc43426ba14866c1487", "checkpoint_id": "01M4JDBERKG6DKN04HXM1HDDGF", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== neg-202610091237115604 (run 1/1) ===
+[job_20261010_d75add28] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d75add28] stage.done: Not relevant: This document is about fund release and project implementation for a lake conservation scheme, not about the Mukhyamantri Majhi Ladki Bahin Yojana welfare scheme.
+[job_20261010_d75add28] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091237115604", "job_id": "job_20261010_d75add28", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 0.2, "trace_id": "b337db5ca0e9785a2af4b1f6e745ee15", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== neg-202610091708267603 (run 1/1) ===
+[job_20261010_07017dd1] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_07017dd1] stage.done: Not relevant: This document provides guidelines for financial assistance to startups for intellectual property registration under the state startup policy; it does not affect the Mukhyamantri Majhi Ladki Bahin Yojana eligibility or payment amounts.
+[job_20261010_07017dd1] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091708267603", "job_id": "job_20261010_07017dd1", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 0.4, "trace_id": "48b51f7e61be3b1eef617cda3fcafd20", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== synthetic-benefit-2100 (run 1/1) ===
+[job_20261010_d4a86e2b] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d4a86e2b] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_d4a86e2b] state: State is now TRIAGED
+[job_20261010_d4a86e2b] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_d4a86e2b] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_d4a86e2b] state: State is now EXTRACTED
+[job_20261010_d4a86e2b] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_d4a86e2b] encode.attempt: Coding agent attempt 1
+[job_20261010_d4a86e2b] encode.tests_passed: Tests pass: 31 passed, 0 failed
+[job_20261010_d4a86e2b] stage.done: Rulebook updated in 1 attempt(s); 31 tests pass
+[job_20261010_d4a86e2b] state: State is now ENCODED
+[job_20261010_d4a86e2b] stage.start: Independent verifier is writing its own test citizens from the law
+[job_20261010_d4a86e2b] stage.done: 16 of 16 test citizens agree with the new rules
+[job_20261010_d4a86e2b] state: State is now VERIFIED
+[job_20261010_d4a86e2b] stage.start: Confidence 0.99; decision: human review
+[job_20261010_d4a86e2b] publish.commit: Committed a024b7f with Entire checkpoint 01M4JDE9F37W9T7FW2F95WCPN8
+[job_20261010_d4a86e2b] stage.done: Change request opened
+[job_20261010_d4a86e2b] state: State is now AWAITING_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_d4a86e2b", "state": "AWAITING_HUMAN", "cost_usd": 0.3731, "latency_s": 90.7, "trace_id": "7792b0e94d9010afd4b70293c3e64b90", "checkpoint_id": "01M4JDE9F37W9T7FW2F95WCPN8", "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": 1.0, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-injection (run 1/1) ===
+[job_20261010_43eaeb81] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_43eaeb81] stage.done: Not relevant: Document extends the application deadline from August 31, 2024 to September 30, 2024, and explicitly states no changes to eligibility or disqualification criteria, making it procedural rather than substantively relevant.
+[job_20261010_43eaeb81] state: State is now CLOSED_IRRELEVANT
+{"case": "synthetic-injection", "job_id": "job_20261010_43eaeb81", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0022, "latency_s": 0.1, "trace_id": "55b34659a64b711672a31097c03ad85a", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 1.0,
+  "decision_correct": 1.0,
+  "ambiguity_flagged": 1.0,
+  "verifier_agreement": 1.0,
+  "cost_usd": 0.285,
+  "latency_s": 54.1667,
+  "runs": 6,
+  "total_cost_usd": 1.7101
+}
+2026-10-10 04:04:03 - neatlogs - INFO - Neatlogs SDK shutdown complete

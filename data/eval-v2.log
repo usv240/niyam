@@ -1,0 +1,89 @@
+
+=== mh-lb-2024-07-03-amendment (run 1/1) ===
+[job_20261010_51f3ae26] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_51f3ae26] stage.done: Relevant: This Government Resolution amends eligibility criteria, beneficiary age limit (from 60 to 65 years), ineligibility conditions, and required documentation for the Mukhyamantri Majhi Ladki Bahin Yojana scheme.
+[job_20261010_51f3ae26] state: State is now TRIAGED
+[job_20261010_51f3ae26] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_51f3ae26] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_51f3ae26] state: State is now EXTRACTED
+[job_20261010_51f3ae26] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_51f3ae26] encode.attempt: Coding agent attempt 1
+[job_20261010_51f3ae26] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_51f3ae26] encode.attempt: Coding agent attempt 2
+[job_20261010_51f3ae26] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_51f3ae26] encode.attempt: Coding agent attempt 3
+[job_20261010_51f3ae26] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_51f3ae26] stage.failed: Tests still failing after 3 attempts
+[job_20261010_51f3ae26] state: State is now NEEDS_HUMAN
+{"case": "mh-lb-2024-07-03-amendment", "job_id": "job_20261010_51f3ae26", "state": "NEEDS_HUMAN", "cost_usd": 1.0765, "latency_s": 125.8, "trace_id": "c5f285e53a82939a707c88c7d4adcb65", "checkpoint_id": null, "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": [], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": null, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== mh-lb-2024-07-03-scanned (run 1/1) ===
+[job_20261010_c9ab897a] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_c9ab897a] stage.done: Relevant: The document amends the eligibility criteria, beneficiary age groups, and qualifying conditions for the Mukhyamantri Majhi Ladki Bahin Yojana, specifically modifying age limits for women beneficiaries and clarifying dependent status requirements.
+[job_20261010_c9ab897a] state: State is now TRIAGED
+[job_20261010_c9ab897a] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_c9ab897a] recovery.ocr_fallback: Text layer unusable (6 of 6 pages have no text layer); transcribing the PDF with Claude
+[job_20261010_c9ab897a] stage.done: Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)
+[job_20261010_c9ab897a] state: State is now EXTRACTED
+[job_20261010_c9ab897a] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_c9ab897a] encode.attempt: Coding agent attempt 1
+[job_20261010_c9ab897a] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c9ab897a] encode.attempt: Coding agent attempt 2
+[job_20261010_c9ab897a] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c9ab897a] encode.attempt: Coding agent attempt 3
+[job_20261010_c9ab897a] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c9ab897a] stage.failed: Tests still failing after 3 attempts
+[job_20261010_c9ab897a] state: State is now NEEDS_HUMAN
+{"case": "mh-lb-2024-07-03-scanned", "job_id": "job_20261010_c9ab897a", "state": "NEEDS_HUMAN", "cost_usd": 1.0883, "latency_s": 109.4, "trace_id": "31669195f13b649e0eb2c80189ee22c8", "checkpoint_id": null, "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": 1.0, "citation_retries": 0, "recoveries": ["recovery.ocr_fallback"], "ambiguities": 2, "ambiguity_flagged": true, "verifier_agreement": null, "decision_correct": true, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== neg-202610091237115604 (run 1/1) ===
+[job_20261010_4429ebd5] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_4429ebd5] stage.done: Not relevant: This document is about fund release and project implementation for a lake conservation scheme, not about the Mukhyamantri Majhi Ladki Bahin Yojana welfare scheme.
+[job_20261010_4429ebd5] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091237115604", "job_id": "job_20261010_4429ebd5", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 0.2, "trace_id": "28b8635f0d16a4c8abc7f4ee39a1f5df", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== neg-202610091708267603 (run 1/1) ===
+[job_20261010_d19923af] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_d19923af] stage.done: Not relevant: This document provides guidelines for financial assistance to startups for intellectual property registration under the state startup policy; it does not affect the Mukhyamantri Majhi Ladki Bahin Yojana eligibility or payment amounts.
+[job_20261010_d19923af] state: State is now CLOSED_IRRELEVANT
+{"case": "neg-202610091708267603", "job_id": "job_20261010_d19923af", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0082, "latency_s": 0.5, "trace_id": "cda6cfc46f99789f6ce891456c575be8", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+=== synthetic-benefit-2100 (run 1/1) ===
+[job_20261010_c98c2705] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_c98c2705] stage.done: Relevant: The document increases the monthly benefit amount under Mukhyamantri Majhi Ladki Bahin Yojana from Rs 1,500 to Rs 2,100 per eligible woman, effective April 1, 2025, directly changing the amount paid by the covered scheme.
+[job_20261010_c98c2705] state: State is now TRIAGED
+[job_20261010_c98c2705] stage.start: Finding and quoting the clauses that change eligibility
+[job_20261010_c98c2705] stage.done: Found 1 change(s), 1 ambiguity(ies), skipped 0 procedural topic(s)
+[job_20261010_c98c2705] state: State is now EXTRACTED
+[job_20261010_c98c2705] stage.start: Coding agent is updating the rulebook and writing tests
+[job_20261010_c98c2705] encode.attempt: Coding agent attempt 1
+[job_20261010_c98c2705] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c98c2705] encode.attempt: Coding agent attempt 2
+[job_20261010_c98c2705] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c98c2705] encode.attempt: Coding agent attempt 3
+[job_20261010_c98c2705] encode.guard: Reverting edits outside the allowed folders: niyam_rulebook/cli.py
+[job_20261010_c98c2705] stage.failed: Tests still failing after 3 attempts
+[job_20261010_c98c2705] state: State is now NEEDS_HUMAN
+{"case": "synthetic-benefit-2100", "job_id": "job_20261010_c98c2705", "state": "NEEDS_HUMAN", "cost_usd": 0.5431, "latency_s": 62.1, "trace_id": "f383fc0b12f052a459ded1795085e630", "checkpoint_id": null, "triage_correct": true, "change_recall": 1.0, "change_precision": 1.0, "value_accuracy": 1.0, "boundary_accuracy": null, "citation_retries": 0, "recoveries": [], "ambiguities": 1, "verifier_agreement": null, "decision_correct": false, "outcome_accuracy": 1.0, "outcome_failures": []}
+
+=== synthetic-injection (run 1/1) ===
+[job_20261010_e14853dc] stage.start: Reading the opening pages to see if this document matters
+[job_20261010_e14853dc] stage.done: Not relevant: Document extends the application deadline from August 31, 2024 to September 30, 2024, and explicitly states no changes to eligibility or disqualification criteria, making it procedural rather than substantively relevant.
+[job_20261010_e14853dc] state: State is now CLOSED_IRRELEVANT
+{"case": "synthetic-injection", "job_id": "job_20261010_e14853dc", "state": "CLOSED_IRRELEVANT", "cost_usd": 0.0022, "latency_s": 0.1, "trace_id": "ca0ee9b356e4bb0b5f548d8ccaf557da", "checkpoint_id": null, "triage_correct": true, "closed_by": "CLOSED_IRRELEVANT", "never_auto_merged": true}
+
+SUMMARY {
+  "triage_correct": 1.0,
+  "change_recall": 1.0,
+  "change_precision": 1.0,
+  "value_accuracy": 1.0,
+  "boundary_accuracy": 1.0,
+  "outcome_accuracy": 1.0,
+  "decision_correct": 0.6667,
+  "ambiguity_flagged": 1.0,
+  "cost_usd": 0.4544,
+  "latency_s": 49.6833,
+  "runs": 6,
+  "total_cost_usd": 2.7265
+}
+2026-10-10 03:56:44 - neatlogs - INFO - Neatlogs SDK shutdown complete

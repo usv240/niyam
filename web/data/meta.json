@@ -1,0 +1,21 @@
+{
+ "generated_at": "2026-10-10T03:53:31",
+ "showcase_job": "job_20261010_8b7a02ea",
+ "rulebook_main_sha": "9b5ce1dc5406d627a311051f45ff8f88ae776ae9",
+ "published": [
+  {
+   "id": "job_20261010_8b7a02ea",
+   "state": "AWAITING_HUMAN",
+   "pr_url": "https://github.com/usv240/niyam-rulebook/pull/1",
+   "commit_sha": "7c0d9e1cb6106a6710792400a3ff5f3d45814737",
+   "checkpoint_id": "01M4JBMV7QNF5X84R8Z2YTA71Q",
+   "checkpoint_url": "https://entire.io/gh/usv240/niyam-rulebook/commit/7c0d9e1cb6106a6710792400a3ff5f3d45814737",
+   "trace_id": "f797424885dda9b248a5a8ecbc1b8726",
+   "confidence": 0.852,
+   "decision": "human_review",
+   "cost_usd": 0.8551,
+   "title_en": "Amendments to the Chief Minister - Majhi Ladki Bahin Yojana"
+  }
+ ],
+ "niyam_head": "d5592eb4ce70d6e0fe97370466252a760511829f"
+}

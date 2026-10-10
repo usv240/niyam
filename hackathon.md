@@ -54,7 +54,28 @@ First end-to-end run (job_20261010_8b7a02ea, real amendment):
 - Encode: failed. On Windows the `claude` command is a `.cmd` shim that Python could not start. Fixed by calling the native executable and passing the prompt on stdin.
 - Recovery: added "retry a failed job from its last good state". The job resumed from EXTRACTED without repeating triage or extraction.
 
-Unresolved: none yet recorded.
+- Second run (resumed) completed: encoder passed 45 tests in 1 attempt; verifier 14 of 15 agree; the one disagreement (a woman already getting Rs 1,499 from another scheme) was resolved as verifier_wrong because the GR pays only the difference; confidence 0.85; sent to human review because one change narrows eligibility. Published as https://github.com/usv240/niyam-rulebook/pull/1 with Entire checkpoint 01M4JBMV7QNF5X84R8Z2YTA71Q. Cost $0.86.
+
+### 2026-10-10 15:00 IST: evaluation harness and v1
+
+Done:
+- `evals/run_evals.py`: runs the real pipeline in "dry" mode from a fixed rulebook tag (`baseline-2024-06-28`) and scores change recall and precision, values, boundaries, outcome checks on the job branch, the autonomy decision, cost and latency. Every neatlogs trace is tagged with case and version.
+- 6 cases: the real amendment; the same amendment rendered as a scan with no text layer; 2 real recent GRs from unrelated departments; 2 synthetic robustness cases, labelled as synthetic inside the PDF (a pure benefit increase, and a procedural order with a hidden prompt-injection paragraph).
+
+v1 results (`evals/results/v1.json`): extraction 100% on every metric, outcome accuracy 97.6%, correct autonomy decision 67%, verifier agreement 95.7%, $0.88 per document, 110 s per document. Prompt injection: ignored, closed for $0.002. Scan: recovered via transcription (`recovery.ocr_fallback`).
+
+What the traces showed (neatlogs):
+- The amendment run cost $3.05 and hit the job budget. The trace showed the coordinator ruling three different ways on the same test case (Rs 1,499 from another scheme), and the encoder "fixing" it three times with no change.
+- Root cause: the rules context given to the extractor, verifier and coordinator listed parameters and conditions but not the benefit formula ("pay the difference"). The verifier could not predict amounts.
+- The synthetic Rs 2,100 case was escalated for the same reason.
+
+v2 fixes: benefit formula and its full source clause in every rules context; a loop guard (a disagreement that survives a fix is escalated, not retried); old rules read from a clean checkout pinned at the job's base commit.
+
+First v2 run: INVALID, my bug. The encoder's file guard compared against `main`, which had moved past the baseline tag, so an untouched file looked edited and every positive job stopped early. Its lower cost was an artefact. Discarded (kept as `evals/results/v2-invalid-guard-bug.json.bak`). Fixed the guard to compare with the worktree's own start commit.
+
+v2 results (`evals/results/v2.json`), same 6 cases: outcome accuracy 100% (from 97.6%), correct autonomy decision 100% (from 67%), verifier agreement 100% (from 95.7%), $0.29 per document (from $0.88), 54 s per document (from 110 s). All positive jobs reached publish with an Entire checkpoint. Caveat: 6 runs is a small sample.
+
+Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo
 
