@@ -7,7 +7,7 @@
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
 > 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
-> 5. **AWS server**: fully live with keys at https://44-197-246-188.sslip.io. Stop the instance after 16 October.
+> 5. **AWS server**: fully live with keys at https://34-227-135-194.sslip.io. Stop the instance after 16 October.
 > 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
 > 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
 
@@ -139,7 +139,7 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 
 - Shared neatHack account, our IAM user only. One t3.small (`i-01bdb72f8624b6e7d`) in Hackathon_VPC public subnet, us-east-1, 20 GB gp3, IMDSv2 required; own security group (80 and 443 open, 22 only from the team leader's IP). Other teams' instances untouched.
 - Problems found and fixed: tagging at creation is denied by the organisers' policy (dropped tags on the security group); EC2 Instance Connect is not permitted for team users (switched to a key pair, so the first instance was terminated and replaced, keeping to one instance); the Caddy package host now answers 402 Payment Required (installed Caddy from Ubuntu's repository); waited for the apt lock on first boot.
-- Verified: https://44-197-246-188.sslip.io serves the site and API over a valid certificate; the GitHub Pages site calls the same API (status page shows live data); the watcher ran on its own and read the 10 latest GRs.
+- Verified: https://34-227-135-194.sslip.io serves the site and API over a valid certificate; the GitHub Pages site calls the same API (status page shows live data); the watcher ran on its own and read the 10 latest GRs.
 - Model keys are not set on the server (I do not enter keys); read-only features work, uploads need the keys.
 
 ### 2026-10-10 22:55 IST: full live run on AWS
@@ -152,6 +152,11 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 - Maintainer merged PR #2 and PR #3 (PR #3 rebased first; 72 tests on the combined rulebook).
 - Ran the real 2023 Sanjay Gandhi increase live in GitHub mode. This time Niyam raised a question (do widows with 3 or more children also get Rs 1,500?) and chose human review, opening PR #4, while two earlier dry runs of the same order chose to merge alone. The GR answers the question ("all beneficiaries"), so the escalation was overcautious but safe. Honest summary: 2 of 3 runs of this order would have acted alone.
 - Bug found while reviewing PR #4: `niyam process` reused the stored copy of the same PDF from the earlier dry run, including its old base commit, so PR #4 was built on PR #3 before its fix (with `disabled: true`). Rebuilt the branch on main (83 tests, CI green) and fixed the CLI: explicit commands never reuse a stored document's options.
+
+### 2026-10-11 04:50 IST: instance stopped by someone else, restarted with a fixed IP
+
+- The team leader reported the AWS site timing out. The instance had been stopped at 17:59 UTC ("User initiated"), not by us; another team's instance was stopped at about the same time, so it was likely the organisers' automation. Our account cannot read CloudTrail to confirm.
+- Restarted it and attached an Elastic IP (34.227.135.194), so the address no longer changes on stop and start. New address: https://34-227-135-194.sslip.io. Updated Caddy, the server build, the GitHub Pages API setting, and every document.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
