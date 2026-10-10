@@ -7,7 +7,7 @@
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
 > 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
-> 5. **Deploy**: website on Vercel (root `web`), API on the one allowed EC2 instance (`infra/README.md`). The site works without the API; only live features need it.
+> 5. **Deploy**: website is LIVE at https://usv240.github.io/niyam/ (GitHub Pages). Optional: API on the one allowed EC2 instance (`infra/README.md`) for live uploads, keys and status.
 > 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
 > 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
 
@@ -129,6 +129,11 @@ Question from the team: why not cheaper models? Measured instead of guessed:
 ### 2026-10-10 19:00 IST: draft demo video
 
 - `video/make_video.py` builds the demo from the real site: Windows text-to-speech narration (placeholder voice), Playwright recordings timed to each scene's narration (including the public PR #2 on GitHub), captions burned in with ffmpeg. 10 scenes, 2:42. Checked frame by frame.
+
+### 2026-10-10 20:00 IST: website published
+
+- GitHub Pages: https://usv240.github.io/niyam/ (manual workflow `pages.yml`). Verified on the live site: 11 pages return 200, assets load under `/niyam/`, custom 404, and the full accessibility and layout QA (11 routes, light and dark, phone and desktop) passes against the live URL.
+- PR #2 reviewed (all 6 changes checked against the GR); PR #3 reviewed and fixed (`disabled` default, 2 new tests). Both await the maintainer's merge: the agent's own reviewer cannot approve its own work.
 
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 

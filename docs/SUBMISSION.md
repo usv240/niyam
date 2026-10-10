@@ -34,7 +34,7 @@ Team USV | Ujwal Vanjare | Niyam
 An AI agent that reads new government orders and keeps welfare eligibility rules, written as code, in sync with the law. Every line links to the clause it came from.
 
 Demo: <video link>
-Live: <site link>
+Live: https://usv240.github.io/niyam/
 Repo: https://github.com/usv240/niyam
 
 #neatHack @neatlogs
