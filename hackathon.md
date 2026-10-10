@@ -109,6 +109,15 @@ v2 results (`evals/results/v2.json`), same 6 cases: outcome accuracy 100% (from 
 - Started onboarding the scheme from the 2019 GR (job `job_20261010_d2c6f4dc`). The first model call failed: the Anthropic account's usage limit was reached. Added clear handling: a `budget.provider_limit` event and a paused, resumable job instead of a raw error.
 - Next, once the limit is raised: resume that job (it opens PR #3 for human review, since it creates a scheme), then run the 2023 increase on top of it in dry mode to see whether a real order earns the act-alone decision.
 
+### 2026-10-10 17:00 IST: cheaper models, chosen by measurement (v3)
+
+Question from the team: why not cheaper models? Measured instead of guessed:
+- Added per-stage cost tracking. On the real amendment the coding agent was 56% of the cost, the verifier 24%, extraction 20%, triage under 1%.
+- v3a: Haiku 5.5 triage (the old setting was Haiku 4.5, 10x pricier) and Sonnet 5.5 verifier instead of Opus 5.5. 100% on all 8 cases.
+- v3b: Haiku 5.5 also for extraction and the coding agent. Rejected: Haiku extraction reported "no changes" for a real age-limit change, the most dangerous possible failure. Also exposed a bug: a cut-off structured answer raised instead of recovering. Fixed (retry with more output room and less thinking) and unit tested.
+- v3c: Sonnet 5.5 extraction and verifier, Haiku 5.5 coding agent and triage. 100% on all 8 cases.
+- v3 (v3c on the same 6 cases as v1 and v2): $0.13 per document (v2 $0.29, v1 $0.88), 40 s per document, 100% on every metric. Coding agent cost per amendment fell from $0.32 to $0.05. Now the default.
+
 Unresolved: whether the "pay the difference" clause of the original GR still applies after the amendment is a genuine legal question; Niyam flags it for a human.
 
 ## Demo

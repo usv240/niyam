@@ -30,6 +30,7 @@ const FOCUS = [
 export default function Judges() {
   const v1 = evals.find((e) => e.version === "v1");
   const v2 = evals.find((e) => e.version === "v2");
+  const v3 = evals.find((e) => e.version === "v3");
   const chaos = evalsExtra.chaos?.results?.[0];
   const repeat = evalsExtra.repeat;
   const scratch = evalsExtra["from-scratch"]?.results?.[0];
@@ -96,20 +97,20 @@ export default function Judges() {
           <h2 className="mb-1 text-2xl font-semibold">neatlogs, Entire and cfo.ai <span className="text-base font-normal text-muted">(25%)</span></h2>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             <Ev title="neatlogs: used to improve the agent">
-              One trace per job, a span per stage and per recovery. The v1 traces showed a $3.05 run with the coordinator ruling three ways on one case; the fix cut cost per document from {usd(v1?.summary.cost_usd)} to {usd(v2?.summary.cost_usd)}. Every eval trace is tagged with case and version.
+              One trace per job, a span per stage and per recovery. The v1 traces showed a $3.05 run with the coordinator ruling three ways on one case; the fix cut cost per document from {usd(v1?.summary.cost_usd)} to {usd(v2?.summary.cost_usd)}. Per-stage costs then showed the coding agent at 56% of spend; testing cheaper models stage by stage brought v3 to {usd(v3?.summary.cost_usd)} with no loss in quality (and rejected Haiku for extraction after it missed a real change). Every eval trace is tagged with case and version.
             </Ev>
             <Ev title="Entire: legal provenance">
               Every rule commit by the agent carries an Entire checkpoint with the coding agent&apos;s full session. Showcase checkpoint <code className="font-mono">{showcase.checkpoint_id}</code>{showcase.checkpoint_url && <> (<ExtLink href={showcase.checkpoint_url}>open</ExtLink>)</>}. Both repositories also capture our own build sessions.
             </Ev>
             <Ev title="cfo.ai: business plan" tone="warning" status="In progress">
-              Pricing, costs, revenue and runway, with cost per document taken from measured runs ({usd(v2?.summary.cost_usd)}). <ExtLink href={SITE.businessPlan}>Plan folder</ExtLink>.
+              Pricing, costs, revenue and runway, with cost per document taken from measured runs ({usd(v3?.summary.cost_usd)}). <ExtLink href={SITE.businessPlan}>Plan folder</ExtLink>.
             </Ev>
           </div>
         </section>
 
         <section id="evidence" className="scroll-mt-24">
           <h2 className="mb-1 text-2xl font-semibold">Before and after, measured <Info id="eval" /></h2>
-          <p className="mb-4 text-muted">Same 6 cases for both versions. Small sample, real numbers.{repeat && <> Consistency check: {repeat.summary.runs} more v2 runs on the three positive cases gave outcome accuracy {pct(repeat.summary.outcome_accuracy)}, correct decisions {pct(repeat.summary.decision_correct)}, verifier agreement {pct(repeat.summary.verifier_agreement)}, at {usd(repeat.summary.cost_usd)} per document.</>}</p>
+          <p className="mb-4 text-muted">Same 6 cases for every version. Small sample, real numbers.{repeat && <> Consistency check: {repeat.summary.runs} more v2 runs on the three positive cases gave outcome accuracy {pct(repeat.summary.outcome_accuracy)}, correct decisions {pct(repeat.summary.decision_correct)}, verifier agreement {pct(repeat.summary.verifier_agreement)}, at {usd(repeat.summary.cost_usd)} per document.</>}</p>
           <Card><Results /></Card>
           <div tabIndex={0} role="region" aria-label="Scrollable table" className="mt-4 overflow-x-auto rounded-2xl border border-border">
             <table className="w-full min-w-[44rem] text-left text-sm">

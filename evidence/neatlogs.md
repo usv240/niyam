@@ -19,6 +19,8 @@
 3. Fix (commit `d5592eb`): benefit formula and its source in every rules context, and a loop guard.
 4. The v2 trace for the same case (`944791d2117cedceb0d449a60fd25c0d`): one encode round, every verifier case agrees, $0.67.
 
+5. v3 (cost): per-stage costs from the traces showed the coding agent at 56% of spend. Stage-by-stage model tests cut cost per document to $0.13 with 100% quality kept; one cheaper option (Haiku extraction) was rejected because it missed a real change.
+
 Trace ids for every evaluation run are in `evals/results/v1.json` and `v2.json`, and on the website's judges page.
 
 ## Domain-expert rubric (paste into neatlogs evals)

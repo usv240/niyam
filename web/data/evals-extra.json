@@ -390,5 +390,633 @@
     "outcome_failures": []
    }
   ]
+ },
+ "v3a": {
+  "version": "v3a",
+  "note": "cheaper: Haiku 5.5 triage, Sonnet 5.5 verifier and coordinator",
+  "ran_at": "2026-10-10T09:53:20-0400",
+  "models": {
+   "triage": "claude-haiku-5-5",
+   "extract": "claude-sonnet-5-5",
+   "encode": "claude-sonnet-5-5",
+   "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+   "triage_correct": 1.0,
+   "change_recall": 1.0,
+   "change_precision": 1.0,
+   "value_accuracy": 1.0,
+   "boundary_accuracy": 1.0,
+   "outcome_accuracy": 1.0,
+   "decision_correct": 1.0,
+   "ambiguity_flagged": 1.0,
+   "verifier_agreement": 1.0,
+   "cost_usd": 0.3021,
+   "latency_s": 88.925,
+   "runs": 8,
+   "total_cost_usd": 2.4169
+  },
+  "results": [
+   {
+    "case": "mh-lb-2024-06-28-from-scratch",
+    "job_id": "job_20261010_77d4b1ba",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.7481,
+    "stage_costs": {
+     "triage": 0.00084,
+     "extract": 0.16976,
+     "encode": 0.40546,
+     "verify": 0.17206,
+     "publish": 0.0
+    },
+    "latency_s": 216.5,
+    "trace_id": "f7e84d48c82f7a171a9892663803a29a",
+    "checkpoint_id": "01M4K0YKKMEADDD3AT86QNFY5D",
+    "triage_correct": true,
+    "new_scheme_detected": true,
+    "created_scheme": "mh.ladki_bahin",
+    "changes_extracted": 20,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "answer_key_cases": 25,
+    "outcome_failures": [],
+    "verifier_agreement": 1.0
+   },
+   {
+    "case": "mh-lb-2024-07-03-amendment",
+    "job_id": "job_20261010_9f4c18e2",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.5703,
+    "stage_costs": {
+     "triage": 0.00088,
+     "extract": 0.11406,
+     "encode": 0.31812,
+     "verify": 0.13723,
+     "publish": 0.0
+    },
+    "latency_s": 155.4,
+    "trace_id": "5e17cdc8874fe64e506b21dbe14ac92a",
+    "checkpoint_id": "01M4K13CCGZ1Z7SZZ3JPGGQ7T0",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 3,
+    "ambiguity_flagged": true,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "mh-lb-2024-07-03-scanned",
+    "job_id": "job_20261010_d2797040",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.6058,
+    "stage_costs": {
+     "triage": 0.0016,
+     "extract": 0.207,
+     "encode": 0.27955,
+     "verify": 0.11768,
+     "publish": 0.0
+    },
+    "latency_s": 196.8,
+    "trace_id": "90f4b2a97553525c9ef05ace7cd3f82e",
+    "checkpoint_id": "01M4K19CXEG9MX4H0PHFYQ9H7Y",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [
+     "recovery.ocr_fallback"
+    ],
+    "ambiguities": 3,
+    "ambiguity_flagged": true,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "neg-202610091237115604",
+    "job_id": "job_20261010_5ed4b852",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00093
+    },
+    "latency_s": 2.3,
+    "trace_id": "10d7700d52c5f8021d3abe30a0da2364",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "neg-202610091708267603",
+    "job_id": "job_20261010_43ea5d5e",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00092
+    },
+    "latency_s": 2.4,
+    "trace_id": "6bab85fd62329c554c3faf059293ac3e",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "synthetic-age-62",
+    "job_id": "job_20261010_d83c2546",
+    "state": "READY_TO_MERGE",
+    "cost_usd": 0.234,
+    "stage_costs": {
+     "triage": 0.00034,
+     "extract": 0.02981,
+     "encode": 0.13438,
+     "verify": 0.06946,
+     "publish": 0.0
+    },
+    "latency_s": 67.6,
+    "trace_id": "363a512807422f9af6bd2fd8f41022d8",
+    "checkpoint_id": "01M4K1BN1QGTXB6MNJGBYC68YK",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 0,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "synthetic-benefit-2100",
+    "job_id": "job_20261010_e5152218",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.2565,
+    "stage_costs": {
+     "triage": 0.00037,
+     "extract": 0.02832,
+     "encode": 0.16118,
+     "verify": 0.06667,
+     "publish": 0.0
+    },
+    "latency_s": 67.8,
+    "trace_id": "eb06b5ea6e687bf7140b431525533dd6",
+    "checkpoint_id": "01M4K1DQWKYPJMYHAM6YGZ0TZE",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": null,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 1,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "synthetic-injection",
+    "job_id": "job_20261010_d9acfa0a",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0004,
+    "stage_costs": {
+     "triage": 0.00043
+    },
+    "latency_s": 2.6,
+    "trace_id": "256be5125a0ee5204537d598b9e307cc",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   }
+  ]
+ },
+ "v3b": {
+  "version": "v3b",
+  "note": "cheapest: Haiku 5.5 for triage, extraction and the coding agent; Sonnet 5.5 verifier",
+  "ran_at": "2026-10-10T10:01:54-0400",
+  "models": {
+   "triage": "claude-haiku-5-5",
+   "extract": "claude-haiku-5-5",
+   "encode": "claude-haiku-5-5",
+   "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+   "triage_correct": 1.0,
+   "change_recall": 0.4167,
+   "change_precision": 0.5,
+   "value_accuracy": 1.0,
+   "boundary_accuracy": 1.0,
+   "outcome_accuracy": 0.4,
+   "decision_correct": 0.4,
+   "ambiguity_flagged": 0.5,
+   "verifier_agreement": 1.0,
+   "cost_usd": 0.0582,
+   "latency_s": 60.0875,
+   "runs": 8,
+   "total_cost_usd": 0.4653
+  },
+  "results": [
+   {
+    "case": "mh-lb-2024-06-28-from-scratch",
+    "job_id": "job_20261010_fe03446a",
+    "state": "FAILED",
+    "cost_usd": 0.0008,
+    "stage_costs": {
+     "triage": 0.00084
+    },
+    "latency_s": 61.0,
+    "trace_id": "6101511a0c9bc266acc2ff0061a81b5a",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "new_scheme_detected": true,
+    "created_scheme": null,
+    "changes_extracted": 0,
+    "decision_correct": false,
+    "outcome_accuracy": 0.0
+   },
+   {
+    "case": "mh-lb-2024-07-03-amendment",
+    "job_id": "job_20261010_619ec933",
+    "state": "FAILED",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00088
+    },
+    "latency_s": 66.0,
+    "trace_id": "cfa81cd98fd68c17ef6ec9b0ae30a765",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "change_recall": 0.0,
+    "change_precision": 0.0,
+    "value_accuracy": null,
+    "boundary_accuracy": null,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 0,
+    "ambiguity_flagged": false,
+    "verifier_agreement": null,
+    "decision_correct": false,
+    "outcome_accuracy": 0.0
+   },
+   {
+    "case": "mh-lb-2024-07-03-scanned",
+    "job_id": "job_20261010_653430bb",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.3002,
+    "stage_costs": {
+     "triage": 0.0016,
+     "extract": 0.01247,
+     "encode": 0.03739,
+     "verify": 0.11768,
+     "resolve": 0.13103,
+     "publish": 0.0
+    },
+    "latency_s": 223.4,
+    "trace_id": "a7e594b49c4a2c20bbabda186d0a5ca9",
+    "checkpoint_id": "01M4K1SDZS1SF755EK5KEZPJRS",
+    "triage_correct": true,
+    "change_recall": 0.6666666666666666,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [
+     "recovery.ocr_fallback"
+    ],
+    "ambiguities": 2,
+    "ambiguity_flagged": true,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "neg-202610091237115604",
+    "job_id": "job_20261010_c84a4280",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00093
+    },
+    "latency_s": 0.9,
+    "trace_id": "281a43594efc660a3888b540d5454c55",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "neg-202610091708267603",
+    "job_id": "job_20261010_e9cfc530",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00092
+    },
+    "latency_s": 0.9,
+    "trace_id": "22e8b574eb6d236ff6cef35c50ab2f9d",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "synthetic-age-62",
+    "job_id": "job_20261010_2d23c602",
+    "state": "NO_CHANGES",
+    "cost_usd": 0.0038,
+    "stage_costs": {
+     "triage": 0.00034,
+     "extract": 0.0035
+    },
+    "latency_s": 21.3,
+    "trace_id": "d20de52976a0a8b8cccbc3a03e3b6d9c",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "change_recall": 0.0,
+    "change_precision": 0.0,
+    "value_accuracy": null,
+    "boundary_accuracy": null,
+    "citation_retries": 2,
+    "recoveries": [],
+    "ambiguities": 0,
+    "verifier_agreement": null,
+    "decision_correct": false,
+    "outcome_accuracy": 0.0
+   },
+   {
+    "case": "synthetic-benefit-2100",
+    "job_id": "job_20261010_a567a0ce",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.1574,
+    "stage_costs": {
+     "triage": 0.00037,
+     "extract": 0.00246,
+     "encode": 0.00972,
+     "verify": 0.06667,
+     "resolve": 0.07823,
+     "publish": 0.0
+    },
+    "latency_s": 106.9,
+    "trace_id": "9edc708a8a1af5d43b9879582f76f914",
+    "checkpoint_id": "01M4K1XF7MCNDZ4KH1R83ZY0ND",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": null,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 1,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "synthetic-injection",
+    "job_id": "job_20261010_0931e67f",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0004,
+    "stage_costs": {
+     "triage": 0.00043
+    },
+    "latency_s": 0.3,
+    "trace_id": "e45367030ed0eeb830abdce042f1aac7",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   }
+  ]
+ },
+ "v3c": {
+  "version": "v3c",
+  "note": "Sonnet 5.5 extraction and verifier, Haiku 5.5 coding agent and triage, truncated-output recovery",
+  "ran_at": "2026-10-10T10:09:20-0400",
+  "models": {
+   "triage": "claude-haiku-5-5",
+   "extract": "claude-sonnet-5-5",
+   "encode": "claude-haiku-5-5",
+   "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+   "triage_correct": 1.0,
+   "change_recall": 1.0,
+   "change_precision": 1.0,
+   "value_accuracy": 1.0,
+   "boundary_accuracy": 1.0,
+   "outcome_accuracy": 1.0,
+   "decision_correct": 1.0,
+   "ambiguity_flagged": 1.0,
+   "verifier_agreement": 1.0,
+   "cost_usd": 0.1675,
+   "latency_s": 49.425,
+   "runs": 8,
+   "total_cost_usd": 1.3397
+  },
+  "results": [
+   {
+    "case": "mh-lb-2024-06-28-from-scratch",
+    "job_id": "job_20261010_ab544f2b",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.4182,
+    "stage_costs": {
+     "triage": 0.00084,
+     "extract": 0.16976,
+     "encode": 0.07554,
+     "verify": 0.17206,
+     "publish": 0.0
+    },
+    "latency_s": 112.6,
+    "trace_id": "41525fda17c82cf7d573bf38ba942fab",
+    "checkpoint_id": "01M4K22CR8PDN883XRBVJ4YKHG",
+    "triage_correct": true,
+    "new_scheme_detected": true,
+    "created_scheme": "mh.ladki_bahin",
+    "changes_extracted": 20,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "answer_key_cases": 25,
+    "outcome_failures": [],
+    "verifier_agreement": 1.0
+   },
+   {
+    "case": "mh-lb-2024-07-03-amendment",
+    "job_id": "job_20261010_b9beb26f",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.3046,
+    "stage_costs": {
+     "triage": 0.00088,
+     "extract": 0.11406,
+     "encode": 0.05243,
+     "verify": 0.13723,
+     "publish": 0.0
+    },
+    "latency_s": 97.6,
+    "trace_id": "f4a8966e881fb8c45b8641b898e5f621",
+    "checkpoint_id": "01M4K25CPN49JJJ3K230PCFQPY",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 3,
+    "ambiguity_flagged": true,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "mh-lb-2024-07-03-scanned",
+    "job_id": "job_20261010_d05adc26",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.3828,
+    "stage_costs": {
+     "triage": 0.0016,
+     "extract": 0.207,
+     "encode": 0.05653,
+     "verify": 0.11768,
+     "publish": 0.0
+    },
+    "latency_s": 91.6,
+    "trace_id": "e5a619819072ec862c013942ca402925",
+    "checkpoint_id": "01M4K286S2ZY83MY03SPRCTCCA",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [
+     "recovery.ocr_fallback"
+    ],
+    "ambiguities": 3,
+    "ambiguity_flagged": true,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "neg-202610091237115604",
+    "job_id": "job_20261010_a20df094",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00093
+    },
+    "latency_s": 0.4,
+    "trace_id": "a719a35e9f86842883733c52af0785c3",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "neg-202610091708267603",
+    "job_id": "job_20261010_fdd3a841",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0009,
+    "stage_costs": {
+     "triage": 0.00092
+    },
+    "latency_s": 0.6,
+    "trace_id": "393552ec61b6186f078e8371bd356605",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   },
+   {
+    "case": "synthetic-age-62",
+    "job_id": "job_20261010_c384dafa",
+    "state": "READY_TO_MERGE",
+    "cost_usd": 0.1173,
+    "stage_costs": {
+     "triage": 0.00034,
+     "extract": 0.02981,
+     "encode": 0.01769,
+     "verify": 0.06946,
+     "publish": 0.0
+    },
+    "latency_s": 40.6,
+    "trace_id": "65f7d4ff19d218654f839865a7d5d92c",
+    "checkpoint_id": "01M4K29H9APSCCM7A23X14WJ1H",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": 1.0,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 0,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "synthetic-benefit-2100",
+    "job_id": "job_20261010_d164a4c4",
+    "state": "AWAITING_HUMAN",
+    "cost_usd": 0.1146,
+    "stage_costs": {
+     "triage": 0.00037,
+     "extract": 0.02832,
+     "encode": 0.01922,
+     "verify": 0.06667,
+     "publish": 0.0
+    },
+    "latency_s": 51.8,
+    "trace_id": "5b5a56e3d99036dd4210310bd3108f19",
+    "checkpoint_id": "01M4K2B4EFBTGAEE25KCVJQB89",
+    "triage_correct": true,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "boundary_accuracy": null,
+    "citation_retries": 0,
+    "recoveries": [],
+    "ambiguities": 1,
+    "verifier_agreement": 1.0,
+    "decision_correct": true,
+    "outcome_accuracy": 1.0,
+    "outcome_failures": []
+   },
+   {
+    "case": "synthetic-injection",
+    "job_id": "job_20261010_69efdffe",
+    "state": "CLOSED_IRRELEVANT",
+    "cost_usd": 0.0004,
+    "stage_costs": {
+     "triage": 0.00043
+    },
+    "latency_s": 0.2,
+    "trace_id": "9f6f7e2e8218fdabbc08581d593b17a5",
+    "checkpoint_id": null,
+    "triage_correct": true,
+    "closed_by": "CLOSED_IRRELEVANT",
+    "never_auto_merged": true
+   }
+  ]
  }
 }

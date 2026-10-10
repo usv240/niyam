@@ -13,7 +13,7 @@ const ROWS: { key: string; label: string; kind: "pct" | "usd"; better: "up" | "d
 
 // Before/after bars from evals/results/*.json. Numbers are measured, never typed in.
 export function Results({ compact = false }: { compact?: boolean }) {
-  const versions = evals.slice(-2);
+  const versions = evals.slice(-3);
   if (!versions.length) return <p className="text-muted">Evaluation results will appear here after the first run.</p>;
   const max: Record<string, number> = {};
   for (const r of ROWS) max[r.key] = Math.max(...versions.map((v) => v.summary[r.key] ?? 0), r.kind === "pct" ? 1 : 0.01);
@@ -23,7 +23,7 @@ export function Results({ compact = false }: { compact?: boolean }) {
       <div className="flex flex-wrap gap-4 text-xs text-muted">
         {versions.map((v, i) => (
           <span key={v.version} className="inline-flex items-center gap-2">
-            <span className={`h-2.5 w-6 rounded-full ${i === versions.length - 1 ? "bg-accent" : "bg-muted/40"}`} aria-hidden />
+            <span className={`h-2.5 w-6 rounded-full ${i === versions.length - 1 ? "bg-accent" : i === versions.length - 2 ? "bg-accent/45" : "bg-muted/40"}`} aria-hidden />
             <b className="text-text">{v.version}</b> {v.note}
           </span>
         ))}
@@ -39,7 +39,7 @@ export function Results({ compact = false }: { compact?: boolean }) {
                 <div key={v.version} className="flex items-center gap-3">
                   <span className="w-8 text-xs text-muted">{v.version}</span>
                   <div className="h-3 flex-1 rounded-full bg-surface-2">
-                    <div className={`h-3 rounded-full ${i === versions.length - 1 ? "bg-accent" : "bg-muted/40"}`} style={{ width: `${w}%` }} />
+                    <div className={`h-3 rounded-full ${i === versions.length - 1 ? "bg-accent" : i === versions.length - 2 ? "bg-accent/45" : "bg-muted/40"}`} style={{ width: `${w}%` }} />
                   </div>
                   <span className="w-16 text-right text-sm tabular-nums">{r.kind === "pct" ? pct(val) : usd(val)}</span>
                 </div>

@@ -37,14 +37,16 @@ Watch -> Triage -> Extract -> Encode -> Verify -> Resolve -> Publish
 
 Six evaluation cases: the real 3 July 2024 Ladki Bahin amendment, the same order as a scan with no text layer, two real unrelated GRs, and two synthetic robustness tests labelled as synthetic inside the PDF (a pure benefit increase, and a hidden prompt injection).
 
-| Metric | v1 | v2 |
-|---|---|---|
-| Changes found, values, boundaries | 100% | 100% |
-| Test citizens get the right answer | 97.6% | **100%** |
-| Correct choice to act alone or ask a human | 67% | **100%** |
-| Independent verifier agrees | 95.7% | **100%** |
-| Cost per document | $0.88 | **$0.29** |
-| Time per document | 110 s | **54 s** |
+| Metric | v1 | v2 | v3 |
+|---|---|---|---|
+| Changes found, values, boundaries | 100% | 100% | 100% |
+| Test citizens get the right answer | 97.6% | 100% | **100%** |
+| Correct choice to act alone or ask a human | 67% | 100% | **100%** |
+| Independent verifier agrees | 95.7% | 100% | **100%** |
+| Cost per document | $0.88 | $0.29 | **$0.13** |
+| Time per document | 110 s | 54 s | **40 s** |
+
+**v3 is a measured model choice.** Per-stage cost tracking showed the coding agent was 56% of the cost. We tested cheaper models stage by stage on the same cases: Haiku 5.5 for triage and for the coding agent, and Sonnet 5.5 instead of Opus 5.5 for the verifier, kept 100% quality. Haiku 5.5 for extraction did not: it reported "no changes" for a real age-limit change, so extraction stays on Sonnet 5.5. The experiment also exposed a bug (a cut-off structured answer crashed instead of recovering), now fixed and unit tested. All runs: `evals/results/extra/v3a.json`, `v3b.json`, `v3c.json`.
 
 Further runs (in `evals/results/extra/`):
 
@@ -72,7 +74,7 @@ The improvement came from the neatlogs traces: in v1 the coordinator ruled three
 - **neatlogs**: traces every model call, tool call, retry and cost. We used the traces to find the v1 loop, fix it, and verify the fix with before and after numbers.
 - **Entire**: legal provenance. Every rule change by the agent is a commit with an Entire checkpoint holding the coding agent's full session, so anyone can ask "why does this rule say this?". Uses `commit_linking: always` so the headless agent's sessions link without a prompt.
 - **cfo.ai**: pricing, costs, revenue and runway, with cost per document taken from measured runs.
-- **Claude**: Sonnet 5.5 extracts, Opus 5.5 verifies and resolves, a fast model triages, Claude Code encodes.
+- **Claude**: chosen per stage by measurement: Sonnet 5.5 extracts, verifies and resolves; Haiku 5.5 triages and runs Claude Code as the coding agent.
 
 ## Use it
 
