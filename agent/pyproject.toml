@@ -1,0 +1,28 @@
+[project]
+name = "niyam"
+version = "0.1.0"
+description = "An agent that keeps welfare eligibility rules in sync with government orders"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "anthropic>=1.0",
+  "neatlogs[anthropic]",
+  "pydantic>=2.7",
+  "pypdf>=5",
+  "pyyaml>=6",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "python-dotenv>=1",
+  "python-multipart>=0.0.9",
+  "httpx>=0.27",
+  "mcp>=1.2",
+]
+
+[project.scripts]
+niyam = "niyam.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["niyam"]
