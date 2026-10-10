@@ -123,7 +123,7 @@ export function Checker() {
                       {x.met ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-label={t("met", lang)} /> : <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-label={t("not_met", lang)} />}
                       <span><span className="sr-only">{x.met ? t("met", lang) : t("not_met", lang)}: </span>{x.text}</span>
                     </p>
-                    <Why snap={snap} src={x.source} label={t("why", lang)} />
+                    <Why snap={snap} src={x.source} label={t("why", lang)} provKey={`cond:${r.scheme.id}:${x.id}:${x.valid_from}`} />
                   </li>
                 ))}
               </ul>

@@ -3,7 +3,7 @@
 import * as Popover from "@radix-ui/react-popover";
 import { Code2, ExternalLink, History } from "lucide-react";
 import { useMemo, useState } from "react";
-import { docTitle, docUrl, meta, rulebookMain, rulebookProposed } from "@/lib/data";
+import { docTitle, docUrl, meta, provenance, rulebookMain, rulebookProposed } from "@/lib/data";
 import { activeConditions, changeDates, paramsAt, paramValueAt, renderText, type Snapshot, type Source } from "@/lib/rules";
 import { Info } from "./info";
 import { Badge } from "./ui";
@@ -14,7 +14,8 @@ function provenanceFor(snap: Snapshot, src: Source) {
   return code ? meta.published.find((p) => p.doc_code === code) : undefined;
 }
 
-export function Why({ snap, src, label = "Why?" }: { snap: Snapshot; src: Source; label?: string }) {
+export function Why({ snap, src, label = "Why?", provKey }: { snap: Snapshot; src: Source; label?: string; provKey?: string }) {
+  const line = provKey ? provenance[provKey] : undefined;
   const url = docUrl(snap, src);
   const doc = src.doc ? snap.sources[src.doc] : undefined;
   const isAgentChange = doc && String(doc.code) !== "202406281814018230";
@@ -38,6 +39,13 @@ export function Why({ snap, src, label = "Why?" }: { snap: Snapshot; src: Source
             {prov?.checkpoint_url && <a href={prov.checkpoint_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium hover:bg-surface">Agent reasoning (Entire checkpoint) <ExternalLink className="h-3 w-3" aria-hidden /></a>}
             {prov?.pr_url && <a href={prov.pr_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium hover:bg-surface">Change request <ExternalLink className="h-3 w-3" aria-hidden /></a>}
           </div>
+          {line && (
+            <div className="mt-3 rounded-lg border border-border bg-surface p-3 text-xs">
+              <p className="mb-1 font-semibold text-text">Who wrote this line (from Entire) <Info id="checkpoint" /></p>
+              <p className="text-muted">{line.agent} ({line.model}), as {line.author}, on {line.author_time.slice(0, 16).replace("T", " ")} UTC.</p>
+              <p className="mt-1 font-mono text-[11px] text-muted">checkpoint {line.checkpoint_id}<br />session {line.session_id}<br />commit {line.commit_sha.slice(0, 7)}</p>
+            </div>
+          )}
           {!isAgentChange && <p className="mt-3 text-xs text-muted">Encoded by hand as the starting point (baseline), from the original order.</p>}
           {isAgentChange && <p className="mt-3 text-xs text-muted">Encoded by the Niyam agent. Its full session is saved as an Entire checkpoint on the commit.</p>}
           <Popover.Arrow className="fill-border" />
@@ -59,16 +67,15 @@ export function Explorer() {
   const [showCode, setShowCode] = useState(false);
 
   const timeline = useMemo(() => {
-    const ev: { date: string; text: string; src: Source; kind: string }[] = [];
+    const ev: { date: string; text: string; src: Source; kind: string; key?: string }[] = [];
     for (const [name, p] of Object.entries(scheme.parameters)) {
       p.values.forEach((v, k) => {
         if (k === 0) return;
-        ev.push({ date: v.start, kind: "change", text: `${p.description}: ${JSON.stringify(p.values[k - 1].value)} to ${JSON.stringify(v.value)}`, src: v.reference });
-        void name;
+        ev.push({ date: v.start, kind: "change", text: `${p.description}: ${JSON.stringify(p.values[k - 1].value)} to ${JSON.stringify(v.value)}`, src: v.reference, key: `param:${scheme.id}:${name}:${v.start}` });
       });
     }
     for (const c of scheme.conditions) {
-      if (c.valid_from !== scheme.launched) ev.push({ date: c.valid_from, kind: "added", text: `Condition starts: ${renderText(c.text, paramsAt(scheme, c.valid_from))}`, src: c.source });
+      if (c.valid_from !== scheme.launched) ev.push({ date: c.valid_from, kind: "added", text: `Condition starts: ${renderText(c.text, paramsAt(scheme, c.valid_from))}`, src: c.source, key: `cond:${scheme.id}:${c.id}:${c.valid_from}` });
       if (c.valid_until) ev.push({ date: c.valid_until, kind: "ended", text: `Condition ends after this day: ${renderText(c.text, paramsAt(scheme, c.valid_until))}`, src: c.source });
     }
     return ev.sort((a, b) => a.date.localeCompare(b.date));
@@ -118,7 +125,7 @@ export function Explorer() {
                 </p>
                 {showCode && <code className="mt-1 block font-mono text-xs text-muted">{c.when}</code>}
               </div>
-              <Why snap={snap} src={c.source} />
+              <Why snap={snap} src={c.source} provKey={`cond:${scheme.id}:${c.id}:${c.valid_from}`} />
             </li>
           ))}
         </ul>
@@ -134,7 +141,7 @@ export function Explorer() {
                       <td className="py-2 pr-3 font-mono text-xs">{k}</td>
                       <td className="py-2 pr-3 font-mono text-xs">{JSON.stringify(v.value)}</td>
                       <td className="py-2 pr-3 text-xs text-muted">since {v.start}</td>
-                      <td className="py-2"><Why snap={snap} src={v.reference} /></td>
+                      <td className="py-2"><Why snap={snap} src={v.reference} provKey={`param:${scheme.id}:${k}:${v.start}`} /></td>
                     </tr>
                   );
                 })}
@@ -156,7 +163,7 @@ export function Explorer() {
                     <p className="text-xs font-semibold text-muted">{t.date} <Badge tone={t.kind === "ended" ? "warning" : "info"} icon={false}>{t.kind}</Badge></p>
                     <p className="text-sm">{t.text}</p>
                   </div>
-                  <Why snap={snap} src={t.src} />
+                  <Why snap={snap} src={t.src} provKey={t.key} />
                 </div>
               </li>
             ))}

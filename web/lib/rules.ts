@@ -183,7 +183,7 @@ export function normalisePerson(schema: Record<string, FieldSpec>, person: Recor
   return out;
 }
 
-export type Reason = { id: string; text: string; met: boolean; source: Source; kind?: string };
+export type Reason = { id: string; text: string; met: boolean; source: Source; kind?: string; valid_from: string };
 export type SchemeResult = { scheme: Scheme; eligible: boolean; inForce: boolean; monthly: number; reasons: Reason[] };
 
 export function evaluateScheme(snap: Snapshot, s: Scheme, person: Record<string, unknown>, on: string): SchemeResult {
@@ -191,7 +191,7 @@ export function evaluateScheme(snap: Snapshot, s: Scheme, person: Record<string,
   if (on < s.launched) return { scheme: s, eligible: false, inForce: false, monthly: 0, reasons: [] };
   const params = paramsAt(s, on);
   const reasons: Reason[] = activeConditions(s, on).map((c) => ({
-    id: c.id, kind: c.kind, text: renderText(c.text, params), met: Boolean(evaluate(c.when, p, params)), source: c.source,
+    id: c.id, kind: c.kind, valid_from: c.valid_from, text: renderText(c.text, params), met: Boolean(evaluate(c.when, p, params)), source: c.source,
   }));
   const eligible = reasons.every((r) => r.met);
   let monthly = 0;

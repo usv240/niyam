@@ -1,0 +1,11 @@
+import { chromium } from "playwright-core";
+const [out, scheme = "light"] = process.argv.slice(2);
+const b = await chromium.launch({ channel: "chrome" });
+const p = await (await b.newContext({ viewport: { width: 1280, height: 900 }, colorScheme: scheme })).newPage();
+await p.goto("http://localhost:8811/explore/", { waitUntil: "networkidle" });
+const row = p.locator("li", { hasText: "Receives less than" }).first();
+await row.scrollIntoViewIfNeeded();
+await row.getByRole("button", { name: /Why does this rule say this/ }).click();
+await p.waitForTimeout(500);
+await p.screenshot({ path: out });
+await b.close();

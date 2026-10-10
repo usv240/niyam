@@ -389,3 +389,24 @@ def evals():
         d = json.loads(p.read_text(encoding="utf-8"))
         out.append({"version": d["version"], "note": d.get("note"), "ran_at": d.get("ran_at"), "summary": d["summary"], "results": d["results"]})
     return {"versions": out}
+
+
+@app.get("/api/v1/why")
+def why(file: str, line: int):
+    """Line-level provenance from Entire: the commit, checkpoint, session, agent and model behind one rulebook line."""
+    import subprocess
+
+    if not re.fullmatch(r"(schemes|parameters|tests|glossary|schema)/[A-Za-z0-9_./-]+\.ya?ml", file) or ".." in file:
+        raise error(400, "bad_file", "Only rulebook files under schemes/, parameters/, tests/, glossary/ or schema/ can be explained.")
+    exe = Path.home() / ".local" / "bin" / ("entire.exe" if sys.platform == "win32" else "entire")
+    proc = subprocess.run([str(exe), "why", f"{file}:{int(line)}", "--json"], cwd=rulebook.main_path(), capture_output=True,
+                          text=True, encoding="utf-8", errors="replace", timeout=60, stdin=subprocess.DEVNULL)
+    try:
+        data = json.loads(proc.stdout)["line"]
+    except (json.JSONDecodeError, KeyError, TypeError):
+        raise error(404, "no_provenance", "No provenance found for that line.")
+    keep = ("line_number", "authorship", "commit_sha", "author", "author_time", "checkpoint_id", "session_id", "agent", "model")
+    out = {k: data.get(k) for k in keep}
+    if out.get("commit_sha"):
+        out["checkpoint_url"] = f"https://entire.io/gh/{settings.rulebook_repo}/commit/{out['commit_sha']}"
+    return out

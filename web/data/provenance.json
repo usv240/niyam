@@ -1,0 +1,47 @@
+{
+ "param:mh.ladki_bahin:age_max:2024-07-03": {
+  "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T08:05:39Z",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5"
+ },
+ "param:mh.ladki_bahin:disqualifying_govt_jobs:2024-07-03": {
+  "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T08:05:39Z",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5"
+ },
+ "param:mh.ladki_bahin:eligible_marital_statuses:2024-07-03": {
+  "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T08:05:39Z",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5"
+ },
+ "cond:mh.ladki_bahin:other_scheme_limit:2024-07-03": {
+  "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T08:05:39Z",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5"
+ },
+ "cond:mh.ladki_bahin:unmarried_one_per_family:2024-07-03": {
+  "commit_sha": "2d67c1492b7a175caf1c6b5a1cb8791c987e81f9",
+  "author": "Niyam Agent",
+  "author_time": "2026-10-10T08:05:39Z",
+  "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7",
+  "session_id": "7e6e8071-f488-4943-8dd3-bdb0919dff07",
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5"
+ }
+}

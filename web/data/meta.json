@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-10-10T04:06:58",
+ "generated_at": "2026-10-10T04:26:08",
  "showcase_job": "job_20261010_bd059543",
- "rulebook_main_sha": "9b5ce1dc5406d627a311051f45ff8f88ae776ae9",
+ "rulebook_main_sha": "3effa179db82d998ba9754f2cb8b558460b7a61d",
  "published": [
   {
    "id": "job_20261010_bd059543",
@@ -32,5 +32,5 @@
    "doc_code": "202407031335114330"
   }
  ],
- "niyam_head": "f59fb2e4fb5c6d3b6f4b1aae27d8294331e2e96f"
+ "niyam_head": "959b876b9f291f09418c8e1658a73c8529e819a0"
 }

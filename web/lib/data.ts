@@ -3,6 +3,7 @@ import metaJson from "@/data/meta.json";
 import mainJson from "@/data/rulebook-main.json";
 import proposedJson from "@/data/rulebook-proposed.json";
 import showcaseJson from "@/data/showcase.json";
+import provenanceJson from "@/data/provenance.json";
 import type { Snapshot, Source } from "./rules";
 
 export const rulebookMain = mainJson as unknown as Snapshot;
@@ -34,6 +35,10 @@ export type Showcase = {
   events: JobEvent[]; diff_files?: Record<string, string>;
 };
 export const showcase = showcaseJson as unknown as Showcase;
+
+// Line-level provenance from `entire why`: who wrote each agent-changed rule line, with which model, in which session.
+export type LineProvenance = { commit_sha: string; author: string; author_time: string; checkpoint_id: string; session_id: string; agent: string; model: string };
+export const provenance = provenanceJson as unknown as Record<string, LineProvenance>;
 
 export type EvalResult = Record<string, unknown> & { case: string; job_id: string; state: string; cost_usd: number; latency_s: number; trace_id?: string };
 export type EvalVersion = { version: string; note?: string; ran_at?: string; summary: Record<string, number>; results: EvalResult[] };

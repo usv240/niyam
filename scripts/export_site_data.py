@@ -40,6 +40,52 @@ def branch_checkout(sha: str) -> Path:
     return path
 
 
+def entire_why(root: Path, file: str, line: int) -> dict | None:
+    """Line-level provenance from Entire: commit, checkpoint, session, agent and model behind one line."""
+    exe = Path.home() / ".local" / "bin" / ("entire.exe" if sys.platform == "win32" else "entire")
+    proc = subprocess.run([str(exe), "why", f"{file}:{line}", "--json"], cwd=root, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace", timeout=60, stdin=subprocess.DEVNULL)
+    try:
+        data = json.loads(proc.stdout)["line"]
+    except (json.JSONDecodeError, KeyError, TypeError):
+        return None
+    if not data.get("checkpoint_id"):
+        return None
+    return {k: data.get(k) for k in ("commit_sha", "author", "author_time", "checkpoint_id", "session_id", "agent", "model")}
+
+
+def line_provenance(root: Path, snap: dict) -> dict:
+    """Keys like param:<scheme>:<name>:<start> and cond:<scheme>:<id>:<valid_from> -> Entire provenance."""
+    out = {}
+    for sid, s in snap["schemes"].items():
+        pdir = root / "parameters" / Path(*sid.split("."))
+        for name, p in s["parameters"].items():
+            f = pdir / f"{name}.yaml"
+            lines = f.read_text(encoding="utf-8").splitlines()
+            for v in p["values"]:
+                for i, l in enumerate(lines):
+                    if l.strip().startswith(f"{v['start']}:") or l.strip().startswith(f"'{v['start']}':"):
+                        target = i + 2 if i + 1 < len(lines) and lines[i + 1].strip().startswith("value") else i + 1
+                        prov = entire_why(root, f.relative_to(root).as_posix(), target)
+                        if prov:
+                            out[f"param:{sid}:{name}:{v['start']}"] = prov
+                        break
+        sfile = next((p for p in (root / "schemes").rglob("*.yaml") if f"id: {sid}" in p.read_text(encoding="utf-8")), None)
+        if not sfile:
+            continue
+        lines = sfile.read_text(encoding="utf-8").splitlines()
+        for c in s["conditions"]:
+            for i, l in enumerate(lines):
+                if l.strip() == f"- id: {c['id']}":
+                    block = lines[i:i + 12]
+                    if any(f"valid_from: {c['valid_from']}" in b for b in block):
+                        prov = entire_why(root, sfile.relative_to(root).as_posix(), i + 1)
+                        if prov:
+                            out[f"cond:{sid}:{c['id']}:{c['valid_from']}"] = prov
+                        break
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--job", help="showcase job id (default: latest published non-eval job)")
@@ -62,6 +108,9 @@ def main() -> int:
         if sha:
             proposed = snapshot(branch_checkout(sha))
             (OUT / "rulebook-proposed.json").write_text(json.dumps(proposed, ensure_ascii=False, indent=1), encoding="utf-8")
+            prov = line_provenance(branch_checkout(sha), proposed)
+            (OUT / "provenance.json").write_text(json.dumps(prov, ensure_ascii=False, indent=1), encoding="utf-8")
+            print(f"entire why: provenance for {len(prov)} rule lines")
             diff = rulebook.git("diff", "--stat", f"{sha}~1", sha, cwd=rulebook.main_path(), check=False)
             showcase["diff_stat"] = diff
             showcase["diff_files"] = {}
