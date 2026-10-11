@@ -1,15 +1,18 @@
-"""Build a draft demo video: narration (Windows TTS), real screen recordings, burned-in captions.
+"""Build the demo video: narration, real screen recordings, burned-in captions.
 
-  python video/make_video.py [--base http://localhost:8811] [--voice "Microsoft Zira Desktop"] [--skip-record]
+  python video/make_video.py [--base http://localhost:8811] [--voice en-IN-NeerjaNeural] [--skip-record]
 
-Output: video/out/niyam-demo-draft.mp4 (1920x1080, 30 fps, H.264 + AAC).
-The voice is a placeholder: re-record the narration in your own voice over the
-same clips for the final submission (video/out/scenes/*.mp4 are kept separately).
+Output: video/out/niyam-demo.mp4 (1920x1080, 30 fps, H.264 + AAC).
+Voices starting with "en-" use Microsoft neural voices through edge-tts (the script
+text is sent to Microsoft's speech service); any other name uses the built-in
+Windows voice. Scenes with "images" show still screenshots (for dashboards that
+need a login) instead of a recording.
 """
 
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import re
 import subprocess
@@ -59,18 +62,59 @@ def srt(text: str, total: float) -> str:
     return "\n".join(out)
 
 
+def neural_tts(audio: Path, voice: str) -> None:
+    import edge_tts
+
+    async def speak() -> None:
+        for s in SCENES:
+            mp3, wav, said = (audio / f"{s['id']}{ext}" for ext in (".mp3", ".wav", ".txt"))
+            key = f"{voice}|{s['say']}"
+            if wav.exists() and said.exists() and said.read_text(encoding="utf-8") == key and duration(wav) > 1.5:
+                continue  # unchanged and good: keep it
+            for attempt in range(4):
+                await edge_tts.Communicate(s["say"], voice, rate="+4%").save(str(mp3))
+                run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3), "-ar", "48000", "-ac", "1", str(wav)])
+                # the service sometimes returns a near-empty clip; a sentence never takes under 1.5 s
+                if duration(wav) > 1.5:
+                    break
+                print(f"  {s['id']}: short audio, retrying")
+                await asyncio.sleep(3 * (attempt + 1))
+            else:
+                raise SystemExit(f"narration for {s['id']} kept coming back empty")
+            said.write_text(key, encoding="utf-8")
+    asyncio.run(speak())
+
+
+def stills(s: dict, total: float, out: Path) -> None:
+    """Show each screenshot for an equal share of the scene, centred on a light background, with a slow zoom."""
+    imgs = [ROOT / p for p in s["images"]]
+    each = total / len(imgs)
+    frames = int(each * 30)
+    inputs, chains = [], []
+    for i, img in enumerate(imgs):
+        inputs += ["-i", str(img)]  # one frame in; zoompan emits the whole clip
+        chains.append(f"[{i}:v]scale=1720:960:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0xf6f5f2,"
+                      f"zoompan=z='1+0.04*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s=1920x1080:fps=30,setsar=1[v{i}]")
+    graph = ";".join(chains) + ";" + "".join(f"[v{i}]" for i in range(len(imgs))) + f"concat=n={len(imgs)}:v=1:a=0[v]"
+    run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", graph, "-map", "[v]",
+         "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", str(out)])
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--base", default="http://localhost:8811")
-    ap.add_argument("--voice", default="Microsoft Zira Desktop")
+    ap.add_argument("--voice", default="en-IN-NeerjaNeural")
     ap.add_argument("--skip-record", action="store_true")
     a = ap.parse_args()
     audio, clips, scenes_dir = OUT / "audio", OUT / "clips", OUT / "scenes"
     for d in (audio, clips, scenes_dir):
         d.mkdir(parents=True, exist_ok=True)
 
-    run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "video" / "tts.ps1"),
-         "-Scenes", str(ROOT / "video" / "scenes.json"), "-Out", str(audio), "-Voice", a.voice])
+    if a.voice.startswith("en-"):
+        neural_tts(audio, a.voice)
+    else:
+        run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "video" / "tts.ps1"),
+             "-Scenes", str(ROOT / "video" / "scenes.json"), "-Out", str(audio), "-Voice", a.voice])
     durs = {s["id"]: duration(audio / f"{s['id']}.wav") for s in SCENES}
     (OUT / "durations.json").write_text(json.dumps(durs, indent=1), encoding="utf-8")
     print("narration:", round(sum(durs.values()), 1), "seconds")
@@ -83,18 +127,26 @@ def main() -> None:
     for s in SCENES:
         sid, total = s["id"], durs[s["id"]] + 0.8
         (scenes_dir / f"{sid}.srt").write_text(srt(s["say"], total), encoding="utf-8")
-        phone = s["viewport"] == "phone"
-        frame = ("scale=608:1080,pad=1920:1080:656:0:color=0x0b0f17" if phone
-                 else "scale=1920:1080:flags=lanczos")
+        phone = s.get("viewport") == "phone"
+        # Playwright records the viewport at CSS size into the top-left of the video and pads the rest with grey: crop it out.
+        frame = ("crop=430:932:0:0,scale=-2:1080:flags=lanczos,pad=1920:1080:(ow-iw)/2:0:color=0x0b0f17" if phone
+                 else "crop=1536:864:0:0,scale=1920:1080:flags=lanczos")
+        if "images" in s:
+            frame = "null"
         vf = f"{frame},fps=30,format=yuv420p,subtitles={sid}.srt:force_style='{STYLE}'"
-        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{offsets[sid]:.2f}", "-i", str(clips / f"{sid}.webm"),
+        if "images" in s:
+            stills(s, total, clips / f"{sid}.mp4")
+            src = ["-i", str(clips / f"{sid}.mp4")]
+        else:
+            src = ["-ss", f"{offsets[sid]:.2f}", "-i", str(clips / f"{sid}.webm")]
+        run(["ffmpeg", "-y", "-loglevel", "error", *src,
              "-i", str(audio / f"{sid}.wav"), "-t", f"{total:.2f}", "-vf", vf,
              "-af", "apad", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-c:a", "aac", "-b:a", "160k",
              "-ar", "48000", "-shortest", f"{sid}.mp4"], cwd=scenes_dir)
         parts.append(f"file '{sid}.mp4'")
         print("composed", sid)
     (scenes_dir / "list.txt").write_text("\n".join(parts) + "\n", encoding="utf-8")
-    final = OUT / "niyam-demo-draft.mp4"
+    final = OUT / "niyam-demo.mp4"
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", "list.txt", "-c", "copy",
          "-movflags", "+faststart", str(final)], cwd=scenes_dir)
     print(f"done: {final} ({duration(final):.1f} s)")

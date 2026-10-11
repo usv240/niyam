@@ -12,6 +12,7 @@ const browser = await chromium.launch({ channel: "chrome" });
 const offsets = {};
 
 for (const s of scenes) {
+  if (s.images) continue; // still images are composed by make_video.py
   const phone = s.viewport === "phone";
   const vp = phone ? { width: 430, height: 932 } : { width: 1536, height: 864 };
   const ctx = await browser.newContext({
@@ -21,7 +22,7 @@ for (const s of scenes) {
   const page = await ctx.newPage();
   const t0 = Date.now();
   const url = s.url.startsWith("http") ? s.url : base + s.url;
-  await page.goto(url, { waitUntil: "networkidle" });
+  await page.goto(url, { waitUntil: url.includes("cfo.ai") ? "domcontentloaded" : "networkidle", timeout: 60000 });
   await page.waitForTimeout(600);
   const start = (Date.now() - t0) / 1000;
   const total = durations[s.id] + 0.8;
@@ -37,6 +38,9 @@ for (const s of scenes) {
       else if (kind === "tab") await page.getByRole("tab", { name: arg }).click();
       else if (kind === "tabrole") await page.getByRole("tab", { name: new RegExp(arg) }).click();
       else if (kind === "why") await page.locator("li", { hasText: arg }).first().getByRole("button", { name: /Why does this rule say this/ }).click();
+      else if (kind === "waittext") await page.waitForFunction((t) => document.body.innerText.includes(t), arg, { timeout: 30000 });
+      else if (kind === "js") await page.evaluate(arg);
+      else if (kind === "scrolltext") await page.getByText(arg).first().evaluate((el) => el.scrollIntoView({ behavior: "smooth", block: "start" }));
       else if (kind === "submit") { await page.locator("form button[type=submit]").click(); await page.waitForTimeout(600); await page.locator("#results").evaluate((el) => el.scrollIntoView({ behavior: "smooth" })); }
       await page.waitForTimeout(250);
     } catch (e) {

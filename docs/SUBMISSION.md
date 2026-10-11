@@ -19,25 +19,21 @@ Everything to post and record, with real numbers from our runs. No emojis, no em
 
 ## Demo video
 
-A complete draft is generated from the real site: `python video/make_video.py` (narration with a Windows voice, real recordings of the site and the public PR, captions burned in). Output: `video/out/niyam-demo-draft.mp4`, about 2:42. The narration for every scene is in `video/scenes.json`.
-
-To make the final cut better than the draft:
-1. Record your own voice reading each scene's `say` text (same order), or edit `video/scenes.json` and rebuild.
-2. Insert a 10-second clip of the neatlogs dashboard (the v1 loop trace next to the v2 trace) at scene 06, and the Entire checkpoint page at scene 04. Those dashboards need your login, so I could not record them.
-3. Upload to YouTube (unlisted is fine) and put the link in `web/lib/site.ts` (`video`) and the README.
+Built from the real site with `python video/make_video.py`: Indian English neural narration (edge-tts, en-IN-NeerjaNeural), real recordings of the site, the public pull request, the public Entire checkpoint page and the cfo.ai plan, plus neatlogs trace screenshots (v1 loop next to the v2 straight run), with captions burned in. Output: `video/out/niyam-demo.mp4`. The narration for every scene is in `video/scenes.json`. Upload to YouTube (unlisted is fine) and put the link in `web/lib/site.ts` (`video`) and the README.
 
 ## Submission tweet (quote-tweet the official neatlogs post, Mon 12 Oct, 19:00 to 23:55 IST)
 
+The rules ask for the business plan and an accessible Entire checkpoint link and ID in the submission, so both are in the post. Length as X counts it: 277 of 280 characters (every link counts as 23). The live site link is on the repo page and in the video.
+
 ```
 Team USV | Ujwal Vanjare | Niyam
-
-An AI agent that reads new government orders and keeps welfare eligibility rules, written as code, in sync with the law. Every line links to the clause it came from.
+AI agent that keeps welfare eligibility code in sync with the law.
 
 Demo: <video link>
-Live: https://usv240.github.io/niyam/
 Repo: https://github.com/usv240/niyam
-
-#neatHack @neatlogs
+Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7: https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9
+cfo.ai plan: https://cfo.ai/s/GaibuMRvDxWxdSHs
+#neatHack
 ```
 
 ## Checklist before submitting
@@ -46,7 +42,7 @@ Repo: https://github.com/usv240/niyam
 - [ ] Demo video uploaded; link added to `web/lib/site.ts` (`video`) and README
 - [x] cfo.ai plan built: https://cfo.ai/s/GaibuMRvDxWxdSHs
 - [x] cfo.ai plan exported to `business/business-plan.pdf`
-- [ ] neatlogs screenshots in `evidence/`
+- [x] neatlogs screenshots in `evidence/screens/` (v1 loop trace, v2 showcase trace)
 - [x] Entire repositories imported at entire.io so checkpoint links open (checked signed out)
 - [ ] `hackathon.md` final entry and "Submission status"
 - [ ] All links open without logging in
