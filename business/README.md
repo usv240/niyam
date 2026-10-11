@@ -1,6 +1,18 @@
 # Niyam business plan inputs (for cfo.ai)
 
-The final business plan is built in cfo.ai and exported to this folder as `business-plan.pdf`. This file holds the inputs, so every number in the plan can be traced to a measurement or a labelled assumption.
+The business plan was built in cfo.ai by its agent, Ari: **[open the plan](https://cfo.ai/s/n8hrW8wq0CyG5W0f)** (PDF export: `business-plan.pdf` in this folder). This file holds the inputs, so every number in the plan can be traced to a measurement or a labelled assumption.
+
+## Result (from the cfo.ai model, October 2026 to September 2029)
+
+| Case | Revenue year 1 | Revenue year 2 | Revenue year 3 | Cash flow positive from | Funding needed beyond starting INR 25 lakh |
+|---|---|---|---|---|---|
+| Downside (half of base) | INR 3.25 lakh | INR 34.17 lakh | INR 1.26 crore | later than base; cash still negative at month 36 | INR 73.73 lakh |
+| Base | INR 6.50 lakh | INR 68.33 lakh | INR 2.51 crore | month 21 (June 2028) | INR 40.52 lakh |
+| Upside (1.5x base) | INR 9.75 lakh | INR 1.03 crore | INR 3.77 crore | month 18 (March 2028) | INR 26.62 lakh |
+
+- Gross margin is about 95% in the base case, because models run only when a new order arrives, not on each eligibility question.
+- With only the starting INR 25 lakh, cash runs out in month 9 (June 2027) in every case. Ari recommends raising INR 50 to 60 lakh more, before month 8.
+- Main risks Ari flagged: policy errors (review gates and tests), slow sales and procurement, dependence on government contracts (about 41% of base revenue at month 36), and support costs. Taxes, salary rises and payment delays are not modelled.
 
 ## 1. What we sell
 
@@ -15,7 +27,7 @@ An always-current, sourced eligibility rulebook for Indian welfare schemes, deli
 |---|---|---|
 | Cost per government order processed (v3, current) | $0.13 mean over 6 runs; $0.11 to $0.42 for relevant orders, under $0.001 for irrelevant ones | `evals/results/v3.json`, `extra/v3c.json`, neatlogs traces |
 | Showcase run on the real amendment | $0.69 | job `job_20261010_bd059543`, PR #2 |
-| Time per order | 54 s mean | `evals/results/v2.json` |
+| Time per order | 40 s mean | `evals/results/v3.json` |
 | Eligibility API call | No model call; under 50 ms of CPU | rules engine runs locally |
 | Hosting (one t3.small, storage, IP) | about $20 per month | AWS pricing, us-east-1 |
 
@@ -52,4 +64,4 @@ Why the API is cheap to serve: models are only used when a new order arrives. An
 
 > Build a 36-month financial model for Niyam, an API company that keeps Indian welfare eligibility rules, written as code, in sync with government orders. Revenue tiers: Navigator INR 9,999 per month, Platform INR 49,999 per month, Government contracts from INR 25 lakh per year. Customer ramp (base case): Navigator 5, 25, 80 paying customers at the end of years 1, 2 and 3; Platform 1, 6, 20; Government 0, 2, 6. Downside case: half of base. Upside case: 1.5x base. Cost of goods: model cost of USD 10 per covered state per month (3, 10, 28 states by year end), hosting USD 20 per month rising to USD 600 per month in year 3, payment fees 2%. Team: 2 founders from month 1 at INR 1.2 lakh per month each, 1 engineer from month 6 at INR 1.5 lakh per month, 1 policy analyst from month 9 at INR 80,000 per month, 1 sales lead from month 12 at INR 1.5 lakh per month. Other operating costs INR 50,000 per month. Starting cash INR 25 lakh (grant or pre-seed). Show monthly revenue, gross margin, EBITDA, ending cash, runway, and the month cash flow turns positive, for downside, base and upside.
 
-Export the result as `business-plan.pdf` into this folder and link it in the README and on the website.
+Then: "Now write this up as a business plan document with these sections: executive summary, problem, solution, customers and why they pay, pricing, unit economics, 36-month financial summary for the three scenarios, funding need and runway, key risks, and milestones for each year."

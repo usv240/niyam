@@ -44,6 +44,7 @@ Repo: https://github.com/usv240/niyam
 
 - [ ] Website deployed and tested in incognito on a phone and a laptop, light and dark
 - [ ] Demo video uploaded; link added to `web/lib/site.ts` (`video`) and README
+- [x] cfo.ai plan built: https://cfo.ai/s/n8hrW8wq0CyG5W0f
 - [ ] cfo.ai plan exported to `business/business-plan.pdf`
 - [ ] neatlogs screenshots in `evidence/`
 - [ ] Entire repositories imported at entire.io so checkpoint links open

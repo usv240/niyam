@@ -73,7 +73,7 @@ export default function Judges() {
             <li><ExtLink href={SITE.repo}>Agent repository</ExtLink>: the agent, API, website and evaluations.</li>
             <li><ExtLink href={SITE.rulebookRepo}>Rulebook repository</ExtLink> <Info id="rulebook" />: the rules the agent maintains, with its pull requests.</li>
             <li><ExtLink href={SITE.buildLog}>Build log</ExtLink>: what was built when, including mistakes and fixes.</li>
-            <li><ExtLink href={SITE.businessPlan}>Business plan</ExtLink>: pricing, costs and runway.</li>
+            <li><ExtLink href={SITE.cfoPlan}>Business plan in cfo.ai</ExtLink>: pricing, costs, revenue and runway for 36 months.</li>
           </ul>
         </Card>
 
@@ -124,8 +124,8 @@ export default function Judges() {
             <Ev title="Entire: legal provenance">
               Every rule commit by the agent carries an Entire checkpoint with the coding agent&apos;s full session. Showcase checkpoint <code className="font-mono">{showcase.checkpoint_id}</code>{showcase.checkpoint_url && <> (<ExtLink href={showcase.checkpoint_url}>open</ExtLink>)</>}. Both repositories also capture our own build sessions.
             </Ev>
-            <Ev title="cfo.ai: business plan" tone="warning" status="In progress">
-              Pricing, costs, revenue and runway, with cost per document taken from measured runs ({usd(v3?.summary.cost_usd)}). <ExtLink href={SITE.businessPlan}>Plan folder</ExtLink>.
+            <Ev title="cfo.ai: business plan">
+              cfo.ai is an AI finance planner. Its agent, Ari, built a 36-month plan with three cases from our prices and the cost per document measured in neatlogs ({usd(v3?.summary.cost_usd)}). Base case: revenue INR 2.51 crore in year 3, gross margin about 95%, cash flow positive from month 21, and INR 40.5 lakh needed on top of the starting INR 25 lakh. <ExtLink href={SITE.cfoPlan}>Open the plan</ExtLink> or the <ExtLink href={SITE.businessPlan}>inputs and PDF</ExtLink>.
             </Ev>
           </div>
         </section>
