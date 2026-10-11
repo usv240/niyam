@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV } from "@/lib/site";
+import { LangToggle } from "./lang";
 import { ThemeToggle } from "./theme";
 import { Container } from "./ui";
 
@@ -19,7 +20,7 @@ export function Logo() {
         </svg>
       </span>
       <span className="text-lg">Niyam</span>
-      <span className="deva hidden text-sm font-normal text-muted sm:inline">नियम</span>
+      <span className="deva hidden text-sm font-normal text-muted sm:inline" title="Niyam means rule in Hindi and Marathi">नियम <span className="font-sans text-xs">(rule)</span></span>
     </Link>
   );
 }
@@ -50,6 +51,7 @@ export function Header() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
+          <div className="hidden sm:block"><LangToggle compact /></div>
           <ThemeToggle />
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
@@ -60,6 +62,7 @@ export function Header() {
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm" />
               <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-[min(86vw,22rem)] flex-col gap-1 border-l border-border bg-bg p-5 shadow-pop">
+                <div className="mb-2"><LangToggle /></div>
                 <div className="mb-4 flex items-center justify-between">
                   <Dialog.Title className="font-semibold">Menu</Dialog.Title>
                   <Dialog.Close className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border" aria-label="Close menu">

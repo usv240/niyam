@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Info } from "@/components/info";
 import { Card, Container, ExtLink, PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Learn", description: "Plain-language explainers: welfare schemes, government orders, rules as code, AI agents, traces and checkpoints." };
 
+const TOPIC_INFO: Record<string, string> = { scheme: "scheme", gr: "gr", "rules-as-code": "rules-as-code", agent: "agent", trace: "trace", checkpoint: "checkpoint", verify: "step-verify", human: "autonomy" };
+
 const TOPICS: { id: string; q: string; body: React.ReactNode }[] = [
+  { id: "niyam", q: "What is Niyam, in one paragraph?", body: <>Governments in India publish their welfare rules as orders, often PDF files in Marathi or Hindi. Apps, helplines and field workers then have to copy those rules by hand, and they often fall behind. Niyam is an AI helper that reads each new order, works out exactly what changed, updates one open set of rules with tests, and has a second AI check the work. A person approves anything risky. Anyone can then check their eligibility, and every answer shows the sentence of the government order it comes from.</> },
   { id: "scheme", q: "What is a welfare scheme?", body: <>A government programme that gives people money, food, services or support if they meet certain conditions, such as age, income or where they live. Those conditions are called <b>eligibility rules</b>. For example, the Ladki Bahin scheme in Maharashtra pays eligible women Rs 1,500 a month.</> },
   { id: "gr", q: "What is a GR?", body: <>A <b>Government Resolution</b> is an official order from a state government department. GRs create schemes and change their rules: raising an age limit, changing an income ceiling, adding or removing a condition. Maharashtra publishes them as PDF files, mostly in Marathi, on its <ExtLink href="https://gr.maharashtra.gov.in/">GR portal</ExtLink>. Each has an 18-digit code, for example 202407031335114330.</> },
   { id: "rules-as-code", q: "What does \"rules as code\" mean?", body: <>Writing the rules of a scheme as a small computer program instead of only as text. The program applies the rules the same way every time, can be tested with example people, and can be read by anyone. Governments in France, New Zealand, Canada and elsewhere have explored this. Niyam stores rules as readable YAML files, in the format of <ExtLink href="https://openfisca.org/">OpenFisca</ExtLink>, an open-source project, with a start date and a source for every value.</> },
@@ -42,7 +46,7 @@ const GLOSSARY: [string, string][] = [
 export default function Learn() {
   return (
     <>
-      <PageHeader eyebrow="Learn" title="Understand Niyam in ten minutes, with no background" intro="Short explainers in plain words. Start anywhere." />
+      <PageHeader guide="learn" eyebrow="Learn" title="Understand Niyam in ten minutes, with no background" intro="Short explainers in plain words. Start anywhere." />
       <Container className="grid gap-10 py-12 lg:grid-cols-[16rem_1fr]">
         <nav aria-label="Topics" className="lg:sticky lg:top-24 lg:self-start">
           <ul className="space-y-1 text-sm">
@@ -54,7 +58,7 @@ export default function Learn() {
         <div className="space-y-6">
           {TOPICS.map((t) => (
             <Card key={t.id}>
-              <h2 id={t.id} className="scroll-mt-24 text-xl font-semibold">{t.q}</h2>
+              <h2 id={t.id} className="flex scroll-mt-24 items-center gap-2 text-xl font-semibold">{t.q} {TOPIC_INFO[t.id] && <Info id={TOPIC_INFO[t.id]} />}</h2>
               <p className="mt-3 max-w-prose text-muted">{t.body}</p>
             </Card>
           ))}

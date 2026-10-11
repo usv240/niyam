@@ -1,0 +1,918 @@
+{
+ "/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Niyam reads every new government order i and updates the welfare eligibility rules, written as code i, by itself.",
+    "problem": "A woman who wants to know if she can get money cannot tell from the hero whether she can check her own eligibility here. 'Eligibility rules, written as code' is jargon and the main buttons are 'Watch it work' and 'Try it with your own document', which sound technical. The citizen path ('Check eligibility') appears only far down the page.",
+    "fix": "Add a hero line such as: 'Want to know if you qualify for a welfare scheme? Answer a few questions.' with a 'Check if I qualify' button next to 'Watch it work'. Reword: 'Niyam keeps the computer rules for welfare schemes in step with the latest government orders.'",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "किमान वयाची 21 वर्षे पूर्ण व कमाल वयाची 65 वर्ष पूर्ण होईपर्यंत",
+    "problem": "The hero card shows the Marathi quote with only a loose English line. It does not say that the English is a translation. The Marathi mixes Western digits (21, 65) with Devanagari words. The label 'GOVERNMENT ORDER, PAGE 2, CLAUSE 4(3)' is English only.",
+    "fix": "Label the lines 'Original (Marathi)' and 'English translation'. Add Marathi and Hindi labels for the card headings, or provide an EN/हिं/मराठी language switch at the top of the page. Make the page language selectable, as the 'Who it is for' section promises English, Hindi or Marathi.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "GR, GR 202407031335114330, 'What is a GR?' (FAQ)",
+    "problem": "'GR' is used in the hero card, the problem section and the process steps before it is explained. The explanation is hidden in a collapsed FAQ near the bottom. 'Government Resolution' is never spelled out on first use. Other terms, such as 'amendment', 'clause', 'parameter update' and 'YAML', are also unexplained.",
+    "fix": "On first use write 'Government Resolution (GR): the official order the state publishes'. Add info buttons for 'clause', 'amendment' and 'parameter update'. Add a one-line gloss for the YAML file, e.g. 'a plain text file that holds the rule'.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Latest real run: Ladki Bahin amendment, 6 changes found, 16 of 16 independent checks agree.",
+    "problem": "The hero says '6 changes found', but the live proof section lists only five visible changes (age, unmarried women, one per family, contract staff, Rs 1,500, farm land), which makes seven lines if counted separately. The count does not match what is shown. '16 of 16 checks' does not say what the checks are, and only a single run is cited.",
+    "fix": "Make the count match the list, or label which changes are grouped. Next to the number add: '16 synthetic test citizens, each given the same question, answered the same by the verifier and the rulebook'. Link to the full run page.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "$0.13 model cost per government order, down from $0.88 / Measured on 6 cases / Cost of this run: $0.69",
+    "problem": "The $0.13 headline sits beside a real run that cost $0.69, with no explanation of the difference. A sample of 6 cases is small. The 100% accuracy claims on 6 runs, including 2 synthetic ones, are easy to over-read. A judge cannot tell where the numbers come from.",
+    "fix": "Explain the $0.69 versus the $0.13 average, e.g. 'average of 6 runs; this run needed a human review step'. State plainly 'n=6' near the headline, and link each figure to the trace in neatlogs.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Haiku 5.5 coding agent and triage, Sonnet 5.5 verifier; truncated-output recovery",
+    "problem": "Model names and versions are given without any link to evidence, and 'truncated-output recovery' is not defined. 'Loop guard' and 'pinned base checkout' in v2 are unexplained jargon. The v1, v2, v3 labels are unclear because the rows are not dated or linked to commits.",
+    "fix": "Link each version to its git tag and neatlogs trace. Add one-line explanations: 'loop guard: stops the agent repeating the same failed step', 'pinned base checkout: always starts from the same copy of the rules'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "i (22 info buttons) next to 'Independent verifier', 'Confidence 0.88', 'reviewed and merged'",
+    "problem": "Several key terms in the live proof are explained only on tap: 'Independent verifier', 'Confidence 0.88', 'merged', 'change request', 'checkpoint', 'trace'. A non-technical visitor will not tap them, and the page does not say what 0.88 is out of.",
+    "fix": "Put short plain wording in the text: 'Confidence 0.88 out of 1' and 'a person approved the change before it went live'. Use 'proposed change' instead of 'change request'. Add a note at the top such as 'Tap i for a simple explanation'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Unmarried women become eligible... Contract staff (along with outsourced and volunteer workers)... jointly owning more than five acres",
+    "problem": "The live proof uses long English sentences and terms such as 'disqualifying', 'outsourced', 'parameter update' and 'widens/narrows eligibility', and only the one Marathi quote has any translation. Hindi and Marathi readers get no Hindi or Marathi summary of the six changes, though they are the audience the real scheme serves.",
+    "fix": "Add a Marathi and Hindi one-line summary under each change, or a language toggle. Use simpler English: 'more women can apply' and 'fewer women can apply' in place of 'widens/narrows eligibility'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Maharashtra later removed 92 lakh women from one scheme... about Rs 14,000 crore... $210 billion... 800 million... 40 percent",
+    "problem": "The numbers mix Indian units (lakh, crore) with dollars, so figures are hard to compare. 'Eligible' and 'apply' are not tied to a scheme. The 'Business Today, July 2026' source is a future-dated citation and the scheme is not named in that paragraph, so it is unclear which scheme this is.",
+    "fix": "Use one currency with the other in brackets: 'about Rs 17 lakh crore ($210 billion)'. Name the scheme (Ladki Bahin) in that paragraph. Check that the date on the citation is correct.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Evidence: 25 of 25 hand-written tests passed / 2 real Maharashtra schemes / Verified by an independent agent",
+    "problem": "'Independent agent' is asserted but not shown. The page does not say what 'independent' means (same model? different prompt?), who wrote the 25 tests, or whether they were written before the run. The claim 'every version since v2' for 100% accuracy cannot be checked from this page.",
+    "fix": "Add a line: 'Verifier: a separate Claude session given only the law, not the diff' and a link to the 25 tests in the repo. Name the two schemes and link each to its founding GR.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Seven steps ... Watch, Triage, Extract, Encode, Verify, Resolve, Publish; 'Merges alone only when safe'",
+    "problem": "The step names are developer jargon. 'Triage', 'Encode', 'Resolve' and 'Merges' mean nothing to this visitor, and the page does not say that a person can see or ask about the result. The next step for a citizen after reading this section is unclear.",
+    "fix": "Rename the steps in plain words: 'Watch' to 'Spot new orders', 'Encode' to 'Update the rules', 'Merges' to 'Publishes on its own'. End the section with 'Not a developer? Check if you qualify'.",
+    "severity": "low"
+   },
+   {
+    "persona": "judge",
+    "where": "Built with: neatlogs, Entire, cfo.ai, OpenFisca format, AWS / curl -X POST $NIYAM_API/api/v1/eligibility",
+    "problem": "The curl example uses variables ($NIYAM_API, $NIYAM_KEY) with no value or sandbox URL, so a judge cannot run it in three minutes. The example has no sample response, so the 'with sources' claim cannot be seen. The section on tools gives no link to the traces that are said to prove the fix.",
+    "fix": "Give a working public demo URL, a demo key and the JSON response with a clause citation. Link the neatlogs trace that revealed the v1 loop.",
+    "severity": "medium"
+   }
+  ]
+ },
+ "/how-it-works/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Niyam is an AI agent i: it takes a goal, plans steps, uses tools, checks its own work, and recovers when something fails.",
+    "problem": "The page never says in plain words what Niyam is for. A woman wanting to know whether she can get welfare money cannot tell that it keeps the eligibility rules for Maharashtra schemes up to date, or what she should do here. There is no next step for her.",
+    "fix": "Add a one-line opener: 'Niyam keeps the rules for Maharashtra welfare schemes up to date, so you can check if you qualify. This page shows how it reads new government orders.' Add a button: 'Check if I am eligible'.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Whole page (all English; the only Devanagari is the sample 'ि' and 'ह' in Extract)",
+    "problem": "There is no Hindi or Marathi version or summary. A reader who is slow in English faces long sentences with many technical words.",
+    "fix": "Add a language switch (English / हिंदी / मराठी), or at least a short Hindi and Marathi summary at the top. Keep the English next to it.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Marathi PDFs often have damaged text layers (the vowel sign ि comes out as ह)",
+    "problem": "The Devanagari letters are shown with no transliteration or English name. 'Text layers' and 'consonant skeleton' are hard even in English. The reader may not understand what is broken.",
+    "fix": "Write: 'the vowel sign ि (the 'i' sign, ",
+    "severity": "low"
+   }
+  ]
+ },
+ "/demo/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Watch Niyam process a real government order",
+    "problem": "The page never says what Niyam is or what it does for her. A woman wanting to know if she can get welfare money does not learn that this is a demo of software that tracks rule changes, nor whether she can check her own eligibility here.",
+    "fix": "Add one plain line at the top: 'Niyam reads new government orders and updates the rules that decide who gets welfare money. This page shows one example: the July 2024 change to the Ladki Bahin scheme.' Add a link such as 'Check if you are eligible' if that exists, or state that this page is not an eligibility checker.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Fewer people eligible / More people eligible (the six change cards)",
+    "problem": "The cards are the useful part for a citizen, but they sit under the pipeline and the log. Terms like 'parameter update', 'condition added' and 'condition removed' mean nothing to her. There is no summary of what the order means for a family, and no caution that the questions flagged for a human are still unresolved.",
+    "fix": "Add a plain summary above the cards, e.g. 'What changed for women: max age now 65, unmarried women can apply (one per family), contract workers' families may now qualify...'. Replace the tags with 'Rule changed' / 'New rule' / 'Rule removed'. Add a note: 'Two points are still being checked by a person, so don't rely on this for your own case yet.'",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Whole page: all explanatory text, buttons and labels, e.g. 'Press Play', 'Changes found', 'Questions flagged for a human'",
+    "problem": "All interface text and explanations are English only. The Marathi quotes appear without any Marathi or Hindi explanation, so the reader can't follow the page in the language they prefer.",
+    "fix": "Add a Hindi/Marathi language toggle, or at minimum short Marathi/Hindi summaries for the page purpose, the six change cards and the next step. Example: 'हे पान दाखवते की सरकारी आदेश आल्यावर नियम कसे बदलतात.'",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Terms like 'Triage', 'Extract', 'Encode', 'Verifier', 'ambiguity(ies)', 'parameter update', 'Confidence 0.88', 'checkpoint', 'Change request'",
+    "problem": "These are hard English words for a slow English reader. Several ('Triage', 'Encode', 'ambiguity(ies)') are not everyday English. The Timeline lines such as 'Found 6 change(s), 2 ambiguity(ies), skipped 5 procedural topic(s)' are especially dense.",
+    "fix": "Use simpler words: Triage→'Is it relevant?', Extract→'Find the changes', Encode→'Update the rules', Verify→'Double-check', 'ambiguity'→'unclear point', 'Change request'→'Proposed update'. Rewrite the log line as 'Found 6 changes and 2 unclear points. Skipped 5 paperwork topics.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Confidence 0.88; decision: human review",
+    "problem": "The 0.88 confidence is given with no explanation of how it is computed or what threshold triggers human review. The step 7 button says Niyam 'merges alone only when safe', but the page never says why this case wasn't safe. Nothing shows that the agent decided correctly.",
+    "fix": "Add a Decision tab summary: 'Confidence 0.88 = [formula]. Auto-merge needs ≥ X and no open questions. Held for a human because 2 ambiguities were open.' Link the rule in code.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Verifier agrees i — 16 of 16",
+    "problem": "'16 of 16' sounds impressive but there is no context. It isn't clear what a 'test citizen' is, how the 16 were chosen, or why a verifier that agrees fully still leads to human review. Whether the verifier is blind to the change or sees the tests is only asserted.",
+    "fix": "Add one line: 'Test citizens are 16 made-up women with different ages, incomes and jobs. The verifier wrote them from the law text without seeing the code diff.' Link the 16 cases and results in the Verification tab.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Cost $0.69 / Time 1 min / 46 passed",
+    "problem": "Cost and time have no breakdown (which models, how many tokens, which steps). A cost and time for a full run can't be verified. '46 tests pass' is not compared with the earlier count, so it isn't clear how many tests are new.",
+    "fix": "Link the cost to the neatlogs trace with a per-step breakdown. Show 'Tests: 46 passed (X new for this change)'. State the models used.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "See the evidence yourself: 'Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7 (open)', 'neatlogs trace id 145b0f0f3bfc50c70c940a90a406f5bc'",
+    "problem": "These are bare IDs. It's unclear what 'Entire' and 'neatlogs' are, whether the trace ID is a link, and what a judge should look for. The page says 'Every event below happened', but it is a recording and nothing explains how to check that.",
+    "fix": "Make each ID a clickable link with one line: 'Entire = tool that records the coding agent's session; neatlogs = tool that records every model call'. Add 'Check: the trace has N calls matching the timeline'. Also link commit 2d67c14.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Questions flagged for a human: 'does the Rs 2.50 lakh income cap refer to the employee's own income or to the total family income?'",
+    "problem": "It is not said who the human is, who will answer, when, or what it means for a family reading this now. 'Yellow and orange ration card holders' are mentioned with no indication of what she should do.",
+    "fix": "Add: 'These questions go to a person on our team before the rules go live. Until answered, the rules for contract workers' families are not final.' Say how and when the answer will appear.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Replay the run — Step / Restart / Speed 1x 2x 4x; 'Step 14 of 14'",
+    "problem": "The controls say 'Step' and 'Restart', but the instructions say 'Press Play', and no Play button appears in the text. The page already shows Step 14 of 14 (the end state), so it's unclear whether replay has started or what to press first. The 7 pipeline stages and 14 steps are not linked either.",
+    "fix": "Show a clear 'Play' button, start at step 0 or state 'Showing the finished run; press Restart to replay'. Say which of the 14 steps belongs to which of the 7 stages.",
+    "severity": "low"
+   },
+   {
+    "persona": "citizen",
+    "where": "Rs 2.50 lakh, Rs 1,500, 'completed years', 'Sr. No. (3)', 'clause 4(3)'",
+    "problem": "'Lakh', 'Sr. No.' and clause numbers appear without any context. An unsure reader doesn't know what Rs 2.50 lakh refers to (family income per year?), or whether the Rs 1,500 limit is a monthly amount.",
+    "fix": "Write 'Rs 2.50 lakh (Rs 250,000) a year' and 'Rs 1,500 a month'. Explain 'clause 4(3)' as 'point 3 under section 4 of the order' and link to the original PDF.",
+    "severity": "low"
+   },
+   {
+    "persona": "judge",
+    "where": "Try it on your own document / Bring your own document",
+    "problem": "It's unclear what file types are accepted, whether Marathi PDFs work, how long it takes, or what the 'sandbox copy' means (does it touch the real rulebook or open a real GitHub PR?). A judge wouldn't know whether it's safe to try in the three minutes.",
+    "fix": "Add: 'Upload a PDF (Marathi or English). Takes about 1 minute. Runs on a throwaway copy, so the real rulebook isn't changed.' Offer a sample file for one-click testing.",
+    "severity": "medium"
+   }
+  ]
+ },
+ "/explore/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "judge",
+    "where": "Pick a date to see the rules exactly as they were then ... Press Why? on any rule to see the clause of the government order it comes from",
+    "problem": "The page never says that an AI agent extracted these rules, or how. There is no link to the source government order (GR), no GR number or date, and no sign of how correct the extraction is. A judge cannot verify that the rules are real or see what the agent did.",
+    "fix": "Add a one-line summary at the top: 'An AI agent read the Maharashtra government orders (GRs) and turned them into dated, checkable rules.' Show the GR number, date and a link to the PDF next to each rule, and add a line on how the extraction was checked.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Pick a date to see the rules exactly as they were then",
+    "problem": "A woman who wants to know if she can get money is not told to check her own eligibility. The page is framed as 'explore the rules' and has no 'check if I qualify' step or link. It is also unclear why she should choose a date, and the two dates (2024-06-28, 2024-07-03) are unexplained.",
+    "fix": "Add: 'Want to know if you qualify? Go to [Check my eligibility].' Explain the dates: 'The scheme started on 28 June 2024 and the rules changed on 3 July 2024. Pick a date to see the rules for that day.'",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Mukhyamantri Majhi Ladki Bahin / Sanjay Gandhi Niradhar Anudan",
+    "problem": "Two scheme names appear as unexplained tabs. It is unclear that they are scheme selectors, and no English meaning is given for the second. Only Ladki Bahin gets a description. The page says nothing about what happens when you tap Sanjay Gandhi.",
+    "fix": "Label them 'Choose a scheme:' and add a short English gloss under each name, e.g. 'Sanjay Gandhi Niradhar Anudan (pension for destitute people)'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "The whole page: all rule text, headings and buttons such as 'Why?', 'View as code', 'History of changes'",
+    "problem": "The only Devanagari text is the scheme name. The rules, Why? buttons and instructions are English only, with no Hindi or Marathi version. The text promises the 'original Marathi', but this page offers no language switch. A reader who prefers Marathi or Hindi must read sentences like 'Marital status is one of...' in English.",
+    "fix": "Add a Marathi/Hindi language toggle. Provide Marathi and Hindi versions of the rule list, headings and buttons. Keep the English next to the Marathi scheme name: 'मुख्यमंत्री माझी लाडकी बहीण योजना (Chief Minister My Dear Sister Scheme)'.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "View as code",
+    "problem": "It does not say what 'code' means: JSON, a rules language or something else. A judge cannot tell whether this is the agent's structured output or just a display option. This is the most important evidence on the page for an agent and developer-tools reviewer, and it is hidden behind a bare link.",
+    "fix": "Rename it 'View machine-readable rules (JSON)' and add an info button: 'The same rules as structured data that a program or agent can read and run.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Marital status is one of: married, widowed, divorced, abandoned, destitute, unmarried",
+    "problem": "'Destitute' and 'abandoned' are hard words with no explanation. A woman may not know whether she counts. It is also unclear that unmarried women are allowed only from 2024-07-03, since the dates are not linked to this line.",
+    "fix": "Add an info button: 'Abandoned = left by husband without support. Destitute = has no means to support herself.' Add a note: 'Unmarried women were added on 3 July 2024.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Eligibility rule since 2024-06-28 / Disqualification rule since 2024-06-28",
+    "problem": "The difference between 'Eligibility rule' and 'Disqualification rule' is not explained. The repeated 'since 2024-06-28' under every rule is noise. The raw ISO date format is also hard for ordinary readers.",
+    "fix": "Explain once: 'Eligibility rule = you must meet this. Disqualification rule = if this is true, you cannot get the money.' Write dates as '28 June 2024'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Receives less than Rs 1,500 a month from other government schemes",
+    "problem": "This is confusing. If you get less than Rs 1,500 from another scheme, you qualify, but what happens if you get Rs 1,500 or more is not stated. It is labelled a 'Disqualification rule' yet worded as a positive condition. The history says the old version, 'not more than Rs 1,500', ended on 2024-07-02 while the new one starts on 2024-07-03, which looks like a one-day gap or a contradiction.",
+    "fix": "Reword to: 'You do not already get Rs 1,500 or more a month from other government schemes.' Add a note on how the 2 July and 3 July entries fit together, e.g. 'Rule reworded on 3 July 2024'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "2024-07-02 ended / Condition ends after this day: The family does not jointly own more than 5 acres of farm land",
+    "problem": "The 5-acre land rule ended on 2024-07-02, yet the active rule list for 2024-07-03 shows no land rule. The history entries have no summary of what changed or why, so a judge cannot tell whether the removal is correct without opening each Why?.",
+    "fix": "Add a one-line reason or the GR reference to each history entry, e.g. 'Removed by GR dated 2 July 2024: land ownership limit dropped'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Maximum age in completed years: 60 to 65 / [\"regular\",\"contract\",\"pensioner\"] to [\"regular\",\"pensioner\"]",
+    "problem": "Raw code-style lists with brackets and quotes appear in the history, which a non-technical reader finds hard to read. 'Contract' employees are removed from the disqualification list, but it is not said that this means they can now apply.",
+    "fix": "Write them in plain words: 'Maximum age raised from 60 to 65.' 'Contract government employees no longer disqualify a family. Regular employees and pensioners still do.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Annual family income is not more than Rs 2,50,000",
+    "problem": "'Family' is not defined. It could be a household or husband and wife. The number is also shown without saying which documents or income proof are required.",
+    "fix": "Add an info button: 'Family = you, your husband, and unmarried children under 21 (as defined in the GR).' Add how the income is proved, e.g. 'income certificate or yellow/orange ration card'.",
+    "severity": "low"
+   },
+   {
+    "persona": "judge",
+    "where": "Women and Child Development Department, Government of Maharashtra",
+    "problem": "This reads as if the page were an official government site. The page does not say that it is an independent project or whether it is official. This hurts trust and makes the evidence hard to judge.",
+    "fix": "Add a disclaimer: 'Unofficial tool. Rules taken from the Women and Child Development Department's government orders. Not a government website.'",
+    "severity": "low"
+   }
+  ]
+ },
+ "/check/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Check eligibility",
+    "problem": "The page never says which schemes are checked (e.g. Ladki Bahin or others). She cannot tell what the answer will be about or whether it covers the money she wants. The button's label is also identical to the page title.",
+    "fix": "Add a line under the heading: 'Checks your eligibility for Maharashtra government welfare schemes for women: [list names]. Takes about 2 minutes.' Rename the button to 'Show my result'.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Every reason links to the clause of the government order it comes from.",
+    "problem": "The page gives no example of a real result, no named government order (GR) and no date. A judge has no way to check the claim, and the results area is empty until a form is filled.",
+    "fix": "Add a 'See a sample result' link or a prefilled example showing the answer, the reason, and a link to the GR clause with its number and date. Name the schemes and source documents covered.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "The check runs in your browser, and we never ask for names, Aadhaar or phone numbers.",
+    "problem": "There is no sign of what the agent or logic does, such as rules engine, LLM or retrieval. There is also no way to check the privacy claim, and the page does not say whether data leaves the browser.",
+    "fix": "Add a short 'How it works' note: 'Rules extracted from GR PDFs are applied locally; no answers are sent to a server.' Link to the source code and the rules file.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "हिंदी / मराठी",
+    "problem": "The language buttons are only in Devanagari. A reader who prefers English or who sees them out of context gets no English hint. More important, the rest of the form stays in English until a language is chosen, and it is unclear whether the page changes after tapping.",
+    "fix": "Label them 'हिंदी (Hindi)' and 'मराठी (Marathi)'. Mark the selected language clearly. Show 'Language: English' as the current state.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Age in completed years; Marital status; Annual family income (Rs); Destitute; Abandoned",
+    "problem": "These form terms are in English only. 'Completed years', 'Destitute', 'Abandoned' and 'ceiling' are difficult words for slow English readers, and there are no explanations since there are 0 info buttons.",
+    "fix": "Add info buttons and simpler wording: 'Age (full years, e.g. 34)'; 'Destitute = has no income or support from anyone'; 'Abandoned = left by husband'; 'Income ceiling = the highest income allowed'. Show Hindi/Marathi next to these.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Annual family income (Rs)",
+    "problem": "She does not know what counts as family income (whole household? monthly wages? farm income?). The field has no example, and it is unclear whether to enter per year or per month.",
+    "fix": "Add info text: 'Add up what everyone in your household earns in one year (wages, farm, business, pension). Example: Rs 2,50,000. If unsure, give your best guess.' Mention the certificate that proves it.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Lives in Maharashtra",
+    "problem": "It is shown with no visible answer options (yes/no or checkbox), and no explanation of how long she needs to have lived there (domicile). The label is also not a question.",
+    "fix": "Rephrase as 'Do you live in Maharashtra? Yes / No' and add info: 'Many schemes need you to have lived here for 15 years or have a domicile certificate.' Say which one applies.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "More questions (optional)",
+    "problem": "It is not clear what extra questions are there or why she should open them. Skipping them could change her result with no warning.",
+    "fix": "Rename to 'More questions for a more accurate answer (optional)' and say what they cover, such as land, vehicle, government job, or family members in other schemes.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Results appear here. They update as you change answers.",
+    "problem": "It conflicts with the 'Check eligibility' button, since results seem to update automatically. She does not know whether she must press the button, and the result sits far below the form where it may be missed.",
+    "fix": "Say: 'You do not need to press anything: your result updates below as you answer.' Or make the button the only trigger and scroll to the results. Show a 'Fill in age, gender and income to see your result' prompt.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Gender: Woman / Man / Other",
+    "problem": "She does not know why gender is asked, and there is no 'Why we ask' text, unlike Age and Income. Marital status is also asked even when the gender chosen is Man, and the unexplained 'Other' may worry her.",
+    "fix": "Add 'Why we ask: Many schemes are only for women.' Skip or adapt the marital status question if it does not apply.",
+    "severity": "low"
+   },
+   {
+    "persona": "citizen",
+    "where": "Answer a few questions in English, Hindi or Marathi.",
+    "problem": "'A few questions' is vague, and there is no mention of which documents she should have to hand. The page also repeats the privacy statement twice.",
+    "fix": "State the length ('6 questions, about 2 minutes') and say no documents are needed to try. Remove the duplicated privacy line or merge it into one place.",
+    "severity": "low"
+   },
+   {
+    "persona": "judge",
+    "where": "CHECK ELIGIBILITY",
+    "problem": "The page has no mention of who built this, what the AI agent does, or the project's name. A judge arriving here cold cannot tell this is an agent tool, and there is no link to the evidence or the underlying rules.",
+    "fix": "Add a header with the product name, one line on its purpose, and links to 'About', 'Sources / GR list' and the code repository.",
+    "severity": "medium"
+   }
+  ]
+ },
+ "/try/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "judge",
+    "where": "The live agent is not reachable from this page right now ... This copy of the site was built without an API address.",
+    "problem": "The main feature of the page (upload and run) is disabled, yet the upload form and the 'Run Niyam on this document' button are still shown as if they work. A judge cannot verify the agent live, and it is unclear whether the button does anything.",
+    "fix": "Disable or hide the form when no API is set. Put the fallback actions right under the notice as real buttons: 'Replay a real run' and 'Run it yourself (GitHub)', each with a link. Add a line such as 'Demo mode: live runs are off in this build.'",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "You can still replay a real run step by step, or run Niyam yourself from the source code.",
+    "problem": "There are no links or buttons. The judge cannot see where the replay is or where the source code lives, and so cannot check any evidence.",
+    "fix": "Turn both phrases into links, for example '/replay' and the GitHub repo URL, and add a one-line setup command (e.g. 'docker compose up') or a pointer to the README.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Upload a government order and watch Niyam work",
+    "problem": "It never says what Niyam is or why a person seeking welfare money should care. There is no plain statement of purpose, such as that it reads government orders and turns them into eligibility rules.",
+    "fix": "Add one sentence at the top: 'Niyam reads a government order (for example, a welfare scheme notice) and turns it into clear rules that show who can get benefits.' Say who this page is for and that no account is needed.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "GR, circular or notification",
+    "problem": "These terms are not explained. GR is an abbreviation (Government Resolution) and a first-time visitor may not know what any of these documents are.",
+    "fix": "Write 'Government Resolution (GR), circular or notification – an official order published by a government department'. Alternatively add an info button with that text.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Entire page",
+    "problem": "The page is English only, with no Hindi or Marathi, for people who read English slowly. There is no language switch and no visible Devanagari anywhere.",
+    "fix": "Add a language toggle (English / हिन्दी / मराठी) and give the key lines Hindi and Marathi text, with English kept next to it, e.g. 'Upload a government order / सरकारी आदेश अपलोड करें / शासन निर्णय अपलोड करा'.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Niyam runs the same seven steps as in production, on a test copy of the rulebook, and you see every step live.",
+    "problem": "'Seven steps', 'production' and 'rulebook' are not defined. The page does not list the steps or say what the 'rulebook' is or what it contains. 'Production' is developer jargon.",
+    "fix": "Reword: 'Niyam reads your document in seven steps (reading, finding rules, checking them...). It works on a practice copy of our rule collection, so nothing real changes.' List the seven steps by name or link to them.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Niyam runs the same seven steps as in production",
+    "problem": "The claim is not verifiable on this page. There is no step list, sample output, or link to a real run, and no indication of which model or tools are used.",
+    "fix": "Show a compact list of the seven steps with a sample result, and link to a real run's trace or logs.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Use any GR, circular or notification as a PDF or a link i.",
+    "problem": "A stray 'i' appears after 'link', which is the info button but looks like a typo. It is also unclear which term the button explains. The second 'i' at the end of the test-copy line has the same issue.",
+    "fix": "Render the buttons as a recognizable ⓘ icon with an accessible label such as 'What does this mean?', placed right after the term they explain.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Without an API key: 3 documents per day. With a free key: 20.",
+    "problem": "'API key' is jargon and the page never explains what it is, where to get it, or where to enter it. No field for the key is visible.",
+    "fix": "Reword: 'You can try 3 documents a day. Get a free access key to try 20.' Add a 'Get a free key' link and a field to paste the key.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Drop a government order (PDF) here / Choose a file / or paste a link / Link to a PDF",
+    "problem": "For a slow English reader, 'Drop', 'paste a link' and 'PDF' may be unclear, and there are no examples of what to upload.",
+    "fix": "Use simpler words: 'Upload your government order (PDF file)'. Add an example such as 'Example: a Maharashtra GR on a scheme' with a sample document link, and Hindi/Marathi labels next to each button.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Run Niyam on this document",
+    "problem": "It is unclear what will happen after clicking and what the person gets at the end (a list of rules? an answer about eligibility?). A welfare seeker would not know whether this tells her if she qualifies.",
+    "fix": "Add a line: 'You will see each step as it happens, then a list of the rules found in your document.' State plainly that this page does not check personal eligibility, and link to the page that does.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Runs on a test copy of the rulebook. Nothing official changes, and it is never merged automatically.",
+    "problem": "'Merged' is developer jargon and sounds alarming. It is unclear who eventually approves the changes.",
+    "fix": "Reword: 'This is only a practice run. Nothing official is changed. A person must review and approve any result before it is used.'",
+    "severity": "low"
+   }
+  ]
+ },
+ "/developers/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "DEVELOPERS / Eligibility with sources, in one API call",
+    "problem": "Nothing tells a non-technical woman that this page is for programmers, not for checking her own eligibility. She would be stuck with no pointer to where she can actually check welfare money.",
+    "fix": "Add a line at the top: 'This page is for software developers. If you want to check whether you can get a scheme, go to the home page [link: Check my eligibility].'",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "The live API is not reachable from this page",
+    "problem": "The key-creation form is disabled and every example uses the placeholder https://YOUR-NIYAM-API, so a judge cannot try a single call or verify the claims. No public demo URL is given and no sample real output is shown.",
+    "fix": "Provide a working public base URL (or a hosted sandbox) with a ready-to-run curl that returns real data, and add a status badge linking to /api/v1/status. If the API is down, say so plainly and show a recorded real response.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Step 1: Create a key below (shown once) / 'Key creation needs the Niyam API'",
+    "problem": "The page contradicts itself: Step 1 says to create a key, but the form can't work, and the endpoint table says POST /api/v1/keys needs 'none'. Unclear whether a key is needed to try the eligibility endpoint.",
+    "fix": "Say in Step 1: 'No key needed to try it (30 requests/minute). Create a key only for higher limits or your own documents.' Show a no-key curl first.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "for agent changes, the pull request and Entire checkpoint / Line-level provenance from Entire",
+    "problem": "'Entire' and 'checkpoint' are used as if known. A judge can't tell it's a tool recording which AI agent/session wrote a rule, and can't verify any claim.",
+    "fix": "Add an info button: 'Entire records which AI agent, model and session produced each rule change. A checkpoint is a saved snapshot of that session you can open and inspect.' Link a real checkpoint_url and PR in the example instead of \"...\".",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Example response: \"quote\": \"...\", \"quote_en\": \"...\", \"pr_url\": \"...\", \"checkpoint_url\": \"https://entire.io/gh/...\"",
+    "problem": "The key evidence (source quote, translation, PR, checkpoint) is elided with '...', so the central claim 'every answer carries the clause behind it' is not demonstrated on this page.",
+    "fix": "Show one complete real response with the actual Marathi quote, its English translation, and working links to the GR PDF, PR and checkpoint.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Mukhyamantri Majhi Ladki Bahin Yojana / mh.ladki_bahin / \"quote\" / \"quote_en\"",
+    "problem": "The scheme name is in Roman letters only, with no Devanagari or Hindi/Marathi explanation. The page is English only, and there is no sign that the 'quote' will be Marathi with 'quote_en' as its English translation.",
+    "fix": "Add a note: 'quote is the original Marathi/Hindi text of the government order; quote_en is the English translation.' Show the Devanagari name (मुख्यमंत्री माझी लाडकी बहीण योजना) next to the English one, and offer a Hindi/Marathi version of the page or a pointer to the main site.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Create a free API key / What will you use it for? / Contact (optional...)",
+    "problem": "'API key' is never explained. A citizen could think she must fill this in to get benefits, and wonder whether to share her phone number.",
+    "fix": "Add an info button on 'API key': 'A secret password that lets a program talk to Niyam. Only needed by developers.' Add 'Do not enter your Aadhaar or phone number here.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Step 2: Call POST /api/v1/eligibility ... \"date\": \"2024-08-01\"",
+    "problem": "The curl example has a date field that the Python and JavaScript examples omit, and the page never says what date does or what the default is. 'as_of' appears in the response without explanation.",
+    "fix": "Add: 'date (optional): checks the rules as they were on that day. Default is today.' Make all three examples consistent.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Endpoints table: 'Server-sent events', 'hashed on our side', 'provenance', 'sandbox branch', 'HMAC-SHA256', 'signing secret', 'scope'",
+    "problem": "Heavy technical jargon on first use with no plain-English meaning; hard for slow English readers.",
+    "fix": "Add short plain explanations, e.g. 'Server-sent events: live updates as a job runs', 'hashed: stored so even we cannot read it', 'provenance: where a rule came from', 'sandbox branch: a safe test copy so nothing live changes'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "POST /api/v1/documents ... 'Starts an agent job on a sandbox branch.' / Navigator plan ... (see the business plan)",
+    "problem": "The page doesn't say what the agent does with the document (reads rules, proposes changes, verifies, needs human approval), and 'Navigator plan' and 'the business plan' are not linked or explained. Cost, trace id and decision are listed without context.",
+    "fix": "Add a 2-line agent summary: 'Upload a government order PDF; the agent extracts the rules, checks them against the source and opens a pull request for a human to approve.' Link the Navigator plan and business plan page.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "FOR AI ASSISTANTS: Add Niyam to Claude, Cursor or any MCP client ... i",
+    "problem": "'MCP client' is not defined on the page text, and there is no sample of what the assistant returns. 'uvx' is not explained.",
+    "fix": "Add 'MCP (Model Context Protocol) lets AI assistants call tools like this.' Show a sample prompt and answer, and say uvx needs the uv tool installed.",
+    "severity": "low"
+   },
+   {
+    "persona": "citizen",
+    "where": "disclaimer: \"Information only. Final eligibility is decided by the government department.\" / monthly_benefit_inr: 1500",
+    "problem": "Numbers are given without context: 1500 has no 'rupees per month' note, 240000 is not labelled as yearly family income in rupees, and the disclaimer appears only inside code.",
+    "fix": "Label: 'monthly_benefit_inr = rupees per month'; 'annual_family_income = yearly family income in rupees'. Repeat the disclaimer in normal text near the top.",
+    "severity": "low"
+   }
+  ]
+ },
+ "/judges/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders.",
+    "problem": "A non-technical visitor cannot tell what this page is for or whether she can get welfare money. The whole page is written for hackathon judges, and no step tells a citizen where to check her own eligibility.",
+    "fix": "Add one plain line at the top: 'This page is for hackathon judges. If you want to check whether you qualify for a scheme, go to [Check my eligibility].' Then link to the citizen page.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Quick links: Replay a real run / Agent repository / Rulebook repository / Agent pull request / Build log / Business plan",
+    "problem": "The links are bare labels. A judge with three minutes cannot tell which one to open first or what each shows. 'Rulebook' and 'Agent pull request' are not explained.",
+    "fix": "Add a one-line hint under each link, e.g. 'Replay a real run: 90-second playback of the Marathi order becoming a pull request (start here)'. Mark a recommended 3-minute path: 1. Replay, 2. Pull request, 3. Trace.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Job job_20261010_bd059543: 6 changes, 16 of 16 independent checks agree, confidence 0.88, $0.69. Pull request. Trace id 145b0f0f3bfc50c70c940a90a406f5bc.",
+    "problem": "The numbers lack context: what a 'change' is, what the 16 checks are, how confidence 0.88 is computed, and what $0.69 covers. The trace id is a bare hash with no link, so it cannot be verified from the page.",
+    "fix": "Make the trace id a link to the neatlogs trace, and add a short gloss: '6 rule changes; 16 test citizens judged by a separate verifier model; confidence = the agent's self-reported score; $ = total model spend for the job'.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "a Marathi government order goes in / the real 28 June 2024 Marathi GR / GR / Ladki Bahin / Sanjay Gandhi Niradhar Anudan Yojana",
+    "problem": "'GR' is never expanded, and the scheme names are given only in English or transliterated form. A Hindi or Marathi reader sees no Devanagari anywhere, so cannot match the scheme to the name she knows. Terms like 'amendment' and 'consolidated' are hard for slow English readers.",
+    "fix": "On first use write 'GR (Government Resolution, शासन निर्णय)'. Show scheme names as 'Ladki Bahin (माझी लाडकी बहीण योजना)' and 'Sanjay Gandhi Niradhar Anudan Yojana (संजय गांधी निराधार अनुदान योजना)'. Replace 'amendment' with 'change to an earlier order'.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Calibrated autonomy: Acts alone only when a number or date changes and every check agrees. Never removes people from a scheme without a human.",
+    "problem": "'Acts alone', 'dry run', 'merged into the public rulebook' and 'asked a human' are unclear to a non-technical reader. She cannot tell who the human is or what is at stake for her.",
+    "fix": "Reword: 'Niyam updates the rules by itself only for safe changes, such as a higher amount or age limit, when all checks agree. If a change could cut people out of a scheme, a person must approve it first. Dry run = a practice run that changes nothing real.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "neatlogs, Entire and cfo.ai (25%) / Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7 (open)",
+    "problem": "The sponsor tools are used without a one-line explanation, and the checkpoint ids and trace ids are plain text. A judge cannot tell whether the Entire checkpoint and neatlogs traces really exist without searching for them.",
+    "fix": "Make every trace id and checkpoint id a direct link, and add a short gloss: 'neatlogs = tracing of each agent run; Entire = records the AI coding session behind each commit'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "cfo.ai: business plan — In progress",
+    "problem": "This is the only criterion marked incomplete, and it does not say what is still missing or when it will be done. The $0.13 cost per document conflicts with $0.61 and $0.69 per document elsewhere on the page.",
+    "fix": "State what is finished and what remains, with a date. Explain the cost difference: '$0.13 = v3 average across the 6 eval cases; $0.61 = v2 on the three positive cases; $0.69 = first real run'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Measured by us on 6 runs ... Same 6 cases for every version. Small sample, real numbers.",
+    "problem": "All results are self-measured on 6 cases, two of them synthetic, so '100%' proves little and the page does not say how the test citizens were chosen. The 'hand-written baseline test citizens' (25 of 25) cannot be inspected from here. The v3 gain is partly explained by moving to cheaper models, yet 'Haiku 5.5' and 'Sonnet 5.5' are named with no source.",
+    "fix": "Link the evaluation set, the scoring script and the hand-written test citizens. Add one line: 'Not an independent benchmark; 6 cases'. Confirm or correct the model names.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Limits read correctly (more than vs or more) / Test citizens get the right answer / Independent verifier agrees",
+    "problem": "Labels such as 'Test citizens', 'Independent verifier agrees' and 'Limits read correctly' are unexplained. The 'i' info icon gives help on only some of them, so most terms stay unclear to a non-technical reader.",
+    "fix": "Add short captions. 'Test citizens' = made-up applicants used to check that the rules give the right answer. 'Limits read correctly' = whether 'above 60' and '60 or above' are told apart. Show an info icon on every metric.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "The agent (30%) ... Focus area table: Planning, Tool use, State, Context, Execution, Recovery, Verification, Iteration",
+    "problem": "The table lists 'worktrees', 'Claude Code', 'schema repair', 'loop guard', 'coordinator' and 'encoder' with no definition. The 'where you can see it' column gives no link to code or traces, except one job id in the State row.",
+    "fix": "Add links in each row (to the file, trace or test), plus a one-line definition of the internal stages ('coordinator = the agent that plans fixes'; 'encoder = the stage that writes rule code').",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Hindi and Marathi interface text was drafted with AI help and needs review by a native speaker.",
+    "problem": "This note is in English only and appears at the very end. A Hindi or Marathi reader may never see it and cannot tell which translated text to trust.",
+    "fix": "Show a short notice near the top of the page and next to translated text in Hindi and Marathi: 'हिंदी/मराठी मजकूर AI च्या मदतीने तयार केला आहे, तपासणी बाकी आहे (Hindi/Marathi text was drafted with AI and is awaiting review)'.",
+    "severity": "low"
+   },
+   {
+    "persona": "judge",
+    "where": "Demo video (20%) — Monday / Building in public (15%) — Ongoing",
+    "problem": "There is no video link and no posts are linked. 'Monday' gives no date or status, so a judge has nothing to check for 35% of the weighting.",
+    "fix": "Add the link or a 'Coming on Monday 12 Oct' note with a placeholder. Link the #neatHack posts directly, not only via the build log.",
+    "severity": "medium"
+   }
+  ]
+ },
+ "/learn/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "Understand Niyam in ten minutes, with no background",
+    "problem": "The page never says what Niyam is. A woman who wants to know if she can get welfare money cannot tell whether Niyam checks her eligibility, is a government site, or is a tool for developers. No step says what to do next or whether she can check herself.",
+    "fix": "Add one line at the top: 'Niyam is a tool that reads new Maharashtra government orders and keeps a public, checkable rulebook of welfare scheme rules up to date. It does not decide your application.' Then add a clear next step, e.g. 'Want to check a scheme? Go to [Check eligibility]'.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Whole page (English only; 'mostly in Marathi' mentioned in the GR section)",
+    "problem": "There is no Hindi or Marathi anywhere. The page uses long English sentences and terms like 'eligibility rules', 'ceiling' and 'deferred to the machine'. A slow English reader cannot follow it. The page also says GRs are in Marathi but gives no Marathi term, so the reader cannot link it to the document they know.",
+    "fix": "Add a Hindi/Marathi language toggle or a short Marathi summary at the top of each explainer. Show the Marathi term next to the English one: 'Government Resolution (शासन निर्णय, GR)'. Replace hard words: 'ceiling' → 'upper limit', 'deferred to' → 'trusted without question'.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "What is a trace? / What is a checkpoint? / Glossary",
+    "problem": "Terms like 'AI model call', 'retry', 'git', 'neatlogs', 'Entire', 'merged' and 'pull request' are used without being explained at first use. 'Entire' is a product name that reads like an ordinary word. The page has 0 info buttons, so a reader cannot tap to learn them.",
+    "fix": "Add info buttons or inline definitions at first use. For example: 'git: a tool programmers use to save every version of their work'; 'Entire: a tool that saves the AI's working notes'; 'merged: accepted into the live rulebook'. Mark 'neatlogs' and 'Entire' as tool names.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "How does Niyam check its own work? / When does Niyam ask a human?",
+    "problem": "Strong claims with no link to proof: 'confidence is below 0.90', 'a second agent, which never sees the code change', 'Traces are how we found and fixed a costly loop in version 1'. There is no link to a real trace, a sample checkpoint, a repo, test results or the 'trust policy'. 'See the trust policy' is not obviously a link, and no numbers are given (how many rules, GRs processed, test pass rate).",
+    "fix": "Link each claim to evidence: a public neatlogs trace of the version 1 loop (with before/after cost), an example Entire checkpoint, the trust policy page, the GitHub repo, and one worked example of a verifier disagreement. Add a short 'Evidence' box with counts of GRs processed, rules encoded, and tests run.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "What is an AI agent, and how is it different from a chatbot?",
+    "problem": "The definition is generic. The judge cannot see which agents exist, which model they use, which tools they call, or how they are orchestrated. 'A second agent' and 'a coordinator' appear without an architecture overview, and the claim of acting 'on its own' sits alongside human approval rules without saying where the autonomy stops.",
+    "fix": "Add a small diagram or list: 'Triage agent → Encoder agent → Verifier agent → Coordinator → human review', with the model and tools for each, and a link to a sample run.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "What is a welfare scheme? 'Rs 1,500 a month'",
+    "problem": "The Ladki Bahin example gives an amount but no eligibility details. A citizen cannot tell whether she qualifies or where to apply, and the figure may go out of date with no date or source shown.",
+    "fix": "Add 'as of [date], per GR [number]' and a link to the scheme page in Niyam, e.g. 'See who is eligible for Ladki Bahin'. Spell it out as 'Ladki Bahin (Mukhyamantri Majhi Ladki Bahin Yojana)'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Ladki Bahin; Samagra Vedika; Robodebt",
+    "problem": "Scheme and system names appear only in Latin script. Robodebt is unexplained, and Samagra Vedika has no Telugu or Hindi form to help recognise it.",
+    "fix": "Add Devanagari next to the names: 'Ladki Bahin (लाडकी बहीण)', 'Samagra Vedika (समग्र वेदिका)'. Explain 'Robodebt: Australia's automated welfare debt system'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Each has an 18-digit code, for example 202407031335114330.",
+    "problem": "A long number with no explanation of what to do with it. A citizen does not know where to find it, what it unlocks, or that it is the identifier on the GR portal. It also looks like the code might be something she needs.",
+    "fix": "Say: 'This number identifies the document on the GR portal. You do not need it to use Niyam. If you want to read the original, paste it into the search box on [GR portal link].'",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "What does \"rules as code\" mean? ... YAML files, in the format of OpenFisca",
+    "problem": "'YAML', 'OpenFisca', 'open-source' and 'program' are developer terms. The reader gets no clue why they matter. The foreign examples (France, New Zealand, Canada) add length without helping the reader.",
+    "fix": "Simplify: 'Niyam keeps the rules in plain text files anyone can open and read (YAML is a simple text format). OpenFisca is a free tool that governments around the world use to write rules.' Cut or shorten the country list.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Glossary: API, API key, Webhook, MCP, Triage, Encode, OCR or transcription",
+    "problem": "These are developer and technical words, and a welfare-seeking citizen does not need them. They are mixed in with simple ones and not marked as being for developers. Some definitions use other jargon: MCP is defined as 'a standard way for AI assistants to use tools'.",
+    "fix": "Split the glossary into 'For everyone' and 'For developers'. Add a line saying the second group can be skipped. Simplify MCP: 'A common plug-in standard that lets an AI app use other programs.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Why does this matter? ... more than 1.8 million food cards; hundreds of thousands of people",
+    "problem": "The numbers are quoted without links to the source at the point of the claim. The References section lists 'Al Jazeera and Pulitzer Center ... 2024' and 'Royal Commission ... 2023' without URLs, so the claims cannot be verified quickly.",
+    "fix": "Add hyperlinks to each reference and cite inline: '(Al Jazeera/Pulitzer Center, 2024)'. Give the exact figure and year for each case.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Page navigation: 'Start anywhere.' and the list of eleven questions",
+    "problem": "The question list appears to be a table of contents, but there is no indication whether the items are links, and no suggested order for a person new to this. There is also no pointer from here to where the citizen can actually use Niyam.",
+    "fix": "Make the list clearly clickable (anchor links) and add 'New here? Read the first three, then try [Check a scheme]' at the top and a clear call to action at the bottom.",
+    "severity": "low"
+   }
+  ]
+ },
+ "/trust/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "citizen",
+    "where": "An agent you can trust to run without watching, and when it will not act alone",
+    "problem": "The page never says what Niyam is or what the 'agent' does. A woman looking for welfare money cannot tell if this is a government site, an app, or a tool for developers. No next step is offered, such as checking her eligibility.",
+    "fix": "Add one plain line at the top: 'Niyam keeps a record of welfare scheme rules and updates it when the law changes. This page explains when a computer changes a rule by itself and when a person checks it.' Add a button: 'Check if you qualify'.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Merge automatically / Ask a human to review / Stop and ask a question",
+    "problem": "'Merge' is software jargon. A citizen does not know what is being merged, what a 'rule' or 'change' refers to, or why it matters to her.",
+    "fix": "Reword: 'Update the rule automatically', 'Send to a person to check', 'Pause and ask a question'. Add an info button for 'merge': 'Merge means saving a change into the live rulebook.'",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "confidence is at least 0.90 ... confidence between 0.70 and 0.90 ... confidence below 0.70",
+    "problem": "The numbers have no context. It is unclear who or what is confident, how it is measured, or what 0.90 means. The ranges also overlap at 0.90 (at least 0.90 vs between 0.70 and 0.90).",
+    "fix": "Explain: 'Confidence is a score from 0 to 1 showing how sure the system is that it read the rule correctly. 0.90 means about 90% sure.' Fix the boundaries, e.g. 'from 0.70 up to but not including 0.90'. Add an info button.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "Only numbers or dates change, nobody loses eligibility, every quote checks out, every independent test agrees",
+    "problem": "'Quote checks out' and 'independent test agrees' are unexplained. A reader doesn't know what is quoted, from where, or what the tests are.",
+    "fix": "Reword: 'every changed rule matches the exact words in the official document, and several separate checks all give the same answer'. Add an info button for 'independent test'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "The whole page",
+    "problem": "There is no Hindi or Marathi text on this page. A reader who prefers Hindi or Marathi must understand long English sentences about safety rules and limits. Key legal and technical words are not translated.",
+    "fix": "Add a Hindi/Marathi version or a language toggle. At minimum, give a short Hindi and Marathi summary at the top, e.g. 'नियम सरकारी योजनाओं के नियम दर्ज करता है। यह पेज बताता है कि कंप्यूटर कब खुद बदलाव करता है और कब इंसान जाँचता है।'",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "sandbox branch; CAPTCHA; prompt injection; API; hashes; cookies; Aadhaar",
+    "problem": "These English technical terms are used with no simple explanation or Hindi/Marathi equivalent. A slow English reader cannot tell if they affect her safety or privacy.",
+    "fix": "Add short plain-language glosses: 'sandbox branch (a separate test copy that never changes the real rules)'; 'prompt injection (hidden instructions inside a document that try to trick the program)'; 'hashes (scrambled form, so the key cannot be read)'; 'cookies (small files that track you)'; 'API (a way for other programs to ask Niyam for data)'. Add Hindi/Marathi alongside.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Hard rules on top: a change that removes people from a scheme always goes to a human.",
+    "problem": "The sentence is dense idiomatic English ('Hard rules on top', 'removes people from a scheme') and is hard to follow.",
+    "fix": "Simplify: 'Extra rule: if a change would make people lose a scheme, a person must always check it first.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Open an issue on the rulebook repository",
+    "problem": "'Issue' and 'repository' are developer terms. There is no link or instruction, and a citizen would not know how to report a wrong rule, especially without a GitHub account.",
+    "fix": "Add a link and plain steps: 'Report a wrong rule: click here, say which scheme and rule, and what you think is right.' Offer a simple form or email as an alternative, and explain 'repository' ('the public place where the rules are kept').",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "we test this with a hidden prompt injection",
+    "problem": "The claim is not verifiable on this page. There is no link to the test, its result, or the code.",
+    "fix": "Link to the test file and its latest pass/fail result, and show a one-line example of the injected text and what the agent did.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Merge automatically ... confidence is at least 0.90",
+    "problem": "The thresholds are stated without evidence: no data on how many changes were auto-merged, escalated or stopped, no error rate, and no link to the code that enforces the rules. 'Cost budget' is also undefined, with no amount given.",
+    "fix": "Add a small stats table (changes processed, auto-merged, sent to review, stopped, wrong merges), link to the policy code, and state the cost budget value.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Edit or delete history. Old values stay, so the rules on any past date can be checked.",
+    "problem": "There is no demo or link showing the history, so the claim of an append-only record cannot be checked. 'Every rule shows its source' is also not backed with a link or example.",
+    "fix": "Link to an example rule showing its source clause and value history by date, with a sample query for a past date.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Niyam is an independent project built at neatHack 2026.",
+    "problem": "'neatHack 2026' is not explained, and it's unclear who runs Niyam or how to contact them. The disclaimer sits at the very bottom, though a citizen needs to know early that this is not official.",
+    "fix": "Add 'neatHack 2026 (a student/developer hackathon)' and the team's contact. Move 'Not an official government service' near the top.",
+    "severity": "medium"
+   }
+  ]
+ },
+ "/status/": {
+  "understandable_in_one_visit": false,
+  "issues": [
+   {
+    "persona": "judge",
+    "where": "Live status unavailable — The API is not reachable from this page (this copy of the site was built without an API address).",
+    "problem": "The page exists to show whether the agent is running, but the live check fails. A judge cannot verify that the agent is running and gets no evidence of recent activity, such as a last-checked time, source count or log.",
+    "fix": "Show a static last-known heartbeat (e.g. 'Last successful check: 2026-10-10 13:30 UTC, 42 sources checked, 3 blocked'). Link to a public live demo or a log file. Say which page or link to open to see live status.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Rulebook version ddb79ac / Agent version 113a1c2",
+    "problem": "These are bare commit hashes with no links. A judge cannot check what code or rules they refer to.",
+    "fix": "Link each hash to its GitHub commit, e.g. 'Rulebook version ddb79ac (view on GitHub)'. Add a short note that these are Git commit IDs.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Showcase run job_20261010_bd059543",
+    "problem": "There is no explanation of what the 'showcase run' is, and the job ID is not clickable. The judge cannot see what it did or what it produced.",
+    "fix": "Link the job ID to its output or trace. Add a one-line description such as 'A recorded example run where the agent checked a scheme and produced this result'.",
+    "severity": "high"
+   },
+   {
+    "persona": "judge",
+    "where": "Agent pull requests 4",
+    "problem": "The number has no context. It is unclear whether these PRs were opened by the agent, whether they were merged, or what they changed. There is no link.",
+    "fix": "Link to the PR list and add a note such as '4 pull requests opened by the agent to update the rulebook (3 merged, 1 open)'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "STATUS / Is the agent running?",
+    "problem": "The page never says what the 'agent' is or how it relates to getting welfare money. A citizen would not know whether this page matters to her or what to do next.",
+    "fix": "Add a short intro: 'This page shows whether our automatic helper is working. It checks government websites for changes to welfare schemes. You do not need to do anything here. To check if you qualify, go to [Check eligibility].' Add a link to the main tool.",
+    "severity": "high"
+   },
+   {
+    "persona": "citizen",
+    "where": "The watcher checks official sources every 15 minutes i. If a source asks for a CAPTCHA it is marked blocked, never bypassed.",
+    "problem": "'Watcher', 'official sources', 'CAPTCHA' and 'blocked' are unexplained. The stray 'i' is the info button but looks like a typo. Citizens may not know what a CAPTCHA is.",
+    "fix": "Reword: 'Our program checks government websites every 15 minutes for new or changed schemes. If a site asks 'prove you are human' (a CAPTCHA), we skip that site instead of getting around it.' Label the info button 'What is this?' or use a clearer ⓘ icon.",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "Live status unavailable — The API is not reachable from this page (this copy of the site was built without an API address).",
+    "problem": "'API' and 'built' are technical jargon. The message sounds like an error and does not say whether the service is down or whether she should worry.",
+    "fix": "Reword: 'We can't show live status right now. This does not mean the service is broken. The details below are from when this page was last updated.'",
+    "severity": "medium"
+   },
+   {
+    "persona": "citizen",
+    "where": "This build / Built 2026-10-10T13:45:39",
+    "problem": "'Build' is jargon, and the timestamp is in a raw machine format with no time zone. The page does not explain whether this is recent.",
+    "fix": "Write 'Page last updated: 10 Oct 2026, 1:45 PM (IST)'. Rename 'This build' to 'About this version of the page'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "Whole page (STATUS, Live, Built, Rulebook version, Agent version, Showcase run)",
+    "problem": "The page is entirely in English with no Hindi or Marathi option. Terms like 'watcher', 'agent', 'CAPTCHA', 'API' and 'build' are hard for slow English readers.",
+    "fix": "Add a Hindi/Marathi language toggle or short translations, e.g. 'स्थिति (Status): क्या एजेंट चल रहा है?'. Use simple words and avoid jargon.",
+    "severity": "high"
+   },
+   {
+    "persona": "hindi_marathi_user",
+    "where": "The watcher checks official sources every 15 minutes i.",
+    "problem": "The sentence is long, and 'watcher', 'official sources', 'bypassed' and 'blocked' are hard words. The 'i' button is easy to miss and its purpose is unclear.",
+    "fix": "Use short sentences: 'A program checks government websites every 15 minutes. If a site asks for a CAPTCHA, we stop and do not try to get past it.' Add Hindi/Marathi next to it.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "Live / Live status unavailable",
+    "problem": "The word 'Live' appears as a heading or label right above 'Live status unavailable', which is contradictory. It is unclear whether the agent is running.",
+    "fix": "Show a clear state such as 'Unknown (not connected)' in place of 'Live'. Add a visible indicator like a grey dot with 'Status check offline in this copy'.",
+    "severity": "medium"
+   },
+   {
+    "persona": "judge",
+    "where": "If a source asks for a CAPTCHA it is marked blocked, never bypassed.",
+    "problem": "This is a strong claim about safe behaviour, but there is no evidence for it. There are no blocked-source counts, no list of blocked sources and no log.",
+    "fix": "Show a count or list of sources currently marked blocked, with the date, and link to the code or log that enforces the rule.",
+    "severity": "medium"
+   }
+  ]
+ }
+}

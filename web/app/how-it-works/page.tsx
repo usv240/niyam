@@ -53,7 +53,7 @@ const DETAIL: Record<string, { what: string; why: string; fails: string; example
 export default function HowItWorks() {
   return (
     <>
-      <PageHeader eyebrow="How it works" title="From a government order to correct, verified rules" intro={<>Niyam is an AI agent <Info id="agent" />: it takes a goal, plans steps, uses tools, checks its own work, and recovers when something fails. Here is every step, with what can go wrong.</>}>
+      <PageHeader guide="how-it-works" eyebrow="How it works" title="From a government order to correct, verified rules" intro={<>Niyam is an AI agent <Info id="agent" />: it takes a goal, plans steps, uses tools, checks its own work, and recovers when something fails. Here is every step, with what can go wrong.</>}>
         <Pipeline />
       </PageHeader>
       <Container className="py-12">

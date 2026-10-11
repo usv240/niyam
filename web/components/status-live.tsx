@@ -13,7 +13,7 @@ export function StatusLive() {
     if (!API_ENABLED) { setFailed(true); return; }
     apiCall<Status>("/api/v1/status").then(setS).catch(() => setFailed(true));
   }, []);
-  if (failed) return <Callout tone="warning" title="Live status unavailable">The API is not reachable from this page{API_ENABLED ? " right now" : " (this copy of the site was built without an API address)"}. The information below is from the last build.</Callout>;
+  if (failed) return <Callout tone="warning" title="Live status cannot be shown right now">The live server is not answering, so the watcher's latest check cannot be shown here. This does not affect checking your eligibility, exploring the rules, or replaying a real run. The box on the right shows the last saved build.</Callout>;
   if (!s) return <p className="text-sm text-muted">Checking the live agent...</p>;
   return (
     <div className="space-y-3">

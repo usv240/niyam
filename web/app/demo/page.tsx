@@ -10,7 +10,7 @@ export default function DemoPage() {
   const minutes = showcase.finished_at && showcase.started_at ? Math.max(1, Math.round((showcase.finished_at - showcase.started_at) / 60)) : null;
   return (
     <>
-      <PageHeader
+      <PageHeader guide="demo"
         eyebrow="Demo"
         title="Watch Niyam process a real government order"
         intro={<>This is the recorded run of the real <ExtLink href={showcase.document.source_url || "#"}>3 July 2024 amendment</ExtLink> to the Ladki Bahin scheme. Every event below happened. Press Play to replay it step by step, or open the tabs to see the document, the code change, the verification and the decision.</>}

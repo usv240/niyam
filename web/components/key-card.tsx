@@ -4,6 +4,7 @@ import { Check, Copy, KeyRound, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { API_BASE, API_ENABLED, apiCall, apiHealth, type ApiError } from "@/lib/api";
 import { Info } from "./info";
+import { OfflineNotice } from "./offline";
 import { Callout } from "./ui";
 
 export function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) {
@@ -42,7 +43,7 @@ export function KeyCard() {
   return (
     <div className="rounded-2xl border border-border bg-surface p-5">
       <p className="mb-3 flex items-center gap-2 font-semibold"><KeyRound className="h-5 w-5 text-accent" aria-hidden /> Create a free API key <Info id="api-key" /></p>
-      {online === false && <Callout tone="warning" title="The live API is not reachable from this page">Key creation needs the Niyam API{API_ENABLED ? ", which may be restarting" : ""}. You can run your own copy from the source code in two commands (see below).</Callout>}
+      {online === false && <OfflineNotice what="creating API keys" />}
       {key ? (
         <div className="space-y-3">
           <Callout tone="success" title="Copy this key now. It will not be shown again.">Only a hash is stored on our side. This browser also remembers it for the upload page.</Callout>

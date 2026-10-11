@@ -1,0 +1,73 @@
+Counter({'medium': 60, 'high': 50, 'low': 13})
+
+## /
+ - citiz | Niyam reads every new government order i and updates the welfare eligi | A woman who wants to know if she can get money cannot tell from the hero whether she can check her own eligibility here. 'Eligibility rules, written a
+ - hindi | किमान वयाची 21 वर्षे पूर्ण व कमाल वयाची 65 वर्ष पूर्ण होईपर्यंत | The hero card shows the Marathi quote with only a loose English line. It does not say that the English is a translation. The Marathi mixes Western dig
+ - citiz | GR, GR 202407031335114330, 'What is a GR?' (FAQ) | 'GR' is used in the hero card, the problem section and the process steps before it is explained. The explanation is hidden in a collapsed FAQ near the
+ - judge | Latest real run: Ladki Bahin amendment, 6 changes found, 16 of 16 inde | The hero says '6 changes found', but the live proof section lists only five visible changes (age, unmarried women, one per family, contract staff, Rs 
+ - judge | $0.13 model cost per government order, down from $0.88 / Measured on 6 | The $0.13 headline sits beside a real run that cost $0.69, with no explanation of the difference. A sample of 6 cases is small. The 100% accuracy clai
+
+## /how-it-works/
+ - citiz | Niyam is an AI agent i: it takes a goal, plans steps, uses tools, chec | The page never says in plain words what Niyam is for. A woman wanting to know whether she can get welfare money cannot tell that it keeps the eligibil
+ - hindi | Whole page (all English; the only Devanagari is the sample 'ि' and 'ह' | There is no Hindi or Marathi version or summary. A reader who is slow in English faces long sentences with many technical words.
+
+## /demo/
+ - citiz | Watch Niyam process a real government order | The page never says what Niyam is or what it does for her. A woman wanting to know if she can get welfare money does not learn that this is a demo of 
+ - citiz | Fewer people eligible / More people eligible (the six change cards) | The cards are the useful part for a citizen, but they sit under the pipeline and the log. Terms like 'parameter update', 'condition added' and 'condit
+ - hindi | Whole page: all explanatory text, buttons and labels, e.g. 'Press Play | All interface text and explanations are English only. The Marathi quotes appear without any Marathi or Hindi explanation, so the reader can't follow t
+ - judge | Confidence 0.88; decision: human review | The 0.88 confidence is given with no explanation of how it is computed or what threshold triggers human review. The step 7 button says Niyam 'merges a
+
+## /explore/
+ - judge | Pick a date to see the rules exactly as they were then ... Press Why?  | The page never says that an AI agent extracted these rules, or how. There is no link to the source government order (GR), no GR number or date, and no
+ - citiz | Pick a date to see the rules exactly as they were then | A woman who wants to know if she can get money is not told to check her own eligibility. The page is framed as 'explore the rules' and has no 'check i
+ - hindi | The whole page: all rule text, headings and buttons such as 'Why?', 'V | The only Devanagari text is the scheme name. The rules, Why? buttons and instructions are English only, with no Hindi or Marathi version. The text pro
+
+## /check/
+ - citiz | Check eligibility | The page never says which schemes are checked (e.g. Ladki Bahin or others). She cannot tell what the answer will be about or whether it covers the mon
+ - judge | Every reason links to the clause of the government order it comes from | The page gives no example of a real result, no named government order (GR) and no date. A judge has no way to check the claim, and the results area is
+ - judge | The check runs in your browser, and we never ask for names, Aadhaar or | There is no sign of what the agent or logic does, such as rules engine, LLM or retrieval. There is also no way to check the privacy claim, and the pag
+ - hindi | Age in completed years; Marital status; Annual family income (Rs); Des | These form terms are in English only. 'Completed years', 'Destitute', 'Abandoned' and 'ceiling' are difficult words for slow English readers, and ther
+ - citiz | Annual family income (Rs) | She does not know what counts as family income (whole household? monthly wages? farm income?). The field has no example, and it is unclear whether to 
+
+## /try/
+ - judge | The live agent is not reachable from this page right now ... This copy | The main feature of the page (upload and run) is disabled, yet the upload form and the 'Run Niyam on this document' button are still shown as if they 
+ - judge | You can still replay a real run step by step, or run Niyam yourself fr | There are no links or buttons. The judge cannot see where the replay is or where the source code lives, and so cannot check any evidence.
+ - citiz | Upload a government order and watch Niyam work | It never says what Niyam is or why a person seeking welfare money should care. There is no plain statement of purpose, such as that it reads governmen
+ - citiz | GR, circular or notification | These terms are not explained. GR is an abbreviation (Government Resolution) and a first-time visitor may not know what any of these documents are.
+ - hindi | Entire page | The page is English only, with no Hindi or Marathi, for people who read English slowly. There is no language switch and no visible Devanagari anywhere
+
+## /developers/
+ - citiz | DEVELOPERS / Eligibility with sources, in one API call | Nothing tells a non-technical woman that this page is for programmers, not for checking her own eligibility. She would be stuck with no pointer to whe
+ - judge | The live API is not reachable from this page | The key-creation form is disabled and every example uses the placeholder https://YOUR-NIYAM-API, so a judge cannot try a single call or verify the cla
+ - judge | Step 1: Create a key below (shown once) / 'Key creation needs the Niya | The page contradicts itself: Step 1 says to create a key, but the form can't work, and the endpoint table says POST /api/v1/keys needs 'none'. Unclear
+ - judge | for agent changes, the pull request and Entire checkpoint / Line-level | 'Entire' and 'checkpoint' are used as if known. A judge can't tell it's a tool recording which AI agent/session wrote a rule, and can't verify any cla
+ - judge | Example response: "quote": "...", "quote_en": "...", "pr_url": "...",  | The key evidence (source quote, translation, PR, checkpoint) is elided with '...', so the central claim 'every answer carries the clause behind it' is
+
+## /judges/
+ - citiz | Niyam is an AI agent that keeps welfare eligibility rules, written as  | A non-technical visitor cannot tell what this page is for or whether she can get welfare money. The whole page is written for hackathon judges, and no
+ - judge | Quick links: Replay a real run / Agent repository / Rulebook repositor | The links are bare labels. A judge with three minutes cannot tell which one to open first or what each shows. 'Rulebook' and 'Agent pull request' are 
+ - judge | Job job_20261010_bd059543: 6 changes, 16 of 16 independent checks agre | The numbers lack context: what a 'change' is, what the 16 checks are, how confidence 0.88 is computed, and what $0.69 covers. The trace id is a bare h
+ - hindi | a Marathi government order goes in / the real 28 June 2024 Marathi GR  | 'GR' is never expanded, and the scheme names are given only in English or transliterated form. A Hindi or Marathi reader sees no Devanagari anywhere, 
+
+## /learn/
+ - citiz | Understand Niyam in ten minutes, with no background | The page never says what Niyam is. A woman who wants to know if she can get welfare money cannot tell whether Niyam checks her eligibility, is a gover
+ - hindi | Whole page (English only; 'mostly in Marathi' mentioned in the GR sect | There is no Hindi or Marathi anywhere. The page uses long English sentences and terms like 'eligibility rules', 'ceiling' and 'deferred to the machine
+ - citiz | What is a trace? / What is a checkpoint? / Glossary | Terms like 'AI model call', 'retry', 'git', 'neatlogs', 'Entire', 'merged' and 'pull request' are used without being explained at first use. 'Entire' 
+ - judge | How does Niyam check its own work? / When does Niyam ask a human? | Strong claims with no link to proof: 'confidence is below 0.90', 'a second agent, which never sees the code change', 'Traces are how we found and fixe
+
+## /trust/
+ - citiz | An agent you can trust to run without watching, and when it will not a | The page never says what Niyam is or what the 'agent' does. A woman looking for welfare money cannot tell if this is a government site, an app, or a t
+ - citiz | Merge automatically / Ask a human to review / Stop and ask a question | 'Merge' is software jargon. A citizen does not know what is being merged, what a 'rule' or 'change' refers to, or why it matters to her.
+ - citiz | confidence is at least 0.90 ... confidence between 0.70 and 0.90 ... c | The numbers have no context. It is unclear who or what is confident, how it is measured, or what 0.90 means. The ranges also overlap at 0.90 (at least
+ - hindi | The whole page | There is no Hindi or Marathi text on this page. A reader who prefers Hindi or Marathi must understand long English sentences about safety rules and li
+ - hindi | sandbox branch; CAPTCHA; prompt injection; API; hashes; cookies; Aadha | These English technical terms are used with no simple explanation or Hindi/Marathi equivalent. A slow English reader cannot tell if they affect her sa
+ - citiz | Open an issue on the rulebook repository | 'Issue' and 'repository' are developer terms. There is no link or instruction, and a citizen would not know how to report a wrong rule, especially wit
+ - judge | we test this with a hidden prompt injection | The claim is not verifiable on this page. There is no link to the test, its result, or the code.
+ - judge | Merge automatically ... confidence is at least 0.90 | The thresholds are stated without evidence: no data on how many changes were auto-merged, escalated or stopped, no error rate, and no link to the code
+
+## /status/
+ - judge | Live status unavailable — The API is not reachable from this page (thi | The page exists to show whether the agent is running, but the live check fails. A judge cannot verify that the agent is running and gets no evidence o
+ - judge | Rulebook version ddb79ac / Agent version 113a1c2 | These are bare commit hashes with no links. A judge cannot check what code or rules they refer to.
+ - judge | Showcase run job_20261010_bd059543 | There is no explanation of what the 'showcase run' is, and the job ID is not clickable. The judge cannot see what it did or what it produced.
+ - citiz | STATUS / Is the agent running? | The page never says what the 'agent' is or how it relates to getting welfare money. A citizen would not know whether this page matters to her or what 
+ - hindi | Whole page (STATUS, Live, Built, Rulebook version, Agent version, Show | The page is entirely in English with no Hindi or Marathi option. Terms like 'watcher', 'agent', 'CAPTCHA', 'API' and 'build' are hard for slow English

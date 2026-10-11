@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Check eligibility", description: "Se
 export default function CheckPage() {
   return (
     <>
-      <PageHeader
+      <PageHeader guide="check"
         eyebrow="Check eligibility"
         title="Am I eligible? See the answer, the reason and the source."
         intro="Answer a few questions in English, Hindi or Marathi. Every reason links to the clause of the government order it comes from. The check runs in your browser, and we never ask for names, Aadhaar or phone numbers."

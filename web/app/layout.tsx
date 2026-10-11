@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Noto_Sans_Devanagari } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { LangProvider } from "@/components/lang";
 import { ThemeProvider } from "@/components/theme";
 import { SITE } from "@/lib/site";
 import "./globals.css";
@@ -30,9 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${deva.variable} ${mono.variable}`}>
       <body className="min-h-screen">
         <ThemeProvider>
-          <Header />
-          <main id="main">{children}</main>
-          <Footer />
+          <LangProvider>
+            <Header />
+            <main id="main">{children}</main>
+            <Footer />
+          </LangProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -11,7 +11,7 @@ const BASE = SITE.apiBase && SITE.apiBase !== "same-origin" ? SITE.apiBase : pro
 const ENDPOINTS: { m: string; p: string; auth: string; d: string }[] = [
   { m: "POST", p: "/api/v1/eligibility", auth: "none or key", d: "Eligibility for every covered scheme, with the amount, each reason, and the source clause behind each reason." },
   { m: "GET", p: "/api/v1/schemes", auth: "none or key", d: "Covered schemes with their last change date." },
-  { m: "GET", p: "/api/v1/schemes/{id}/rules?at=YYYY-MM-DD", auth: "none or key", d: "The rules of a scheme on any date, each with its source and, for agent changes, the pull request and Entire checkpoint." },
+  { m: "GET", p: "/api/v1/schemes/{id}/rules?at=YYYY-MM-DD", auth: "none or key", d: "The rules of a scheme on any date, each with its source and, for agent changes, the pull request and the Entire checkpoint (the saved record of which AI agent, model and session wrote the rule)." },
   { m: "GET", p: "/api/v1/schemes/{id}/history", auth: "none or key", d: "Every change over time, oldest first." },
   { m: "GET", p: "/api/v1/changes", auth: "none or key", d: "Recent rule changes in plain language." },
   { m: "POST", p: "/api/v1/documents", auth: "key (run scope) or 3 per day", d: "Bring your own document: upload a PDF (file) or a link (url). Starts an agent job on a sandbox branch." },
@@ -60,9 +60,14 @@ const response = `{
     "monthly_benefit_inr": 1500,
     "reasons": [{
       "rule": "Aged 21 to 65 (completed years)", "met": true,
-      "source": { "page": 2, "clause": "4(3)", "quote": "...", "quote_en": "...",
-                  "document": { "code": "202407031335114330", "url": "https://gr.maharashtra.gov.in/..." },
-                  "provenance": { "pr_url": "...", "checkpoint_url": "https://entire.io/gh/..." } }
+      "source": {
+        "page": 2, "clause": "4(3)",
+        "quote": "किमान वयाची २१ वर्षे पूर्ण व कमाल वयाची ६५ वर्ष पूर्ण होईपर्यंत.",
+        "quote_en": "Minimum age 21 years completed and maximum age until 65 years are completed.",
+        "document": { "code": "202407031335114330",
+                      "url": "https://gr.maharashtra.gov.in/Site/Upload/Government%20Resolutions/Marathi/202407031335114330.pdf" },
+        "provenance": { "pr_url": "https://github.com/usv240/niyam-rulebook/pull/2",
+                        "checkpoint_id": "01M4JDH944E4HPRCA4WKDJTFN7" } }
     }]
   }],
   "disclaimer": "Information only. Final eligibility is decided by the government department."
@@ -92,7 +97,7 @@ function Code({ code, lang }: { code: string; lang: string }) {
 export default function Developers() {
   return (
     <>
-      <PageHeader eyebrow="Developers" title="Eligibility with sources, in one API call" intro={<>Read endpoints work without a key at a low rate limit. Create a free key for higher limits and to run agent jobs on your own documents. Every answer carries the clause behind it.</>}>
+      <PageHeader guide="developers" eyebrow="Developers" title="Eligibility with sources, in one API call" intro={<>This page is for programmers. Not a developer? <a href="/check/" className="font-medium text-accent underline underline-offset-2">Check your eligibility here</a> instead. An API <Info id="api-key" /> lets other software ask Niyam questions. Read endpoints work without a key at a low rate limit. Create a free key for higher limits and to run agent jobs on your own documents. Every answer carries the clause behind it.</>}>
         <ol className="grid gap-3 sm:grid-cols-3">
           {["Create a key below (shown once)", "Call POST /api/v1/eligibility", "Show your users the reason and the source"].map((s, i) => (
             <li key={s} className="rounded-xl border border-border bg-surface p-4 text-sm"><span className="text-xs font-semibold text-accent">Step {i + 1}</span><p className="mt-1 font-medium">{s}</p></li>

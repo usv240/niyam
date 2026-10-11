@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Explore the rules", description: "Ev
 export default function ExplorePage() {
   return (
     <>
-      <PageHeader
+      <PageHeader guide="explore"
         eyebrow="Explore the rules"
         title="Every rule, in plain words, with its source"
         intro={<>Pick a date to see the rules exactly as they were then <Info id="time-travel" />. Press <b>Why?</b> on any rule to see the clause of the government order it comes from, in the original Marathi and in English <Info id="provenance" />.</>}

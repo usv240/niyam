@@ -4,6 +4,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { JobEvent, Showcase } from "@/lib/data";
+import { plainAffects, plainChange } from "@/lib/plain";
 import { Info } from "./info";
 import { Pipeline } from "./pipeline";
 import { Badge, type Tone } from "./ui";
@@ -107,12 +108,13 @@ export function DemoPlayer({ job }: { job: Showcase }) {
                 {job.changes.map((c) => (
                   <article key={c.change_id} className="rounded-xl border border-border bg-bg p-4">
                     <div className="mb-2 flex flex-wrap gap-2">
-                      <Badge tone={c.affects === "narrows" ? "warning" : "success"}>{c.affects === "narrows" ? "Fewer people eligible" : c.affects === "widens" ? "More people eligible" : c.affects}</Badge>
-                      <Badge tone="neutral" icon={false}>{c.change_type.replaceAll("_", " ")}</Badge>
+                      <Badge tone={c.affects === "narrows" ? "warning" : "success"}>{plainAffects(c.affects)}</Badge>
+                      <Badge tone="neutral" icon={false}>{plainChange(c.change_type)}</Badge>
                     </div>
                     <p className="font-medium">{c.summary}</p>
-                    <blockquote className="deva mt-2 border-l-4 border-accent pl-3 text-[15px]">{c.citation.quote_original}</blockquote>
-                    <p className="mt-1 pl-4 text-xs text-muted">{c.citation.quote_english} (page {c.citation.page}, clause {c.citation.clause})</p>
+                    <p className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted">Original (Marathi) <Info id="original-translation" /></p>
+                    <blockquote lang="mr" className="deva mt-1 border-l-4 border-accent pl-3 text-[15px]">{c.citation.quote_original}</blockquote>
+                    <p className="mt-1 pl-4 text-xs text-muted"><span className="font-semibold text-text">English: </span>{c.citation.quote_english} (page {c.citation.page}, clause {c.citation.clause})</p>
                   </article>
                 ))}
                 {job.ambiguities.length > 0 && (

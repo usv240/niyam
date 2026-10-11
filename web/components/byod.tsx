@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { API_BASE, API_ENABLED, apiCall, apiHealth, type ApiError } from "@/lib/api";
 import { Info } from "./info";
+import { OfflineNotice } from "./offline";
 import { Pipeline } from "./pipeline";
 import { Badge, Callout } from "./ui";
 
@@ -54,14 +55,8 @@ export function Byod() {
 
   return (
     <div className="space-y-8">
-      {online === false && (
-        <Callout tone="warning" title="The live agent is not reachable from this page right now">
-          The website works without a server, but running a new document needs the Niyam API. {API_ENABLED ? "It may be restarting." : "This copy of the site was built without an API address."} You can still{" "}
-          <Link href="/demo/" className="font-medium text-accent underline underline-offset-2">replay a real run step by step</Link>, or run Niyam yourself from the{" "}
-          <a href="https://github.com/usv240/niyam#run-it-yourself" className="font-medium text-accent underline underline-offset-2">source code</a>.
-        </Callout>
-      )}
-      <form onSubmit={submit} className="space-y-4 rounded-2xl border border-border bg-surface p-5">
+      {online === false && <OfflineNotice what="uploading your own document" />}
+      {online !== false && <form onSubmit={submit} className="space-y-4 rounded-2xl border border-border bg-surface p-5">
         <div
           onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
           onDragLeave={() => setDrag(false)}
@@ -85,11 +80,11 @@ export function Byod() {
           <li>Uploads are deleted after processing. Do not upload documents containing personal information.</li>
           <li>Without an API key: 3 documents per day. With a free key: 20.</li>
         </ul>
-        <button disabled={busy || online === false || (!file && !url)} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 font-semibold text-accent-contrast disabled:opacity-50">
+        <button disabled={busy || (!file && !url)} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 font-semibold text-accent-contrast disabled:opacity-50">
           {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Run Niyam on this document
         </button>
         {err && <Callout tone="danger" title="That did not work">{err.message}</Callout>}
-      </form>
+      </form>}
 
       {jobId && (
         <section aria-live="polite" className="space-y-6">

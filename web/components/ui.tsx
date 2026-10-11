@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageGuide } from "./page-guide";
 import { AlertTriangle, CheckCircle2, CircleHelp, Info as InfoIcon, XCircle } from "lucide-react";
 
 export function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -20,7 +21,7 @@ export function Section({ id, eyebrow, title, intro, children, className = "" }:
   );
 }
 
-export function PageHeader({ eyebrow, title, intro, children }: { eyebrow: string; title: React.ReactNode; intro: React.ReactNode; children?: React.ReactNode }) {
+export function PageHeader({ eyebrow, title, intro, children, guide }: { eyebrow: string; title: React.ReactNode; intro: React.ReactNode; children?: React.ReactNode; guide?: string }) {
   return (
     <header className="relative overflow-hidden border-b border-border">
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" aria-hidden />
@@ -28,6 +29,7 @@ export function PageHeader({ eyebrow, title, intro, children }: { eyebrow: strin
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">{eyebrow}</p>
         <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
         <div className="mt-4 max-w-2xl text-lg text-muted">{intro}</div>
+        {guide && <div className="mt-8"><PageGuide id={guide} /></div>}
         {children && <div className="mt-8">{children}</div>}
       </Container>
     </header>

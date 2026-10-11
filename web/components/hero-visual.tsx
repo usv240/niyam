@@ -18,12 +18,12 @@ export function HeroVisual() {
     <div className="relative rounded-3xl border border-border bg-surface p-4 shadow-pop sm:p-6" aria-label="How a government order becomes a verified rule">
       <div className={`rounded-2xl border border-border bg-bg p-4 transition duration-500 ${lit(0)}`}>
         <p className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
-          <FileText className="h-4 w-4" aria-hidden /> Government order, page 2, clause 4(3)
+          <FileText className="h-4 w-4" aria-hidden /> Government order (Marathi original), page 2, clause 4(3)
         </p>
         <p className="deva text-[15px]">
           किमान वयाची 21 वर्षे पूर्ण व कमाल वयाची <mark className="rounded bg-warning-soft px-1 text-text">65 वर्ष</mark> पूर्ण होईपर्यंत
         </p>
-        <p className="mt-1 text-sm text-muted">Minimum age 21, until the maximum age of 65 is completed.</p>
+        <p className="mt-1 text-sm text-muted"><span className="font-semibold text-text">English: </span>Minimum age 21, until the maximum age of 65 is completed.</p>
       </div>
       <div className={`mt-3 rounded-2xl border border-border bg-bg p-4 font-mono text-[13px] transition duration-500 ${lit(1)}`}>
         <p className="mb-2 flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-muted">

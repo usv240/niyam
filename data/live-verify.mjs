@@ -1,7 +1,7 @@
 import { chromium } from "../web/node_modules/playwright-core/index.mjs";
 const b = await chromium.launch({ channel: "chrome" });
 const p = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
-for (const base of ["https://usv240.github.io/niyam", "https://44-197-246-188.sslip.io"]) {
+for (const base of ["https://usv240.github.io/niyam", "https://34-227-135-194.sslip.io"]) {
   await p.goto(base + "/explore/", { waitUntil: "networkidle" });
   await p.getByRole("tab", { name: /Sanjay Gandhi/ }).click();
   await p.waitForTimeout(500);

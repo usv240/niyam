@@ -38,7 +38,7 @@ export default function Judges() {
   const realAuto = evalsExtra["real-autonomy"]?.results?.[0];
   return (
     <>
-      <PageHeader eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
+      <PageHeader guide="judges" eyebrow="For judges" title="Everything you need, one click each" intro="Niyam is an AI agent that keeps welfare eligibility rules, written as code, in sync with government orders. Below, each judging criterion is mapped to evidence you can open and check.">
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <Card className="p-4"><p className="text-xs text-muted">What</p><p className="text-sm">An agent that reads new government orders and updates the rule code itself, with tests.</p></Card>
           <Card className="p-4"><p className="text-xs text-muted">Why</p><p className="text-sm">When eligibility code drifts from the law, people are wrongly excluded or paid.</p></Card>
@@ -49,16 +49,32 @@ export default function Judges() {
 
       <Container className="space-y-10 py-12">
         <Card>
-          <h2 className="text-xl font-semibold">Quick links</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {SITE.video && <ButtonLink href={SITE.video} external>Demo video</ButtonLink>}
-            <ButtonLink href="/demo/">Replay a real run</ButtonLink>
-            <ButtonLink href={SITE.repo} external variant="secondary">Agent repository</ButtonLink>
-            <ButtonLink href={SITE.rulebookRepo} external variant="secondary">Rulebook repository</ButtonLink>
-            {showcase.pr_url && <ButtonLink href={showcase.pr_url} external variant="secondary">Agent pull request</ButtonLink>}
-            <ButtonLink href={SITE.buildLog} external variant="secondary">Build log</ButtonLink>
-            <ButtonLink href={SITE.businessPlan} external variant="secondary">Business plan</ButtonLink>
-          </div>
+          <h2 className="text-xl font-semibold">The 3-minute path</h2>
+          <p className="mt-1 text-sm text-muted">Open these in order. Each one-line note says what you will see.</p>
+          <ol className="mt-4 space-y-3">
+            {[
+              ...(SITE.video ? [{ href: SITE.video, ext: true, t: "Watch the demo video (under 3 minutes)", d: "The whole story with real runs, narrated." }] : []),
+              { href: "/demo/", ext: false, t: "Replay a real run", d: "Every step the agent took on a real Marathi government order, with the document, code change, independent check and decision." },
+              { href: showcase.pr_url || SITE.rulebookRepo, ext: true, t: "Open the agent's real change request (PR #2)", d: "The quotes, the verification, the confidence and the reasons, as the agent wrote them. Reviewed and merged." },
+              { href: showcase.checkpoint_url || SITE.rulebookRepo, ext: true, t: "Open its Entire checkpoint", d: "The coding agent's full session behind that change: what it read, edited and tested." },
+              { href: "#evidence", ext: false, t: "See the measured results", d: "Version 1 to 3 on the same six documents, with a neatlogs trace id for every run." },
+            ].map((x, i) => (
+              <li key={x.t} className="flex gap-3">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-xs font-semibold text-accent-contrast">{i + 1}</span>
+                <div>
+                  {x.ext ? <ExtLink href={x.href}>{x.t}</ExtLink> : <a href={x.href} className="font-medium text-accent underline underline-offset-2">{x.t}</a>}
+                  <p className="text-sm text-muted">{x.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 text-sm font-semibold">More</p>
+          <ul className="mt-2 grid gap-2 text-sm sm:grid-cols-2">
+            <li><ExtLink href={SITE.repo}>Agent repository</ExtLink>: the agent, API, website and evaluations.</li>
+            <li><ExtLink href={SITE.rulebookRepo}>Rulebook repository</ExtLink> <Info id="rulebook" />: the rules the agent maintains, with its pull requests.</li>
+            <li><ExtLink href={SITE.buildLog}>Build log</ExtLink>: what was built when, including mistakes and fixes.</li>
+            <li><ExtLink href={SITE.businessPlan}>Business plan</ExtLink>: pricing, costs and runway.</li>
+          </ul>
         </Card>
 
         <section id="agent" className="scroll-mt-24">
@@ -67,7 +83,7 @@ export default function Judges() {
           <div className="grid gap-3 md:grid-cols-2">
             <Ev title="Happy path, real document">
               Job <code className="font-mono">{showcase.id}</code>: {showcase.changes.length} changes, {showcase.verdict?.cases_agree} of {showcase.verdict?.cases_valid} independent checks agree, confidence {showcase.confidence?.toFixed(2)}, {usd(showcase.cost_usd)}.{" "}
-              {showcase.pr_url && <ExtLink href={showcase.pr_url}>Pull request</ExtLink>}. Trace id <code className="font-mono break-all">{showcase.trace_id}</code>.
+              {showcase.pr_url && <ExtLink href={showcase.pr_url}>Pull request</ExtLink>}. Trace id <Info id="trace-id" /> <code className="font-mono break-all">{showcase.trace_id}</code>.
             </Ev>
             <Ev title="Recovery from failures, injected on purpose">
               {chaos ? <>On the real amendment with a broken model output and an unusable text layer injected on purpose, Niyam repaired the output (<code className="font-mono">recovery.json_repair</code>), transcribed the PDF (<code className="font-mono">recovery.ocr_fallback</code>) and still scored {pct(chaos.outcome_accuracy as number)} on outcomes, for {usd(chaos.cost_usd)}. Trace id <code className="font-mono break-all">{chaos.trace_id}</code>.</> : "Scanned copy recovered by transcription."}{" "}
@@ -100,7 +116,7 @@ export default function Judges() {
         </section>
 
         <section id="tools" className="scroll-mt-24">
-          <h2 className="mb-1 text-2xl font-semibold">neatlogs, Entire and cfo.ai <span className="text-base font-normal text-muted">(25%)</span></h2>
+          <h2 className="mb-1 text-2xl font-semibold">neatlogs <Info id="neatlogs" />, Entire <Info id="entire" /> and cfo.ai <span className="text-base font-normal text-muted">(25%)</span></h2>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             <Ev title="neatlogs: used to improve the agent">
               One trace per job, a span per stage and per recovery. The v1 traces showed a $3.05 run with the coordinator ruling three ways on one case; the fix cut cost per document from {usd(v1?.summary.cost_usd)} to {usd(v2?.summary.cost_usd)}. Per-stage costs then showed the coding agent at 56% of spend; testing cheaper models stage by stage brought v3 to {usd(v3?.summary.cost_usd)} with no loss in quality (and rejected Haiku for extraction after it missed a real change). Every eval trace is tagged with case and version.

@@ -3,7 +3,9 @@
 import { CheckCircle2, ShieldCheck, XCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { meta, rulebookMain, rulebookProposed } from "@/lib/data";
-import { LANGS, t, WHY_ASKED, type Lang } from "@/lib/i18n";
+import { t, WHY_ASKED, type Lang } from "@/lib/i18n";
+import { Info } from "./info";
+import { LangToggle, useLang } from "./lang";
 import { evaluateScheme, today, type SchemeResult } from "@/lib/rules";
 import { Why } from "./explorer";
 import { Badge } from "./ui";
@@ -17,10 +19,29 @@ const ENUMS: Record<string, string[]> = {
 };
 const BOOLS = ["disabled", "family_income_tax_payer", "family_four_wheeler", "family_mp_mla", "other_unmarried_beneficiary_in_family"];
 
+// Which "i" explanation goes with each question.
+const FIELD_INFO: Record<string, string> = {
+  age: "completed-years", annual_family_income: "family-income", other_scheme_monthly_inr: "other-scheme",
+  family_govt_job: "govt-job", marital_status: "marital-status", years_in_maharashtra: "years-in-mh", date: "check-date",
+};
+
+// A label in the chosen language, always with the English underneath when it is Hindi or Marathi.
+export function Bi({ k, lang, className = "" }: { k: string; lang: Lang; className?: string }) {
+  return (
+    <span className={className}>
+      <span lang={lang} className={lang === "en" ? "" : "deva"}>{t(k, lang)}</span>
+      {lang !== "en" && <span className="block text-xs font-normal text-muted">{t(k, "en")}</span>}
+    </span>
+  );
+}
+
 function Field({ id, lang, children }: { id: string; lang: Lang; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium">{t(id, lang)}</label>
+      <div className="flex items-start gap-1.5">
+        <label htmlFor={id} className="text-sm font-medium"><Bi k={id} lang={lang} /></label>
+        {FIELD_INFO[id] && <Info id={FIELD_INFO[id]} className="mt-0.5" />}
+      </div>
       {children}
       {WHY_ASKED[id] && <p className="text-xs text-muted">Why we ask: {WHY_ASKED[id]}</p>}
     </div>
@@ -30,7 +51,7 @@ function Field({ id, lang, children }: { id: string; lang: Lang; children: React
 const input = "min-h-11 rounded-lg border border-border bg-bg px-3 text-base";
 
 export function Checker() {
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang } = useLang();
   const [withProposed, setWithProposed] = useState(true);
   const [form, setForm] = useState<Form>({
     age: "34", gender: "female", state: true, marital_status: "married", annual_family_income: "180000",
@@ -58,34 +79,35 @@ export function Checker() {
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
       <form className="space-y-5 rounded-2xl border border-border bg-surface p-5" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); document.getElementById("results")?.scrollIntoView({ behavior: "smooth" }); }} lang={lang}>
-        <div role="radiogroup" aria-label="Language" className="inline-flex rounded-lg border border-border bg-bg p-0.5">
-          {LANGS.map((l) => (
-            <button type="button" role="radio" aria-checked={lang === l.code} key={l.code} onClick={() => setLang(l.code)}
-              className={`min-h-10 rounded-md px-4 text-sm font-medium ${lang === l.code ? "bg-accent text-accent-contrast" : "text-muted"}`}>{l.label}</button>
-          ))}
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-sm font-medium">Language / भाषा</span>
+          <LangToggle />
         </div>
-        <p className="flex items-start gap-2 text-sm text-muted"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden /> {t("privacy", lang)}</p>
+        <p className="rounded-lg border border-border bg-bg p-3 text-sm text-muted">
+          Checks {Object.keys(snap.schemes).length} schemes in Maharashtra: {Object.values(snap.schemes).map((s) => s.name).join(" and ")} <Info id="scheme" />
+        </p>
+        <p className="flex items-start gap-2 text-sm text-muted"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden /> <Bi k="privacy" lang={lang} /></p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field id="age" lang={lang}><input id="age" className={input} type="number" inputMode="numeric" min={0} max={120} value={String(form.age)} onChange={(e) => set("age", e.target.value)} /></Field>
           <Field id="gender" lang={lang}>
             <select id="gender" className={input} value={String(form.gender)} onChange={(e) => set("gender", e.target.value)}>
-              {ENUMS.gender.map((v) => <option key={v} value={v}>{t(v, lang)}</option>)}
+              {ENUMS.gender.map((v) => <option key={v} value={v}>{lang === "en" ? t(v, "en") : `${t(v, lang)} (${t(v, "en")})`}</option>)}
             </select>
           </Field>
           <Field id="marital_status" lang={lang}>
             <select id="marital_status" className={input} value={String(form.marital_status)} onChange={(e) => set("marital_status", e.target.value)}>
-              {ENUMS.marital_status.map((v) => <option key={v} value={v}>{t(v, lang)}</option>)}
+              {ENUMS.marital_status.map((v) => <option key={v} value={v}>{lang === "en" ? t(v, "en") : `${t(v, lang)} (${t(v, "en")})`}</option>)}
             </select>
           </Field>
           <Field id="annual_family_income" lang={lang}><input id="annual_family_income" className={input} type="number" inputMode="numeric" min={0} step={1000} value={String(form.annual_family_income)} onChange={(e) => set("annual_family_income", e.target.value)} /></Field>
         </div>
-        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="h-5 w-5" checked={Boolean(form.state)} onChange={(e) => set("state", e.target.checked)} /> {t("state", lang)}</label>
+        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="h-5 w-5" checked={Boolean(form.state)} onChange={(e) => set("state", e.target.checked)} /> <Bi k="state" lang={lang} /></label>
         <details className="rounded-xl border border-border bg-bg p-4">
-          <summary className="cursor-pointer text-sm font-semibold">{t("more", lang)}</summary>
+          <summary className="cursor-pointer text-sm font-semibold"><Bi k="more" lang={lang} className="inline-block align-top" /></summary>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <Field id="family_govt_job" lang={lang}>
               <select id="family_govt_job" className={input} value={String(form.family_govt_job)} onChange={(e) => set("family_govt_job", e.target.value)}>
-                {ENUMS.family_govt_job.map((v) => <option key={v} value={v}>{t(v, lang)}</option>)}
+                {ENUMS.family_govt_job.map((v) => <option key={v} value={v}>{lang === "en" ? t(v, "en") : `${t(v, lang)} (${t(v, "en")})`}</option>)}
               </select>
             </Field>
             <Field id="other_scheme_monthly_inr" lang={lang}><input id="other_scheme_monthly_inr" className={input} type="number" min={0} value={String(form.other_scheme_monthly_inr)} onChange={(e) => set("other_scheme_monthly_inr", e.target.value)} /></Field>
@@ -96,7 +118,7 @@ export function Checker() {
           </div>
           <div className="mt-4 space-y-1">
             {["has_bank_account", ...BOOLS].map((b) => (
-              <label key={b} className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="h-5 w-5" checked={Boolean(form[b])} onChange={(e) => set(b, e.target.checked)} /> {t(b, lang)}</label>
+              <label key={b} className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="h-5 w-5" checked={Boolean(form[b])} onChange={(e) => set(b, e.target.checked)} /> <Bi k={b} lang={lang} />{b === "disabled" && <Info id="disabled" />}</label>
             ))}
           </div>
         </details>
@@ -105,8 +127,8 @@ export function Checker() {
           <input type="checkbox" checked={withProposed} onChange={(e) => setWithProposed(e.target.checked)} /> Include rule changes waiting for human review (including the second scheme)
         </label>
 )}
-        <button type="submit" className="min-h-12 w-full rounded-lg bg-accent px-5 text-base font-semibold text-accent-contrast shadow-card">{t("check", lang)}</button>
-        {lang !== "en" && <p className="text-xs text-muted">{t("review_note", lang)}</p>}
+        <button type="submit" className="min-h-12 w-full rounded-lg bg-accent px-5 text-base font-semibold text-accent-contrast shadow-card">{t("check", lang)}{lang !== "en" && <span className="ml-2 text-sm font-normal opacity-90">({t("check", "en")})</span>}</button>
+        {lang !== "en" && <p className="text-xs text-muted"><Bi k="review_note" lang={lang} /></p>}
       </form>
 
       <section id="results" aria-live="polite" className="scroll-mt-24 space-y-4">
@@ -115,12 +137,13 @@ export function Checker() {
           <article key={r.scheme.id} className="rounded-2xl border border-border bg-surface p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <h3 className="text-lg font-semibold">{lang === "en" ? r.scheme.name : r.scheme.name_mr}</h3>
+                <h3 className="text-lg font-semibold">{r.scheme.name}</h3>
+                {r.scheme.name_mr && <p lang="mr" className="deva text-sm text-muted">{r.scheme.name_mr}</p>}
                 <p className="text-sm text-muted">{r.scheme.department}</p>
               </div>
-              {!r.inForce ? <Badge tone="neutral">{t("not_in_force", lang)}</Badge> : r.eligible ? <Badge tone="success">{t("eligible", lang)}</Badge> : <Badge tone="danger">{t("not_eligible", lang)}</Badge>}
+              {!r.inForce ? <Badge tone="neutral">{t("not_in_force", lang)}{lang !== "en" ? ` / ${t("not_in_force", "en")}` : ""}</Badge> : r.eligible ? <Badge tone="success">{t("eligible", lang)}{lang !== "en" ? ` / ${t("eligible", "en")}` : ""}</Badge> : <Badge tone="danger">{t("not_eligible", lang)}{lang !== "en" ? ` / ${t("not_eligible", "en")}` : ""}</Badge>}
             </div>
-            {r.eligible && <p className="mt-3 text-3xl font-semibold">Rs {r.monthly.toLocaleString("en-IN")} <span className="text-base font-normal text-muted">{t("per_month", lang)}</span></p>}
+            {r.eligible && <p className="mt-3 text-3xl font-semibold">Rs {r.monthly.toLocaleString("en-IN")} <span className="text-base font-normal text-muted">{t("per_month", lang)}{lang !== "en" ? ` (${t("per_month", "en")})` : ""}</span></p>}
             {r.reasons.length > 0 && (
               <ul className="mt-4 space-y-2">
                 {[...r.reasons].sort((a, b) => Number(a.met) - Number(b.met)).map((x) => (
@@ -134,8 +157,8 @@ export function Checker() {
                 ))}
               </ul>
             )}
-            {r.scheme.apply_url && <a href={r.scheme.apply_url} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">{t("apply", lang)}</a>}
-            <p className="mt-3 text-xs text-muted">{t("disclaimer", lang)}</p>
+            {r.scheme.apply_url && <a href={r.scheme.apply_url} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-semibold text-accent underline underline-offset-2">{t("apply", lang)}{lang !== "en" ? ` (${t("apply", "en")})` : ""}</a>}
+            <p className="mt-3 text-xs text-muted"><Bi k="disclaimer" lang={lang} /></p>
           </article>
         ))}
       </section>

@@ -32,8 +32,9 @@ export function Why({ snap, src, label = "Why?", provKey }: { snap: Snapshot; sr
           <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">Source <Info id="provenance" /></p>
           <p className="font-semibold">{docTitle(snap, src)}, page {src.page}, clause {src.clause}</p>
           {doc?.title_en && <p className="text-xs text-muted">{doc.title_en}</p>}
-          {src.quote && <blockquote className="deva mt-3 border-l-4 border-accent pl-3 text-[15px]">{src.quote}</blockquote>}
-          {src.quote_en && <p className="mt-1 pl-4 text-xs text-muted">{src.quote_en}</p>}
+          {src.quote && <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-muted">Original (Marathi)</p>}
+          {src.quote && <blockquote lang="mr" className="deva mt-1 border-l-4 border-accent pl-3 text-[15px]">{src.quote}</blockquote>}
+          {src.quote_en && <p className="mt-1 pl-4 text-xs text-muted"><span className="font-semibold text-text">English: </span>{src.quote_en}</p>}
           <div className="mt-3 flex flex-wrap gap-2">
             {url && <a href={url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium hover:bg-surface">Open the government order <ExternalLink className="h-3 w-3" aria-hidden /></a>}
             {prov?.checkpoint_url && <a href={prov.checkpoint_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium hover:bg-surface">Agent reasoning (Entire checkpoint) <ExternalLink className="h-3 w-3" aria-hidden /></a>}
@@ -98,8 +99,9 @@ export function Explorer() {
           )}
           <p className="text-sm text-muted">{scheme.department}</p>
           <h2 className="text-2xl font-semibold">{scheme.name}</h2>
-          <p className="deva text-muted">{scheme.name_mr}</p>
+          <p lang="mr" className="deva text-muted">{scheme.name_mr} <span className="font-sans text-xs">(name in Marathi)</span></p>
           <p className="mt-2 max-w-2xl text-sm text-muted">{scheme.summary}</p>
+          <p className="mt-2 max-w-2xl text-xs text-muted">The starting rules were written by hand from the scheme&apos;s first government order. Every later change was made by the Niyam agent from a newer order and approved by a person. Press Why? to see which. <Info id="provenance" /></p>
         </div>
         <div className="flex flex-col gap-3">
           <label className="flex flex-col gap-1 text-sm font-medium">
