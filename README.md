@@ -67,7 +67,7 @@ The improvement came from the neatlogs traces: in v1 the coordinator ruled three
 | The agent improved | `evals/results/v1.json` and `v2.json`, with neatlogs trace ids for every run |
 | We used neatlogs | One trace per job, a span per stage and per recovery; trace ids in every eval result and PR |
 | We used Entire | Checkpoints on every agent commit in the rulebook (for example `01M4JDH944E4HPRCA4WKDJTFN7`) and on build commits in this repository |
-| We used cfo.ai | [36-month plan built by cfo.ai's Ari](https://cfo.ai/s/n8hrW8wq0CyG5W0f), three cases; inputs and summary in [business/](business) |
+| We used cfo.ai | [36-month plan built by cfo.ai's Ari](https://cfo.ai/s/GaibuMRvDxWxdSHs), three cases; [PDF](business/business-plan.pdf); inputs and summary in [business/](business) |
 | The agent recovers from failures | Scan with no text layer recovered by transcription (`recovery.ocr_fallback`); a crashed job resumed from its last good state; loop guard escalation |
 | Code written during the event | Both repositories created after 12:30 IST on 10 October 2026 |
 
@@ -75,7 +75,7 @@ The improvement came from the neatlogs traces: in v1 the coordinator ruled three
 
 - **neatlogs**: traces every model call, tool call, retry and cost. We used the traces to find the v1 loop, fix it, and verify the fix with before and after numbers.
 - **Entire**: legal provenance. Every rule change by the agent is a commit with an Entire checkpoint holding the coding agent's full session, so anyone can ask "why does this rule say this?". Uses `commit_linking: always` so the headless agent's sessions link without a prompt.
-- **cfo.ai**: Ari built the [36-month business plan](https://cfo.ai/s/n8hrW8wq0CyG5W0f) (downside, base, upside) from our prices and the cost per document measured in neatlogs. Base case: INR 2.51 crore revenue in year 3, about 95% gross margin, cash flow positive from month 21, INR 40.5 lakh funding need beyond the starting INR 25 lakh.
+- **cfo.ai**: Ari built the [36-month business plan](https://cfo.ai/s/GaibuMRvDxWxdSHs) (downside, base, upside) from our prices and the cost per document measured in neatlogs. Base case: INR 2.51 crore revenue in year 3, about 95% gross margin, cash flow positive from month 21, INR 40.5 lakh funding need beyond the starting INR 25 lakh.
 - **Claude**: chosen per stage by measurement: Sonnet 5.5 extracts, verifies and resolves; Haiku 5.5 triages and runs Claude Code as the coding agent.
 
 ## Use it

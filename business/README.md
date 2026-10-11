@@ -1,6 +1,6 @@
 # Niyam business plan inputs (for cfo.ai)
 
-The business plan was built in cfo.ai by its agent, Ari: **[open the plan](https://cfo.ai/s/n8hrW8wq0CyG5W0f)** (PDF export: `business-plan.pdf` in this folder). This file holds the inputs, so every number in the plan can be traced to a measurement or a labelled assumption.
+The business plan was built in cfo.ai by its agent, Ari: **[open the plan](https://cfo.ai/s/GaibuMRvDxWxdSHs)** (PDF: [business-plan.pdf](business-plan.pdf), 6 pages). This file holds the inputs, so every number in the plan can be traced to a measurement or a labelled assumption.
 
 ## Result (from the cfo.ai model, October 2026 to September 2029)
 

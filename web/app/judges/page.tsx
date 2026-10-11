@@ -125,7 +125,7 @@ export default function Judges() {
               Every rule commit by the agent carries an Entire checkpoint with the coding agent&apos;s full session. Showcase checkpoint <code className="font-mono">{showcase.checkpoint_id}</code>{showcase.checkpoint_url && <> (<ExtLink href={showcase.checkpoint_url}>open</ExtLink>)</>}. Both repositories also capture our own build sessions.
             </Ev>
             <Ev title="cfo.ai: business plan">
-              cfo.ai is an AI finance planner. Its agent, Ari, built a 36-month plan with three cases from our prices and the cost per document measured in neatlogs ({usd(v3?.summary.cost_usd)}). Base case: revenue INR 2.51 crore in year 3, gross margin about 95%, cash flow positive from month 21, and INR 40.5 lakh needed on top of the starting INR 25 lakh. <ExtLink href={SITE.cfoPlan}>Open the plan</ExtLink> or the <ExtLink href={SITE.businessPlan}>inputs and PDF</ExtLink>.
+              cfo.ai is an AI finance planner. Its agent, Ari, built a 36-month plan with three cases from our prices and the cost per document measured in neatlogs ({usd(v3?.summary.cost_usd)}). Base case: revenue INR 2.51 crore in year 3, gross margin about 95%, cash flow positive from month 21, and INR 40.5 lakh needed on top of the starting INR 25 lakh. <ExtLink href={SITE.cfoPlan}>Open the plan in cfo.ai</ExtLink>, the <ExtLink href={SITE.cfoPlanPdf}>PDF</ExtLink>, or the <ExtLink href={SITE.businessPlan}>inputs</ExtLink>.
             </Ev>
           </div>
         </section>

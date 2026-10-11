@@ -1,7 +1,7 @@
 # Niyam
 
 > **Needs you (team leader), in this order.** Submission window: Monday 12 October, 19:00 to 23:55 IST.
-> 1. **cfo.ai**: plan built (https://cfo.ai/s/n8hrW8wq0CyG5W0f). Left: rename the workspace from "BNSF Railway" to Niyam, export the Business plan document as `business/business-plan.pdf`, and check the share link opens in a private window.
+> 1. **cfo.ai**: done. Plan built by Ari (https://cfo.ai/s/GaibuMRvDxWxdSHs, opens without signing in) and saved as `business/business-plan.pdf`. Optional: rename the cfo.ai workspace from "BNSF Railway" to Niyam.
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
 > 3. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
 > 4. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.

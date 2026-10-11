@@ -9,7 +9,8 @@ export const SITE = {
   firstPr: "https://github.com/usv240/niyam-rulebook/pull/2",
   video: "",
   businessPlan: "https://github.com/usv240/niyam/tree/main/business",
-  cfoPlan: "https://cfo.ai/s/n8hrW8wq0CyG5W0f",
+  cfoPlanPdf: "https://github.com/usv240/niyam/blob/main/business/business-plan.pdf",
+  cfoPlan: "https://cfo.ai/s/GaibuMRvDxWxdSHs",
   buildLog: "https://github.com/usv240/niyam/blob/main/hackathon.md",
   apiBase: process.env.NEXT_PUBLIC_API_BASE || "",
 };
