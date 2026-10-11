@@ -47,6 +47,6 @@ Repo: https://github.com/usv240/niyam
 - [x] cfo.ai plan built: https://cfo.ai/s/GaibuMRvDxWxdSHs
 - [x] cfo.ai plan exported to `business/business-plan.pdf`
 - [ ] neatlogs screenshots in `evidence/`
-- [ ] Entire repositories imported at entire.io so checkpoint links open
+- [x] Entire repositories imported at entire.io so checkpoint links open (checked signed out)
 - [ ] `hackathon.md` final entry and "Submission status"
 - [ ] All links open without logging in

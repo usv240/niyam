@@ -3,7 +3,7 @@
 > **Needs you (team leader), in this order.** Submission window: Monday 12 October, 19:00 to 23:55 IST.
 > 1. **cfo.ai**: done. Plan built by Ari (https://cfo.ai/s/GaibuMRvDxWxdSHs, opens without signing in) and saved as `business/business-plan.pdf`. Trial cancelled in Settings, Billing (10 October).
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
-> 3. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
+> 3. **entire.io**: done. Both repositories mirrored; the showcase checkpoint opens without logging in. All 40 published sessions scanned: no secrets.
 > 4. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
 > 5. **Demo video**: a full draft exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Re-voice it, insert neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`), upload it, and put the link in `web/lib/site.ts` (`video`) and the README.
 > 6. **Submit** by quote-tweeting the official neatlogs post (team, name, project, repo, demo, #neatHack).
