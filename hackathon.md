@@ -1,15 +1,15 @@
 # Niyam
 
-> **Needs you (team leader), in this order**
-> 0. **Anthropic usage limit reached** (16:15 IST): the API key's spend cap stopped all model calls ("regain access on 2026-11-01"). Total model spend so far: $19.02 across 34 agent jobs, including the Claude Code encoder. Raise the limit in the Anthropic console (Settings, Limits); then resume the paused second-scheme job with `cd agent && python -m niyam run job_20261010_d2c6f4dc`. The website and eligibility API do not need the model and keep working.
-> 0b. **Rotate the LegiScan key** pasted in chat earlier (it leaked through a checkpoint for a few minutes; see the 16:00 entry).
-> 1. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
+> **Needs you (team leader), in this order.** Submission window: Monday 12 October, 19:00 to 23:55 IST.
+> 1. **cfo.ai** (mandatory): sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
 > 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
-> 3. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
-> 4. **cfo.ai**: sign up at cfo.ai/neathacks, cancel the subscription immediately (Settings, Billing), paste the brief in `business/README.md` into Ari, export the plan to `business/business-plan.pdf`.
-> 5. **AWS server**: fully live with keys at https://34-227-135-194.sslip.io. Stop the instance after 16 October.
-> 6. **Review PR #2** in the rulebook: Niyam sent it to a human because one change narrows eligibility. Merging it is your human decision.
-> 7. **Demo video**: a full draft already exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Improve it by re-voicing and inserting neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`). Then submit by quote-tweeting the official neatlogs post (19:00 to 23:55 IST).
+> 3. **entire.io**: import both repositories (`usv240/niyam`, `usv240/niyam-rulebook`) as the GitHub org admin, so checkpoint links open for judges. Request Trails access with the form.
+> 4. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
+> 5. **Demo video**: a full draft exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Re-voice it, insert neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`), upload it, and put the link in `web/lib/site.ts` (`video`) and the README.
+> 6. **Submit** by quote-tweeting the official neatlogs post (team, name, project, repo, demo, #neatHack).
+> 7. **After 16 October**: stop the AWS instance and release its Elastic IP; rotate every key shared in chat (Anthropic, neatlogs, AWS, LegiScan).
+>
+> Done: usage limit raised; PRs #2, #3 and #4 merged by a human; second scheme onboarded; both sites live (https://usv240.github.io/niyam/ and https://34-227-135-194.sslip.io).
 
 ## Project
 
@@ -23,7 +23,7 @@ Team USV: Ujwal Vanjare.
 
 ## Stack
 
-Python 3.12, Claude (Sonnet 5.5 for extraction, Opus 5.5 for verification and resolution, a fast model for triage), Claude Code headless as the encoder, a small YAML rules engine in OpenFisca parameter format, SQLite, FastAPI, Next.js, neatlogs (tracing and evals), Entire (checkpoints as legal provenance), cfo.ai (business plan), AWS EC2.
+Python 3.12, Claude (chosen by measurement, v3: Haiku 5.5 for triage and the Claude Code encoder, Sonnet 5.5 for extraction, verification and resolution), Claude Code headless as the encoder, a small YAML rules engine in OpenFisca parameter format, SQLite, FastAPI, Next.js, neatlogs (tracing and evals), Entire (checkpoints as legal provenance), cfo.ai (business plan), AWS EC2.
 
 ## Build log
 
