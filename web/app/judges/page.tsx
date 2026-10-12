@@ -53,7 +53,7 @@ export default function Judges() {
           <p className="mt-1 text-sm text-muted">Open these in order. Each one-line note says what you will see.</p>
           <ol className="mt-4 space-y-3">
             {[
-              ...(SITE.video ? [{ href: SITE.video, ext: true, t: "Watch the demo video (under 3 minutes)", d: "The whole story with real runs, narrated." }] : []),
+              ...(SITE.video ? [{ href: SITE.video, ext: true, t: "Watch the demo video", d: "The problem, the agent on a real order, Entire, cfo.ai, and three neatlogs incidents with their fixes." }] : []),
               { href: "/demo/", ext: false, t: "Replay a real run", d: "Every step the agent took on a real Marathi government order, with the document, code change, independent check and decision." },
               { href: showcase.pr_url || SITE.rulebookRepo, ext: true, t: "Open the agent's real change request (PR #2)", d: "The quotes, the verification, the confidence and the reasons, as the agent wrote them. Reviewed and merged." },
               { href: showcase.checkpoint_url || SITE.rulebookRepo, ext: true, t: "Open its Entire checkpoint", d: "The coding agent's full session behind that change: what it read, edited and tested." },
@@ -154,7 +154,7 @@ export default function Judges() {
         </section>
 
         <section id="public" className="scroll-mt-24 grid gap-3 md:grid-cols-3">
-          <Ev title="Demo video (20%)" tone={SITE.video ? "success" : "neutral"} status={SITE.video ? "Done" : "Monday"}>Under 3 minutes, captioned, real runs only.</Ev>
+          <Ev title="Demo video (20%)" tone={SITE.video ? "success" : "neutral"} status={SITE.video ? "Done" : "Monday"}>Captioned, real runs only: the problem, Entire, cfo.ai, and three neatlogs incidents with their fixes. <ExtLink href={SITE.video}>Watch it</ExtLink>.</Ev>
           <Ev title="Building in public (15%)" tone="neutral" status="Ongoing">Posts tagged #neatHack throughout the event; links collected in the build log.</Ev>
           <Ev title="Code written during the event">Both repositories were created after 12:30 IST on 10 October 2026; every commit is dated during the event. Latest agent commit <code className="font-mono">{meta.niyam_head.slice(0, 7)}</code>.</Ev>
         </section>

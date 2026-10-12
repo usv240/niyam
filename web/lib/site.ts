@@ -7,7 +7,7 @@ export const SITE = {
   rulebookRepo: "https://github.com/usv240/niyam-rulebook",
   rulebookSlug: "usv240/niyam-rulebook",
   firstPr: "https://github.com/usv240/niyam-rulebook/pull/2",
-  video: "",
+  video: "https://youtu.be/LI24QLu4gzc",
   businessPlan: "https://github.com/usv240/niyam/tree/main/business",
   cfoPlanPdf: "https://github.com/usv240/niyam/blob/main/business/business-plan.pdf",
   cfoPlan: "https://cfo.ai/s/GaibuMRvDxWxdSHs",

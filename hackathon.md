@@ -185,4 +185,5 @@ Done:
 
 Done:
 - Quote post of the official launch post, with the 2-minute demo attached and @arithecfo @EntireHQ @neatlogs tagged: https://x.com/usv2400/status/2109659364365848722
-- Left: reply with the evidence links, the submission form at neatlogs.com/submission, and the full 4-minute demo on YouTube.
+- Full demo on YouTube: https://youtu.be/LI24QLu4gzc (linked on the judges page and in the README).
+- Left: reply with the evidence links and the submission form at neatlogs.com/submission.

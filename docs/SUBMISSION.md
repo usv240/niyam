@@ -43,7 +43,7 @@ Built with @arithecfo @EntireHQ @neatlogs
 Live: https://usv240.github.io/niyam/
 Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7: https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9
 cfo.ai plan: https://cfo.ai/s/GaibuMRvDxWxdSHs
-Full demo (4 min): <YouTube link>
+Full demo: https://youtu.be/LI24QLu4gzc
 ```
 
 3. Fill the form at https://neatlogs.com/submission (the team leader submits) and paste the link to your quote post. Answers ready to paste are below.
