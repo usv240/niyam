@@ -64,6 +64,13 @@ def srt(text: str, total: float) -> str:
 
 def neural_tts(audio: Path, voice: str) -> None:
     import edge_tts
+    import edge_tts.communicate
+    import edge_tts.constants
+
+    # Since October 2026 the legacy speech host answers 403; Edge itself now uses this endpoint
+    # with the same public token (the change proposed upstream in rany2/edge-tts PR #491).
+    edge_tts.communicate.WSS_URL = ("wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1"
+                                    f"?Ocp-Apim-Subscription-Key={edge_tts.constants.TRUSTED_CLIENT_TOKEN}")
 
     async def speak() -> None:
         for s in SCENES:
@@ -98,7 +105,7 @@ def stills(s: dict, total: float, out: Path) -> None:
     inputs, chains = [], []
     for i, img in enumerate(imgs):
         inputs += ["-i", str(img)]  # one frame in; zoompan emits the whole clip
-        chains.append(f"[{i}:v]scale=1720:960:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0xf6f5f2,"
+        chains.append(f"[{i}:v]scale=1720:960:force_original_aspect_ratio=decrease:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0xf6f5f2,"
                       f"zoompan=z='1+0.04*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s=1920x1080:fps=30,setsar=1[v{i}]")
     graph = ";".join(chains) + ";" + "".join(f"[v{i}]" for i in range(len(imgs))) + f"concat=n={len(imgs)}:v=1:a=0[v]"
     run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", graph, "-map", "[v]",
