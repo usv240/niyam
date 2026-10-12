@@ -16,6 +16,8 @@ Built during [neatHack 2026](https://neatlogs.com/hackathon) by team USV.
 | Entire checkpoint on that change | `01M4JDH944E4HPRCA4WKDJTFN7` (commit `2d67c14`) |
 | Build log | [hackathon.md](hackathon.md) |
 
+
+**neatHack submission:** [quote post with the 2-minute demo](https://x.com/usv2400/status/2109659364365848722).
 ## The problem, in one paragraph
 
 In India, eligibility for welfare is decided by software: portals, field-worker apps, helplines, chatbots. The law behind it is published as PDF Government Resolutions (GRs), mostly in Marathi in Maharashtra, and it changes often. Nobody keeps the code in sync. When code drifts from the law, people are wrongly excluded or wrongly paid: in Telangana an eligibility algorithm cancelled more than 1.8 million food cards ([Al Jazeera and Pulitzer Center, 2024](https://www.aljazeera.com/economy/2024/1/24/how-an-algorithm-denied-food-to-thousands-of-poor-in-indias-telangana)), and nobody affected could see why.

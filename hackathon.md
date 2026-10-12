@@ -180,3 +180,9 @@ Done:
 - Sent fresh traces with 3 eval cases ($0.23). The real 2023 Sanjay Gandhi increase asked a person this time, so the record is now 2 of 4 runs acting alone; README, Trust and judges pages updated to say so.
 - Found that a run from the base Python had tracing off (neatlogs not installed there); the project venv traces correctly. Eval runs use the venv.
 - Video rebuilt in the organisers' order: problem, agent, Entire and cfo.ai, three neatlogs incidents with fixes.
+
+### 2026-10-12 10:56 IST: submitted on X
+
+Done:
+- Quote post of the official launch post, with the 2-minute demo attached and @arithecfo @EntireHQ @neatlogs tagged: https://x.com/usv2400/status/2109659364365848722
+- Left: reply with the evidence links, the submission form at neatlogs.com/submission, and the full 4-minute demo on YouTube.
