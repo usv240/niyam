@@ -21,20 +21,47 @@ Everything to post and record, with real numbers from our runs. No emojis, no em
 
 Built from the real site with `python video/make_video.py`: Indian English neural narration (edge-tts, en-IN-NeerjaNeural), real recordings of the site, the public pull request, the public Entire checkpoint page and the cfo.ai plan, plus neatlogs trace screenshots (v1 loop next to the v2 straight run), with captions burned in. Output: `video/out/niyam-demo.mp4`. The narration for every scene is in `video/scenes.json`. Upload to YouTube (unlisted is fine) and put the link in `web/lib/site.ts` (`video`) and the README.
 
-## Submission tweet (quote-tweet the official neatlogs post, Mon 12 Oct, 19:00 to 23:55 IST)
+## How to submit (organiser instructions, 12 Oct)
 
-The rules ask for the business plan and an accessible Entire checkpoint link and ID in the submission, so both are in the post. Length as X counts it: 277 of 280 characters (every link counts as 23). The live site link is on the repo page and in the video.
+Window: open now, closes **23:55 IST, Monday 12 October**. Both steps are mandatory. The first 50 quote posts get engagement from neatlogs and cfo.ai, so earlier is better.
+
+1. Quote the official launch post: https://x.com/bettersayAJ/status/2109639214723932495 (Repost, Quote). **Attach `video/out/niyam-demo-x.mp4`** (2:00; X allows 2:20 on a free account). Keep the post public. Text (274 of 280 characters; it must keep all three tags):
 
 ```
-Team USV | Ujwal Vanjare | Niyam
-AI agent that keeps welfare eligibility code in sync with the law.
+Our #neatHack submission: Niyam (Team USV)
 
-Demo: <video link>
-Repo: https://github.com/usv240/niyam
+Welfare rules change in Marathi PDFs, but eligibility runs on code. Niyam, an AI agent, reads each new order and updates the code, citing the source of each line.
+
+github.com/usv240/niyam
+
+Built with @arithecfo @EntireHQ @neatlogs
+```
+
+2. Reply under your own post with the evidence links (the rules ask for an Entire checkpoint link and ID, and the cfo.ai plan):
+
+```
+Live: https://usv240.github.io/niyam/
 Entire checkpoint 01M4JDH944E4HPRCA4WKDJTFN7: https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9
 cfo.ai plan: https://cfo.ai/s/GaibuMRvDxWxdSHs
-#neatHack
+Full demo (4 min): <YouTube link>
 ```
+
+3. Fill the form at https://neatlogs.com/submission (the team leader submits) and paste the link to your quote post. Answers ready to paste are below.
+
+## Form answers (paste as needed)
+
+- **Team:** USV
+- **Team leader:** Ujwal Vanjare
+- **Project name:** Niyam
+- **One line:** An AI agent that keeps welfare eligibility rules, written as code, in sync with new government orders, with the source clause for every line.
+- **Problem:** In India, eligibility for welfare is decided by software (portals, field-worker apps, helplines), but the law lives in government orders published as PDFs, often in Marathi, that change all the time. Nobody keeps the code in sync, so real people are wrongly excluded or wrongly paid. In Telangana an eligibility algorithm cancelled more than 1.8 million food cards.
+- **Solution:** Niyam watches official sources, reads each new order (including scans), quotes every changed clause and checks each quote against the document, then Claude Code updates the rulebook and its tests. A separate verifier that never sees the change writes its own test citizens from the law. Niyam acts alone only when a number or date changes and every check agrees; anything that removes people goes to a human as a pull request. Every rule links to its clause, and anyone can check eligibility in English, Hindi or Marathi.
+- **How we used neatlogs:** One trace per job, a span per stage and recovery. neatlogs flagged three real incidents, each fixed: a runaway encode-verify-resolve loop costing $3.05 on one document (verifier never saw the benefit formula; fixed with the formula and a loop guard), validation errors from answers cut off mid-way (retry with more room), and a provider usage limit that stopped a job (jobs now pause and resume). Per-stage costs then cut cost per document from $0.88 to $0.13 with every check at 100%.
+- **How we used Entire:** Legal provenance. Every rule commit by the agent carries an Entire checkpoint with the coding agent's full session, public without login, so anyone can see which agent, model and session wrote any rule line. Checkpoint 01M4JDH944E4HPRCA4WKDJTFN7: https://entire.io/gh/usv240/niyam-rulebook/commit/2d67c1492b7a175caf1c6b5a1cb8791c987e81f9
+- **How we used cfo.ai:** Ari built a 36-month plan with three cases from our prices and the cost per document measured in neatlogs: about 95% gross margin, cash flow positive from month 21 in the base case. https://cfo.ai/s/GaibuMRvDxWxdSHs (PDF: https://github.com/usv240/niyam/blob/main/business/business-plan.pdf)
+- **Repository:** https://github.com/usv240/niyam (rules: https://github.com/usv240/niyam-rulebook)
+- **Live demo:** https://usv240.github.io/niyam/
+- **Demo video:** the X post (2 min) and the full YouTube cut (4 min)
 
 ## Checklist before submitting
 

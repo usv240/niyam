@@ -20,7 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "video" / "out"
-SCENES = json.loads((ROOT / "video" / "scenes.json").read_text(encoding="utf-8"))
+SCENES: list[dict] = []
 STYLE = ("FontName=Segoe UI,FontSize=15,PrimaryColour=&H00FFFFFF,BackColour=&HB0101418,"
          "BorderStyle=4,Outline=1,Shadow=0,MarginV=22,MarginL=60,MarginR=60")
 
@@ -116,9 +116,13 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--base", default="http://localhost:8811")
     ap.add_argument("--voice", default="en-IN-NeerjaNeural")
+    ap.add_argument("--scenes", default="video/scenes.json", help="scene list; a shorter cut can reuse the same recordings")
+    ap.add_argument("--name", default="niyam-demo", help="output file name, without .mp4")
     ap.add_argument("--skip-record", action="store_true")
     a = ap.parse_args()
-    audio, clips, scenes_dir = OUT / "audio", OUT / "clips", OUT / "scenes"
+    SCENES[:] = json.loads((ROOT / a.scenes).read_text(encoding="utf-8"))
+    tag = "" if a.name == "niyam-demo" else f"-{a.name}"
+    audio, clips, scenes_dir = OUT / f"audio{tag}", OUT / "clips", OUT / f"scenes{tag}"
     for d in (audio, clips, scenes_dir):
         d.mkdir(parents=True, exist_ok=True)
 
@@ -128,11 +132,11 @@ def main() -> None:
         run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "video" / "tts.ps1"),
              "-Scenes", str(ROOT / "video" / "scenes.json"), "-Out", str(audio), "-Voice", a.voice])
     durs = {s["id"]: duration(audio / f"{s['id']}.wav") for s in SCENES}
-    (OUT / "durations.json").write_text(json.dumps(durs, indent=1), encoding="utf-8")
+    (OUT / f"durations{tag}.json").write_text(json.dumps(durs, indent=1), encoding="utf-8")
     print("narration:", round(sum(durs.values()), 1), "seconds")
 
     if not a.skip_record:
-        print(run(["node", "video/record.mjs", a.base, str(OUT / "durations.json"), str(clips)], cwd=ROOT))
+        print(run(["node", "video/record.mjs", a.base, str(OUT / f"durations{tag}.json"), str(clips)], cwd=ROOT))
     offsets = json.loads((clips / "offsets.json").read_text(encoding="utf-8"))
 
     parts = []
@@ -158,7 +162,7 @@ def main() -> None:
         parts.append(f"file '{sid}.mp4'")
         print("composed", sid)
     (scenes_dir / "list.txt").write_text("\n".join(parts) + "\n", encoding="utf-8")
-    final = OUT / "niyam-demo.mp4"
+    final = OUT / f"{a.name}.mp4"
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", "list.txt", "-c", "copy",
          "-movflags", "+faststart", str(final)], cwd=scenes_dir)
     print(f"done: {final} ({duration(final):.1f} s)")

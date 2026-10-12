@@ -1,0 +1,14 @@
+[
+  {"id": "01-hook", "say": "In India, welfare eligibility is decided by code, but the law lives in Marathi PDFs that keep changing. When the code falls behind, real people are wrongly cut off."},
+  {"id": "02-what", "say": "Niyam is an AI agent that reads each new government order and updates the rule code itself, with the source clause for every line."},
+  {"id": "03-run", "say": "Here it reads a real Marathi amendment and finds six changes. Claude Code updates the rules and tests, and a separate blind verifier checks them against the law: sixteen of sixteen agree. Anything that removes people waits for a human."},
+  {"id": "05-entire", "say": "Entire saves every rule commit with the agent's full session, public, so anyone can see which agent and model wrote each line."},
+  {"id": "07-plan", "say": "cfo.ai's agent, Ari, built our thirty six month plan from measured costs: about ninety five percent gross margin."},
+  {"id": "08-incidents", "images": ["evidence/screens/neatlogs-detections-video.png"], "say": "neatlogs traced every run and flagged the incidents our agent hit while we built it."},
+  {"id": "09-loop", "images": ["evidence/screens/neatlogs-trace-v1-loop.png", "evidence/screens/neatlogs-trace-v2-showcase.png"], "say": "A runaway loop cost three dollars on one document. The trace showed the verifier never saw the benefit formula. We added it, plus a loop guard, and it now runs straight through."},
+  {"id": "10-validation", "images": ["evidence/screens/neatlogs-validation-errors-video.png"], "say": "Validation errors: answers cut off mid sentence. Now the agent retries with more room and recovers by itself."},
+  {"id": "11-limit", "images": ["evidence/screens/neatlogs-usage-limit-video.png"], "say": "A usage limit stopped a job half way. Now jobs pause, and resume from their last good step."},
+  {"id": "12-results", "say": "Cost per document fell from eighty eight cents to thirteen, with every check at one hundred percent."},
+  {"id": "14-check", "viewport": "phone", "say": "And anyone can check their eligibility in Marathi, Hindi or English, right in the browser."},
+  {"id": "15-close", "say": "Niyam. When the law changes, the code changes with it."}
+]
