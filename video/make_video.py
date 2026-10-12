@@ -72,7 +72,12 @@ def neural_tts(audio: Path, voice: str) -> None:
             if wav.exists() and said.exists() and said.read_text(encoding="utf-8") == key and duration(wav) > 1.5:
                 continue  # unchanged and good: keep it
             for attempt in range(4):
-                await edge_tts.Communicate(s["say"], voice, rate="+4%").save(str(mp3))
+                try:
+                    await edge_tts.Communicate(s["say"], voice, rate="+4%").save(str(mp3))
+                except Exception as e:  # the service sometimes refuses a connection; wait and retry
+                    print(f"  {s['id']}: speech service error ({type(e).__name__}), retrying")
+                    await asyncio.sleep(5 * (attempt + 1))
+                    continue
                 run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3), "-ar", "48000", "-ac", "1", str(wav)])
                 # the service sometimes returns a near-empty clip; a sentence never takes under 1.5 s
                 if duration(wav) > 1.5:

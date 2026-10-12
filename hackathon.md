@@ -172,3 +172,11 @@ Pending.
 ## Submission status
 
 Pending. Submission window: Mon 12 Oct 2026, 19:00 to 23:55 IST.
+
+### 2026-10-12 03:30 to 05:00 IST: neatlogs incidents for the demo
+
+Done:
+- The organisers asked every demo to show how neatlogs helped find and fix incidents. Added neatlogs' own suggested detections (Validation Error, Usage Limit Exceeded); they matched real past spans: 2 validation errors (Haiku answers cut off, fixed by retrying with more room, `47527e0`) and 1 usage-limit stop (jobs now pause and resume, `25caeb8`), next to the v1 loop (`d5592eb`).
+- Sent fresh traces with 3 eval cases ($0.23). The real 2023 Sanjay Gandhi increase asked a person this time, so the record is now 2 of 4 runs acting alone; README, Trust and judges pages updated to say so.
+- Found that a run from the base Python had tracing off (neatlogs not installed there); the project venv traces correctly. Eval runs use the venv.
+- Video rebuilt in the organisers' order: problem, agent, Entire and cfo.ai, three neatlogs incidents with fixes.

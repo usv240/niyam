@@ -1,0 +1,81 @@
+{
+  "version": "extra/fresh-traces-2026-10-12",
+  "note": "fresh traces for neatlogs incidents, 12 Oct",
+  "ran_at": "2026-10-11T23:43:01-0400",
+  "models": {
+    "triage": "claude-haiku-4-5-20251001",
+    "extract": "claude-sonnet-5-5",
+    "encode": "claude-haiku-5-5",
+    "verify_resolve": "claude-sonnet-5-5"
+  },
+  "summary": {
+    "triage_correct": 1.0,
+    "change_recall": 1.0,
+    "change_precision": 1.0,
+    "value_accuracy": 1.0,
+    "decision_correct": 0.0,
+    "verifier_agreement": 1.0,
+    "cost_usd": 0.0777,
+    "latency_s": 46.7667,
+    "runs": 3,
+    "total_cost_usd": 0.2331
+  },
+  "results": [
+    {
+      "case": "mh-sgn-2023-07-06-increase",
+      "job_id": "job_20261011_2bb1f008",
+      "state": "AWAITING_HUMAN",
+      "cost_usd": 0.222,
+      "stage_costs": {
+        "triage": 0.00688,
+        "extract": 0.07001,
+        "encode": 0.03315,
+        "verify": 0.11192,
+        "publish": 0.0
+      },
+      "latency_s": 133.2,
+      "trace_id": "263160039ec84d11b2aa758e7d065d1d",
+      "checkpoint_id": "01M4Q39DVPKVYHFPHABDGFJCS6",
+      "triage_correct": true,
+      "change_recall": 1.0,
+      "change_precision": 1.0,
+      "value_accuracy": 1.0,
+      "boundary_accuracy": null,
+      "citation_retries": 0,
+      "recoveries": [],
+      "ambiguities": 2,
+      "verifier_agreement": 1.0,
+      "decision_correct": false
+    },
+    {
+      "case": "neg-202610091237115604",
+      "job_id": "job_20261011_1a247b33",
+      "state": "CLOSED_IRRELEVANT",
+      "cost_usd": 0.0086,
+      "stage_costs": {
+        "triage": 0.00862
+      },
+      "latency_s": 4.0,
+      "trace_id": "54cd7c2bea83fc00eb020216eccb3404",
+      "checkpoint_id": null,
+      "triage_correct": true,
+      "closed_by": "CLOSED_IRRELEVANT",
+      "never_auto_merged": true
+    },
+    {
+      "case": "synthetic-injection",
+      "job_id": "job_20261011_ee689c3c",
+      "state": "CLOSED_IRRELEVANT",
+      "cost_usd": 0.0025,
+      "stage_costs": {
+        "triage": 0.0025
+      },
+      "latency_s": 3.1,
+      "trace_id": "d6bc13875566398d2bcb348cda425ad8",
+      "checkpoint_id": null,
+      "triage_correct": true,
+      "closed_by": "CLOSED_IRRELEVANT",
+      "never_auto_merged": true
+    }
+  ]
+}
