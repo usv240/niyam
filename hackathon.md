@@ -1,15 +1,7 @@
 # Niyam
 
-> **Needs you (team leader), in this order.** Submission window: Monday 12 October, 19:00 to 23:55 IST.
-> 1. **cfo.ai**: done. Plan built by Ari (https://cfo.ai/s/GaibuMRvDxWxdSHs, opens without signing in) and saved as `business/business-plan.pdf`. Trial cancelled in Settings, Billing (10 October).
-> 2. **X**: post 1 and 2 from `docs/SUBMISSION.md` now; then one post every few hours (15% of the score).
-> 3. **entire.io**: done. Both repositories mirrored; the showcase checkpoint opens without logging in. All 40 published sessions scanned: no secrets.
-> 4. **neatlogs**: take the 3 screenshots listed in `evidence/neatlogs.md`; optionally paste the rubric there into neatlogs evals.
-> 5. **Demo video**: a full draft exists at `video/out/niyam-demo-draft.mp4` (2:42, captions, real recordings). Re-voice it, insert neatlogs and Entire dashboard clips (`docs/SUBMISSION.md`), upload it, and put the link in `web/lib/site.ts` (`video`) and the README.
-> 6. **Submit** by quote-tweeting the official neatlogs post (team, name, project, repo, demo, #neatHack).
-> 7. **After 16 October**: stop the AWS instance and release its Elastic IP; rotate every key shared in chat (Anthropic, neatlogs, AWS, LegiScan).
->
-> Done: usage limit raised; PRs #2, #3 and #4 merged by a human; second scheme onboarded; both sites live (https://usv240.github.io/niyam/ and https://34-227-135-194.sslip.io).
+> **Status: submitted** on 12 October 2026 (quote post https://x.com/usv2400/status/2109659364365848722, form received, demo https://youtu.be/LI24QLu4gzc). Winners announced 16 October.
+> After 16 October: stop the AWS instance and release its Elastic IP; rotate every key shared during the build (Anthropic, neatlogs, AWS, LegiScan).
 
 ## Project
 
@@ -186,4 +178,5 @@ Done:
 Done:
 - Quote post of the official launch post, with the 2-minute demo attached and @arithecfo @EntireHQ @neatlogs tagged: https://x.com/usv2400/status/2109659364365848722
 - Full demo on YouTube: https://youtu.be/LI24QLu4gzc (linked on the judges page and in the README).
-- Left: reply with the evidence links and the submission form at neatlogs.com/submission.
+- Evidence links posted as a reply under the quote post.
+- Submission form completed at neatlogs.com/submission: "Submission received". Submission complete; no further changes to the repositories after this entry.

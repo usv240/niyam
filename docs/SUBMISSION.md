@@ -65,11 +65,11 @@ Full demo: https://youtu.be/LI24QLu4gzc
 
 ## Checklist before submitting
 
-- [ ] Website deployed and tested in incognito on a phone and a laptop, light and dark
-- [ ] Demo video uploaded; link added to `web/lib/site.ts` (`video`) and README
+- [x] Website deployed and tested on a phone and a laptop, light and dark (Playwright QA, signed out)
+- [x] Demo video uploaded; link added to `web/lib/site.ts` (`video`) and README
 - [x] cfo.ai plan built: https://cfo.ai/s/GaibuMRvDxWxdSHs
 - [x] cfo.ai plan exported to `business/business-plan.pdf`
 - [x] neatlogs screenshots in `evidence/screens/` (v1 loop trace, v2 showcase trace)
 - [x] Entire repositories imported at entire.io so checkpoint links open (checked signed out)
-- [ ] `hackathon.md` final entry and "Submission status"
-- [ ] All links open without logging in
+- [x] `hackathon.md` final entry and "Submission status"
+- [x] All links open without logging in
